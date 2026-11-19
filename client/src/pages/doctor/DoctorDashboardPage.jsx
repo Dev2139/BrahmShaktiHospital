@@ -75,12 +75,28 @@ export const DoctorDashboardPage = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-xs border border-white/20">
-          <Clock className="w-5 h-5 text-accent" />
-          <div className="text-xs">
-            <span className="text-slate-300 block text-[10px]">Today's OPD Shift</span>
-            <strong className="text-white">09:30 AM - 02:00 PM</strong>
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-xs border border-white/20">
+            <Clock className="w-5 h-5 text-accent" />
+            <div className="text-xs">
+              <span className="text-slate-300 block text-[10px]">Today's OPD Shift</span>
+              <strong className="text-white">09:30 AM - 02:00 PM</strong>
+            </div>
           </div>
+          <Link
+            to="/admin/leaves"
+            className="px-4 py-3 rounded-2xl bg-white text-secondary hover:bg-slate-100 font-bold text-xs flex items-center gap-2 transition-all shadow-md cursor-pointer"
+          >
+            <Calendar className="w-4 h-4 text-primary" />
+            <span>Leave Calendar</span>
+          </Link>
+          <Link
+            to={`/doctors/${user?.doctorId || 'doc-med-01'}`}
+            className="px-4 py-3 rounded-2xl bg-accent text-accent-dark hover:bg-accent-light font-bold text-xs flex items-center gap-2 transition-all shadow-md cursor-pointer"
+          >
+            <Stethoscope className="w-4 h-4" />
+            <span>My Public Profile</span>
+          </Link>
         </div>
       </div>
 

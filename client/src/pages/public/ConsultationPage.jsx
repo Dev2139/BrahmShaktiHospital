@@ -27,16 +27,28 @@ import toast from 'react-hot-toast';
 
 const todayISO = () => new Date().toISOString().split('T')[0];
 
-// The appointment portal lists ONLY these consultants, in this exact sequence.
+// The appointment portal lists Brahm Shakti Hospital's verified consultants from the official DMC register:
 const PORTAL_DOCTOR_NAMES = [
-  'Dr. Dev Patel',
-  'Dr. Samir Singh Kshatriya',
-  'Dr. Hardik Patel',
-  'Dr. Milan Patel',
-  'Dr. Harshit Tiwari',
-  'Dr. Ayush Sah',
-  'Dr. Rohit Pandit',
-  'Dr. Mahir Patel'
+  'Dr. S.K. Goyal',
+  'Dr. Vineet Mittal',
+  'Dr. Sanjeev Verma',
+  'Dr. Rishabh Jain',
+  'Dr. Manisha Jain',
+  'Dr. Renu Gupta',
+  'Dr. Disha Menani',
+  'Dr. Rupesh Sharma',
+  'Dr. Satpal Yadav',
+  'Dr. Kapil Goyal',
+  'Dr. Ravi Shankar Gupta',
+  'Dr. Dinesh Chand Sharma',
+  'Dr. Nikhil Bhambri',
+  'Dr. Sunil Gandhi',
+  'Dr. Dharmender Chaudhary',
+  'Dr. Anish Goel',
+  'Dr. Swati Gupta',
+  'Dr. Rajesh Kumar',
+  'Dr. Monika Kumar',
+  'Dr. Anil Solanki'
 ];
 
 export const ConsultationPage = () => {
@@ -80,16 +92,14 @@ export const ConsultationPage = () => {
         if (deptRes.data.success) setDepartments(deptRes.data.data);
         if (docRes.data.success) {
           const all = docRes.data.data || [];
-          // Keep only the nominated portal doctors, in the fixed sequence
           const ordered = PORTAL_DOCTOR_NAMES
             .map((name) => all.find((d) => d.name === name))
             .filter(Boolean);
-          // Deep-links from doctor profile pages may pass a non-portal doctor;
-          // include them so "?doctor=..." links always work.
-          const paramDoctor = preDoctor ? all.find((d) => d.id === preDoctor) : null;
-          if (paramDoctor && !ordered.some((d) => d.id === paramDoctor.id)) ordered.push(paramDoctor);
-          setDoctors(ordered);
-          const initial = ordered.find((d) => d.id === preDoctor) || ordered[0];
+          const finalDocs = ordered.length > 0
+            ? [...ordered, ...all.filter(d => !ordered.some(o => o.id === d.id))]
+            : all;
+          setDoctors(finalDocs);
+          const initial = finalDocs.find((d) => d.id === preDoctor) || finalDocs[0];
           if (initial) setSelectedDoctorId(initial.id);
         }
       } catch (err) {

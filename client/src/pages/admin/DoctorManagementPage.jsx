@@ -35,6 +35,9 @@ export const DoctorManagementPage = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [birthdate, setBirthdate] = useState('');
+  const [category, setCategory] = useState('In house');
+  const [dmcNo, setDmcNo] = useState('');
+  const [validity, setValidity] = useState('');
   const [issuedCreds, setIssuedCreds] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -74,6 +77,9 @@ export const DoctorManagementPage = () => {
     setEmail('');
     setPhone('');
     setBirthdate('');
+    setCategory('In house');
+    setDmcNo('');
+    setValidity('');
     setModalOpen(true);
   };
 
@@ -90,6 +96,9 @@ export const DoctorManagementPage = () => {
     setEmail(doc.email || '');
     setPhone(doc.phone || '');
     setBirthdate(doc.birthdate || '');
+    setCategory(doc.category || 'In house');
+    setDmcNo(doc.dmcNo || '');
+    setValidity(doc.validity || '');
     setModalOpen(true);
   };
 
@@ -131,7 +140,10 @@ export const DoctorManagementPage = () => {
         availableTimings,
         email,
         phone,
-        birthdate
+        birthdate,
+        category,
+        dmcNo,
+        validity
       };
 
       if (editingDoctor) {
@@ -237,6 +249,8 @@ export const DoctorManagementPage = () => {
               <thead className="bg-secondary text-white uppercase text-[10px] tracking-wider">
                 <tr>
                   <th className="py-3.5 px-5 font-bold">Doctor Profile</th>
+                  <th className="py-3.5 px-5 font-bold">Category</th>
+                  <th className="py-3.5 px-5 font-bold">DMC No / Validity</th>
                   <th className="py-3.5 px-5 font-bold">Department</th>
                   <th className="py-3.5 px-5 font-bold">Experience</th>
                   <th className="py-3.5 px-5 font-bold">Fee (Subsidized)</th>
@@ -256,6 +270,17 @@ export const DoctorManagementPage = () => {
                           <div className="text-[10px] text-medical-muted">{doc.qualification}</div>
                         </div>
                       </div>
+                    </td>
+                    <td className="py-3.5 px-5">
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                        doc.category === 'Visiting' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'
+                      }`}>
+                        {doc.category || 'In house'}
+                      </span>
+                    </td>
+                    <td className="py-3.5 px-5 font-mono text-[11px]">
+                      <div className="font-bold text-secondary">{doc.dmcNo || '—'}</div>
+                      <div className="text-[10px] text-medical-muted">{doc.validity ? `Valid: ${doc.validity}` : ''}</div>
                     </td>
                     <td className="py-3.5 px-5 font-bold text-primary">
                       {doc.departmentName}
@@ -395,6 +420,42 @@ export const DoctorManagementPage = () => {
                     onChange={(e) => setAvailableTimings(e.target.value)}
                     placeholder="09:00 AM - 02:00 PM"
                     required
+                    className="w-full p-2.5 rounded-xl border border-medical-border text-xs text-secondary font-medium focus:border-primary focus:outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3">
+                <div className="space-y-1">
+                  <label className="text-xs font-bold uppercase text-medical-muted">Category</label>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full p-2.5 rounded-xl border border-medical-border text-xs text-secondary font-medium focus:border-primary focus:outline-hidden"
+                  >
+                    <option value="In house">In house</option>
+                    <option value="Visiting">Visiting</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-bold uppercase text-medical-muted">DMC Reg No.</label>
+                  <input
+                    type="text"
+                    value={dmcNo}
+                    onChange={(e) => setDmcNo(e.target.value)}
+                    placeholder="e.g. 11847 or DMC/R/22167"
+                    className="w-full p-2.5 rounded-xl border border-medical-border text-xs text-secondary font-mono focus:border-primary focus:outline-hidden"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-bold uppercase text-medical-muted">DMC Validity</label>
+                  <input
+                    type="text"
+                    value={validity}
+                    onChange={(e) => setValidity(e.target.value)}
+                    placeholder="e.g. 29/10/2030"
                     className="w-full p-2.5 rounded-xl border border-medical-border text-xs text-secondary font-medium focus:border-primary focus:outline-hidden"
                   />
                 </div>

@@ -1,362 +1,1166 @@
 export const departmentsData = [
   {
-    id: "cardiology",
-    code: "CARD",
-    name: "Cardiology & Cardiac Surgery",
-    category: "Super Specialty",
-    icon: "HeartPulse",
-    shortDescription: "Comprehensive cardiovascular care including interventional cardiology, electrophysiology, coronary artery bypass, and valve repair.",
-    headOfDepartment: "Dr. J.P.S. Sawhney",
-    features: [
-      "24x7 Primary Angioplasty Service (Cath Lab)",
-      "Dedicated 24-bed Coronary Care Unit (CCU)",
-      "Electrophysiology & Radiofrequency Ablation",
-      "Minimally Invasive Cardiac Surgery (MICS)",
-      "Advanced Heart Failure & Cardiac Rehabilitation"
+    "id": "medicine",
+    "code": "MED",
+    "name": "Internal Medicine & Diabetology",
+    "category": "Clinical Specialties",
+    "icon": "Stethoscope",
+    "image": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Comprehensive diagnosis, chronic disease management, diabetes, hypertension, and infectious diseases.",
+    "description": "Brahm Shakti Hospital's Department of Internal Medicine is the clinical backbone of outpatient and inpatient diagnostics. Led by senior physicians Dr. S.K. Goyal and Dr. Vineet Mittal, the department specializes in adult general health, metabolic syndrome, diabetic foot clinics, and fever triage.",
+    "headOfDepartment": "Dr. S.K. Goyal (MBBS, MD)",
+    "features": [
+      "Advanced Adult Intensive Medical Care",
+      "Comprehensive Diabetology & Metabolic Clinic",
+      "Hypertension & Cardiovascular Risk Assessment",
+      "Dedicated Geriatric & Elderly Care Protocols"
     ],
-    opdTimings: "Mon - Sat: 9:00 AM - 4:00 PM",
-    floorLocation: "Block A, 1st & 2nd Floor"
+    "services": [
+      "Fever & Pyrexia of Unknown Origin Workup",
+      "Diabetes Mellitus & Insulin Titration",
+      "Hypertension & Lipid Disorders",
+      "Adult Asthma & Bronchial Infections",
+      "Geriatric Comprehensive Assessments"
+    ],
+    "opdTimings": "Mon - Sat: 09:00 AM - 05:00 PM",
+    "consultationCharges": 700,
+    "floorLocation": "Block A, 1st Floor",
+    "emergencyAvailable": true
   },
   {
-    id: "nephrology",
-    code: "NEPH",
-    name: "Nephrology & Renal Transplant",
-    category: "Super Specialty",
-    icon: "Activity",
-    shortDescription: "Pioneering kidney disease care, continuous renal replacement therapy, and one of North India's largest renal transplant programs.",
-    headOfDepartment: "Dr. D.S. Rana",
-    features: [
-      "Over 4,500+ successful renal transplants performed",
-      "High-flux hemodialysis unit with 45+ machines operating round the clock",
-      "Dedicated Pediatric Nephrology and Renal ICU",
-      "ABO-Incompatible kidney transplantation",
-      "Comprehensive peritoneal dialysis (CAPD) program"
+    "id": "general-surgery",
+    "code": "SURG",
+    "name": "General & Laparoscopic Surgery",
+    "category": "Surgical Specialties",
+    "icon": "Scissors",
+    "image": "https://images.unsplash.com/photo-1579684453423-f84349ef60b0?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Minimally invasive keyhole laparoscopic surgeries for gallstones, hernia repair, appendicitis, and proctology.",
+    "description": "Equipped with high-definition laparoscopic towers, harmonic scalpel energy devices, and modular sterile theatres, Brahm Shakti's surgical unit provides advanced keyhole surgeries for rapid recovery and minimal post-op pain.",
+    "headOfDepartment": "Dr. Sanjeev Verma (MBBS, MS)",
+    "features": [
+      "4K Laparoscopic Towers for Keyhole Precision",
+      "Laser Proctology Suite for Piles & Fistula",
+      "24x7 Emergency Trauma Laparotomy",
+      "Day Care Surgical Recovery Ward"
     ],
-    opdTimings: "Mon - Sat: 9:30 AM - 5:00 PM",
-    floorLocation: "Super Specialty Block, 3rd Floor"
+    "services": [
+      "Laparoscopic Cholecystectomy (Gallbladder)",
+      "Laparoscopic Inguinal & Umbilical Hernia Repair",
+      "Laparoscopic Appendectomy",
+      "Laser Treatment for Piles, Fissure & Fistula",
+      "Diabetic Foot Wound Debridement & Grafting"
+    ],
+    "opdTimings": "Mon - Sat: 10:00 AM - 03:00 PM",
+    "consultationCharges": 800,
+    "floorLocation": "Block B, 1st Floor",
+    "emergencyAvailable": true
   },
   {
-    id: "gastroenterology",
-    code: "GAST",
-    name: "Gastroenterology & Liver Transplant",
-    category: "Super Specialty",
-    icon: "Stethoscope",
-    shortDescription: "Advanced diagnosis and management of complex gastrointestinal, pancreaticobiliary diseases, and living donor liver transplants.",
-    headOfDepartment: "Dr. Randhir Sud",
-    features: [
-      "Advanced therapeutic endoscopy, EUS and third-space endoscopy",
-      "Living donor and deceased donor liver transplant program",
-      "Dedicated Hepatobiliary Critical Care Unit",
-      "Capsule endoscopy and high-resolution manometry",
-      "Multidisciplinary GI Oncology board"
+    "id": "gynae-obst",
+    "code": "GYN",
+    "name": "Obstetrics & Gynaecology (Maternity)",
+    "category": "Clinical Specialties",
+    "icon": "Baby",
+    "image": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Complete maternity, painless normal deliveries, high-risk pregnancies, and laparoscopic gynaecological surgeries.",
+    "description": "Dedicated to the health of women at every stage of life. Our maternity wing features modern labour delivery suites, cardiotocography (CTG) fetal monitoring, and 24x7 emergency caesarean availability.",
+    "headOfDepartment": "Dr. Manisha Jain (MBBS, DNB Obst. & Gyne)",
+    "features": [
+      "Painless Labour & Epidural Analgesia",
+      "High-Risk Pregnancy Intensive Monitoring",
+      "Advanced 3D/4D Fetal Anomaly Sonography",
+      "Minimally Invasive Hysterectomy & Cystectomy"
     ],
-    opdTimings: "Mon - Sat: 9:00 AM - 4:30 PM",
-    floorLocation: "Block B, 2nd Floor"
+    "services": [
+      "Normal & Caesarean Deliveries",
+      "Antenatal & Postnatal Care Regimens",
+      "Infertility & IUI Consultation",
+      "PCOS, PCOD & Adolescent Gynaecology",
+      "Cervical Cancer Screening (Pap Smear & Colposcopy)"
+    ],
+    "opdTimings": "Mon - Sat: 09:30 AM - 07:00 PM",
+    "consultationCharges": 750,
+    "floorLocation": "Mother & Child Wing, Block C",
+    "emergencyAvailable": true
   },
   {
-    id: "neurosciences",
-    code: "NEUR",
-    name: "Neurology & Neurosurgery",
-    category: "Super Specialty",
-    icon: "Brain",
-    shortDescription: "Tertiary neuro-care for stroke, brain tumors, skull base lesions, complex spine conditions, and epilepsy management.",
-    headOfDepartment: "Dr. P.K. Sethi",
-    features: [
-      "Comprehensive 24x7 Hyperacute Stroke Interventional Unit",
-      "Neuronavigation & Intraoperative Neuro-monitoring",
-      "Minimally invasive & endoscopic skull base neurosurgery",
-      "Functional neurosurgery and Deep Brain Stimulation (DBS)",
-      "Dedicated 18-bed Neuro-Intensive Care Unit"
+    "id": "pediatrics",
+    "code": "PED",
+    "name": "Pediatrics & Neonatal Care (NICU)",
+    "category": "Clinical Specialties",
+    "icon": "Baby",
+    "image": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Level-III Neonatal ICU, infant radiant warmers, pediatric emergency, growth & vaccination clinics.",
+    "description": "Caring for our youngest patients with tender clinical acumen. Our Level-III NICU provides round-the-clock intensive care for premature neonates, low-birth-weight babies, and pediatric critical illnesses.",
+    "headOfDepartment": "Dr. Rupesh Sharma (MBBS, DCH)",
+    "features": [
+      "Level-III Neonatal Intensive Care Unit (NICU)",
+      "Advanced Radiant Warmers & Phototherapy Units",
+      "Neonatal CPAP & Mechanical Ventilation",
+      "Comprehensive Immunization Registry"
     ],
-    opdTimings: "Mon - Sat: 10:00 AM - 4:00 PM",
-    floorLocation: "Block A, 4th Floor"
+    "services": [
+      "Preterm Baby Intensive Care",
+      "Universal Newborn Metabolic Screening",
+      "Childhood Asthma & Allergy Clinic",
+      "Routine & Travel Immunization",
+      "Growth Milestone Tracking"
+    ],
+    "opdTimings": "Mon - Sat: 09:00 AM - 07:00 PM",
+    "consultationCharges": 650,
+    "floorLocation": "Block A, 2nd Floor",
+    "emergencyAvailable": true
   },
   {
-    id: "oncology",
-    code: "ONCO",
-    name: "Medical & Surgical Oncology",
-    category: "Super Specialty",
-    icon: "ShieldAlert",
-    shortDescription: "Integrated tumor board driven cancer treatment with precision chemotherapy, immunotherapy, targeted radiation, and organ-preserving surgery.",
-    headOfDepartment: "Dr. Shyam Aggarwal",
-    features: [
-      "TrueBeam STx Linac for image-guided stereotactic radiotherapy (SBRT/SRS)",
-      "State-of-the-art Day Care Chemotherapy Infusion Suite",
-      "Robotic surgical oncology (da Vinci Xi surgical platform)",
-      "Organ site-specific oncological surgical teams",
-      "Comprehensive palliative and pain management care"
+    "id": "orthopaedics",
+    "code": "ORTHO",
+    "name": "Orthopaedics & Joint Replacement",
+    "category": "Super Specialty",
+    "icon": "Activity",
+    "image": "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Joint reconstruction, robotic-guided knee & hip replacement, arthroscopic ligament repair, and spine surgery.",
+    "description": "Brahm Shakti Hospital's Department of Orthopaedics provides end-to-end musculoskeletal care. With dedicated modular laminar air flow surgical theatres and specialized arthroplasty suites, our surgeons offer rapid recovery joint replacements.",
+    "headOfDepartment": "Dr. Kapil Goyal (MBBS, D.Ortho, DNB)",
+    "features": [
+      "Total Knee & Total Hip Joint Replacement Suites",
+      "Arthroscopic Meniscal & Cruciate Ligament Repairs",
+      "Minimally Invasive Endoscopic Spine Surgery",
+      "Dedicated Orthopaedic High-Dependency Care Unit"
     ],
-    opdTimings: "Mon - Sat: 9:00 AM - 5:00 PM",
-    floorLocation: "Cancer Care Centre, Block C"
+    "services": [
+      "Total Knee Replacement (TKR)",
+      "Total Hip Replacement (THR)",
+      "Spinal Discectomy & Decompression",
+      "Arthroscopic Knee & Shoulder Reconstruction",
+      "Complex Trauma Fracture Fixation"
+    ],
+    "opdTimings": "Mon - Sat: 10:00 AM - 06:00 PM",
+    "consultationCharges": 800,
+    "floorLocation": "Block A, 1st Floor",
+    "emergencyAvailable": true
   },
   {
-    id: "orthopaedics",
-    code: "ORTH",
-    name: "Orthopaedics & Joint Replacement",
-    category: "Surgical Specialty",
-    icon: "Bone",
-    shortDescription: "World-class joint reconstruction, robotic-assisted knee and hip arthroplasty, complex trauma, spine surgery, and sports medicine.",
-    headOfDepartment: "Dr. S.P. Mandal",
-    features: [
-      "Robotic-assisted total and partial knee replacement",
-      "Revision arthroplasty for complex failed joints",
-      "Minimally invasive spine surgery & deformity correction",
-      "Advanced arthroscopy and sports injury reconstruction",
-      "Ultra-clean Laminar Airflow Operation Theatres"
+    "id": "anesthesia",
+    "code": "ANES",
+    "name": "Anaesthesiology & Critical Care",
+    "category": "Critical Services",
+    "icon": "Activity",
+    "image": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Operating theatre surgical anaesthesia, painless labour epidurals, and tertiary ICU ventilator management.",
+    "description": "Operating round the clock to ensure painless surgical procedures, critical airway safety, and expert ICU care for post-operative recovery.",
+    "headOfDepartment": "Dr. Nikhil Bhambri (MBBS, MD)",
+    "features": [
+      "Modern Anaesthesia Workstations with Agent Monitors",
+      "Ultrasound Guided Regional Nerve Blocks",
+      "Painless Labour Epidural Analgesia Suite",
+      "Comprehensive ICU Airway Support"
     ],
-    opdTimings: "Mon - Sat: 9:00 AM - 5:00 PM",
-    floorLocation: "Block B, 1st Floor"
+    "services": [
+      "General, Spinal & Epidural Anaesthesia",
+      "Pre-Anaesthetic Medical Checkups (PAC)",
+      "Postoperative Pain Management Protocols",
+      "ICU Advanced Hemodynamic Resuscitation"
+    ],
+    "opdTimings": "Mon - Sat: 09:00 AM - 04:00 PM",
+    "consultationCharges": 600,
+    "floorLocation": "OT & ICU Complex, 2nd Floor",
+    "emergencyAvailable": true
   },
   {
-    id: "pulmonology",
-    code: "PULM",
-    name: "Pulmonology & Critical Care Medicine",
-    category: "Super Specialty",
-    icon: "Wind",
-    shortDescription: "Specialized respiratory care, interventional pulmonology (EBUS, cryobiopsy), advanced sleep lab, and intensive critical care.",
-    headOfDepartment: "Dr. Arup Basu",
-    features: [
-      "State-of-the-art Interventional Bronchoscopy Suite",
-      "Extracorporeal Membrane Oxygenation (ECMO) capabilities",
-      "Level 3 Medical ICU with 1:1 dedicated nursing",
-      "Post-COVID respiratory rehabilitation clinic",
-      "Advanced polysomnography and sleep disorder centre"
+    "id": "skin",
+    "code": "DERM",
+    "name": "Dermatology & Skin Care",
+    "category": "Clinical Specialties",
+    "icon": "Activity",
+    "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Specialized clinical dermatology, acne, psoriasis, vitiligo, hair fall treatments, and aesthetic lasers.",
+    "description": "Offering comprehensive diagnosis and treatment of complex skin ailments, allergic conditions, hair fall therapies, and cosmetic dermatology.",
+    "headOfDepartment": "Dr. Anish Goel (MBBS, MD)",
+    "features": [
+      "Phototherapy Unit for Vitiligo & Psoriasis",
+      "Aesthetic Laser & Scar Revision Clinic",
+      "PRP Therapy for Hair Loss",
+      "Electrocautery & Radiofrequency Surgical Suite"
     ],
-    opdTimings: "Mon - Sat: 9:30 AM - 4:30 PM",
-    floorLocation: "Block C, 3rd Floor"
+    "services": [
+      "Acne & Acne Scar Revision",
+      "Chronic Psoriasis & Eczema Management",
+      "Hair Restoration & Scalp Treatments",
+      "Chemical Peeling & Skin Glow Therapies",
+      "Wart & Skin Tag Removal"
+    ],
+    "opdTimings": "Mon - Sat: 10:00 AM - 02:00 PM",
+    "consultationCharges": 700,
+    "floorLocation": "Block B, 2nd Floor",
+    "emergencyAvailable": false
   },
   {
-    id: "pediatrics",
-    code: "PAED",
-    name: "Pediatrics & Neonatology",
-    category: "Clinical Specialty",
-    icon: "Baby",
-    shortDescription: "Comprehensive child health, pediatric sub-specialties, pediatric cardiac surgery, and Level III Tertiary Neonatal ICU (NICU).",
-    headOfDepartment: "Dr. Neelam Kler",
-    features: [
-      "Level III-B Neonatal Intensive Care Unit with advanced micro-preemie care",
-      "Pediatric Intensive Care Unit (PICU) with pediatric ECMO",
-      "Pediatric Nephrology, Neurology, and Genetic consultation",
-      "Vaccination & developmental pediatrics clinic",
-      "Dedicated pediatric surgical suite"
+    "id": "eye",
+    "code": "OPH",
+    "name": "Ophthalmology & Eye Care Center",
+    "category": "Clinical Specialties",
+    "icon": "Activity",
+    "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Stitchless cataract micro-surgery (phaco), diabetic retinopathy laser, glaucoma care, and vision correction.",
+    "description": "Complete eye care facilities equipped with modern slit lamps, non-contact tonometers, autorefractometers, and Carl Zeiss operating microscopes.",
+    "headOfDepartment": "Dr. Rajesh Kumar (MBBS, MD, MS)",
+    "features": [
+      "Stitchless Micro-Incision Phacoemulsification",
+      "Zeiss Ophthalmic Surgical Microscope",
+      "Diabetic Retinopathy Green Laser Unit",
+      "Automated Visual Field & Glaucoma Suite"
     ],
-    opdTimings: "Mon - Sat: 8:30 AM - 4:00 PM",
-    floorLocation: "Mother & Child Block, 2nd Floor"
+    "services": [
+      "Cataract Surgery with Premium IOLs",
+      "Diabetic Eye Care & Laser Photocoagulation",
+      "Glaucoma Early Detection & Medical Management",
+      "Pediatric Eye Checkups & Squint Assessment",
+      "Computer Vision Syndrome & Dry Eye Therapy"
+    ],
+    "opdTimings": "Mon - Sat: 09:30 AM - 07:00 PM",
+    "consultationCharges": 700,
+    "floorLocation": "Block A, Ground Floor",
+    "emergencyAvailable": true
   },
   {
-    id: "emergency",
-    code: "EMER",
-    name: "Emergency & Trauma Services",
-    category: "Critical Services",
-    icon: "Ambulance",
-    shortDescription: "24x7 immediate medical, surgical, and cardiac resuscitation backed by rapid triage, dedicated trauma bays, and mobile ICU ambulances.",
-    headOfDepartment: "Dr. V.P. Gautam",
-    features: [
-      "24x7 dedicated emergency helpline: 011-42254000",
-      "Advanced Life Support (ALS) GPS-enabled ambulance fleet",
-      "Direct code red, code blue, and acute stroke response protocols",
-      "Point-of-care rapid diagnostics and bedside ultrasound",
-      "On-site emergency minor OT and dedicated observation beds"
+    "id": "cardiology",
+    "code": "CARD",
+    "name": "Cardiology & Vascular Center",
+    "category": "Super Specialty",
+    "icon": "HeartPulse",
+    "image": "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "24x7 Cath Lab emergency angioplasty, non-invasive cardiac diagnostics, pacemaker implantations, and coronary care.",
+    "description": "Equipped with state-of-the-art flat panel digital catheterization laboratory, Brahm Shakti Cardiology Center is a beacon for emergency cardiac resuscitation in North-West Delhi.",
+    "headOfDepartment": "Dr. S.K. Goyal (MD Medicine)",
+    "features": [
+      "24x7 Primary Angioplasty (Cath Lab Services)",
+      "16-Bed Advanced Coronary Care Unit (CCU)",
+      "TMT, Color Doppler Echocardiography & Holter Monitoring",
+      "Subsidized Coronary Care Program"
     ],
-    opdTimings: "24 Hours / 7 Days a Week",
-    floorLocation: "Ground Floor, Emergency Gate (Entry 2)"
+    "services": [
+      "Coronary Angiography & Stenting",
+      "Emergency Heart Attack Resuscitation (Golden Hour)",
+      "Echocardiogram & Strain Imaging",
+      "Treadmill Stress Test (TMT)"
+    ],
+    "opdTimings": "Mon - Sat: 09:30 AM - 05:00 PM",
+    "consultationCharges": 800,
+    "floorLocation": "Ground Floor & Block B, 2nd Floor",
+    "emergencyAvailable": true
+  },
+  {
+    "id": "emergency-icu",
+    "code": "EMERG",
+    "name": "24x7 Emergency Trauma & Critical Care",
+    "category": "Emergency & Critical Care",
+    "icon": "Ambulance",
+    "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Immediate emergency casualty desk, ACLS mobile ambulances, 30-bed multi-disciplinary ICU, and round-the-clock doctors.",
+    "description": "The primary emergency lifeline of North-West Delhi. Our Casualty and Trauma center operates 24 hours a day, 365 days a year with on-duty emergency physicians, trauma surgeons, and anaesthesiologists.",
+    "headOfDepartment": "Dr. Sanjeev Verma (MS Surgery)",
+    "features": [
+      "24x7 Triage & Multi-Bay Resuscitation Facility",
+      "Fleet of GPS-Tracked Mobile ICU Ambulances",
+      "30-Bed State-of-the-Art Intensive Care Unit (ICU)",
+      "Direct Access to Blood Bank, 24x7 CT Scan & Labs"
+    ],
+    "services": [
+      "Polytrauma & Road Traffic Accident Resuscitation",
+      "Cardiac Arrest & Advanced Cardiac Life Support (ACLS)",
+      "Acute Respiratory Distress & Mechanical Ventilation",
+      "Stroke & Sepsis Protocol Management"
+    ],
+    "opdTimings": "24 Hours / 7 Days Active",
+    "consultationCharges": 800,
+    "floorLocation": "Ground Floor Main Entrance",
+    "emergencyAvailable": true
   }
 ];
 
 export const doctorsData = [
   {
-    id: "doc-01",
-    name: "Dr. J.P.S. Sawhney",
-    qualification: "MD, DM (Cardiology), FACC, FESC",
-    designation: "Chairman & Senior Consultant",
-    departmentId: "cardiology",
-    departmentName: "Cardiology & Cardiac Surgery",
-    experienceYears: 36,
-    specializations: [
-      "Interventional Cardiology",
-      "Coronary Angioplasty & Stenting",
-      "Transcatheter Aortic Valve Implantation (TAVI)",
-      "Complex Bifurcation Lesions"
+    "id": "doc-med-01",
+    "name": "Dr. S.K. Goyal",
+    "email": "skgoyal@brahmshaktihospital.com",
+    "phone": "+91-9811234001",
+    "qualification": "MBBS, MD",
+    "category": "In house",
+    "dmcNo": "11847",
+    "validity": "29/10/2030",
+    "designation": "Senior Consultant Physician & Diabetologist",
+    "departmentId": "medicine",
+    "departmentName": "Internal Medicine & Diabetology",
+    "experienceYears": 24,
+    "specializations": [
+      "Adult Internal Medicine",
+      "Diabetes & Metabolic Syndrome",
+      "Hypertension & Cardiovascular Risk",
+      "Infectious Diseases & Pyrexia of Unknown Origin"
     ],
-    opdSchedule: "Mon, Wed, Fri: 10:00 AM - 1:00 PM",
-    room: "Room 104, OPD Block A",
-    languages: ["English", "Hindi", "Punjabi"],
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600"
+    "consultationFee": 700,
+    "birthdate": "1978-05-12",
+    "availableDays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "availableTimings": "09:00 AM - 01:00 PM",
+    "opdSchedule": "Mon - Sat: 09:00 AM - 01:00 PM (Room 101)",
+    "room": "OPD Chamber 101, Block A",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+    "bio": "Dr. S.K. Goyal is a senior consultant physician with over 24 years of clinical excellence at Brahm Shakti Hospital. Known for accurate diagnostic acumen in complex multi-system ailments, diabetes management, and geriatric care.",
+    "isActive": true,
+    "rating": 4.9
   },
   {
-    id: "doc-02",
-    name: "Dr. D.S. Rana",
-    qualification: "MD, MNAMS, FIMSA, FICN",
-    designation: "Chairman, Board of Management & Senior Consultant Nephrologist",
-    departmentId: "nephrology",
-    departmentName: "Nephrology & Renal Transplant",
-    experienceYears: 42,
-    specializations: [
-      "Kidney Transplantation",
-      "Renal Failure Management",
-      "Glomerulonephritis",
-      "Clinical Nephrology"
+    "id": "doc-med-02",
+    "name": "Dr. Vineet Mittal",
+    "email": "vineetmittal@brahmshaktihospital.com",
+    "phone": "+91-9811234002",
+    "qualification": "MBBS, DNB (GEN MED)",
+    "category": "In house",
+    "dmcNo": "DMC/R/22167",
+    "validity": "24/02/2029",
+    "designation": "Consultant Physician & Critical Care Specialist",
+    "departmentId": "medicine",
+    "departmentName": "Internal Medicine & Diabetology",
+    "experienceYears": 16,
+    "specializations": [
+      "General Medicine",
+      "Intensive Care Management",
+      "Sepsis & Severe Infections",
+      "Pulmonary Infections & Asthma"
     ],
-    opdSchedule: "Tue, Thu, Sat: 11:00 AM - 2:00 PM",
-    room: "Room 302, Super Specialty Block",
-    languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600"
+    "consultationFee": 700,
+    "birthdate": "1984-09-18",
+    "availableDays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "availableTimings": "01:00 PM - 05:00 PM",
+    "opdSchedule": "Mon - Sat: 01:00 PM - 05:00 PM (Room 101)",
+    "room": "OPD Chamber 101, Block A",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    "bio": "Dr. Vineet Mittal is a DNB-certified specialist physician focusing on acute inpatient care, infectious diseases, rational antibiotic therapy, and multi-morbidity patient management.",
+    "isActive": true,
+    "rating": 4.8
   },
   {
-    id: "doc-03",
-    name: "Dr. Randhir Sud",
-    qualification: "MD, DM (Gastroenterology), FAMS, FASGE",
-    designation: "Chairman, Institute of Digestive & Hepatobiliary Sciences",
-    departmentId: "gastroenterology",
-    departmentName: "Gastroenterology & Liver Transplant",
-    experienceYears: 38,
-    specializations: [
-      "Therapeutic Endoscopy & ERCP",
-      "Endoscopic Ultrasound (EUS)",
-      "Gastrointestinal Cancers",
-      "Chronic Liver Diseases"
+    "id": "doc-surg-01",
+    "name": "Dr. Sanjeev Verma",
+    "email": "sanjeevverma@brahmshaktihospital.com",
+    "phone": "+91-9811234003",
+    "qualification": "MBBS, MS",
+    "category": "In house",
+    "dmcNo": "11842",
+    "validity": "23/05/2027",
+    "designation": "Senior Consultant General & Laparoscopic Surgeon",
+    "departmentId": "general-surgery",
+    "departmentName": "General & Laparoscopic Surgery",
+    "experienceYears": 22,
+    "specializations": [
+      "Laparoscopic Cholecystectomy (Gallbladder)",
+      "Minimally Invasive Hernia Repair",
+      "Laparoscopic Appendectomy",
+      "Trauma Laparotomy & Emergency Abdomen"
     ],
-    opdSchedule: "Mon, Thu, Sat: 9:30 AM - 1:30 PM",
-    room: "Room 205, Block B",
-    languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600"
+    "consultationFee": 800,
+    "birthdate": "1980-03-25",
+    "availableDays": [
+      "Mon",
+      "Wed",
+      "Fri",
+      "Sat"
+    ],
+    "availableTimings": "10:00 AM - 03:00 PM",
+    "opdSchedule": "Mon, Wed, Fri, Sat: 10:00 AM - 03:00 PM (Room 105)",
+    "room": "OPD Chamber 105, Block B",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    "bio": "Senior laparoscopic surgeon Dr. Sanjeev Verma brings 22+ years of surgical mastery. He specializes in minimally invasive keyhole procedures that reduce pain and enable swift patient discharge.",
+    "isActive": true,
+    "rating": 4.9
   },
   {
-    id: "doc-04",
-    name: "Dr. Neelam Kler",
-    qualification: "MD (Pediatrics), FNNF, FRCPCH (UK)",
-    designation: "Chairperson, Department of Neonatology",
-    departmentId: "pediatrics",
-    departmentName: "Pediatrics & Neonatology",
-    experienceYears: 35,
-    specializations: [
-      "Neonatal Intensive Care",
-      "Extreme Preterm Infant Survival",
-      "High-Frequency Ventilation & Nitric Oxide Therapy",
-      "Developmental Follow-up of High-Risk Newborns"
+    "id": "doc-surg-02",
+    "name": "Dr. Rishabh Jain",
+    "email": "rishabhjain@brahmshaktihospital.com",
+    "phone": "+91-9811234004",
+    "qualification": "MBBS, MS",
+    "category": "In house",
+    "dmcNo": "38306",
+    "validity": "25/11/2028",
+    "designation": "Consultant General & Laparoscopic Surgeon",
+    "departmentId": "general-surgery",
+    "departmentName": "General & Laparoscopic Surgery",
+    "experienceYears": 13,
+    "specializations": [
+      "Laser Proctology (Piles, Fissure, Fistula)",
+      "Keyhole Abdominal Surgeries",
+      "Diabetic Foot & Ulcer Care",
+      "Hydrocele & Varicocele Fixation"
     ],
-    opdSchedule: "Mon, Wed, Fri: 11:00 AM - 3:00 PM",
-    room: "Room 210, Mother & Child Block",
-    languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1594824813501-489578c772b2?auto=format&fit=crop&q=80&w=600"
+    "consultationFee": 750,
+    "birthdate": "1988-11-14",
+    "availableDays": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "10:00 AM - 03:00 PM",
+    "opdSchedule": "Tue, Thu, Sat: 10:00 AM - 03:00 PM (Room 105)",
+    "room": "OPD Chamber 105, Block B",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "/doctors/dr-rishabh-jain.jpg",
+    "bio": "Dr. Rishabh Jain is an expert surgeon specializing in modern laser proctology, advanced surgical trauma resuscitation, and scarless laparoscopic abdominal interventions.",
+    "isActive": true,
+    "rating": 4.8
   },
   {
-    id: "doc-05",
-    name: "Dr. Shyam Aggarwal",
-    qualification: "MD, DM (Medical Oncology)",
-    designation: "Director & Senior Consultant, Medical Oncology",
-    departmentId: "oncology",
-    departmentName: "Medical & Surgical Oncology",
-    experienceYears: 32,
-    specializations: [
-      "Precision Medical Oncology",
-      "Immunotherapy & Targeted Molecular Therapy",
-      "Hematological Malignancies & Lymphoma",
-      "Breast & Lung Cancer Treatment"
+    "id": "doc-gyn-01",
+    "name": "Dr. Manisha Jain",
+    "email": "manishajain@brahmshaktihospital.com",
+    "phone": "+91-9811234005",
+    "qualification": "MBBS, DNB (Obst. & Gyne)",
+    "category": "In house",
+    "dmcNo": "42903",
+    "validity": "31/08/2023",
+    "designation": "Senior Consultant Obstetrician & Gynaecologist",
+    "departmentId": "gynae-obst",
+    "departmentName": "Obstetrics & Gynaecology (Maternity)",
+    "experienceYears": 19,
+    "specializations": [
+      "High-Risk Pregnancy Management",
+      "Painless Normal Delivery",
+      "Laparoscopic Hysterectomy & Fibroid Removal",
+      "Adolescent Gynaecological Disorders"
     ],
-    opdSchedule: "Tue, Thu, Fri: 10:00 AM - 2:00 PM",
-    room: "Room 112, Cancer Care Centre",
-    languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=600"
+    "consultationFee": 750,
+    "birthdate": "1982-08-10",
+    "availableDays": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "availableTimings": "09:30 AM - 02:00 PM",
+    "opdSchedule": "Mon, Wed, Fri: 09:30 AM - 02:00 PM (Room 108)",
+    "room": "Mother & Child Wing Chamber 108",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "bio": "Dr. Manisha Jain is a revered DNB gynaecologist who has overseen thousands of safe, painless deliveries and complex obstetric cases with empathetic clinical care.",
+    "isActive": true,
+    "rating": 4.9
   },
   {
-    id: "doc-06",
-    name: "Dr. S.P. Mandal",
-    qualification: "MS (Orthopaedics), M.Ch (Ortho, UK)",
-    designation: "Senior Consultant, Joint Replacement & Orthopaedic Surgery",
-    departmentId: "orthopaedics",
-    departmentName: "Orthopaedics & Joint Replacement",
-    experienceYears: 34,
-    specializations: [
+    "id": "doc-gyn-02",
+    "name": "Dr. Renu Gupta",
+    "email": "renugupta@brahmshaktihospital.com",
+    "phone": "+91-9811234006",
+    "qualification": "MBBS, DGO",
+    "category": "In house",
+    "dmcNo": "17247",
+    "validity": "08/09/2023",
+    "designation": "Senior Consultant Obstetrician & Gynaecologist",
+    "departmentId": "gynae-obst",
+    "departmentName": "Obstetrics & Gynaecology (Maternity)",
+    "experienceYears": 21,
+    "specializations": [
+      "Antenatal & Postnatal Care",
+      "Caesarean Sections (LSCS)",
+      "Menopause & Osteoporosis Clinic",
+      "PCOS & Infertility Workup"
+    ],
+    "consultationFee": 700,
+    "birthdate": "1979-12-04",
+    "availableDays": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "09:30 AM - 02:00 PM",
+    "opdSchedule": "Tue, Thu, Sat: 09:30 AM - 02:00 PM (Room 108)",
+    "room": "Mother & Child Wing Chamber 108",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "/doctors/dr-renu-gupta.jpg",
+    "bio": "With over two decades of obstetric and gynaecological practice, Dr. Renu Gupta is committed to empowering women's health through comprehensive maternal screenings and preventive wellness.",
+    "isActive": true,
+    "rating": 4.8
+  },
+  {
+    "id": "doc-gyn-03",
+    "name": "Dr. Disha Menani",
+    "email": "dishamenani@brahmshaktihospital.com",
+    "phone": "+91-9811234007",
+    "qualification": "MBBS, MS",
+    "category": "Visiting",
+    "dmcNo": "26569",
+    "validity": "15/01/2031",
+    "designation": "Visiting Consultant Gynaecologist & Infertility Specialist",
+    "departmentId": "gynae-obst",
+    "departmentName": "Obstetrics & Gynaecology (Maternity)",
+    "experienceYears": 14,
+    "specializations": [
+      "Infertility Evaluation & IUI",
+      "Colposcopy & Cervical Cancer Screening",
+      "Minimally Invasive Ovarian Cystectomy",
+      "Hysteroscopy"
+    ],
+    "consultationFee": 800,
+    "birthdate": "1987-04-19",
+    "availableDays": [
+      "Mon",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "04:00 PM - 07:00 PM",
+    "opdSchedule": "Mon, Thu, Sat: 04:00 PM - 07:00 PM (Room 108)",
+    "room": "Mother & Child Wing Chamber 108",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "bio": "Dr. Disha Menani is a skilled visiting specialist focusing on reproductive medicine, colposcopy, laparoscopic cyst removal, and patient-tailored fertility protocols.",
+    "isActive": true,
+    "rating": 4.8
+  },
+  {
+    "id": "doc-ped-01",
+    "name": "Dr. Rupesh Sharma",
+    "email": "rupeshsharma@brahmshaktihospital.com",
+    "phone": "+91-9811234008",
+    "qualification": "MBBS, DCH",
+    "category": "In house",
+    "dmcNo": "36171",
+    "validity": "20/02/2028",
+    "designation": "Senior Consultant Pediatrician & Neonatologist",
+    "departmentId": "pediatrics",
+    "departmentName": "Pediatrics & Neonatal Care (NICU)",
+    "experienceYears": 18,
+    "specializations": [
+      "Neonatal Intensive Care (NICU Level-III)",
+      "Premature Low Birth Weight Care",
+      "Childhood Asthma & Bronchitis",
+      "Universal Newborn Screening & Immunization"
+    ],
+    "consultationFee": 650,
+    "birthdate": "1982-06-15",
+    "availableDays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "availableTimings": "09:00 AM - 01:00 PM",
+    "opdSchedule": "Mon - Sat: 09:00 AM - 01:00 PM (Room 112)",
+    "room": "Pediatrics Wing Chamber 112",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    "bio": "Head of Pediatrics and Level-III NICU at Brahm Shakti Hospital, Dr. Rupesh Sharma has dedicated his career to safeguarding the health of newborns, infants, and young children.",
+    "isActive": true,
+    "rating": 4.9
+  },
+  {
+    "id": "doc-ped-02",
+    "name": "Dr. Satpal Yadav",
+    "email": "satpalyadav@brahmshaktihospital.com",
+    "phone": "+91-9811234009",
+    "qualification": "MBBS, DCH",
+    "category": "Visiting",
+    "dmcNo": "30778",
+    "validity": "26/07/2026",
+    "designation": "Visiting Consultant Pediatrician",
+    "departmentId": "pediatrics",
+    "departmentName": "Pediatrics & Neonatal Care (NICU)",
+    "experienceYears": 15,
+    "specializations": [
+      "Pediatric Infectious Illnesses",
+      "Growth & Developmental Milestones",
+      "Childhood Allergies & Atopic Dermatitis",
+      "Vaccination Counselling"
+    ],
+    "consultationFee": 650,
+    "birthdate": "1985-02-11",
+    "availableDays": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "04:00 PM - 07:00 PM",
+    "opdSchedule": "Tue, Thu, Sat: 04:00 PM - 07:00 PM (Room 112)",
+    "room": "Pediatrics Wing Chamber 112",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    "bio": "Dr. Satpal Yadav is a caring visiting pediatrician known for detailed growth assessments, immunization guidance, and preventive pediatric healthcare.",
+    "isActive": true,
+    "rating": 4.8
+  },
+  {
+    "id": "doc-ortho-01",
+    "name": "Dr. Kapil Goyal",
+    "email": "kapilgoyal@brahmshaktihospital.com",
+    "phone": "+91-9811234010",
+    "qualification": "MBBS, D.Ortho, DNB",
+    "category": "In house",
+    "dmcNo": "DMC/R/2080",
+    "validity": "14/11/2029",
+    "designation": "Senior Consultant Orthopaedic & Joint Replacement Surgeon",
+    "departmentId": "orthopaedics",
+    "departmentName": "Orthopaedics & Joint Replacement",
+    "experienceYears": 20,
+    "specializations": [
       "Total Knee Replacement (TKR)",
-      "Total Hip Arthroplasty (THA)",
-      "Robotic Joint Surgery",
-      "Complex Fracture Reconstruction"
+      "Total Hip Replacement (THR)",
+      "Arthroscopic ACL / Meniscus Reconstruction",
+      "Complex Pelvic & Acetabular Trauma"
     ],
-    opdSchedule: "Mon, Wed, Sat: 9:00 AM - 1:00 PM",
-    room: "Room 108, Block B",
-    languages: ["English", "Hindi", "Bengali"],
-    image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=600"
+    "consultationFee": 800,
+    "birthdate": "1981-10-09",
+    "availableDays": [
+      "Mon",
+      "Wed",
+      "Fri",
+      "Sat"
+    ],
+    "availableTimings": "10:00 AM - 03:00 PM",
+    "opdSchedule": "Mon, Wed, Fri, Sat: 10:00 AM - 03:00 PM (Room 116)",
+    "room": "Orthopaedics Center Room 116",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+    "bio": "A premier joint replacement surgeon with over 20 years of expertise, Dr. Kapil Goyal has performed thousands of robotic and minimally invasive knee and hip surgeries.",
+    "isActive": true,
+    "rating": 4.9
   },
   {
-    id: "doc-07",
-    name: "Dr. Arup Basu",
-    qualification: "MD, DNB (Resp. Diseases), FCCP",
-    designation: "Chairman, Department of Pulmonology & Sleep Medicine",
-    departmentId: "pulmonology",
-    departmentName: "Pulmonology & Critical Care Medicine",
-    experienceYears: 30,
-    specializations: [
-      "Interventional Pulmonology & Cryobiopsy",
-      "Interstitial Lung Disease (ILD)",
-      "Severe Asthma & COPD Management",
-      "Sleep Apnoea Evaluation"
+    "id": "doc-ortho-02",
+    "name": "Dr. Ravi Shankar Gupta",
+    "email": "ravishankar@brahmshaktihospital.com",
+    "phone": "+91-9811234011",
+    "qualification": "MBBS, D.N.B. Ortho",
+    "category": "In house",
+    "dmcNo": "25014",
+    "validity": "27/08/2027",
+    "designation": "Consultant Orthopaedic & Spine Surgeon",
+    "departmentId": "orthopaedics",
+    "departmentName": "Orthopaedics & Joint Replacement",
+    "experienceYears": 16,
+    "specializations": [
+      "Minimally Invasive Spine Decompression",
+      "Lumbar Disc Herniation & Sciatica",
+      "Sports Medicine & Ligament Surgery",
+      "Polytrauma Fracture Management"
     ],
-    opdSchedule: "Tue, Thu, Sat: 10:30 AM - 2:30 PM",
-    room: "Room 314, Block C",
-    languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600"
+    "consultationFee": 800,
+    "birthdate": "1985-07-28",
+    "availableDays": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "10:00 AM - 03:00 PM",
+    "opdSchedule": "Tue, Thu, Sat: 10:00 AM - 03:00 PM (Room 116)",
+    "room": "Orthopaedics Center Room 116",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "/doctors/dr-ravi-shankar-gupta.jpg",
+    "bio": "Dr. Ravi Shankar Gupta is a spine and sports injury specialist focusing on endoscopic spinal decompression, cruciate ligament repairs, and advanced trauma care.",
+    "isActive": true,
+    "rating": 4.8
   },
   {
-    id: "doc-08",
-    name: "Dr. P.K. Sethi",
-    qualification: "MD, DM (Neurology), FAMS",
-    designation: "Chairman Emeritus, Department of Neurology",
-    departmentId: "neurosciences",
-    departmentName: "Neurology & Neurosurgery",
-    experienceYears: 40,
-    specializations: [
-      "Acute Stroke Management",
-      "Epilepsy & Neuromuscular Disorders",
-      "Movement Disorders & Parkinson's Disease",
-      "Neuro-electrophysiology"
+    "id": "doc-ortho-03",
+    "name": "Dr. Dinesh Chand Sharma",
+    "email": "dineshsharma@brahmshaktihospital.com",
+    "phone": "+91-9811234012",
+    "qualification": "MBBS, D.Ortho",
+    "category": "In house",
+    "dmcNo": "25597",
+    "validity": "29/06/2025",
+    "designation": "Consultant Orthopaedic Surgeon & Trauma Specialist",
+    "departmentId": "orthopaedics",
+    "departmentName": "Orthopaedics & Joint Replacement",
+    "experienceYears": 18,
+    "specializations": [
+      "Emergency Fracture Trauma Care",
+      "Geriatric Osteoporosis & Bone Health",
+      "Non-Surgical Osteoarthritis Therapy",
+      "Carpal Tunnel & Hand Surgery"
     ],
-    opdSchedule: "Mon, Wed, Fri: 11:00 AM - 3:00 PM",
-    room: "Room 402, Block A",
-    languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600"
+    "consultationFee": 700,
+    "birthdate": "1983-01-16",
+    "availableDays": [
+      "Mon",
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "02:00 PM - 06:00 PM",
+    "opdSchedule": "Mon, Tue, Thu, Sat: 02:00 PM - 06:00 PM (Room 117)",
+    "room": "Orthopaedics Center Room 117",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    "bio": "Dr. Dinesh Chand Sharma brings robust expertise in complex trauma fractures, bone density optimization, regenerative joint therapies, and hand surgery.",
+    "isActive": true,
+    "rating": 4.7
+  },
+  {
+    "id": "doc-anes-01",
+    "name": "Dr. Nikhil Bhambri",
+    "email": "nikhilbhambri@brahmshaktihospital.com",
+    "phone": "+91-9811234013",
+    "qualification": "MBBS, MD",
+    "category": "In house",
+    "dmcNo": "21392",
+    "validity": "20/07/2029",
+    "designation": "Senior Consultant Anaesthesiologist & ICU Head",
+    "departmentId": "anesthesia",
+    "departmentName": "Anaesthesiology & Critical Care",
+    "experienceYears": 17,
+    "specializations": [
+      "Major Surgical Anaesthesia",
+      "Difficult Airway Management",
+      "Ultrasound Guided Nerve Blocks",
+      "Multi-Disciplinary Critical Care ICU"
+    ],
+    "consultationFee": 600,
+    "birthdate": "1984-12-03",
+    "availableDays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "availableTimings": "09:00 AM - 02:00 PM",
+    "opdSchedule": "Mon - Sat: 09:00 AM - 02:00 PM (Surgical Wing)",
+    "room": "Anaesthesia Directorate Room 1",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+    "bio": "Directing anaesthesiology and critical care at Brahm Shakti Hospital, Dr. Nikhil Bhambri leads pre-operative optimization, operative patient safety, and intensive life-support systems.",
+    "isActive": true,
+    "rating": 4.9
+  },
+  {
+    "id": "doc-anes-02",
+    "name": "Dr. Sunil Gandhi",
+    "email": "sunilgandhi@brahmshaktihospital.com",
+    "phone": "+91-9811234014",
+    "qualification": "MBBS, DA / MD",
+    "category": "Visiting",
+    "dmcNo": "46631",
+    "validity": "02/08/2030",
+    "designation": "Visiting Consultant Anaesthesiologist",
+    "departmentId": "anesthesia",
+    "departmentName": "Anaesthesiology & Critical Care",
+    "experienceYears": 22,
+    "specializations": [
+      "Onco-Surgical Anaesthesia",
+      "Postoperative Pain Management",
+      "High-Risk Surgical Anaesthesia",
+      "Hemodynamic Monitoring"
+    ],
+    "consultationFee": 600,
+    "birthdate": "1979-08-14",
+    "availableDays": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "availableTimings": "11:00 AM - 04:00 PM",
+    "opdSchedule": "Mon, Wed, Fri: 11:00 AM - 04:00 PM (OT Wing)",
+    "room": "Anaesthesia Directorate Room 2",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    "bio": "With over two decades of anaesthetic vigilance, Dr. Sunil Gandhi provides surgical anaesthesia for complex oncology, neurosurgical, and cardiac patients.",
+    "isActive": true,
+    "rating": 4.8
+  },
+  {
+    "id": "doc-anes-03",
+    "name": "Dr. Dharmender Chaudhary",
+    "email": "dharmender@brahmshaktihospital.com",
+    "phone": "+91-9811234015",
+    "qualification": "MBBS, DA",
+    "category": "Visiting",
+    "dmcNo": "17811",
+    "validity": "10/10/2028",
+    "designation": "Visiting Consultant Anaesthesiologist",
+    "departmentId": "anesthesia",
+    "departmentName": "Anaesthesiology & Critical Care",
+    "experienceYears": 16,
+    "specializations": [
+      "Obstetric Labour Epidural Analgesia",
+      "Emergency Trauma Resuscitation",
+      "Spinal & Epidural Blocks",
+      "Pediatric Anaesthesia"
+    ],
+    "consultationFee": 600,
+    "birthdate": "1985-05-22",
+    "availableDays": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "11:00 AM - 04:00 PM",
+    "opdSchedule": "Tue, Thu, Sat: 11:00 AM - 04:00 PM (OT Wing)",
+    "room": "Anaesthesia Directorate Room 3",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    "bio": "Dr. Dharmender Chaudhary is skilled in acute trauma anaesthesia, painless labour analgesia, and procedural sedation for endoscopic interventions.",
+    "isActive": true,
+    "rating": 4.8
+  },
+  {
+    "id": "doc-skin-01",
+    "name": "Dr. Anish Goel",
+    "email": "anishgoel@brahmshaktihospital.com",
+    "phone": "+91-9811234016",
+    "qualification": "MBBS, MD",
+    "category": "In house",
+    "dmcNo": "9015",
+    "validity": "22/01/2027",
+    "designation": "Senior Consultant Dermatologist & Cosmetologist",
+    "departmentId": "skin",
+    "departmentName": "Dermatology & Skin Care",
+    "experienceYears": 23,
+    "specializations": [
+      "Psoriasis & Vitiligo Phototherapy",
+      "Acne & Scar Laser Treatment",
+      "Hair Fall & PRP Therapy",
+      "Eczema & Chronic Allergy Management"
+    ],
+    "consultationFee": 700,
+    "birthdate": "1978-11-20",
+    "availableDays": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "availableTimings": "10:00 AM - 02:00 PM",
+    "opdSchedule": "Mon, Wed, Fri: 10:00 AM - 02:00 PM (Room 120)",
+    "room": "Dermatology Suite Room 120",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+    "bio": "A stalwart dermatologist with 23+ years of clinical acumen, Dr. Anish Goel provides state-of-the-art dermatological care, laser therapies, and anti-aging treatments.",
+    "isActive": true,
+    "rating": 4.9
+  },
+  {
+    "id": "doc-skin-02",
+    "name": "Dr. Swati Gupta",
+    "email": "swatigupta@brahmshaktihospital.com",
+    "phone": "+91-9811234017",
+    "qualification": "MBBS, DDVL",
+    "category": "In house",
+    "dmcNo": "DMC/R/1294",
+    "validity": "17/04/2028",
+    "designation": "Consultant Dermatologist & Venereologist",
+    "departmentId": "skin",
+    "departmentName": "Dermatology & Skin Care",
+    "experienceYears": 12,
+    "specializations": [
+      "Pediatric Skin Diseases",
+      "Chemical Peeling & Skin Rejuvenation",
+      "Electrocautery for Warts & Tags",
+      "Fungal & Bacterial Infections"
+    ],
+    "consultationFee": 650,
+    "birthdate": "1989-03-12",
+    "availableDays": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "10:00 AM - 02:00 PM",
+    "opdSchedule": "Tue, Thu, Sat: 10:00 AM - 02:00 PM (Room 120)",
+    "room": "Dermatology Suite Room 120",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600",
+    "bio": "Dr. Swati Gupta is a DDVL-trained clinical dermatologist focusing on adolescent skin disorders, hair restoration, skin brightening, and minor dermatological surgeries.",
+    "isActive": true,
+    "rating": 4.8
+  },
+  {
+    "id": "doc-eye-01",
+    "name": "Dr. Rajesh Kumar",
+    "email": "rajeshkumar@brahmshaktihospital.com",
+    "phone": "+91-9811234018",
+    "qualification": "MBBS, MD, MS",
+    "category": "In house",
+    "dmcNo": "75802",
+    "validity": "26/04/2028",
+    "designation": "Senior Consultant Eye Surgeon & Retinal Specialist",
+    "departmentId": "eye",
+    "departmentName": "Ophthalmology & Eye Care",
+    "experienceYears": 20,
+    "specializations": [
+      "Micro-Incision Cataract Surgery (MICS)",
+      "Diabetic Retinopathy & Laser Photocoagulation",
+      "Glaucoma Screening & Trabeculectomy",
+      "Refractive Error Correction"
+    ],
+    "consultationFee": 700,
+    "birthdate": "1981-06-30",
+    "availableDays": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "availableTimings": "09:30 AM - 02:30 PM",
+    "opdSchedule": "Mon, Wed, Fri: 09:30 AM - 02:30 PM (Room 124)",
+    "room": "Ophthalmology Department Room 124",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    "bio": "With over 20 years of ophthalmic experience, Dr. Rajesh Kumar is renowned for micro-incision stitchless cataract surgeries and diabetic retinal laser treatments.",
+    "isActive": true,
+    "rating": 4.9
+  },
+  {
+    "id": "doc-eye-02",
+    "name": "Dr. Monika Kumar",
+    "email": "monikakumar@brahmshaktihospital.com",
+    "phone": "+91-9811234019",
+    "qualification": "MBBS, MD, MS (Ophtha.)",
+    "category": "In house",
+    "dmcNo": "69618",
+    "validity": "14/01/2030",
+    "designation": "Consultant Ophthalmologist & Cornea Specialist",
+    "departmentId": "eye",
+    "departmentName": "Ophthalmology & Eye Care",
+    "experienceYears": 14,
+    "specializations": [
+      "Corneal Surface Disorders & Ulcers",
+      "Dry Eye Syndrome Evaluation",
+      "Squint & Pediatric Eye Care",
+      "Computer Vision Syndrome Clinic"
+    ],
+    "consultationFee": 650,
+    "birthdate": "1987-10-05",
+    "availableDays": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "09:30 AM - 02:30 PM",
+    "opdSchedule": "Tue, Thu, Sat: 09:30 AM - 02:30 PM (Room 124)",
+    "room": "Ophthalmology Department Room 124",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "bio": "Dr. Monika Kumar is an MS-qualified ophthalmic surgeon specializing in corneal conditions, computer vision syndrome, childhood squint, and comprehensive vision care.",
+    "isActive": true,
+    "rating": 4.8
+  },
+  {
+    "id": "doc-eye-03",
+    "name": "Dr. Anil Solanki",
+    "email": "anilsolanki@brahmshaktihospital.com",
+    "phone": "+91-9811234020",
+    "qualification": "MBBS, MD, MS (Fellowship in Eye)",
+    "category": "Visiting",
+    "dmcNo": "DMC/R/9264",
+    "validity": "19/04/2028",
+    "designation": "Visiting Senior Eye Specialist & Phaco Surgeon",
+    "departmentId": "eye",
+    "departmentName": "Ophthalmology & Eye Care",
+    "experienceYears": 19,
+    "specializations": [
+      "Premium Phacoemulsification (Toric & Multifocal IOL)",
+      "Oculoplastic & Eyelid Surgeries",
+      "Pterygium Excision with Autograft",
+      "Advanced Glaucoma Care"
+    ],
+    "consultationFee": 750,
+    "birthdate": "1983-09-14",
+    "availableDays": [
+      "Mon",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "04:00 PM - 07:00 PM",
+    "opdSchedule": "Mon, Thu, Sat: 04:00 PM - 07:00 PM (Room 124)",
+    "room": "Ophthalmology Department Room 124",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    "bio": "Fellowship-trained visiting eye specialist Dr. Anil Solanki specializes in advanced phacoemulsification with premium multifocal lens implantation and delicate oculoplastic procedures.",
+    "isActive": true,
+    "rating": 4.9
   }
 ];
 
+
+
+export const doctorLeavesData = [
+  {
+    "id": "leave-bsh-001",
+    "doctorId": "doc-ortho-03",
+    "doctorName": "Dr. Dinesh Chand Sharma",
+    "departmentId": "orthopaedics",
+    "departmentName": "Orthopaedics & Joint Replacement",
+    "leaveType": "Casual Leave",
+    "startDate": "2026-11-20",
+    "endDate": "2026-11-22",
+    "daysCount": 3,
+    "reason": "Personal family obligation and out-of-town travel",
+    "substituteDoctor": "Dr. Ravi Shankar Gupta",
+    "status": "Approved",
+    "appliedOn": "2026-11-15",
+    "notes": "Duty OPD covered by Dr. Ravi Shankar Gupta"
+  },
+  {
+    "id": "leave-bsh-002",
+    "doctorId": "doc-gyn-01",
+    "doctorName": "Dr. Manisha Jain",
+    "departmentId": "gynae-obst",
+    "departmentName": "Obstetrics & Gynaecology (Maternity)",
+    "leaveType": "Conference / CME",
+    "startDate": "2026-11-25",
+    "endDate": "2026-11-27",
+    "daysCount": 3,
+    "reason": "Attending National FOGSI Annual Obstetric Congress (Mumbai)",
+    "substituteDoctor": "Dr. Renu Gupta",
+    "status": "Approved",
+    "appliedOn": "2026-11-10",
+    "notes": "Approved by Medical Superintendent"
+  },
+  {
+    "id": "leave-bsh-003",
+    "doctorId": "doc-ped-02",
+    "doctorName": "Dr. Satpal Yadav",
+    "departmentId": "pediatrics",
+    "departmentName": "Pediatrics & Neonatal Care (NICU)",
+    "leaveType": "Medical Leave",
+    "startDate": "2026-11-18",
+    "endDate": "2026-11-21",
+    "daysCount": 4,
+    "reason": "Viral bronchitis convalescence",
+    "substituteDoctor": "Dr. Rupesh Sharma",
+    "status": "Approved",
+    "appliedOn": "2026-11-17",
+    "notes": "Medical certificate verified"
+  },
+  {
+    "id": "leave-bsh-004",
+    "doctorId": "doc-surg-02",
+    "doctorName": "Dr. Rishabh Jain",
+    "departmentId": "general-surgery",
+    "departmentName": "General & Laparoscopic Surgery",
+    "leaveType": "Casual Leave",
+    "startDate": "2026-11-28",
+    "endDate": "2026-11-30",
+    "daysCount": 3,
+    "reason": "Family function",
+    "substituteDoctor": "Dr. Sanjeev Verma",
+    "status": "Pending",
+    "appliedOn": "2026-11-18",
+    "notes": "Awaiting Admin approval"
+  },
+  {
+    "id": "leave-bsh-005",
+    "doctorId": "doc-skin-02",
+    "doctorName": "Dr. Swati Gupta",
+    "departmentId": "skin",
+    "departmentName": "Dermatology & Skin Care",
+    "leaveType": "Vacation",
+    "startDate": "2026-12-05",
+    "endDate": "2026-12-09",
+    "daysCount": 5,
+    "reason": "Annual planned vacation",
+    "substituteDoctor": "Dr. Anish Goel",
+    "status": "Pending",
+    "appliedOn": "2026-11-19",
+    "notes": "Schedule pending OT adjustments"
+  }
+];
+
+
 export const newsArticlesData = [
   {
-    id: "news-01",
-    category: "Clinical Milestone",
-    date: "October 14, 2026",
-    title: "Brahm Shakti Hospital Surgical Team Accomplishes Complex Joint Reconstruction",
-    excerpt: "A multidisciplinary surgical team successfully performed complex bilateral joint reconstruction on a high-risk patient, underscoring our tertiary surgical excellence.",
-    readTime: "4 min read",
-    author: "Hospital Clinical Board",
-    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800"
+    "id": "news-01",
+    "title": "Brahm Shakti Hospital Inaugurates Subsidized High-Flux Dialysis Wing",
+    "category": "Hospital News",
+    "date": "2026-10-15",
+    "excerpt": "New 20-bed advanced hemodialysis wing launched by Brahm Shakti Trust to serve kidney patients across North-West Delhi.",
+    "readTime": "4 min read",
+    "author": "Hospital Communications Board",
+    "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800"
   },
   {
-    id: "news-02",
-    category: "Academic & Research",
-    date: "September 28, 2026",
-    title: "Annual Clinical Review: Infection Control & Subsidized Care Protocols",
-    excerpt: "Brahm Shakti Hospital's Clinical Committee published findings from a 3-year study on infection control, laminar airflow safety, and evidence-based protocols.",
-    readTime: "6 min read",
-    author: "Department of Medical Administration",
-    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: "news-03",
-    category: "Community Welfare",
-    date: "August 20, 2026",
-    title: "Free Multispecialty Health Outreach Camp Screenings Exceed 2,400 Beneficiaries",
-    excerpt: "In line with Brahm Shakti Trust's philanthropic heritage, the hospital organized specialized rural health screening camps providing free diagnostic investigations, medicines, and specialist consultations.",
-    readTime: "3 min read",
-    author: "Community Outreach Cell",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: "news-04",
-    category: "Health Advisory",
-    date: "July 12, 2026",
-    title: "Navigating Seasonal Respiratory Illness: Expert Guidance from Pulmonology",
-    excerpt: "Clinical specialists from the Department of Chest Medicine outline proactive preventive measures, air quality precautions, and when to seek urgent specialist consultation.",
-    readTime: "5 min read",
-    author: "Institute of Pulmonology",
-    image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800"
+    "id": "news-02",
+    "title": "24x7 Cath Lab Rapid Cardiac Response Network Saves 150+ Golden Hour Lives",
+    "category": "Clinical Milestones",
+    "date": "2026-10-01",
+    "excerpt": "Door-to-balloon time lowered to an extraordinary 42 minutes for acute STEMI myocardial infarction patients.",
+    "readTime": "3 min read",
+    "author": "Department of Cardiology",
+    "image": "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800"
   }
 ];

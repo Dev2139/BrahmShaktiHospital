@@ -151,11 +151,24 @@ export const DepartmentDetailPage = () => {
                           className="w-20 h-20 rounded-xl object-cover border border-medical-border"
                         />
                         <div>
+                          <div className="flex items-center gap-1.5 flex-wrap mb-1">
+                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                              doctor.category === 'Visiting' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'
+                            }`}>
+                              {doctor.category || 'In house'}
+                            </span>
+                            {doctor.dmcNo && (
+                              <span className="text-[10px] text-slate-500 font-mono font-bold">
+                                DMC #{doctor.dmcNo}
+                              </span>
+                            )}
+                          </div>
                           <h4 className="font-bold text-secondary text-base">{doctor.name}</h4>
                           <p className="text-xs text-primary font-semibold mt-0.5">{doctor.designation}</p>
                           <p className="text-[11px] text-medical-muted mt-0.5">{doctor.qualification}</p>
-                          <div className="mt-2 text-xs text-secondary">
-                            Fee: <strong className="text-primary font-bold">₹{doctor.consultationFee}</strong>
+                          <div className="mt-2 text-xs text-secondary flex items-center justify-between">
+                            <span>Fee: <strong className="text-primary font-bold">₹{doctor.consultationFee}</strong></span>
+                            {doctor.validity && <span className="text-[10px] text-medical-muted">Valid: {doctor.validity}</span>}
                           </div>
                         </div>
                       </div>

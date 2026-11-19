@@ -92,6 +92,7 @@ export const DashboardLayout = () => {
         { label: 'Overview', path: '/admin/dashboard', icon: LayoutDashboard },
         { label: 'Patient Management', path: '/admin/patients', icon: Users },
         { label: 'Doctor Management', path: '/admin/doctors', icon: UserCheck },
+        { label: 'Leave Calendar', path: '/admin/leaves', icon: Calendar },
         { label: 'Appointments', path: '/admin/appointments', icon: Calendar },
         { label: 'Departments', path: '/admin/departments', icon: Building2 },
         { label: 'Blood Bank', path: '/admin/blood-bank', icon: Droplets },
@@ -104,6 +105,7 @@ export const DashboardLayout = () => {
     if (role === 'doctor') {
       return [
         { label: 'Doctor Dashboard', path: '/doctor/dashboard', icon: LayoutDashboard },
+        { label: 'Leave Calendar', path: '/admin/leaves', icon: Calendar },
         { label: 'My Appointments', path: '/admin/appointments', icon: Calendar },
         { label: 'Patient Records', path: '/admin/patients', icon: Users },
         { label: 'Hospital Pharmacy', path: '/pharmacy', icon: Pill },
@@ -133,6 +135,7 @@ export const DashboardLayout = () => {
         { label: 'Reception Dashboard', path: '/receptionist/dashboard', icon: LayoutDashboard },
         { label: 'Register Patients', path: '/admin/patients', icon: Users },
         { label: 'Book Appointments', path: '/admin/appointments', icon: Calendar },
+        { label: 'Leave & Duty Calendar', path: '/admin/leaves', icon: Calendar },
         { label: 'Quick Billing Desk', path: '/admin/billing', icon: Receipt },
         { label: 'Doctors On Duty', path: '/doctors', icon: UserCheck }
       ];

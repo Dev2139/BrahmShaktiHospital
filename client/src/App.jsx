@@ -44,6 +44,7 @@ import BloodBankManagementPage from './pages/admin/BloodBankManagementPage';
 import PharmacyManagementPage from './pages/admin/PharmacyManagementPage';
 import BillingManagementPage from './pages/admin/BillingManagementPage';
 import ReportsPage from './pages/admin/ReportsPage';
+import DoctorLeaveCalendarPage from './pages/admin/DoctorLeaveCalendarPage';
 
 // Specialized Role Dashboards
 import DoctorDashboardPage from './pages/doctor/DoctorDashboardPage';
@@ -76,6 +77,7 @@ export default function App() {
           <Route path="/departments" element={<DepartmentsPage />} />
           <Route path="/departments/:id" element={<DepartmentDetailPage />} />
           <Route path="/doctors" element={<DoctorsPage />} />
+          <Route path="/find-a-doctor" element={<DoctorsPage />} />
           <Route path="/doctors/:id" element={<DoctorProfilePage />} />
           <Route path="/services/opd" element={<OpdServicesPage />} />
           <Route path="/services/ipd" element={<IpdServicesPage />} />
@@ -131,6 +133,14 @@ export default function App() {
             element={
               <ProtectedRoute allowedRoles={['admin', 'superadmin']}>
                 <DoctorManagementPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/leaves"
+            element={
+              <ProtectedRoute allowedRoles={['admin', 'superadmin', 'doctor', 'receptionist']}>
+                <DoctorLeaveCalendarPage />
               </ProtectedRoute>
             }
           />

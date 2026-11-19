@@ -22,6 +22,7 @@ import Billing from '../models/Billing.js';
 import PurchaseOrder from '../models/PurchaseOrder.js';
 import { News } from '../models/News.js';
 import LabReport from '../models/LabReport.js';
+import DoctorLeave from '../models/DoctorLeave.js';
 
 import {
   usersData,
@@ -36,7 +37,8 @@ import {
   billingsData,
   purchaseOrdersData,
   newsArticlesData,
-  labReportsData
+  labReportsData,
+  doctorLeavesData
 } from '../data/seedData.js';
 
 const seedDatabase = async () => {
@@ -62,7 +64,8 @@ const seedDatabase = async () => {
       Billing.deleteMany({}),
       PurchaseOrder.deleteMany({}),
       News.deleteMany({}),
-      LabReport.deleteMany({})
+      LabReport.deleteMany({}),
+      DoctorLeave.deleteMany({})
     ]);
     console.log('[Seed] Old collections cleared.');
 
@@ -75,6 +78,7 @@ const seedDatabase = async () => {
     // Insert other collections
     await Department.insertMany(departmentsData);
     await Doctor.insertMany(doctorsData);
+    await DoctorLeave.insertMany(doctorLeavesData);
     await Patient.insertMany(patientsData.map((p) => ({ ...p, uhid: p.uhid || p.patientId })));
     await Appointment.insertMany(appointmentsData);
     await BloodInventory.insertMany(bloodInventoryData);

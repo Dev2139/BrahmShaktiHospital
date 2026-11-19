@@ -22,7 +22,10 @@ const doctorSchema = new mongoose.Schema(
     image: { type: String },
     bio: { type: String, default: '' },
     isActive: { type: Boolean, default: true },
-    rating: { type: Number, default: 4.8 }
+    rating: { type: Number, default: 4.8 },
+    category: { type: String, default: 'In house' }, // "In house" | "Visiting"
+    dmcNo: { type: String, default: '' },
+    validity: { type: String, default: '' }
   },
   { timestamps: true }
 );

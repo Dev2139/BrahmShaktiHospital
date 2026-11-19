@@ -153,7 +153,10 @@ export const createDoctor = async (req, res, next) => {
       image: req.body.image || 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600',
       bio: req.body.bio || `Senior Specialist with Brahm Shakti Hospital.`,
       isActive: true,
-      rating: 4.8
+      rating: 4.8,
+      category: req.body.category || 'In house',
+      dmcNo: req.body.dmcNo || '',
+      validity: req.body.validity || ''
     };
 
     if (isMongoConnected) {

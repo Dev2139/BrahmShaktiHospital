@@ -27,9 +27,21 @@ export const DoctorDetailModal = ({ doctor, isOpen, onClose, onBookConsultation 
             className="w-18 h-18 sm:w-24 sm:h-24 rounded-2xl object-cover object-top border-2 border-slate-200 bg-slate-50 shrink-0"
           />
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#0284C7] bg-[#E0F2FE] px-2.5 py-1 rounded inline-block mb-1.5">
-              {doctor.departmentName}
-            </span>
+            <div className="flex items-center gap-1.5 flex-wrap mb-1.5">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#0284C7] bg-[#E0F2FE] px-2.5 py-1 rounded inline-block">
+                {doctor.departmentName}
+              </span>
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
+                doctor.category === 'Visiting' ? 'bg-amber-100 text-amber-900' : 'bg-emerald-100 text-emerald-900'
+              }`}>
+                {doctor.category || 'In house'}
+              </span>
+              {doctor.dmcNo && (
+                <span className="text-[10px] font-mono font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
+                  DMC #{doctor.dmcNo}
+                </span>
+              )}
+            </div>
             <h3 className="font-serif font-bold text-lg sm:text-xl text-[#0B2545]">
               {doctor.name}
             </h3>
@@ -38,6 +50,7 @@ export const DoctorDetailModal = ({ doctor, isOpen, onClose, onBookConsultation 
             </p>
             <p className="text-xs text-[#637386] mt-0.5">
               {doctor.designation} &middot; <strong className="text-[#0284C7]">{doctor.experienceYears} Years Experience</strong>
+              {doctor.validity && <span className="text-slate-400"> &middot; DMC Valid: {doctor.validity}</span>}
             </p>
           </div>
         </div>
