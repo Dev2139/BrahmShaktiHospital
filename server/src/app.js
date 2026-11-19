@@ -38,6 +38,28 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health & System Info
+app.get(['/', '/api'], (req, res) => {
+  res.status(200).json({
+    success: true,
+    institution: 'Brahm Shakti Hospital, Pocket C, Budh Vihar Phase I, New Delhi',
+    service: 'Brahm Shakti Hospital MERN Digital Healthcare Architecture',
+    status: 'healthy',
+    database: isMongoConnected ? 'MongoDB Atlas Connected' : 'In-Memory High-Speed Store',
+    version: '2.0.0',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      health: '/api/health',
+      doctors: '/api/doctors',
+      departments: '/api/departments',
+      appointments: '/api/appointments',
+      bloodBank: '/api/blood-bank',
+      pharmacy: '/api/pharmacy',
+      labReports: '/api/lab-reports',
+      auth: '/api/auth'
+    }
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'healthy',

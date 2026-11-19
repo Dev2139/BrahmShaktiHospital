@@ -1,6 +1,6 @@
 import { departmentsData, doctorsData, newsArticlesData } from '../data/seedData.js';
 
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
 export const fetchDepartments = async () => {
   try {
