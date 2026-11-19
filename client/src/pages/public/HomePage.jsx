@@ -31,27 +31,88 @@ import api from '../../services/api';
 import { InternationalModal } from '../../components/InternationalModal';
 import { LabPortalModal } from '../../components/LabPortalModal';
 
-const PROCEDURES_LIST = [
-  { name: 'Total Knee Replacement (TKR)', category: 'Orthopaedics', badge: 'High Success', doctor: 'Dr. Kapil Goyal' },
-  { name: 'Laparoscopic Cholecystectomy (Gallbladder)', category: 'Surgery', badge: 'Day Care', doctor: 'Dr. Sanjeev Verma' },
-  { name: 'Painless Normal Delivery & C-Section', category: 'Gynae & Obst', badge: '24x7 Ready', doctor: 'Dr. Manisha Jain' },
-  { name: 'Level-III NICU Neonatal Critical Care', category: 'Pediatrics', badge: 'Intensive Care', doctor: 'Dr. Rupesh Sharma' },
-  { name: 'Stitchless MICS Phaco Cataract Surgery', category: 'Eye', badge: 'No Injection', doctor: 'Dr. Monika Kumar' },
-  { name: 'Subsidized Maintenance Hemodialysis', category: 'Medicine', badge: 'Trust Subsidized', doctor: 'Dr. S.K. Goyal' },
-  { name: 'Emergency Coronary Angiography', category: 'Medicine', badge: 'Door to Balloon <45m', doctor: 'Dr. Vineet Mittal' },
-  { name: 'Diabetic Foot Ulcer Salvage & Debridement', category: 'Surgery', badge: 'Advanced Wound', doctor: 'Dr. Rishabh Jain' },
-  { name: 'Laser Skin Resurfacing & Mole Excision', category: 'Skin', badge: 'Aesthetic & Derm', doctor: 'Dr. Anish Goel' }
-];
+const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
+  medicine: {
+    faculty: 'Dr. S.K. Goyal (MD) · Dr. Vineet Mittal (DNB)',
+    location: 'Block A, 1st Floor',
+    procedures: [
+      'Comprehensive Diabetology & Insulin Titration',
+      'Hypertension & Cardiovascular Risk Management',
+      'Fever & Pyrexia of Unknown Origin (PUO) Triage'
+    ]
+  },
+  'general-surgery': {
+    faculty: 'Dr. Sanjeev Verma (MS) · Dr. Rishabh Jain (MS)',
+    location: 'Surgical Block, 2nd Floor',
+    procedures: [
+      'Laparoscopic Cholecystectomy (Gallbladder)',
+      'Laser Proctology for Piles, Fissure & Fistula',
+      'Keyhole Inguinal & Umbilical Hernia Repair'
+    ]
+  },
+  gynecology: {
+    faculty: 'Dr. Manisha Jain (DNB) · Dr. Renu Gupta (DGO)',
+    location: 'Mother & Child Wing, 3rd Floor',
+    procedures: [
+      'Painless Normal & Caesarean (LSCS) Deliveries',
+      'High-Risk Pregnancy & Ante-Natal Care (ANC)',
+      'Laparoscopic Hysterectomy & Ovarian Cyst Surgery'
+    ]
+  },
+  pediatrics: {
+    faculty: 'Dr. Rupesh Sharma (DCH) · Dr. Satpal Yadav (DCH)',
+    location: 'Mother & Child Wing, 2nd Floor',
+    procedures: [
+      'Level-III NICU Neonatal Critical Care & Incubators',
+      'Preterm Low Birth Weight Resuscitation',
+      'Complete Pediatric Immunization & Growth Tracking'
+    ]
+  },
+  orthopedics: {
+    faculty: 'Dr. Kapil Goyal (DNB) · Dr. Ravi Shankar Gupta (DNB)',
+    location: 'Ortho Spine Wing, 1st Floor',
+    procedures: [
+      'Total Knee Replacement (TKR) & Hip Arthroplasty',
+      'Arthroscopic ACL & Meniscal Ligament Repair',
+      'Complex Fracture & Trauma Stabilization'
+    ]
+  },
+  nephrology: {
+    faculty: 'Senior Dialysis Physicians & Faculty',
+    location: 'Renal Care Block, Ground Floor',
+    procedures: [
+      '24x7 Subsidized Maintenance Hemodialysis',
+      'Arteriovenous (AV) Fistula Creation & Monitoring',
+      'Diabetic Nephropathy & Renal Failure Management'
+    ]
+  },
+  ophthalmology: {
+    faculty: 'Dr. Monika Kumar (MS) · Dr. Rajesh Kumar (MS)',
+    location: 'Eye Care OPD, 1st Floor',
+    procedures: [
+      'Stitchless MICS Micro-Phaco Cataract Surgery',
+      'Glaucoma Screening, Tonometry & Laser Iridotomy',
+      'Diabetic Retinopathy Screening & Fundus Evaluation'
+    ]
+  },
+  skin: {
+    faculty: 'Dr. Anish Goel (MD) · Dr. Swati Gupta (DDVL)',
+    location: 'Dermatology OPD, 1st Floor',
+    procedures: [
+      'Laser Resurfacing for Acne Scars & Hyperpigmentation',
+      'Radiofrequency Mole, Wart & Skin Tag Excision',
+      'Chronic Psoriasis & Eczema Immunotherapy'
+    ]
+  }
+};
 
-const PROCEDURE_CATEGORIES = [
-  'All',
-  'Medicine',
-  'Surgery',
-  'Orthopaedics',
-  'Gynae & Obst',
-  'Pediatrics',
-  'Eye',
-  'Skin'
+const CLINICAL_DISCIPLINES = [
+  { id: 'all', label: 'All Disciplines' },
+  { id: 'surgical', label: 'Surgical Sciences', deptIds: ['general-surgery', 'orthopedics'] },
+  { id: 'medical', label: 'Medicine & Diabetology', deptIds: ['medicine', 'cardiology'] },
+  { id: 'mother-child', label: 'Mother & Child', deptIds: ['gynecology', 'pediatrics'] },
+  { id: 'critical', label: 'Dialysis & Renal', deptIds: ['nephrology'] },
+  { id: 'specialist', label: 'Eye & Dermatology', deptIds: ['ophthalmology', 'skin'] }
 ];
 
 export const HomePage = () => {
@@ -65,7 +126,7 @@ export const HomePage = () => {
   const [selectedLocation, setSelectedLocation] = useState('Budh Vihar Main Campus, Delhi');
   const [internationalModalOpen, setInternationalModalOpen] = useState(false);
   const [labModalOpen, setLabModalOpen] = useState(false);
-  const [selectedProcedureCategory, setSelectedProcedureCategory] = useState('All');
+  const [selectedDisciplineTab, setSelectedDisciplineTab] = useState('all');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,7 +135,7 @@ export const HomePage = () => {
           api.get('/departments'),
           api.get('/doctors')
         ]);
-        if (deptRes.data.success) setDepartments(deptRes.data.data.slice(0, 6));
+        if (deptRes.data.success) setDepartments(deptRes.data.data);
         if (docRes.data.success) setDoctors(docRes.data.data.slice(0, 4));
       } catch (err) {
         console.error('Error fetching home page data:', err);
@@ -109,10 +170,13 @@ export const HomePage = () => {
     navigate(`/doctors?search=${encodeURIComponent(searchQuery.trim())}`);
   };
 
-  const filteredProcedures =
-    selectedProcedureCategory === 'All'
-      ? PROCEDURES_LIST
-      : PROCEDURES_LIST.filter((p) => p.category === selectedProcedureCategory);
+  const activeTabObj = CLINICAL_DISCIPLINES.find((t) => t.id === selectedDisciplineTab);
+  const displayedDepartments = React.useMemo(() => {
+    if (!activeTabObj || activeTabObj.id === 'all') {
+      return departments.slice(0, 6);
+    }
+    return departments.filter((d) => activeTabObj.deptIds?.includes(d.id));
+  }, [departments, activeTabObj]);
 
   return (
     <div className="space-y-12 lg:space-y-20 pb-20">
@@ -460,117 +524,262 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 3. Specialities & Procedures Section (Right below hero & booking section) */}
+      {/* 3. Specialities & Procedures Section - Professional Hospital Architecture */}
       <section className="max-w-7xl mx-auto px-4">
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary mb-2">
               <Activity className="w-4 h-4" />
-              <span>Certified Clinical Departments</span>
+              <span>Clinical Centres & Super Specialities</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
               Specialities & Procedures
             </h2>
-            <p className="text-xs sm:text-sm text-medical-muted mt-1">
-              Comprehensive tertiary clinical departments & advanced surgical procedures led by DMC-registered faculty
+            <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl leading-relaxed">
+              Evidence-based clinical treatments, advanced day-care surgeries & tertiary inpatient care led by DMC-registered faculty
             </p>
           </div>
           <Link
             to="/departments"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-bold text-sm"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-bold text-sm shrink-0"
           >
-            <span>Explore All Specialities</span>
+            <span>View All Clinical Specialities</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 scrollbar-thin">
-          {PROCEDURE_CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedProcedureCategory(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                selectedProcedureCategory === cat
-                  ? 'bg-[#0B2545] text-white shadow-sm'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-              }`}
-            >
-              {cat === 'All' ? 'All Specialities' : cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Procedure Highlights Strip */}
-        <div className="bg-slate-50/90 rounded-2xl p-4 sm:p-5 border border-slate-200/80 mb-8">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            <span>Key High-Volume Procedures Performed</span>
-          </div>
-          <div className="flex flex-wrap gap-2.5">
-            {filteredProcedures.map((proc, idx) => (
-              <div
-                key={idx}
-                className="bg-white px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs text-slate-800 font-medium shadow-2xs flex items-center gap-2 hover:border-primary transition-colors"
+        {/* Clinical Discipline Switcher Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 scrollbar-thin">
+          {CLINICAL_DISCIPLINES.map((tab) => {
+            const isActive = selectedDisciplineTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setSelectedDisciplineTab(tab.id)}
+                className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                  isActive
+                    ? 'bg-[#0B2545] text-white shadow-sm'
+                    : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                }`}
               >
-                <span>{proc.name}</span>
-                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-sky-50 text-sky-700">
-                  {proc.badge}
-                </span>
-              </div>
-            ))}
-          </div>
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Clinical Department Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {departments.map((dept) => (
-            <div
-              key={dept.id}
-              className="group bg-white rounded-2xl overflow-hidden border border-medical-border shadow-soft hover:shadow-card-hover hover:-translate-y-1.5 transition-all flex flex-col"
-            >
-              <div className="relative h-48 overflow-hidden bg-slate-100">
-                <img
-                  src={dept.image || 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800'}
-                  alt={dept.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#0B2545]/90 text-white backdrop-blur-xs text-[11px] font-bold uppercase">
-                  {dept.category || 'Specialty'}
-                </div>
-              </div>
+          {displayedDepartments.map((dept) => {
+            const highlights = DEPARTMENT_CLINICAL_HIGHLIGHTS[dept.id] || {
+              faculty: dept.headOfDepartment || 'Senior Medical Faculty',
+              location: dept.floorLocation || 'Main Hospital Wing',
+              procedures: dept.services ? dept.services.slice(0, 3) : ['Comprehensive Specialist Evaluation', 'Diagnostic Workup', 'Outpatient Consultation']
+            };
 
-              <div className="p-6 flex-1 flex flex-col justify-between">
+            return (
+              <div
+                key={dept.id}
+                className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group"
+              >
                 <div>
-                  <h3 className="text-xl font-bold text-secondary group-hover:text-primary transition-colors">
-                    {dept.name}
-                  </h3>
-                  <p className="text-xs text-medical-muted mt-2 line-clamp-2 leading-relaxed">
-                    {dept.shortDescription}
-                  </p>
-                  <div className="mt-4 pt-3 border-t border-medical-border text-xs text-medical-slate space-y-1">
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-primary" />
-                      <span>{dept.opdTimings || 'Mon - Sat: 09:00 AM - 05:00 PM'}</span>
+                  {/* Department Photo with Location Badge */}
+                  <div className="relative h-44 sm:h-48 overflow-hidden bg-slate-100">
+                    <img
+                      src={dept.image || 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800'}
+                      alt={dept.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+                    
+                    {/* Location Badge */}
+                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#0B2545]/90 text-white backdrop-blur-xs text-[10px] font-bold tracking-wide uppercase">
+                      {highlights.location}
+                    </div>
+
+                    {/* Subsidized Fee Badge */}
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-white/95 text-slate-800 backdrop-blur-xs text-[11px] font-bold shadow-xs">
+                      ₹{dept.consultationCharges || 700} OPD
+                    </div>
+
+                    {/* Department Title Overlay */}
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <h3 className="text-lg font-bold text-white leading-tight">
+                        {dept.name}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-5 space-y-3.5">
+                    {/* Lead Faculty */}
+                    <div className="flex items-center gap-2 text-xs text-slate-700 font-medium">
+                      <Stethoscope className="w-3.5 h-3.5 text-primary shrink-0" />
+                      <span className="truncate">{highlights.faculty}</span>
+                    </div>
+
+                    {/* Procedures List */}
+                    <div className="space-y-1.5 pt-1">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                        Key Procedures Performed
+                      </div>
+                      {highlights.procedures.map((proc, pIdx) => (
+                        <div key={pIdx} className="flex items-start gap-2 text-xs text-slate-700">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                          <span className="leading-snug">{proc}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* OPD Timings */}
+                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-slate-400" />
+                        <span>{dept.opdTimings || 'Mon - Sat: 09:00 AM - 05:00 PM'}</span>
+                      </div>
+                      <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                        Available Today
+                      </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-medical-border flex items-center justify-between">
-                  <span className="text-xs font-semibold text-secondary">
-                    Consultation: <strong className="text-primary font-bold">₹{dept.consultationCharges || 800}</strong>
-                  </span>
+                {/* Card Action Buttons */}
+                <div className="p-5 pt-0 flex items-center gap-2">
                   <Link
                     to={`/departments/${dept.id}`}
-                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-bold text-xs"
+                    className="flex-1 py-2.5 rounded-xl border border-slate-300 hover:border-[#0B2545] text-[#0B2545] text-xs font-bold text-center transition-all"
                   >
-                    <span>View Faculty</span>
-                    <ChevronRight className="w-4 h-4" />
+                    View Details
+                  </Link>
+                  <Link
+                    to={`/consultation?specialty=${dept.id}`}
+                    className="flex-1 py-2.5 rounded-xl bg-[#0B2545] hover:bg-[#123661] text-white text-xs font-bold text-center transition-all shadow-sm hover:shadow"
+                  >
+                    Book Appointment
                   </Link>
                 </div>
               </div>
+            );
+          })}
+        </div>
+
+        {/* Advanced Clinical Procedures Directory (Hospital Excellence Matrix) */}
+        <div className="mt-12 bg-white rounded-3xl border border-slate-200/90 shadow-2xs p-6 sm:p-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary mb-1">
+                <Sparkles className="w-3.5 h-3.5 text-primary" />
+                <span>Specialized Procedural Capabilities</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0B2545]">
+                High-Volume Clinical & Surgical Directory
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                NABH-accredited sterile operating theatres, modular laparoscopic towers & 24x7 emergency resuscitation
+              </p>
             </div>
-          ))}
+            <div className="flex items-center gap-2 shrink-0">
+              <a
+                href="tel:7840089703"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs font-bold text-slate-800 transition-colors"
+              >
+                <PhoneCall className="w-3.5 h-3.5 text-status-danger" />
+                <span>Procedure Help: 7840089703</span>
+              </a>
+            </div>
+          </div>
+
+          {/* 3-Column Clinical Matrix */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-6">
+            {/* Column 1 */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-sm font-bold text-[#0B2545] pb-2 border-b border-slate-100">
+                <div className="w-7 h-7 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center text-xs font-black">
+                  01
+                </div>
+                <span>Orthopaedic & Keyhole Surgery</span>
+              </div>
+              <ul className="space-y-2">
+                {[
+                  { name: 'Total Knee Replacement (TKR)', note: 'Fast-track recovery protocol' },
+                  { name: 'Laparoscopic Cholecystectomy', note: 'Day-care keyhole surgery' },
+                  { name: 'Laser Proctology (Piles, Fistula)', note: 'Minimal pain stitchless' },
+                  { name: 'Arthroscopic ACL Reconstruction', note: 'Sports injury restoration' },
+                  { name: 'Keyhole Hernia & Appendix Surgery', note: 'Advanced dual-mesh repair' }
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-baseline justify-between gap-2 p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                    <span className="text-xs font-semibold text-slate-800">{item.name}</span>
+                    <span className="text-[10px] text-slate-400 font-medium shrink-0">{item.note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 2 */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-sm font-bold text-[#0B2545] pb-2 border-b border-slate-100">
+                <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-xs font-black">
+                  02
+                </div>
+                <span>Maternity, NICU & Emergency</span>
+              </div>
+              <ul className="space-y-2">
+                {[
+                  { name: 'Painless Normal & Caesarean Delivery', note: '24x7 obstetric suites' },
+                  { name: 'Level-III NICU Neonatal Critical Care', note: 'Preterm baby incubators' },
+                  { name: '24x7 Casualty & Trauma Resuscitation', note: 'Rapid door-to-treatment' },
+                  { name: 'High-Risk Pregnancy (ANC) Suites', note: 'Continuous fetal Doppler' },
+                  { name: 'Emergency Coronary Triage', note: 'Door-to-balloon <45m' }
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-baseline justify-between gap-2 p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                    <span className="text-xs font-semibold text-slate-800">{item.name}</span>
+                    <span className="text-[10px] text-slate-400 font-medium shrink-0">{item.note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3 */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-sm font-bold text-[#0B2545] pb-2 border-b border-slate-100">
+                <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-xs font-black">
+                  03
+                </div>
+                <span>Medicine, Renal & Specialist Clinics</span>
+              </div>
+              <ul className="space-y-2">
+                {[
+                  { name: 'Subsidized Maintenance Hemodialysis', note: '24x7 charitable renal wing' },
+                  { name: 'Stitchless MICS Phaco Cataract Day Care', note: 'Foldable IOL implantation' },
+                  { name: 'Comprehensive Diabetology & Insulin Care', note: 'Metabolic syndrome clinic' },
+                  { name: 'Diabetic Foot Ulcer Salvage', note: 'Advanced wound debridement' },
+                  { name: 'Laser Dermatology & Skin Excision', note: 'Aesthetic laser suite' }
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-baseline justify-between gap-2 p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                    <span className="text-xs font-semibold text-slate-800">{item.name}</span>
+                    <span className="text-[10px] text-slate-400 font-medium shrink-0">{item.note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Trust Guarantee */}
+          <div className="mt-8 pt-5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>All surgical interventions adhere to strict NABH sterilization protocols & clinical quality benchmarks</span>
+            </div>
+            <Link
+              to="/appointments"
+              className="text-primary hover:text-primary-hover font-bold inline-flex items-center gap-1.5 hover:underline"
+            >
+              <span>Schedule a Procedure Consultation</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
       </section>
 
