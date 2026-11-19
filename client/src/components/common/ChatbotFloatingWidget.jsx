@@ -207,83 +207,59 @@ export const ChatbotFloatingWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-4 sm:right-6 z-50 flex flex-col items-end gap-3 pointer-events-none">
+    <div className="fixed bottom-5 right-4 sm:right-6 z-50 flex flex-col items-center gap-3 pointer-events-none">
       
-      {/* 1. GO TO TOP BUTTON */}
+      {/* 1. GO TO TOP BUTTON - Round Circular Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
           type="button"
           aria-label="Back to Top"
-          className="pointer-events-auto group relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-slate-50 text-[#0B2545] shadow-xl border border-slate-200 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 active:scale-95 cursor-pointer"
+          title="Back to Top"
+          className="pointer-events-auto w-12 h-12 rounded-full bg-white hover:bg-slate-50 text-[#0B2545] shadow-lg border border-slate-200 flex items-center justify-center transition-all duration-200 hover:-translate-y-1 active:scale-95 cursor-pointer"
         >
-          <ChevronUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
-          <span className="absolute right-full mr-2.5 px-2.5 py-1 rounded-md bg-[#0B2545] text-white text-[11px] font-semibold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none">
-            Go to Top
-          </span>
+          <ChevronUp className="w-5 h-5" />
         </button>
       )}
 
-      {/* 2. DIRECT CALL HELPLINE BUTTON */}
+      {/* 2. DIRECT CALL HELPLINE BUTTON - Round Circular Button */}
       <a
         href="tel:7840089703"
-        aria-label="Direct Call Emergency Casualty"
-        className="pointer-events-auto group relative flex items-center gap-2 p-3 sm:px-4 sm:py-3 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+        aria-label="Call 24x7 Helpline"
+        title="Call 24x7 Helpline: 7840089703"
+        className="pointer-events-auto relative w-12 h-12 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
       >
         {/* Pulsing ring animation */}
         <span className="absolute -inset-1 rounded-full bg-rose-500 opacity-40 animate-ping pointer-events-none" />
-
-        <div className="relative flex items-center justify-center">
-          <Phone className="w-5 h-5 animate-bounce" />
-        </div>
-        <div className="hidden sm:flex flex-col text-left leading-tight">
-          <span className="text-[10px] font-black uppercase tracking-wider text-rose-100">
-            24x7 Helpline
-          </span>
-          <span className="text-xs font-bold text-white">7840089703</span>
-        </div>
-        <span className="sm:hidden absolute right-full mr-2.5 px-2.5 py-1 rounded-md bg-rose-800 text-white text-[11px] font-semibold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none">
-          Call 7840089703
-        </span>
+        <Phone className="w-5 h-5 relative z-10" />
       </a>
 
-      {/* 3. WORKING & ANIMATED CHATBOT BUTTON */}
-      <div className="pointer-events-auto relative">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          type="button"
-          aria-label="Toggle Brahm Shakti Hospital Chatbot"
-          className={`group relative flex items-center gap-2.5 px-4 py-3 sm:py-3.5 rounded-full shadow-2xl transition-all duration-300 active:scale-95 cursor-pointer border ${
-            isOpen
-              ? 'bg-[#0B2545] text-white border-slate-700'
-              : 'bg-gradient-to-r from-[#0B2545] via-[#103b6e] to-[#006699] text-white border-white/20 hover:shadow-cyan-900/30 hover:scale-105'
-          }`}
-        >
-          {/* Subtle Animated Glow Effect */}
-          {!isOpen && (
-            <span className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-teal-400 to-sky-400 opacity-40 blur-xs animate-pulse" />
-          )}
+      {/* 3. WORKING & ANIMATED CHATBOT BUTTON - Round Circular Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        type="button"
+        aria-label={isOpen ? "Close Assistant" : "Chat with BSH Assistant"}
+        title={isOpen ? "Close Assistant" : "Chat with BSH Assistant"}
+        className={`pointer-events-auto relative w-12 h-12 sm:w-13 sm:h-13 rounded-full shadow-xl flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer border ${
+          isOpen
+            ? 'bg-[#0B2545] text-white border-slate-700'
+            : 'bg-gradient-to-tr from-[#0B2545] via-[#103b6e] to-[#006699] text-white border-white/20 hover:scale-110'
+        }`}
+      >
+        {/* Subtle Animated Glow Effect */}
+        {!isOpen && (
+          <span className="absolute -inset-1 rounded-full bg-sky-400 opacity-30 blur-xs animate-pulse pointer-events-none" />
+        )}
 
-          <div className="relative flex items-center justify-center w-7 h-7 rounded-full bg-white/15 text-white">
-            {isOpen ? (
-              <X className="w-4 h-4" />
-            ) : (
-              <Bot className="w-4 h-4 animate-wiggle" />
-            )}
-            {/* Live Green Online Dot */}
-            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#0B2545]" />
-          </div>
+        {isOpen ? (
+          <X className="w-5 h-5 relative z-10" />
+        ) : (
+          <Bot className="w-5 h-5 relative z-10" />
+        )}
 
-          <div className="relative flex flex-col text-left leading-none">
-            <span className="text-xs font-bold text-white">
-              {isOpen ? 'Close Assistant' : 'Chat with BSH'}
-            </span>
-            <span className="text-[10px] font-medium text-sky-200">
-              {isOpen ? 'Click to hide' : '24x7 AI Health Desk'}
-            </span>
-          </div>
-        </button>
-      </div>
+        {/* Live Green Online Dot */}
+        <span className="absolute top-1 right-1 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0B2545]" />
+      </button>
 
       {/* 4. CHATBOT INTERACTIVE DIALOG WINDOW */}
       {isOpen && (
