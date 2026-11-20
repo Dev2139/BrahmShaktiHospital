@@ -285,15 +285,30 @@ export const HomePage = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Gallery category filter and lightbox preview state
+  // Gallery 3D Cover Flow Carousel & Lightbox Preview State
   const [selectedGalleryCategory, setSelectedGalleryCategory] = useState('all');
+  const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
+  const [isGalleryHovered, setIsGalleryHovered] = useState(false);
   const [lightboxPhoto, setLightboxPhoto] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
-  const displayedGalleryItems = useMemo(() => {
-    if (selectedGalleryCategory === 'all') return PHOTO_GALLERY_ITEMS;
-    return PHOTO_GALLERY_ITEMS.filter((item) => item.category === selectedGalleryCategory);
-  }, [selectedGalleryCategory]);
+  // Auto-scrolling gallery interval (pauses on hover)
+  useEffect(() => {
+    if (isGalleryHovered) return;
+    const interval = setInterval(() => {
+      setGalleryActiveIndex((prev) => (prev + 1) % PHOTO_GALLERY_ITEMS.length);
+    }, 3800);
+    return () => clearInterval(interval);
+  }, [isGalleryHovered]);
+
+  const handleCategoryClick = (catId) => {
+    setSelectedGalleryCategory(catId);
+    if (catId === 'all') return;
+    const targetIdx = PHOTO_GALLERY_ITEMS.findIndex((item) => item.category === catId);
+    if (targetIdx !== -1) {
+      setGalleryActiveIndex(targetIdx);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -1093,14 +1108,14 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 8. Campus & Infrastructure Photo Gallery Section */}
-      <section className="max-w-7xl mx-auto px-4">
+      {/* 8. Campus & Infrastructure Photo Gallery Section - 3D Cover Flow Carousel */}
+      <section className="max-w-7xl mx-auto px-4 overflow-hidden">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0B2545] tracking-tight">
             Hospital Campus & Clinical Gallery
           </h2>
           <p className="text-sm sm:text-base text-slate-600 mt-1">
-            Take a virtual tour of our state-of-the-art modular operating suites, specialized critical care units, and patient facilities in Budh Vihar.
+            Explore our state-of-the-art modular operating suites, specialized critical care units, and patient facilities in Budh Vihar.
           </p>
 
           {/* Category Filter Pills */}
@@ -1111,7 +1126,7 @@ export const HomePage = () => {
                 <button
                   key={cat.id}
                   type="button"
-                  onClick={() => setSelectedGalleryCategory(cat.id)}
+                  onClick={() => handleCategoryClick(cat.id)}
                   className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                     active
                       ? 'bg-[#0A7A74] text-white shadow-sm'
@@ -1125,46 +1140,151 @@ export const HomePage = () => {
           </div>
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedGalleryItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => setLightboxPhoto(item)}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-2xs hover:shadow-lg transition-all group cursor-pointer flex flex-col"
-            >
-              <div className="relative h-56 sm:h-60 overflow-hidden bg-slate-100">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition-colors" />
-                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
-                  {item.categoryLabel}
-                </span>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="px-3 py-1.5 rounded-full bg-white/95 text-slate-900 text-xs font-bold shadow-md flex items-center gap-1.5">
-                    Click to Enlarge
-                  </span>
+        {/* 3D Auto-Scrolling One-Line Carousel Container */}
+        <div
+          className="relative w-full h-[410px] sm:h-[460px] md:h-[490px] flex items-center justify-center py-4 select-none"
+          onMouseEnter={() => setIsGalleryHovered(true)}
+          onMouseLeave={() => setIsGalleryHovered(false)}
+        >
+          {/* Navigation Arrows */}
+          <button
+            type="button"
+            aria-label="Previous Gallery Photo"
+            onClick={() => setGalleryActiveIndex((prev) => (prev - 1 + PHOTO_GALLERY_ITEMS.length) % PHOTO_GALLERY_ITEMS.length)}
+            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A7A74]" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next Gallery Photo"
+            onClick={() => setGalleryActiveIndex((prev) => (prev + 1) % PHOTO_GALLERY_ITEMS.length)}
+            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A7A74]" />
+          </button>
+
+          {/* Cards 3D Stage */}
+          <div className="relative w-full h-full flex items-center justify-center [perspective:1200px]">
+            {PHOTO_GALLERY_ITEMS.map((item, idx) => {
+              const n = PHOTO_GALLERY_ITEMS.length;
+              let offset = idx - galleryActiveIndex;
+              if (offset < -Math.floor(n / 2)) {
+                offset += n;
+              } else if (offset > Math.floor((n - 1) / 2)) {
+                offset -= n;
+              }
+
+              const isMiddle = offset === 0;
+              const isLeft = offset === -1;
+              const isRight = offset === 1;
+              const isVisible = isMiddle || isLeft || isRight;
+
+              // Compute smooth transform, 3D perspective and depth
+              let transformStyle = '';
+              let opacityStyle = 0;
+              let zIndexStyle = 0;
+
+              if (isMiddle) {
+                transformStyle = 'translateX(0%) scale(1.06) translateZ(50px)';
+                opacityStyle = 1;
+                zIndexStyle = 30;
+              } else if (isLeft) {
+                transformStyle = 'translateX(-70%) scale(0.86) perspective(1000px) rotateY(10deg)';
+                opacityStyle = 0.65;
+                zIndexStyle = 20;
+              } else if (isRight) {
+                transformStyle = 'translateX(70%) scale(0.86) perspective(1000px) rotateY(-10deg)';
+                opacityStyle = 0.65;
+                zIndexStyle = 20;
+              } else {
+                transformStyle = `translateX(${offset > 0 ? 140 : -140}%) scale(0.7)`;
+                opacityStyle = 0;
+                zIndexStyle = 0;
+              }
+
+              return (
+                <div
+                  key={item.id}
+                  onClick={() => {
+                    if (isMiddle) {
+                      setLightboxPhoto(item);
+                    } else if (isLeft) {
+                      setGalleryActiveIndex((prev) => (prev - 1 + n) % n);
+                    } else if (isRight) {
+                      setGalleryActiveIndex((prev) => (prev + 1) % n);
+                    }
+                  }}
+                  style={{
+                    transform: transformStyle,
+                    opacity: opacityStyle,
+                    zIndex: zIndexStyle,
+                    transition: 'transform 700ms cubic-bezier(0.25, 1, 0.5, 1), opacity 700ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 500ms ease'
+                  }}
+                  className={`absolute w-[80%] sm:w-[54%] md:w-[44%] lg:w-[38%] max-w-md h-[340px] sm:h-[380px] md:h-[400px] bg-white rounded-3xl overflow-hidden border flex flex-col ${
+                    isMiddle
+                      ? 'shadow-2xl border-[#0A7A74]/40 ring-4 ring-[#0A7A74]/15 cursor-pointer pointer-events-auto'
+                      : isVisible
+                      ? 'shadow-md border-slate-200/90 cursor-pointer hover:opacity-85 pointer-events-auto'
+                      : 'pointer-events-none'
+                  }`}
+                >
+                  <div className="relative h-[62%] sm:h-[65%] overflow-hidden bg-slate-900 group">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
+                      {item.categoryLabel}
+                    </span>
+                    {isMiddle && (
+                      <div className="absolute bottom-3 right-3">
+                        <span className="px-2.5 py-1 rounded-full bg-white/95 text-slate-900 text-[11px] font-bold shadow-md flex items-center gap-1">
+                          Click to Enlarge
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between bg-white">
+                    <div>
+                      <h3 className={`font-bold leading-snug line-clamp-1 ${isMiddle ? 'text-slate-900 text-sm sm:text-base' : 'text-slate-700 text-xs sm:text-sm'}`}>
+                        {item.title}
+                      </h3>
+                      <p className="text-xs text-slate-500 line-clamp-2 mt-1 leading-relaxed">
+                        {item.caption}
+                      </p>
+                    </div>
+                    {isMiddle && (
+                      <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#0A7A74]">
+                        <span>Full Resolution Preview</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 mt-1.5 leading-relaxed">
-                    {item.caption}
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#0A7A74]">
-                  <span>View Details</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2">
+            {PHOTO_GALLERY_ITEMS.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                aria-label={`Go to photo ${idx + 1}`}
+                onClick={() => setGalleryActiveIndex(idx)}
+                className={`transition-all rounded-full cursor-pointer ${
+                  idx === galleryActiveIndex
+                    ? 'w-7 h-2.5 bg-[#0A7A74]'
+                    : 'w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Lightbox Modal */}
