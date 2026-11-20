@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import {
   Activity,
   ArrowLeft,
@@ -56,6 +57,10 @@ export const ConsultationPage = () => {
   const preDoctor = searchParams.get('doctor') || '';
   const preDept = searchParams.get('specialty') || searchParams.get('department') || '';
 
+  const { isAuthenticated, isLoading, user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   // Search state
   const [mode, setMode] = useState(preDoctor || !preDept ? 'doctor' : 'specialty');
   const [departments, setDepartments] = useState([]);
@@ -80,6 +85,23 @@ export const ConsultationPage = () => {
   const [patientAge, setPatientAge] = useState('');
   const [gender, setGender] = useState('Male');
   const [symptoms, setSymptoms] = useState('');
+
+  // Require login before booking appointment: if unauthenticated, redirect to login with return path
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      const currentPath = location.pathname + location.search;
+      navigate(`/login?redirect=${encodeURIComponent(currentPath)}`, { replace: true });
+    }
+  }, [isLoading, isAuthenticated, location, navigate]);
+
+  // Autofill patient details from authenticated user if available
+  useEffect(() => {
+    if (user) {
+      if (user.name && !patientName) setPatientName(user.name);
+      if (user.email && !patientEmail) setPatientEmail(user.email);
+      if (user.phone && !patientPhone) setPatientPhone(user.phone);
+    }
+  }, [user]);
 
   const activeDoctor = doctors.find((d) => d.id === selectedDoctorId) || null;
   const deptDoctors = selectedDeptId ? doctors.filter((d) => d.departmentId === selectedDeptId) : doctors;
@@ -216,6 +238,17 @@ export const ConsultationPage = () => {
     loadSlots();
   };
 
+  if (isLoading || !isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-medical-coolgray">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-secondary font-medium">Redirecting to Hospital Login...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-medical-coolgray flex flex-col">
       {/* Standalone Portal Header */}
@@ -233,7 +266,7 @@ export const ConsultationPage = () => {
                 </span>
               </div>
               <p className="text-[10px] font-medium text-medical-muted hidden sm:block truncate">
-                Consultation &amp; OPD Slot Booking · No Login Required
+                Consultation &amp; OPD Confirmed Slot Booking
               </p>
             </div>
           </Link>

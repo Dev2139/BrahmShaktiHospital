@@ -30,6 +30,7 @@ import {
   FileText
 } from 'lucide-react';
 import api from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 import { InternationalModal } from '../../components/InternationalModal';
 
 const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
@@ -236,6 +237,9 @@ const FAQ_ITEMS = [
 
 export const HomePage = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  const appointmentTarget = isAuthenticated ? '/appointments' : '/login?redirect=/appointments';
+
   const [departments, setDepartments] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -339,7 +343,7 @@ export const HomePage = () => {
               {/* CTAs */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
-                  to="/appointments"
+                  to={appointmentTarget}
                   className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-sm shadow-card-hover transition-all flex items-center gap-2 hover:scale-105"
                 >
                   <Calendar className="w-4 h-4" />
@@ -738,7 +742,7 @@ export const HomePage = () => {
                     View Details
                   </Link>
                   <Link
-                    to={`/consultation?specialty=${dept.id}`}
+                    to={isAuthenticated ? `/appointments?specialty=${dept.id}` : `/login?redirect=${encodeURIComponent(`/appointments?specialty=${dept.id}`)}`}
                     className="flex-1 py-2.5 rounded-xl bg-[#0B2545] hover:bg-[#123661] text-white text-xs font-bold text-center transition-all shadow-sm hover:shadow"
                   >
                     Book Appointment

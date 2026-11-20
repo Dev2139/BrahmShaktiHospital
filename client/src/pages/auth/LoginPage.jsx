@@ -28,11 +28,33 @@ export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 3 high-impact healthcare hero images with distinct stories
+  const getRedirectDest = () => {
+    // 1. Check ?redirect= URL parameter
+    const searchParams = new URLSearchParams(location.search);
+    const redirectParam = searchParams.get('redirect');
+    if (redirectParam) return decodeURIComponent(redirectParam);
+
+    // 2. Check location.state?.from
+    if (!location.state?.from) return null;
+    if (typeof location.state.from === 'string') return location.state.from;
+    const pathname = location.state.from.pathname || '';
+    const search = location.state.from.search || '';
+    return pathname + search;
+  };
+
+  const from = getRedirectDest();
+
+  // If already authenticated and visiting login (e.g. redirected from Book Appointment), redirect immediately
+  useEffect(() => {
+    if (isAuthenticated) {
+      const dest = from || '/patient/dashboard';
+      navigate(dest, { replace: true });
+    }
+  }, [isAuthenticated, from, navigate]);
   const slides = [
     {
       image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1600',
@@ -68,15 +90,6 @@ export const LoginPage = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  const getRedirectDest = () => {
-    if (!location.state?.from) return null;
-    if (typeof location.state.from === 'string') return location.state.from;
-    const pathname = location.state.from.pathname || '';
-    const search = location.state.from.search || '';
-    return pathname + search;
-  };
-
-  const from = getRedirectDest();
 
   const getDashboardForRole = (role) => {
     switch (role) {

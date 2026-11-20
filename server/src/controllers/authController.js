@@ -16,7 +16,7 @@ const generateToken = (user) => {
       patientId: user.patientId || null
     },
     JWT_SECRET,
-    { expiresIn: '7d' }
+    { expiresIn: '14d' }
   );
 };
 

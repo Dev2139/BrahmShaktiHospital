@@ -4,23 +4,42 @@ import toast from 'react-hot-toast';
 
 const AuthContext = createContext(null);
 
+// 10 days session persistence in milliseconds
+const TEN_DAYS_MS = 10 * 24 * 60 * 60 * 1000;
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check saved session
+    // Check saved session with 10 days persistence
     const savedToken = localStorage.getItem('bsh_token');
     const savedUser = localStorage.getItem('bsh_user');
+    const savedExpiry = localStorage.getItem('bsh_auth_expiry');
 
     if (savedToken && savedUser) {
       try {
-        setToken(savedToken);
-        setUser(JSON.parse(savedUser));
+        const now = Date.now();
+        if (savedExpiry && now > parseInt(savedExpiry, 10)) {
+          // Session expired after 10 days
+          localStorage.removeItem('bsh_token');
+          localStorage.removeItem('bsh_user');
+          localStorage.removeItem('bsh_auth_expiry');
+          setToken(null);
+          setUser(null);
+        } else {
+          // Still valid within 10 days
+          if (!savedExpiry) {
+            localStorage.setItem('bsh_auth_expiry', (now + TEN_DAYS_MS).toString());
+          }
+          setToken(savedToken);
+          setUser(JSON.parse(savedUser));
+        }
       } catch (e) {
         localStorage.removeItem('bsh_token');
         localStorage.removeItem('bsh_user');
+        localStorage.removeItem('bsh_auth_expiry');
       }
     }
     setIsLoading(false);
@@ -31,10 +50,12 @@ export const AuthProvider = ({ children }) => {
       const response = await api.post('/auth/login', { email, password });
       if (response.data.success) {
         const { token: jwtToken, user: userData } = response.data;
+        const expiry = Date.now() + TEN_DAYS_MS;
         setToken(jwtToken);
         setUser(userData);
         localStorage.setItem('bsh_token', jwtToken);
         localStorage.setItem('bsh_user', JSON.stringify(userData));
+        localStorage.setItem('bsh_auth_expiry', expiry.toString());
         toast.success(`Welcome back, ${userData.name}!`);
         return { success: true, user: userData };
       }
@@ -50,10 +71,12 @@ export const AuthProvider = ({ children }) => {
       const response = await api.post('/auth/register', userData);
       if (response.data.success) {
         const { token: jwtToken, user: newUser } = response.data;
+        const expiry = Date.now() + TEN_DAYS_MS;
         setToken(jwtToken);
         setUser(newUser);
         localStorage.setItem('bsh_token', jwtToken);
         localStorage.setItem('bsh_user', JSON.stringify(newUser));
+        localStorage.setItem('bsh_auth_expiry', expiry.toString());
         toast.success('Registration successful!');
         return { success: true, user: newUser };
       }
@@ -69,6 +92,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem('bsh_token');
     localStorage.removeItem('bsh_user');
+    localStorage.removeItem('bsh_auth_expiry');
     toast.success('Logged out successfully');
   };
 

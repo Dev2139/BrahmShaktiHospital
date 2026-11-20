@@ -16,6 +16,7 @@ import {
   PhoneCall
 } from 'lucide-react';
 import api from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 
 const HOSPITAL_LOCATIONS = [
   { id: 'main-campus', label: 'Brahm Shakti Hospital, Budh Vihar Main Campus' },
@@ -50,6 +51,7 @@ const getDoctorGender = (doc) => {
 };
 
 export const DoctorsPage = () => {
+  const { isAuthenticated } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const [doctors, setDoctors] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -698,7 +700,7 @@ export const DoctorsPage = () => {
                         </div>
 
                         <Link
-                          to={`/consultation?doctor=${doc.id}`}
+                          to={isAuthenticated ? `/appointments?doctor=${doc.id}` : `/login?redirect=${encodeURIComponent(`/appointments?doctor=${doc.id}`)}`}
                           className="px-5 py-2.5 bg-[#0B2545] hover:bg-[#123661] text-white text-xs sm:text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow flex items-center justify-center shrink-0 cursor-pointer"
                         >
                           Book an Appointment

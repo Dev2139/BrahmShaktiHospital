@@ -107,6 +107,8 @@ export const Navbar = () => {
       active ? 'text-primary' : 'text-secondary hover:text-primary'
     }`;
 
+  const appointmentTarget = isAuthenticated ? '/appointments' : '/login?redirect=/appointments';
+
   return (
     <header ref={navRef} className="sticky top-0 z-50 bg-white shadow-sm">
       {/* Main White Navbar */}
@@ -197,7 +199,7 @@ export const Navbar = () => {
           {/* Right Side: Book Appointment Pill + Mobile Toggle */}
           <div className="flex items-center gap-2 shrink-0 lg:flex-1 lg:justify-end">
             <Link
-              to="/consultation"
+              to={appointmentTarget}
               className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-md shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
             >
               <Calendar className="w-4 h-4" />
@@ -246,7 +248,7 @@ export const Navbar = () => {
 
             <div className="pt-3 px-2 flex flex-col gap-2.5">
               <Link
-                to="/consultation"
+                to={appointmentTarget}
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-primary text-white font-bold text-sm shadow-md"
               >
