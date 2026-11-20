@@ -19,6 +19,7 @@ import {
   Ambulance,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Sparkles,
   Search,
   Plane,
@@ -206,6 +207,33 @@ const PHOTO_GALLERY_ITEMS = [
   }
 ];
 
+const FAQ_ITEMS = [
+  {
+    question: 'How do I book an appointment at Brahm Shakti Hospital?',
+    answer: 'Appointments can be booked directly online on our website by choosing your specialist doctor or clinical department, via our 24/7 central hospital helpline at +91-11-4700 5555 / 7840089703, or in-person at the central hospital registration desk in Budh Vihar, Delhi.'
+  },
+  {
+    question: 'What are the OPD consultation timings and registration hours?',
+    answer: 'General and super-specialty OPD clinics run Monday through Saturday from 09:00 AM to 05:00 PM. Patient registration counters open daily at 08:30 AM at the Main OPD Block on the Ground Floor.'
+  },
+  {
+    question: 'Does Brahm Shakti Hospital provide 24x7 emergency and trauma care?',
+    answer: 'Yes, our 24x7 Emergency & Trauma Resuscitation Centre, intensive care units (ICU, ICCU, Level-III NICU), and Cardiac Cath Lab are fully functional around the clock, 365 days a year with on-call trauma surgeons and emergency physicians.'
+  },
+  {
+    question: 'Are cashless health insurance and panel facilities available?',
+    answer: 'Yes, Brahm Shakti Hospital is empaneled with major private health insurance companies, Third Party Administrators (TPAs), and government schemes including CGHS, ECHS, and DGEHS for seamless cashless inpatient hospitalization.'
+  },
+  {
+    question: 'How can I access my diagnostic and lab test reports online?',
+    answer: 'You can quickly view and download your verified lab results from our online Lab Results portal by entering your UHID (Unique Hospital ID) and registered mobile number, or collect physical copies from the hospital pathology desk.'
+  },
+  {
+    question: 'Where is Brahm Shakti Hospital located and how do I reach it?',
+    answer: 'The hospital is situated at Udyog Nagar Metro Station Road, Budh Vihar Phase-1, North-West Delhi - 110086. It is conveniently accessible by Delhi Metro (Green Line - Udyog Nagar Station) and central public bus routes.'
+  }
+];
+
 export const HomePage = () => {
   const navigate = useNavigate();
   const [departments, setDepartments] = useState([]);
@@ -223,6 +251,7 @@ export const HomePage = () => {
   const [eventIndex, setEventIndex] = useState(0);
   const [locationIndex, setLocationIndex] = useState(0);
   const [galleryStartIndex, setGalleryStartIndex] = useState(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -1181,6 +1210,44 @@ export const HomePage = () => {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* 9. Frequently Asked Questions Section */}
+      <section className="max-w-7xl mx-auto px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#0A7A74] text-center mb-8 tracking-tight">
+          Frequently Asked Questions
+        </h2>
+
+        <div className="max-w-4xl mx-auto space-y-3.5">
+          {FAQ_ITEMS.map((faq, idx) => {
+            const isOpen = openFaqIndex === idx;
+            return (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs hover:shadow-xs transition-all"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                  className="w-full px-5 py-4 flex items-center justify-between text-left gap-4 hover:bg-slate-50/70 transition-colors cursor-pointer select-none"
+                >
+                  <span className="text-sm sm:text-base font-bold text-[#0B2545]">
+                    {faq.question}
+                  </span>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-[#0A7A74]/10 text-[#0A7A74]' : 'text-slate-400'}`}>
+                    <ChevronDown className="w-5 h-5" />
+                  </div>
+                </button>
+
+                {isOpen && (
+                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/30 animate-in fade-in duration-200">
+                    <p>{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 
