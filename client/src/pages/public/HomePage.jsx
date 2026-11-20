@@ -176,62 +176,123 @@ const UPCOMING_EVENTS = [
 ];
 
 const GALLERY_CATEGORIES = [
-  { id: 'all', label: 'All Facilities' },
-  { id: 'ot', label: 'Operation Theatres' },
-  { id: 'icu', label: 'ICU & NICU' },
-  { id: 'dialysis', label: 'Dialysis Wing' },
-  { id: 'diagnostics', label: 'Diagnostics & Labs' },
-  { id: 'campus', label: 'Hospital Campus' }
+  { id: 'all', label: 'All Photos' },
+  { id: 'events', label: 'Events & Ceremonies' },
+  { id: 'campus', label: 'Hospital Campus & Units' }
 ];
 
-const PHOTO_GALLERY_ITEMS = [
+const INITIAL_GALLERY_PHOTOS = [
   {
-    id: 1,
-    category: 'ot',
-    categoryLabel: 'Modular OT',
-    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200',
-    title: 'State-of-the-Art 4K Modular Laparoscopic OT',
-    caption: 'Equipped with laminar airflow, harmonic scalpel, and 4K surgical imaging towers for minimally invasive precision.'
+    id: 'gal-1',
+    category: 'events',
+    categoryLabel: 'Flag Ceremony',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795179941/Proud_Indian_Flag_Group_Portrait.png',
+    title: 'Proud Indian Flag Group Portrait',
+    caption: 'Brahm Shakti Hospital medical faculty and administrative leadership celebrating national pride at the hospital campus.'
   },
   {
-    id: 2,
-    category: 'icu',
-    categoryLabel: 'Level-III NICU',
-    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=1200',
-    title: 'Level-III Neonatal Critical Care Incubators',
-    caption: 'Round-the-clock neonatal critical care, radiant warmers, and continuous vital monitoring for fragile newborns.'
+    id: 'gal-2',
+    category: 'events',
+    categoryLabel: 'Ceremony',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795179942/Indian_Flag_Ceremony_Group_Photo.png',
+    title: 'Indian Flag Ceremony Group Photo',
+    caption: 'Senior doctors, clinical nurses, and staff members assembled during the ceremonial flag hoisting event at Budh Vihar.'
   },
   {
-    id: 3,
-    category: 'dialysis',
-    categoryLabel: 'Dialysis Wing',
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200',
-    title: 'Subsidized High-Flux Hemodialysis Center',
-    caption: 'Charitable renal wing operating 24x7 with specialized clinical staff and an ultra-pure RO water filtration system.'
+    id: 'gal-3',
+    category: 'events',
+    categoryLabel: 'Foundation Day',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795183378/brahmshakti_event_hero_resized.jpg',
+    title: 'Hospital Annual Foundation & Care Gathering',
+    caption: 'Annual community healthcare milestone and clinical celebration organized under Brahm Shakti Trust.'
   },
   {
-    id: 4,
-    category: 'diagnostics',
-    categoryLabel: 'Diagnostics',
-    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200',
-    title: 'Digital Radiography & Pathology Diagnostics',
-    caption: 'NABL-compliant diagnostic precision with rapid turnaround for IPD, OPD, and trauma casualty patients.'
-  },
-  {
-    id: 5,
-    category: 'ot',
-    categoryLabel: 'Orthopaedic OT',
-    image: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=1200',
-    title: 'Orthopaedic Joint Replacement Theatre',
-    caption: 'Ultra-sterile surgical environment specialized for total knee and hip replacements with fast-track recovery.'
-  },
-  {
-    id: 6,
+    id: 'gal-4',
     category: 'campus',
-    categoryLabel: 'Budh Vihar Campus',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200',
-    title: 'Brahm Shakti Hospital Modern Campus',
-    caption: '250+ bed tertiary healthcare center serving North-West Delhi families with trusted DMC consultants.'
+    categoryLabel: 'Medical Staff',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795183537/WhatsApp_Image_2026-11-04_at_8.03.05_AM_2.jpg',
+    title: 'Clinical Faculty & Healthcare Team',
+    caption: 'Dedicated doctors, consultants, and surgical teams delivering round-the-clock patient care and recovery.'
+  },
+  {
+    id: 'gal-5',
+    category: 'campus',
+    categoryLabel: 'Hospital Campus',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185836/WhatsApp_Image_2026-11-04_at_8.03.05_AM.jpg',
+    title: 'Emergency & Surgical Infrastructure',
+    caption: 'Modern facilities and advanced clinical infrastructure serving North-West Delhi families with trusted care.'
+  },
+  {
+    id: 'gal-6',
+    category: 'campus',
+    categoryLabel: 'Inpatient Care',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185834/WhatsApp_Image_2026-11-04_at_8.03.06_AM_1.jpg',
+    title: 'Hospital Ward & Inpatient Facility',
+    caption: 'Clean, sanitized inpatient recovery suites and dedicated clinical nursing stations for peaceful healing.'
+  },
+  {
+    id: 'gal-7',
+    category: 'campus',
+    categoryLabel: 'Diagnostics',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185835/WhatsApp_Image_2026-11-04_at_8.03.06_AM.jpg',
+    title: 'Diagnostics & Patient Care Units',
+    caption: 'Accurate digital diagnostic monitoring and patient-first clinical departments equipped with advanced medical systems.'
+  },
+  {
+    id: 'gal-8',
+    category: 'campus',
+    categoryLabel: 'Operation Theatres',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185836/WhatsApp_Image_2026-11-04_at_8.03.04_AM_2.jpg',
+    title: 'Surgical Suites & Keyhole Laparoscopy',
+    caption: 'Advanced modular operating suites with precision surgical instruments for minimally invasive surgeries.'
+  },
+  {
+    id: 'gal-9',
+    category: 'campus',
+    categoryLabel: 'Critical Care',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185836/WhatsApp_Image_2026-11-04_at_8.03.04_AM_1.jpg',
+    title: 'Critical Care ICU & Monitoring Suites',
+    caption: 'Intensive care unit with multi-para vital monitors and specialized emergency resuscitation infrastructure.'
+  },
+  {
+    id: 'gal-10',
+    category: 'campus',
+    categoryLabel: 'Mother & Child',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185837/WhatsApp_Image_2026-11-04_at_8.03.04_AM.jpg',
+    title: 'Maternity Wing & Neonatal Nursery',
+    caption: 'Comfortable obstetric suites and Level-III NICU care safeguarding mothers and fragile newborn babies.'
+  },
+  {
+    id: 'gal-11',
+    category: 'campus',
+    categoryLabel: 'Dialysis Center',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185838/WhatsApp_Image_2026-11-04_at_8.03.03_AM_2.jpg',
+    title: 'Subsidized Dialysis Renal Unit',
+    caption: 'Charitable high-flux hemodialysis wing operating round-the-clock for kidney patients under Brahm Shakti Trust.'
+  },
+  {
+    id: 'gal-12',
+    category: 'campus',
+    categoryLabel: 'Clinical Labs',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185839/WhatsApp_Image_2026-11-04_at_8.03.03_AM_1.jpg',
+    title: 'Pathology & Diagnostic Laboratory',
+    caption: 'Fully automated biochemistry, haematology, and microbiology analyzers delivering certified rapid turnaround.'
+  },
+  {
+    id: 'gal-13',
+    category: 'campus',
+    categoryLabel: 'Main Reception',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185840/WhatsApp_Image_2026-11-04_at_8.03.03_AM.jpg',
+    title: 'Outpatient Reception & Triage Desk',
+    caption: 'Courteous patient navigation desk and smooth electronic registration for daily specialty OPD visits.'
+  },
+  {
+    id: 'gal-14',
+    category: 'campus',
+    categoryLabel: '24x7 Trauma Care',
+    image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185843/WhatsApp_Image_2026-11-04_at_8.03.01_AM_1.jpg',
+    title: '24x7 Ambulance & Emergency Lifeline',
+    caption: 'Rapid response emergency trauma care and mobile cardiac ambulances ready for immediate patient transfer.'
   }
 ];
 
@@ -290,28 +351,46 @@ export const HomePage = () => {
   }, []);
 
   // Gallery 3D Cover Flow Carousel & Lightbox Preview State
+  const [galleryItems, setGalleryItems] = useState(INITIAL_GALLERY_PHOTOS);
   const [selectedGalleryCategory, setSelectedGalleryCategory] = useState('all');
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
   const [isGalleryHovered, setIsGalleryHovered] = useState(false);
   const [lightboxPhoto, setLightboxPhoto] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
+  // Fetch dynamic gallery photos from database
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const res = await api.get('/gallery');
+        if (res.data?.success && Array.isArray(res.data?.data) && res.data.data.length > 0) {
+          setGalleryItems(res.data.data);
+        }
+      } catch (err) {
+        console.warn('Dynamic gallery fetch fallback to initial list:', err);
+      }
+    };
+    fetchGallery();
+  }, []);
+
+  const displayedGallery = React.useMemo(() => {
+    if (selectedGalleryCategory === 'all') return galleryItems;
+    const filtered = galleryItems.filter((i) => i.category === selectedGalleryCategory);
+    return filtered.length > 0 ? filtered : galleryItems;
+  }, [galleryItems, selectedGalleryCategory]);
+
   // Auto-scrolling gallery interval (pauses on hover)
   useEffect(() => {
-    if (isGalleryHovered) return;
+    if (isGalleryHovered || displayedGallery.length === 0) return;
     const interval = setInterval(() => {
-      setGalleryActiveIndex((prev) => (prev + 1) % PHOTO_GALLERY_ITEMS.length);
+      setGalleryActiveIndex((prev) => (prev + 1) % displayedGallery.length);
     }, 3800);
     return () => clearInterval(interval);
-  }, [isGalleryHovered]);
+  }, [isGalleryHovered, displayedGallery.length]);
 
   const handleCategoryClick = (catId) => {
     setSelectedGalleryCategory(catId);
-    if (catId === 'all') return;
-    const targetIdx = PHOTO_GALLERY_ITEMS.findIndex((item) => item.category === catId);
-    if (targetIdx !== -1) {
-      setGalleryActiveIndex(targetIdx);
-    }
+    setGalleryActiveIndex(0);
   };
 
   useEffect(() => {
@@ -1154,7 +1233,7 @@ export const HomePage = () => {
           <button
             type="button"
             aria-label="Previous Gallery Photo"
-            onClick={() => setGalleryActiveIndex((prev) => (prev - 1 + PHOTO_GALLERY_ITEMS.length) % PHOTO_GALLERY_ITEMS.length)}
+            onClick={() => setGalleryActiveIndex((prev) => (prev - 1 + displayedGallery.length) % displayedGallery.length)}
             className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110"
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A7A74]" />
@@ -1162,7 +1241,7 @@ export const HomePage = () => {
           <button
             type="button"
             aria-label="Next Gallery Photo"
-            onClick={() => setGalleryActiveIndex((prev) => (prev + 1) % PHOTO_GALLERY_ITEMS.length)}
+            onClick={() => setGalleryActiveIndex((prev) => (prev + 1) % displayedGallery.length)}
             className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A7A74]" />
@@ -1170,8 +1249,8 @@ export const HomePage = () => {
 
           {/* Cards 3D Stage */}
           <div className="relative w-full h-full flex items-center justify-center [perspective:1200px]">
-            {PHOTO_GALLERY_ITEMS.map((item, idx) => {
-              const n = PHOTO_GALLERY_ITEMS.length;
+            {displayedGallery.map((item, idx) => {
+              const n = displayedGallery.length;
               let offset = idx - galleryActiveIndex;
               if (offset < -Math.floor(n / 2)) {
                 offset += n;
@@ -1209,7 +1288,7 @@ export const HomePage = () => {
 
               return (
                 <div
-                  key={item.id}
+                  key={item._id || item.id || idx}
                   onClick={() => {
                     if (isMiddle) {
                       setLightboxPhoto(item);
@@ -1275,7 +1354,7 @@ export const HomePage = () => {
 
           {/* Dots Indicator */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2">
-            {PHOTO_GALLERY_ITEMS.map((_, idx) => (
+            {displayedGallery.map((_, idx) => (
               <button
                 key={idx}
                 type="button"

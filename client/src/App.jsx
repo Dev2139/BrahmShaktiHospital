@@ -45,6 +45,7 @@ import PharmacyManagementPage from './pages/admin/PharmacyManagementPage';
 import BillingManagementPage from './pages/admin/BillingManagementPage';
 import ReportsPage from './pages/admin/ReportsPage';
 import DoctorLeaveCalendarPage from './pages/admin/DoctorLeaveCalendarPage';
+import AdminGalleryPage from './pages/admin/AdminGalleryPage';
 
 // Specialized Role Dashboards
 import DoctorDashboardPage from './pages/doctor/DoctorDashboardPage';
@@ -189,6 +190,14 @@ export default function App() {
             element={
               <ProtectedRoute allowedRoles={['admin', 'superadmin']}>
                 <ReportsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/gallery"
+            element={
+              <ProtectedRoute allowedRoles={['admin', 'superadmin']}>
+                <AdminGalleryPage />
               </ProtectedRoute>
             }
           />

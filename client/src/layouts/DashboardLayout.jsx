@@ -23,7 +23,8 @@ import {
   ShieldAlert,
   Sparkles,
   KeyRound,
-  AlertTriangle
+  AlertTriangle,
+  Image as ImageIcon
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -98,7 +99,8 @@ export const DashboardLayout = () => {
         { label: 'Blood Bank', path: '/admin/blood-bank', icon: Droplets },
         { label: 'Pharmacy Store', path: '/admin/pharmacy', icon: Pill },
         { label: 'Billing & Invoices', path: '/admin/billing', icon: Receipt },
-        { label: 'Hospital Reports', path: '/admin/reports', icon: BarChart3 }
+        { label: 'Hospital Reports', path: '/admin/reports', icon: BarChart3 },
+        { label: 'Photo Gallery', path: '/admin/gallery', icon: ImageIcon }
       ];
     }
 
