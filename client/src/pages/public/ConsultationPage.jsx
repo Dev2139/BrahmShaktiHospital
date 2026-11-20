@@ -57,7 +57,7 @@ export const ConsultationPage = () => {
   const preDoctor = searchParams.get('doctor') || '';
   const preDept = searchParams.get('specialty') || searchParams.get('department') || '';
 
-  const { isAuthenticated, isLoading, user } = useAuth();
+  const { isAuthenticated, isLoading, user, isStaff, dashboardPath } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -85,6 +85,13 @@ export const ConsultationPage = () => {
   const [patientAge, setPatientAge] = useState('');
   const [gender, setGender] = useState('Male');
   const [symptoms, setSymptoms] = useState('');
+
+  // If staff is logged in, redirect them immediately to their staff dashboard, not to the patient appointment booking page
+  useEffect(() => {
+    if (!isLoading && isAuthenticated && (isStaff || (user?.role && user.role !== 'patient'))) {
+      navigate(dashboardPath || '/admin/dashboard', { replace: true });
+    }
+  }, [isLoading, isAuthenticated, isStaff, user, dashboardPath, navigate]);
 
   // Require login before booking appointment: if unauthenticated, redirect to login with return path
   useEffect(() => {

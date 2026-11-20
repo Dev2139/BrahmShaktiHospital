@@ -33,7 +33,7 @@ export const Navbar = () => {
   const navRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isStaff, dashboardPath } = useAuth();
 
   // Close open dropdowns and popups when clicking outside
   useEffect(() => {
@@ -107,7 +107,9 @@ export const Navbar = () => {
       active ? 'text-primary' : 'text-secondary hover:text-primary'
     }`;
 
-  const appointmentTarget = isAuthenticated ? '/appointments' : '/login?redirect=/appointments';
+  const appointmentTarget = isStaff
+    ? (dashboardPath || '/admin/dashboard')
+    : (isAuthenticated ? '/appointments' : '/login?redirect=/appointments');
 
   return (
     <header ref={navRef} className="sticky top-0 z-50 bg-white shadow-sm">
@@ -203,7 +205,7 @@ export const Navbar = () => {
               className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-md shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
             >
               <Calendar className="w-4 h-4" />
-              <span>Book Appointment</span>
+              <span>{isStaff ? 'My Dashboard' : 'Book Appointment'}</span>
             </Link>
 
             <button
@@ -253,7 +255,7 @@ export const Navbar = () => {
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-primary text-white font-bold text-sm shadow-md"
               >
                 <Calendar className="w-4 h-4" />
-                <span>Book Appointment</span>
+                <span>{isStaff ? 'My Dashboard' : 'Book Appointment'}</span>
               </Link>
 
               {!isAuthenticated && (

@@ -4,6 +4,33 @@ import toast from 'react-hot-toast';
 
 const AuthContext = createContext(null);
 
+// Central role-to-dashboard routing logic
+export const getDashboardForRole = (role) => {
+  switch (role) {
+    case 'superadmin':
+    case 'admin':
+      return '/admin/dashboard';
+    case 'doctor':
+      return '/doctor/dashboard';
+    case 'pharmacist':
+      return '/pharmacist/dashboard';
+    case 'supplier':
+      return '/supplier/dashboard';
+    case 'receptionist':
+      return '/receptionist/dashboard';
+    case 'blood_bank_technician':
+      return '/admin/dashboard';
+    case 'patient':
+      return '/patient/dashboard';
+    default:
+      return '/admin/dashboard';
+  }
+};
+
+export const isStaffRole = (role) => {
+  return Boolean(role && role !== 'patient');
+};
+
 // 10 days session persistence in milliseconds
 const TEN_DAYS_MS = 10 * 24 * 60 * 60 * 1000;
 
@@ -137,6 +164,8 @@ export const AuthProvider = ({ children }) => {
         user,
         token,
         role: user?.role || null,
+        isStaff: isStaffRole(user?.role),
+        dashboardPath: getDashboardForRole(user?.role),
         isAuthenticated: !!token && !!user,
         isLoading,
         login,

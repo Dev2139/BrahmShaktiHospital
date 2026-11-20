@@ -19,7 +19,7 @@ import {
   Building2,
   CheckCircle2
 } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth, getDashboardForRole, isStaffRole } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
 
 export const LoginPage = () => {
@@ -28,7 +28,7 @@ export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -48,13 +48,15 @@ export const LoginPage = () => {
 
   const from = getRedirectDest();
 
-  // If already authenticated and visiting login (e.g. redirected from Book Appointment), redirect immediately
+  // If already authenticated and visiting login, redirect staff to their dashboard and patients to intended destination
   useEffect(() => {
     if (isAuthenticated) {
-      const dest = from || '/patient/dashboard';
+      const userRole = user?.role;
+      const isStaff = isStaffRole(userRole);
+      const dest = isStaff ? getDashboardForRole(userRole) : (from || '/patient/dashboard');
       navigate(dest, { replace: true });
     }
-  }, [isAuthenticated, from, navigate]);
+  }, [isAuthenticated, user, from, navigate]);
   const slides = [
     {
       image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1600',
@@ -123,7 +125,10 @@ export const LoginPage = () => {
     setSubmitting(false);
 
     if (res?.success) {
-      const dest = from || getDashboardForRole(res.user.role);
+      const userRole = res.user?.role;
+      const isStaff = isStaffRole(userRole);
+      // If staff has logged in, ALWAYS redirect to their respective dashboard, never to appointment booking page!
+      const dest = isStaff ? getDashboardForRole(userRole) : (from || '/patient/dashboard');
       navigate(dest, { replace: true });
     }
   };

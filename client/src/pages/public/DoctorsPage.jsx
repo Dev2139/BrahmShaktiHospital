@@ -51,7 +51,7 @@ const getDoctorGender = (doc) => {
 };
 
 export const DoctorsPage = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isStaff, dashboardPath } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const [doctors, setDoctors] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -700,10 +700,10 @@ export const DoctorsPage = () => {
                         </div>
 
                         <Link
-                          to={isAuthenticated ? `/appointments?doctor=${doc.id}` : `/login?redirect=${encodeURIComponent(`/appointments?doctor=${doc.id}`)}`}
+                          to={isStaff ? (dashboardPath || '/admin/dashboard') : (isAuthenticated ? `/appointments?doctor=${doc.id}` : `/login?redirect=${encodeURIComponent(`/appointments?doctor=${doc.id}`)}`)}
                           className="px-5 py-2.5 bg-[#0B2545] hover:bg-[#123661] text-white text-xs sm:text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow flex items-center justify-center shrink-0 cursor-pointer"
                         >
-                          Book an Appointment
+                          {isStaff ? 'My Staff Dashboard' : 'Book an Appointment'}
                         </Link>
                       </div>
                     </div>
