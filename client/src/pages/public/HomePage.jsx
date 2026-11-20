@@ -1225,7 +1225,7 @@ export const HomePage = () => {
 
         {/* 3D Auto-Scrolling One-Line Carousel Container */}
         <div
-          className="relative w-full h-[410px] sm:h-[460px] md:h-[490px] flex items-center justify-center py-4 select-none"
+          className="relative w-full h-[300px] sm:h-[370px] md:h-[420px] flex items-center justify-center py-2 select-none"
           onMouseEnter={() => setIsGalleryHovered(true)}
           onMouseLeave={() => setIsGalleryHovered(false)}
         >
@@ -1304,49 +1304,19 @@ export const HomePage = () => {
                     zIndex: zIndexStyle,
                     transition: 'transform 700ms cubic-bezier(0.25, 1, 0.5, 1), opacity 700ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 500ms ease'
                   }}
-                  className={`absolute w-[80%] sm:w-[54%] md:w-[44%] lg:w-[38%] max-w-md h-[340px] sm:h-[380px] md:h-[400px] bg-white rounded-3xl overflow-hidden border flex flex-col ${
+                  className={`absolute w-[82%] sm:w-[56%] md:w-[46%] lg:w-[40%] max-w-lg h-[260px] sm:h-[340px] md:h-[390px] rounded-3xl overflow-hidden shadow-xl select-none group ${
                     isMiddle
-                      ? 'shadow-2xl border-[#0A7A74]/40 ring-4 ring-[#0A7A74]/15 cursor-pointer pointer-events-auto'
+                      ? 'shadow-2xl ring-4 ring-[#0A7A74]/25 cursor-pointer pointer-events-auto'
                       : isVisible
-                      ? 'shadow-md border-slate-200/90 cursor-pointer hover:opacity-85 pointer-events-auto'
+                      ? 'shadow-lg border border-slate-200/80 cursor-pointer hover:opacity-90 pointer-events-auto'
                       : 'pointer-events-none'
                   }`}
                 >
-                  <div className="relative h-[62%] sm:h-[65%] overflow-hidden bg-slate-900 group">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
-                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
-                      {item.categoryLabel}
-                    </span>
-                    {isMiddle && (
-                      <div className="absolute bottom-3 right-3">
-                        <span className="px-2.5 py-1 rounded-full bg-white/95 text-slate-900 text-[11px] font-bold shadow-md flex items-center gap-1">
-                          Click to Enlarge
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between bg-white">
-                    <div>
-                      <h3 className={`font-bold leading-snug line-clamp-1 ${isMiddle ? 'text-slate-900 text-sm sm:text-base' : 'text-slate-700 text-xs sm:text-sm'}`}>
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 line-clamp-2 mt-1 leading-relaxed">
-                        {item.caption}
-                      </p>
-                    </div>
-                    {isMiddle && (
-                      <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#0A7A74]">
-                        <span>Full Resolution Preview</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
-                    )}
-                  </div>
+                  <img
+                    src={item.image}
+                    alt="Brahm Shakti Hospital Gallery"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  />
                 </div>
               );
             })}
@@ -1370,43 +1340,31 @@ export const HomePage = () => {
           </div>
         </div>
 
-        {/* Lightbox Modal */}
+        {/* Lightbox Modal - Pure High-Res Photo View */}
         {lightboxPhoto && (
           <div
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
             onClick={() => setLightboxPhoto(null)}
           >
             <div
-              className="bg-white rounded-3xl overflow-hidden max-w-3xl w-full shadow-2xl relative animate-in fade-in zoom-in-95 duration-200"
+              className="bg-black/90 rounded-3xl overflow-hidden max-w-4xl max-h-[88vh] w-full shadow-2xl relative animate-in fade-in zoom-in-95 duration-200 flex items-center justify-center border border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 type="button"
                 aria-label="Close photo preview"
                 onClick={() => setLightboxPhoto(null)}
-                className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center z-10 transition-colors cursor-pointer"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center z-20 transition-colors cursor-pointer border border-white/20 hover:scale-105"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="relative max-h-[65vh] bg-slate-950 flex items-center justify-center overflow-hidden">
+              <div className="w-full max-h-[88vh] flex items-center justify-center p-2 sm:p-4">
                 <img
                   src={lightboxPhoto.image}
-                  alt={lightboxPhoto.title}
-                  className="w-full h-full max-h-[65vh] object-cover sm:object-contain"
+                  alt="Brahm Shakti Hospital Gallery Full View"
+                  className="w-full h-auto max-h-[84vh] object-contain rounded-2xl shadow-lg"
                 />
-              </div>
-
-              <div className="p-6 bg-white space-y-2">
-                <div className="inline-block px-2.5 py-0.5 rounded text-xs font-semibold bg-teal-50 text-[#0A7A74] border border-teal-200">
-                  {lightboxPhoto.categoryLabel}
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold text-slate-900">
-                  {lightboxPhoto.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {lightboxPhoto.caption}
-                </p>
               </div>
             </div>
           </div>
