@@ -207,7 +207,7 @@ export const ChatbotFloatingWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-4 sm:right-6 z-50 flex flex-col items-center gap-3 pointer-events-none">
+    <div className="fixed bottom-4 right-3 sm:bottom-5 sm:right-6 z-50 flex flex-col items-center gap-2.5 sm:gap-3 pointer-events-none">
       
       {/* 1. GO TO TOP BUTTON - Round Circular Button */}
       {showScrollTop && (
@@ -216,9 +216,9 @@ export const ChatbotFloatingWidget = () => {
           type="button"
           aria-label="Back to Top"
           title="Back to Top"
-          className="pointer-events-auto w-12 h-12 rounded-full bg-white hover:bg-slate-50 text-[#0B2545] shadow-lg border border-slate-200 flex items-center justify-center transition-all duration-200 hover:-translate-y-1 active:scale-95 cursor-pointer"
+          className="pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-slate-50 text-[#0B2545] shadow-lg border border-slate-200 flex items-center justify-center transition-all duration-200 hover:-translate-y-1 active:scale-95 cursor-pointer"
         >
-          <ChevronUp className="w-5 h-5" />
+          <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       )}
 
@@ -227,11 +227,11 @@ export const ChatbotFloatingWidget = () => {
         href="tel:7840089703"
         aria-label="Call 24x7 Helpline"
         title="Call 24x7 Helpline: 7840089703"
-        className="pointer-events-auto relative w-12 h-12 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
+        className="pointer-events-auto relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
       >
         {/* Pulsing ring animation */}
         <span className="absolute -inset-1 rounded-full bg-rose-500 opacity-40 animate-ping pointer-events-none" />
-        <Phone className="w-5 h-5 relative z-10" />
+        <Phone className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
       </a>
 
       {/* 3. WORKING & ANIMATED CHATBOT BUTTON - Round Circular Button */}
@@ -240,7 +240,7 @@ export const ChatbotFloatingWidget = () => {
         type="button"
         aria-label={isOpen ? "Close Assistant" : "Chat with BSH Assistant"}
         title={isOpen ? "Close Assistant" : "Chat with BSH Assistant"}
-        className={`pointer-events-auto relative w-12 h-12 sm:w-13 sm:h-13 rounded-full shadow-xl flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer border ${
+        className={`pointer-events-auto relative w-11 h-11 sm:w-13 sm:h-13 rounded-full shadow-xl flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer border ${
           isOpen
             ? 'bg-[#0B2545] text-white border-slate-700'
             : 'bg-gradient-to-tr from-[#0B2545] via-[#103b6e] to-[#006699] text-white border-white/20 hover:scale-110'
@@ -252,13 +252,13 @@ export const ChatbotFloatingWidget = () => {
         )}
 
         {isOpen ? (
-          <X className="w-5 h-5 relative z-10" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
         ) : (
-          <Bot className="w-5 h-5 relative z-10" />
+          <Bot className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
         )}
 
         {/* Live Green Online Dot */}
-        <span className="absolute top-1 right-1 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0B2545]" />
+        <span className="absolute top-1 right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-400 border-2 border-[#0B2545]" />
       </button>
 
       {/* 4. CHATBOT INTERACTIVE DIALOG WINDOW */}
@@ -266,7 +266,7 @@ export const ChatbotFloatingWidget = () => {
         <div
           role="dialog"
           aria-modal="true"
-          className="pointer-events-auto fixed bottom-20 sm:bottom-24 right-3 sm:right-6 w-[94vw] sm:w-[400px] h-[550px] max-h-[80vh] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden z-50 animate-in fade-in slide-in-from-bottom-5 duration-300"
+          className="pointer-events-auto fixed bottom-16 sm:bottom-24 right-2 sm:right-6 w-[96vw] sm:w-[400px] h-[520px] max-h-[78vh] bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden z-50 animate-in fade-in slide-in-from-bottom-5 duration-300"
         >
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0B2545] via-[#123661] to-[#006699] p-4 text-white flex items-center justify-between shadow-md">

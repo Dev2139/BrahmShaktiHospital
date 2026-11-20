@@ -283,13 +283,54 @@ export const Navbar = () => {
                   <span>24x7 Emergency Line</span>
                 </div>
                 <span className="text-secondary font-black">
-                  View Helplines
+                  7840089703
                 </span>
               </button>
             </div>
           </div>
         )}
       </nav>
+
+      {/* Mobile Quick Action Strip (Horizontally Scrollable Chips for Mobile & Tablet) */}
+      <div className="lg:hidden bg-slate-50/95 border-t border-slate-200/90 px-3 py-2 overflow-x-auto scrollbar-none shadow-2xs">
+        <div className="flex items-center gap-2 min-w-max">
+          <Link
+            to="/doctors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs hover:border-primary hover:text-primary active:scale-95 transition-all"
+          >
+            <Search className="w-3.5 h-3.5 text-primary" />
+            <span>Find Doctor</span>
+          </Link>
+          <Link
+            to="/departments"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs hover:border-primary hover:text-primary active:scale-95 transition-all"
+          >
+            <Stethoscope className="w-3.5 h-3.5 text-primary" />
+            <span>Departments</span>
+          </Link>
+          <a
+            href="tel:7840089703"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-50 border border-rose-200 text-xs font-bold text-rose-700 shadow-2xs hover:bg-rose-100 active:scale-95 transition-all"
+          >
+            <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
+            <span>24x7 Emergency</span>
+          </a>
+          <Link
+            to="/lab-results"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs hover:border-primary hover:text-primary active:scale-95 transition-all"
+          >
+            <FlaskConical className="w-3.5 h-3.5 text-primary" />
+            <span>Lab Results</span>
+          </Link>
+          <Link
+            to={appointmentTarget}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0A7A74] text-white text-xs font-bold shadow-2xs hover:bg-[#075954] active:scale-95 transition-all"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Book Slot</span>
+          </Link>
+        </div>
+      </div>
 
       {/* Quick Access Strip (second row with popups) */}
       <div className="hidden lg:block bg-medical-white border-t border-medical-border/70 shadow-sm relative">
@@ -366,35 +407,34 @@ export const Navbar = () => {
                         24/7 Helpline
                       </h4>
                       <a
-                        href="tel:01142254000"
-                        className="text-sm font-semibold text-slate-800 hover:text-[#0A7A74] transition-colors block"
+                        href="tel:7840089703"
+                        className="text-base font-bold text-slate-900 hover:text-[#0A7A74] transition-colors block"
                       >
-                        +91-11-4225 4000
+                        +91 7840089703
                       </a>
                     </div>
 
                     {/* Casualty */}
                     <div>
                       <h4 className="text-lg font-bold text-[#0A7A74] mb-2 tracking-wide">
-                        Casualty
+                        Casualty & Reception
                       </h4>
                       <div className="space-y-1 text-sm font-semibold text-slate-800">
-                        <a href="tel:01142251097" className="block hover:text-[#0A7A74] transition-colors">+91-11-4225 1097</a>
-                        <a href="tel:01142251098" className="block hover:text-[#0A7A74] transition-colors">+91-11-4225 1098</a>
-                        <a href="tel:01142251099" className="block hover:text-[#0A7A74] transition-colors">+91-11-4225 1099</a>
+                        <a href="tel:7840089703" className="block hover:text-[#0A7A74] transition-colors">+91 7840089703 (24x7)</a>
+                        <a href="tel:01127531683" className="block hover:text-[#0A7A74] transition-colors">011-27531683 (Desk)</a>
                       </div>
                     </div>
 
                     {/* Ambulance */}
                     <div>
                       <h4 className="text-lg font-bold text-[#0A7A74] mb-2 tracking-wide">
-                        Ambulance
+                        Emergency Ambulance
                       </h4>
                       <a
-                        href="tel:01142253030"
-                        className="text-sm font-semibold text-slate-800 hover:text-[#0A7A74] transition-colors block"
+                        href="tel:7840089703"
+                        className="text-base font-bold text-rose-600 hover:text-rose-700 transition-colors block"
                       >
-                        +91-11-4225 3030
+                        +91 7840089703
                       </a>
                     </div>
                   </div>

@@ -632,7 +632,7 @@ export const DoctorsPage = () => {
                       className="bg-white rounded-2xl border border-slate-200 shadow-2xs hover:shadow-md transition-all p-5 flex flex-col justify-between group"
                     >
                       {/* Top Row: Left Image & Right Doctor Details */}
-                      <div className="flex items-start gap-4">
+                      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
                         {/* Doctor Photo & View Profile Link */}
                         <div className="shrink-0 flex flex-col items-center">
                           <img
@@ -674,7 +674,7 @@ export const DoctorsPage = () => {
                           </p>
 
                           {/* DMC License & Category Badges */}
-                          <div className="flex items-center gap-1.5 pt-1.5 flex-wrap">
+                          <div className="flex items-center justify-center sm:justify-start gap-1.5 pt-1.5 flex-wrap">
                             {doc.dmcNo && (
                               <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">
                                 DMC {doc.dmcNo}
@@ -694,14 +694,14 @@ export const DoctorsPage = () => {
                       </div>
 
                       {/* Bottom Row: Fee & Book an Appointment Button */}
-                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+                      <div className="mt-4 pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
                         <div className="text-xs text-slate-500 font-medium">
                           Consultation: <strong className="text-primary font-bold">₹{doc.consultationFee || 700}</strong>
                         </div>
 
                         <Link
                           to={isStaff ? (dashboardPath || '/admin/dashboard') : (isAuthenticated ? `/appointments?doctor=${doc.id}` : `/login?redirect=${encodeURIComponent(`/appointments?doctor=${doc.id}`)}`)}
-                          className="px-5 py-2.5 bg-[#0B2545] hover:bg-[#123661] text-white text-xs sm:text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow flex items-center justify-center shrink-0 cursor-pointer"
+                          className="w-full sm:w-auto px-5 py-2.5 bg-[#0B2545] hover:bg-[#123661] text-white text-xs sm:text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow flex items-center justify-center shrink-0 cursor-pointer"
                         >
                           {isStaff ? 'My Staff Dashboard' : 'Book an Appointment'}
                         </Link>

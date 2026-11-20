@@ -343,6 +343,25 @@ export const HomePage = () => {
   // Hero banner slider state & auto-play
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
 
+  // Touch swipe support for mobile/tablet users
+  const heroTouchStartX = React.useRef(0);
+  const heroTouchEndX = React.useRef(0);
+
+  const handleHeroTouchStart = (e) => {
+    heroTouchStartX.current = e.targetTouches[0].clientX;
+  };
+  const handleHeroTouchMove = (e) => {
+    heroTouchEndX.current = e.targetTouches[0].clientX;
+  };
+  const handleHeroTouchEnd = () => {
+    const diff = heroTouchStartX.current - heroTouchEndX.current;
+    if (diff > 45) {
+      setHeroSlideIndex((prev) => (prev + 1) % HERO_BANNER_IMAGES.length);
+    } else if (diff < -45) {
+      setHeroSlideIndex((prev) => (prev - 1 + HERO_BANNER_IMAGES.length) % HERO_BANNER_IMAGES.length);
+    }
+  };
+
   useEffect(() => {
     const timer = setInterval(() => {
       setHeroSlideIndex((prev) => (prev + 1) % HERO_BANNER_IMAGES.length);
@@ -357,6 +376,26 @@ export const HomePage = () => {
   const [isGalleryHovered, setIsGalleryHovered] = useState(false);
   const [lightboxPhoto, setLightboxPhoto] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  // Gallery touch swipe for mobile/tablet
+  const galleryTouchStartX = React.useRef(0);
+  const galleryTouchEndX = React.useRef(0);
+
+  const handleGalleryTouchStart = (e) => {
+    galleryTouchStartX.current = e.targetTouches[0].clientX;
+  };
+  const handleGalleryTouchMove = (e) => {
+    galleryTouchEndX.current = e.targetTouches[0].clientX;
+  };
+  const handleGalleryTouchEnd = () => {
+    if (displayedGallery.length === 0) return;
+    const diff = galleryTouchStartX.current - galleryTouchEndX.current;
+    if (diff > 40) {
+      setGalleryActiveIndex((prev) => (prev + 1) % displayedGallery.length);
+    } else if (diff < -40) {
+      setGalleryActiveIndex((prev) => (prev - 1 + displayedGallery.length) % displayedGallery.length);
+    }
+  };
 
   // Fetch dynamic gallery photos from database
   useEffect(() => {
@@ -454,8 +493,13 @@ export const HomePage = () => {
   return (
     <div className="space-y-12 lg:space-y-20 pb-20">
       {/* 1. Hero Section - Full-Width Hospital Banner Carousel */}
-      <section className="relative w-full overflow-hidden bg-slate-900 shadow-md">
-        <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[660px]">
+      <section
+        className="relative w-full overflow-hidden bg-slate-900 shadow-md touch-pan-y"
+        onTouchStart={handleHeroTouchStart}
+        onTouchMove={handleHeroTouchMove}
+        onTouchEnd={handleHeroTouchEnd}
+      >
+        <div className="relative w-full h-[220px] xs:h-[270px] sm:h-[380px] md:h-[480px] lg:h-[580px] xl:h-[660px]">
           {HERO_BANNER_IMAGES.map((imageUrl, idx) => (
             <div
               key={idx}
@@ -1225,26 +1269,29 @@ export const HomePage = () => {
 
         {/* 3D Auto-Scrolling One-Line Carousel Container */}
         <div
-          className="relative w-full h-[300px] sm:h-[370px] md:h-[420px] flex items-center justify-center py-2 select-none"
+          className="relative w-full h-[290px] xs:h-[320px] sm:h-[370px] md:h-[420px] flex items-center justify-center py-2 select-none overflow-hidden touch-pan-y"
           onMouseEnter={() => setIsGalleryHovered(true)}
           onMouseLeave={() => setIsGalleryHovered(false)}
+          onTouchStart={handleGalleryTouchStart}
+          onTouchMove={handleGalleryTouchMove}
+          onTouchEnd={handleGalleryTouchEnd}
         >
           {/* Navigation Arrows */}
           <button
             type="button"
             aria-label="Previous Gallery Photo"
             onClick={() => setGalleryActiveIndex((prev) => (prev - 1 + displayedGallery.length) % displayedGallery.length)}
-            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110"
+            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110 active:scale-95"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A7A74]" />
+            <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-[#0A7A74]" />
           </button>
           <button
             type="button"
             aria-label="Next Gallery Photo"
             onClick={() => setGalleryActiveIndex((prev) => (prev + 1) % displayedGallery.length)}
-            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110"
+            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110 active:scale-95"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A7A74]" />
+            <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-[#0A7A74]" />
           </button>
 
           {/* Cards 3D Stage */}
@@ -1269,15 +1316,15 @@ export const HomePage = () => {
               let zIndexStyle = 0;
 
               if (isMiddle) {
-                transformStyle = 'translateX(0%) scale(1.06) translateZ(50px)';
+                transformStyle = 'translateX(0%) scale(1.05) translateZ(35px)';
                 opacityStyle = 1;
                 zIndexStyle = 30;
               } else if (isLeft) {
-                transformStyle = 'translateX(-70%) scale(0.86) perspective(1000px) rotateY(10deg)';
+                transformStyle = 'translateX(-72%) scale(0.85) perspective(1000px) rotateY(10deg)';
                 opacityStyle = 0.65;
                 zIndexStyle = 20;
               } else if (isRight) {
-                transformStyle = 'translateX(70%) scale(0.86) perspective(1000px) rotateY(-10deg)';
+                transformStyle = 'translateX(72%) scale(0.85) perspective(1000px) rotateY(-10deg)';
                 opacityStyle = 0.65;
                 zIndexStyle = 20;
               } else {
@@ -1304,7 +1351,7 @@ export const HomePage = () => {
                     zIndex: zIndexStyle,
                     transition: 'transform 700ms cubic-bezier(0.25, 1, 0.5, 1), opacity 700ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 500ms ease'
                   }}
-                  className={`absolute w-[82%] sm:w-[56%] md:w-[46%] lg:w-[40%] max-w-lg h-[260px] sm:h-[340px] md:h-[390px] rounded-3xl overflow-hidden shadow-xl select-none group ${
+                  className={`absolute w-[86%] xs:w-[80%] sm:w-[56%] md:w-[46%] lg:w-[40%] max-w-lg h-[240px] xs:h-[270px] sm:h-[340px] md:h-[390px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl select-none group ${
                     isMiddle
                       ? 'shadow-2xl ring-4 ring-[#0A7A74]/25 cursor-pointer pointer-events-auto'
                       : isVisible
