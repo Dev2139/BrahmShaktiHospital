@@ -109,6 +109,11 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
   }
 };
 
+const HERO_BANNER_IMAGES = [
+  'https://res.cloudinary.com/urzka7oz/image/upload/v1795179941/Proud_Indian_Flag_Group_Portrait.png',
+  'https://res.cloudinary.com/urzka7oz/image/upload/v1795179942/Indian_Flag_Ceremony_Group_Photo.png'
+];
+
 const CLINICAL_DISCIPLINES = [
   { id: 'all', label: 'All Disciplines' },
   { id: 'surgical', label: 'Surgical Sciences', deptIds: ['general-surgery', 'orthopedics'] },
@@ -270,6 +275,16 @@ export const HomePage = () => {
   const [internationalModalOpen, setInternationalModalOpen] = useState(false);
   const [selectedDisciplineTab, setSelectedDisciplineTab] = useState('all');
 
+  // Hero banner slider state & auto-play
+  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroSlideIndex((prev) => (prev + 1) % HERO_BANNER_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   // Gallery category filter and lightbox preview state
   const [selectedGalleryCategory, setSelectedGalleryCategory] = useState('all');
   const [lightboxPhoto, setLightboxPhoto] = useState(null);
@@ -340,124 +355,58 @@ export const HomePage = () => {
 
   return (
     <div className="space-y-12 lg:space-y-20 pb-20">
-      {/* 1. Hero Section - Modern Split Layout */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-secondary-50 via-white to-medical-coolgray pt-8 lg:pt-16 pb-12 lg:pb-20 border-b border-medical-border">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content Column */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-50 border border-primary/20 text-primary text-xs font-bold tracking-wide">
-                <ShieldCheck className="w-4 h-4 text-primary" />
-                <span>NABH Accredited · Brahm Shakti Trust (Regd.)</span>
-              </div>
-
-              {/* Main Heading */}
-              <div className="space-y-3">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-secondary tracking-tight leading-tight">
-                  Healthcare with <br className="hidden sm:inline" />
-                  <span className="text-primary font-black">Trust & Humanity</span>
-                </h1>
-                <p className="text-base sm:text-lg text-medical-muted max-w-xl font-normal leading-relaxed">
-                  250+ bed multispecialty hospital in North-West Delhi offering advanced tertiary care, 24x7 trauma resuscitation, subsidized hemodialysis, and certified DMC faculty.
-                </p>
-              </div>
-
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  to={appointmentTarget}
-                  className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-sm shadow-card-hover transition-all flex items-center gap-2 hover:scale-105"
-                >
-                  <Calendar className="w-4 h-4" />
-                  <span>Book Appointment</span>
-                </Link>
-                <a
-                  href="tel:7840089703"
-                  className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white hover:bg-slate-50 text-secondary font-bold text-sm border-2 border-medical-border shadow-soft transition-all flex items-center gap-2"
-                >
-                  <PhoneCall className="w-4 h-4 text-status-danger" />
-                  <span>24x7 Help: 7840089703</span>
-                </a>
-              </div>
-
-              {/* Quick Trust Highlights */}
-              <div className="pt-4 grid grid-cols-3 gap-4 border-t border-medical-border max-w-lg">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-secondary">NABH Certified</div>
-                    <div className="text-[10px] text-medical-muted">Patient Safety</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-primary-50 text-primary flex items-center justify-center shrink-0">
-                    <HeartPulse className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-secondary">24x7 Cath Lab</div>
-                    <div className="text-[10px] text-medical-muted">Cardiac Emergency</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
-                    <Droplets className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-secondary">Dialysis Wing</div>
-                    <div className="text-[10px] text-medical-muted">Subsidized Rates</div>
-                  </div>
-                </div>
-              </div>
+      {/* 1. Hero Section - Full-Width Hospital Banner Carousel */}
+      <section className="relative w-full overflow-hidden bg-slate-900 shadow-md">
+        <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[660px]">
+          {HERO_BANNER_IMAGES.map((imageUrl, idx) => (
+            <div
+              key={idx}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                idx === heroSlideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
+            >
+              <img
+                src={imageUrl}
+                alt={`Brahm Shakti Hospital Hero Slide ${idx + 1}`}
+                className="w-full h-full object-cover object-center"
+                loading={idx === 0 ? 'eager' : 'lazy'}
+              />
             </div>
+          ))}
 
-            {/* Right Media Column */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                <div className="relative h-96 sm:h-[460px] rounded-3xl overflow-hidden shadow-elevated border-4 border-white">
-                  <img
-                    src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200"
-                    alt="Brahm Shakti Hospital Modern Campus"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 text-white text-left">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent text-secondary-dark text-xs font-bold uppercase tracking-wider mb-2">
-                      <Building2 className="w-3.5 h-3.5" />
-                      <span>Budh Vihar Campus</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white">Brahm Shakti Hospital</h3>
-                    <p className="text-xs text-slate-200 mt-1">
-                      Udyog Nagar Metro Station Road, Budh Vihar, Delhi 110086
-                    </p>
-                  </div>
-                </div>
+          {/* Navigation Arrows */}
+          <button
+            type="button"
+            aria-label="Previous Slide"
+            onClick={() => setHeroSlideIndex((prev) => (prev - 1 + HERO_BANNER_IMAGES.length) % HERO_BANNER_IMAGES.length)}
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 hover:bg-black/75 text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs shadow-lg hover:scale-105"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next Slide"
+            onClick={() => setHeroSlideIndex((prev) => (prev + 1) % HERO_BANNER_IMAGES.length)}
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 hover:bg-black/75 text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs shadow-lg hover:scale-105"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
 
-                {/* Floating Emergency Badge */}
-                <div className="absolute -bottom-4 -right-4 bg-white p-3.5 sm:p-4 rounded-2xl shadow-elevated border border-medical-border flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-status-danger/10 text-status-danger flex items-center justify-center">
-                    <Ambulance className="w-5 h-5 animate-pulse" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-xs font-bold text-secondary">24x7 Ambulance</div>
-                    <div className="text-[11px] font-bold text-status-danger">Call 7840089703</div>
-                  </div>
-                </div>
-
-                {/* Trust Badge Floating */}
-                <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 bg-white p-2.5 sm:p-3.5 rounded-2xl shadow-elevated border border-medical-border hidden sm:flex items-center gap-3">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-accent text-accent-dark flex items-center justify-center font-bold text-xs sm:text-sm">
-                    ★ 4.9
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-secondary">Patient Satisfaction</div>
-                    <div className="text-[10px] text-medical-muted">Over 45,000+ Treated</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Dot Indicators */}
+          <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5 bg-black/35 backdrop-blur-xs px-3.5 py-1.5 rounded-full">
+            {HERO_BANNER_IMAGES.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                aria-label={`Go to slide ${idx + 1}`}
+                onClick={() => setHeroSlideIndex(idx)}
+                className={`transition-all rounded-full cursor-pointer ${
+                  idx === heroSlideIndex
+                    ? 'w-7 h-2.5 bg-white'
+                    : 'w-2.5 h-2.5 bg-white/60 hover:bg-white/90'
+                }`}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -640,10 +589,6 @@ export const HomePage = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary mb-2">
-              <Activity className="w-4 h-4" />
-              <span>Clinical Centres & Super Specialities</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
               Specialities & Procedures
             </h2>
@@ -810,10 +755,6 @@ export const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary mb-2">
-                <Stethoscope className="w-4 h-4" />
-                <span>Expert Medical Faculty</span>
-              </div>
               <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
                 Senior Consultant Specialists
               </h2>
@@ -887,10 +828,6 @@ export const HomePage = () => {
       <section className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary">
-              <ShieldCheck className="w-4 h-4" />
-              <span>Philanthropic Healthcare Mission</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
               Why Choose Brahm Shakti Hospital?
             </h2>
@@ -1006,10 +943,6 @@ export const HomePage = () => {
       <section className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-              <span>COMMUNITY HEALTH CAMPS & CLINICAL WORKSHOPS</span>
-            </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#0B2545] tracking-tight">
               Hospital Events & Healthcare Initiatives
             </h2>
@@ -1163,10 +1096,6 @@ export const HomePage = () => {
       {/* 8. Campus & Infrastructure Photo Gallery Section */}
       <section className="max-w-7xl mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-xs font-semibold text-teal-800 mb-2">
-            <Building2 className="w-3.5 h-3.5 text-[#0A7A74]" />
-            <span>NABH-ACCREDITED TERTIARY INFRASTRUCTURE</span>
-          </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0B2545] tracking-tight">
             Hospital Campus & Clinical Gallery
           </h2>
