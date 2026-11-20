@@ -20,7 +20,6 @@ import {
   Hospital
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import { centersOfExcellence } from '../../data/hospitalData';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,14 +32,8 @@ export const Navbar = () => {
     'Speciality': {
       match: ['/departments', '/doctors'],
       items: [
-        { label: 'All Departments', sub: 'Browse every clinical department', path: '/departments', icon: Building2 },
-        { label: 'All Doctors', sub: 'Find a specialist by name', path: '/doctors', icon: Stethoscope },
-        ...centersOfExcellence.slice(0, 4).map((c) => ({
-          label: c.title,
-          sub: c.tagline,
-          path: `/departments/${c.id}`,
-          icon: Activity
-        }))
+        { label: 'Departments', sub: 'Explore clinical departments', path: '/departments', icon: Building2 },
+        { label: 'Doctors', sub: 'Find consultant specialist by name', path: '/doctors', icon: Stethoscope }
       ]
     },
     'About Us': {
@@ -53,20 +46,10 @@ export const Navbar = () => {
         { label: 'OPD Clinical Services', sub: 'Outpatient clinics & schedules', path: '/services/opd', icon: Stethoscope },
         { label: 'IPD Inpatient Care', sub: 'Rooms, ICU & admissions', path: '/services/ipd', icon: Building2 }
       ]
-    },
-    'Blood Bank': {
-      match: ['/blood-bank'],
-      items: [
-        { label: 'Blood Bank Home', sub: 'Inventory & camp announcements', path: '/blood-bank', icon: Droplets },
-        { label: 'Check Availability', sub: 'Live blood stock by group', path: '/blood-bank/availability', icon: Search },
-        { label: 'Donate Blood', sub: 'Voluntary donation application', path: '/blood-bank/donate', icon: Heart },
-        { label: 'Request Blood', sub: 'Patient requirement raised by doctor', path: '/blood-bank/request', icon: FileText }
-      ]
     }
   };
 
   const plainLinks = [
-    { label: 'Pharmacy', path: '/pharmacy' },
     { label: 'Contact Us', path: '/contact' }
   ];
 
@@ -198,14 +181,12 @@ export const Navbar = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-medical-border mt-3 pt-3 pb-6 space-y-1 max-h-[calc(100vh-90px)] overflow-y-auto animate-in fade-in duration-200">
             <div className="px-4 pb-1 text-[10px] font-black uppercase tracking-wider text-medical-muted">Departments & Care</div>
-            <Link to="/departments" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Speciality & Departments</Link>
-            <Link to="/doctors" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Find a Doctor</Link>
+            <Link to="/departments" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Departments</Link>
+            <Link to="/doctors" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Doctors</Link>
             <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">About Us</Link>
             <Link to="/facilities" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Facilities & Diagnostics</Link>
             <Link to="/lab-results" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Lab Test Results</Link>
             <Link to="/search" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Quick Search</Link>
-            <Link to="/blood-bank" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Blood Bank</Link>
-            <Link to="/pharmacy" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Pharmacy</Link>
             <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-base font-semibold text-secondary hover:bg-medical-coolgray">Contact Us</Link>
 
             <div className="pt-2 pb-1 border-t border-medical-border/60">
