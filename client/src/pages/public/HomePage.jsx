@@ -30,7 +30,6 @@ import {
 } from 'lucide-react';
 import api from '../../services/api';
 import { InternationalModal } from '../../components/InternationalModal';
-import { LabPortalModal } from '../../components/LabPortalModal';
 
 const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
   medicine: {
@@ -215,9 +214,8 @@ export const HomePage = () => {
 
   // Max Healthcare appointment search & action cards state
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('Budh Vihar Main Campus, Delhi');
+  const [selectedDepartment, setSelectedDepartment] = useState('');
   const [internationalModalOpen, setInternationalModalOpen] = useState(false);
-  const [labModalOpen, setLabModalOpen] = useState(false);
   const [selectedDisciplineTab, setSelectedDisciplineTab] = useState('all');
 
   // Interactive carousel states for News, Events, Location & Photo Gallery
@@ -247,6 +245,14 @@ export const HomePage = () => {
   const handleSearchAppointment = (e) => {
     if (e) e.preventDefault();
     const q = searchQuery.trim().toLowerCase();
+    if (selectedDepartment) {
+      if (q) {
+        navigate(`/doctors?search=${encodeURIComponent(searchQuery.trim())}&department=${selectedDepartment}`);
+      } else {
+        navigate(`/departments/${selectedDepartment}`);
+      }
+      return;
+    }
     if (!q) {
       navigate('/consultation');
       return;
@@ -409,7 +415,7 @@ export const HomePage = () => {
               Schedule Your Appointment Online
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-2">
-              Book verified consultant doctors, visa medicals, preventive checkups & home diagnostic services
+              Book verified consultant doctors, clinical departments & visa medical appointments
             </p>
           </div>
 
@@ -499,18 +505,20 @@ export const HomePage = () => {
                 />
               </div>
 
-              {/* Location Dropdown */}
-              <div className="md:w-64 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-50/70 border border-slate-200/60 focus-within:bg-white focus-within:border-primary transition-all">
-                <MapPin className="w-5 h-5 text-slate-400 shrink-0" />
+              {/* Department Dropdown (Replaced Location dropdown) */}
+              <div className="md:w-72 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-50/70 border border-slate-200/60 focus-within:bg-white focus-within:border-primary transition-all">
+                <Stethoscope className="w-5 h-5 text-slate-400 shrink-0" />
                 <select
-                  value={selectedLocation}
-                  onChange={(e) => setSelectedLocation(e.target.value)}
+                  value={selectedDepartment}
+                  onChange={(e) => setSelectedDepartment(e.target.value)}
                   className="w-full bg-transparent text-xs sm:text-sm font-medium text-slate-700 focus:outline-hidden cursor-pointer"
                 >
-                  <option value="Budh Vihar Main Campus, Delhi">Budh Vihar Main Campus</option>
-                  <option value="Super Specialty OPD Chambers">Super Specialty OPD Block</option>
-                  <option value="Mother & Child Care Wing">Mother & Child Care Wing</option>
-                  <option value="24x7 Emergency & Trauma Centre">24x7 Casualty & Trauma</option>
+                  <option value="">Select Department</option>
+                  {departments.map((dept) => (
+                    <option key={dept.id} value={dept.id}>
+                      {dept.name}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -524,13 +532,13 @@ export const HomePage = () => {
             </form>
           </div>
 
-          {/* 5 Service Action Cards (Matching Max Healthcare Screenshot) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 max-w-5xl mx-auto">
+          {/* Service Action Cards: International Patients & Immigration */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
             {/* 1. International Patients */}
             <button
               type="button"
               onClick={() => setInternationalModalOpen(true)}
-              className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-pointer"
+              className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-pointer"
             >
               <div className="w-14 h-14 rounded-2xl bg-sky-50 text-sky-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                 <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -552,7 +560,7 @@ export const HomePage = () => {
             <button
               type="button"
               onClick={() => setInternationalModalOpen(true)}
-              className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-pointer"
+              className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-pointer"
             >
               <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                 <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -567,57 +575,6 @@ export const HomePage = () => {
               </h3>
               <p className="text-[11px] text-slate-500 mt-1 font-medium">Visa Medical Appointment</p>
             </button>
-
-            {/* 3. Health Checkup */}
-            <Link
-              to="/services"
-              className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-pointer"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" />
-                  <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
-                  <circle cx="20" cy="10" r="2" />
-                </svg>
-              </div>
-              <h3 className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors leading-tight">
-                Health Checkup
-              </h3>
-              <p className="text-[11px] text-slate-500 mt-1 font-medium">Preventive Care Packages</p>
-            </Link>
-
-            {/* 4. MAX Lab Equivalent -> BSH Lab */}
-            <button
-              type="button"
-              onClick={() => setLabModalOpen(true)}
-              className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-pointer"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                <FlaskConical className="w-7 h-7" />
-              </div>
-              <h3 className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors leading-tight">
-                MAX Lab / BSH Lab
-              </h3>
-              <p className="text-[11px] text-slate-500 mt-1 font-medium">Lab Reports & Blood Tests</p>
-            </button>
-
-            {/* 5. MAX@Home Equivalent -> Care@Home */}
-            <a
-              href="tel:7840089703"
-              className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-pointer col-span-2 sm:col-span-1"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-rose-50 text-rose-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <line x1="12" y1="11" x2="12" y2="17" />
-                  <line x1="9" y1="14" x2="15" y2="14" />
-                </svg>
-              </div>
-              <h3 className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors leading-tight">
-                MAX@Home / BSH
-              </h3>
-              <p className="text-[11px] text-slate-500 mt-1 font-medium">Home Sample & Nursing</p>
-            </a>
           </div>
         </div>
       </section>
@@ -1231,10 +1188,6 @@ export const HomePage = () => {
       <InternationalModal
         isOpen={internationalModalOpen}
         onClose={() => setInternationalModalOpen(false)}
-      />
-      <LabPortalModal
-        isOpen={labModalOpen}
-        onClose={() => setLabModalOpen(false)}
       />
     </div>
   );
