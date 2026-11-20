@@ -17,6 +17,7 @@ import {
   CheckCircle2,
   Star,
   Ambulance,
+  ChevronLeft,
   ChevronRight,
   Sparkles,
   Search,
@@ -115,6 +116,97 @@ const CLINICAL_DISCIPLINES = [
   { id: 'specialist', label: 'Eye & Dermatology', deptIds: ['ophthalmology', 'skin'] }
 ];
 
+const LATEST_NEWS_ITEMS = [
+  {
+    id: 1,
+    image: '/news/news-convocation.jpg',
+    date: '2026-11-03',
+    title: 'Dr. D. S. Rana Conferred Honorary Doctorate at Convocation',
+    link: '/about'
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800',
+    date: '2026-10-15',
+    title: 'Brahm Shakti Hospital Inaugurates Subsidized High-Flux Dialysis Wing',
+    link: '/departments'
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800',
+    date: '2026-10-01',
+    title: '24x7 Cath Lab Rapid Cardiac Response Network Saves 150+ Golden Hour Lives',
+    link: '/facilities'
+  }
+];
+
+const EVENTS_ITEMS = [
+  {
+    id: 1,
+    image: '/news/event-palliative.jpg',
+    date: '2026-10-09',
+    title: 'World Hospice and Palliative Care Day Celebrations & Workshop',
+    link: '/about'
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&q=80&w=800',
+    date: '2026-11-14',
+    title: 'Free Community Health & Diabetes Screening Camp for Senior Citizens',
+    link: '/about'
+  }
+];
+
+const LOCATION_ITEMS = [
+  {
+    id: 1,
+    image: '/news/location-map.jpg',
+    date: '2024-01-16',
+    title: 'Brahm Shakti Hospital is located in Budh Vihar, North-West Delhi',
+    link: '/contact'
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800',
+    date: '2024-03-20',
+    title: 'Main Campus Udyog Nagar Metro Station Road, Budh Vihar Phase-1',
+    link: '/contact'
+  }
+];
+
+const PHOTO_GALLERY_ITEMS = [
+  {
+    id: 1,
+    image: '/gallery/gallery-homage.jpg',
+    caption: "Dr Ajay Swaroop Chairman - BOM paying homage to Sir Ganga Ram on Founder's Day Celebrations."
+  },
+  {
+    id: 2,
+    image: '/gallery/gallery-surgery.jpg',
+    caption: 'Dr. Munish Sachdeva'
+  },
+  {
+    id: 3,
+    image: '/gallery/gallery-padmashri.jpg',
+    caption: "Dr. (Prof.) A.K Bhalla receiving Padma Shri from the Hon'ble President of India"
+  },
+  {
+    id: 4,
+    image: '/gallery/gallery-felicitation.jpg',
+    caption: 'Dr. D. S. Rana'
+  },
+  {
+    id: 5,
+    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800',
+    caption: 'Advanced 24x7 Cath Lab & Cardiac Angiography Suite'
+  },
+  {
+    id: 6,
+    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800',
+    caption: 'Subsidized High-Flux Charitable Hemodialysis Wing'
+  }
+];
+
 export const HomePage = () => {
   const navigate = useNavigate();
   const [departments, setDepartments] = useState([]);
@@ -127,6 +219,12 @@ export const HomePage = () => {
   const [internationalModalOpen, setInternationalModalOpen] = useState(false);
   const [labModalOpen, setLabModalOpen] = useState(false);
   const [selectedDisciplineTab, setSelectedDisciplineTab] = useState('all');
+
+  // Interactive carousel states for News, Events, Location & Photo Gallery
+  const [newsIndex, setNewsIndex] = useState(0);
+  const [eventIndex, setEventIndex] = useState(0);
+  const [locationIndex, setLocationIndex] = useState(0);
+  const [galleryStartIndex, setGalleryStartIndex] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -665,122 +763,7 @@ export const HomePage = () => {
           })}
         </div>
 
-        {/* Advanced Clinical Procedures Directory (Hospital Excellence Matrix) */}
-        <div className="mt-12 bg-white rounded-3xl border border-slate-200/90 shadow-2xs p-6 sm:p-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200">
-            <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary mb-1">
-                <Sparkles className="w-3.5 h-3.5 text-primary" />
-                <span>Specialized Procedural Capabilities</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0B2545]">
-                High-Volume Clinical & Surgical Directory
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                NABH-accredited sterile operating theatres, modular laparoscopic towers & 24x7 emergency resuscitation
-              </p>
-            </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <a
-                href="tel:7840089703"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs font-bold text-slate-800 transition-colors"
-              >
-                <PhoneCall className="w-3.5 h-3.5 text-status-danger" />
-                <span>Procedure Help: 7840089703</span>
-              </a>
-            </div>
-          </div>
 
-          {/* 3-Column Clinical Matrix */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-6">
-            {/* Column 1 */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm font-bold text-[#0B2545] pb-2 border-b border-slate-100">
-                <div className="w-7 h-7 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center text-xs font-black">
-                  01
-                </div>
-                <span>Orthopaedic & Keyhole Surgery</span>
-              </div>
-              <ul className="space-y-2">
-                {[
-                  { name: 'Total Knee Replacement (TKR)', note: 'Fast-track recovery protocol' },
-                  { name: 'Laparoscopic Cholecystectomy', note: 'Day-care keyhole surgery' },
-                  { name: 'Laser Proctology (Piles, Fistula)', note: 'Minimal pain stitchless' },
-                  { name: 'Arthroscopic ACL Reconstruction', note: 'Sports injury restoration' },
-                  { name: 'Keyhole Hernia & Appendix Surgery', note: 'Advanced dual-mesh repair' }
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-baseline justify-between gap-2 p-2 rounded-lg hover:bg-slate-50 transition-colors">
-                    <span className="text-xs font-semibold text-slate-800">{item.name}</span>
-                    <span className="text-[10px] text-slate-400 font-medium shrink-0">{item.note}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 2 */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm font-bold text-[#0B2545] pb-2 border-b border-slate-100">
-                <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-xs font-black">
-                  02
-                </div>
-                <span>Maternity, NICU & Emergency</span>
-              </div>
-              <ul className="space-y-2">
-                {[
-                  { name: 'Painless Normal & Caesarean Delivery', note: '24x7 obstetric suites' },
-                  { name: 'Level-III NICU Neonatal Critical Care', note: 'Preterm baby incubators' },
-                  { name: '24x7 Casualty & Trauma Resuscitation', note: 'Rapid door-to-treatment' },
-                  { name: 'High-Risk Pregnancy (ANC) Suites', note: 'Continuous fetal Doppler' },
-                  { name: 'Emergency Coronary Triage', note: 'Door-to-balloon <45m' }
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-baseline justify-between gap-2 p-2 rounded-lg hover:bg-slate-50 transition-colors">
-                    <span className="text-xs font-semibold text-slate-800">{item.name}</span>
-                    <span className="text-[10px] text-slate-400 font-medium shrink-0">{item.note}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 3 */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm font-bold text-[#0B2545] pb-2 border-b border-slate-100">
-                <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-xs font-black">
-                  03
-                </div>
-                <span>Medicine, Renal & Specialist Clinics</span>
-              </div>
-              <ul className="space-y-2">
-                {[
-                  { name: 'Subsidized Maintenance Hemodialysis', note: '24x7 charitable renal wing' },
-                  { name: 'Stitchless MICS Phaco Cataract Day Care', note: 'Foldable IOL implantation' },
-                  { name: 'Comprehensive Diabetology & Insulin Care', note: 'Metabolic syndrome clinic' },
-                  { name: 'Diabetic Foot Ulcer Salvage', note: 'Advanced wound debridement' },
-                  { name: 'Laser Dermatology & Skin Excision', note: 'Aesthetic laser suite' }
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-baseline justify-between gap-2 p-2 rounded-lg hover:bg-slate-50 transition-colors">
-                    <span className="text-xs font-semibold text-slate-800">{item.name}</span>
-                    <span className="text-[10px] text-slate-400 font-medium shrink-0">{item.note}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Trust Guarantee */}
-          <div className="mt-8 pt-5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>All surgical interventions adhere to strict NABH sterilization protocols & clinical quality benchmarks</span>
-            </div>
-            <Link
-              to="/appointments"
-              className="text-primary hover:text-primary-hover font-bold inline-flex items-center gap-1.5 hover:underline"
-            >
-              <span>Schedule a Procedure Consultation</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-        </div>
       </section>
 
       {/* Hospital Metrics & Bed Census Statistics */}
@@ -1006,30 +989,240 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 7. Ready to Book CTA Strip */}
+      {/* 7. Latest News, Events & Location Section */}
       <section className="max-w-7xl mx-auto px-4">
-        <div className="bg-gradient-to-r from-primary to-secondary p-6 sm:p-12 rounded-3xl shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 text-white text-center lg:text-left">
-          <div className="space-y-2 max-w-xl">
-            <h3 className="text-2xl sm:text-3xl font-black tracking-tight">
-              Need Medical Guidance or Appointment?
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {/* Column 1: Latest News */}
+          <div>
+            <h3 className="text-xl sm:text-2xl font-bold text-[#0A7A74] mb-4">
+              Latest News
             </h3>
-            <p className="text-xs sm:text-sm text-slate-200">
-              Consult with senior specialists across 25+ disciplines. Instant online booking with confirmed slot generation.
-            </p>
+            {(() => {
+              const item = LATEST_NEWS_ITEMS[newsIndex];
+              return (
+                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
+                  <div className="relative h-48 sm:h-52 bg-slate-100 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Navigation Arrows */}
+                    <button
+                      type="button"
+                      aria-label="Previous News"
+                      onClick={() => setNewsIndex((prev) => (prev - 1 + LATEST_NEWS_ITEMS.length) % LATEST_NEWS_ITEMS.length)}
+                      className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Next News"
+                      onClick={() => setNewsIndex((prev) => (prev + 1) % LATEST_NEWS_ITEMS.length)}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                        <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <span>{item.date}</span>
+                      </div>
+                      <h4 className="text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors line-clamp-2">
+                        {item.title}
+                      </h4>
+                    </div>
+
+                    <div className="pt-2">
+                      <Link
+                        to={item.link}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-900 hover:text-[#0A7A74] transition-colors"
+                      >
+                        <span>Read More</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full sm:w-auto">
-            <Link
-              to="/appointments"
-              className="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl bg-white text-secondary font-bold text-sm hover:bg-accent hover:text-secondary-dark shadow-md transition-all text-center hover:scale-105"
-            >
-              Book OPD Appointment
-            </Link>
-            <a
-              href="tel:7840089703"
-              className="w-full sm:w-auto px-6 py-3.5 sm:py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 transition-colors text-center"
-            >
-              Emergency: 7840089703
-            </a>
+
+          {/* Column 2: Events */}
+          <div>
+            <h3 className="text-xl sm:text-2xl font-bold text-[#0A7A74] mb-4">
+              Events
+            </h3>
+            {(() => {
+              const item = EVENTS_ITEMS[eventIndex];
+              return (
+                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
+                  <div className="relative h-48 sm:h-52 bg-slate-100 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Navigation Arrows */}
+                    <button
+                      type="button"
+                      aria-label="Previous Event"
+                      onClick={() => setEventIndex((prev) => (prev - 1 + EVENTS_ITEMS.length) % EVENTS_ITEMS.length)}
+                      className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Next Event"
+                      onClick={() => setEventIndex((prev) => (prev + 1) % EVENTS_ITEMS.length)}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                        <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <span>{item.date}</span>
+                      </div>
+                      <h4 className="text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors line-clamp-2">
+                        {item.title}
+                      </h4>
+                    </div>
+
+                    <div className="pt-2">
+                      <Link
+                        to={item.link}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-900 hover:text-[#0A7A74] transition-colors"
+                      >
+                        <span>Read More</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* Column 3: Location and Directions */}
+          <div>
+            <h3 className="text-xl sm:text-2xl font-bold text-[#0A7A74] mb-4">
+              Location and Directions
+            </h3>
+            {(() => {
+              const item = LOCATION_ITEMS[locationIndex];
+              return (
+                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
+                  <div className="relative h-48 sm:h-52 bg-slate-100 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Navigation Arrows */}
+                    <button
+                      type="button"
+                      aria-label="Previous Location Slide"
+                      onClick={() => setLocationIndex((prev) => (prev - 1 + LOCATION_ITEMS.length) % LOCATION_ITEMS.length)}
+                      className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Next Location Slide"
+                      onClick={() => setLocationIndex((prev) => (prev + 1) % LOCATION_ITEMS.length)}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                        <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <span>{item.date}</span>
+                      </div>
+                      <h4 className="text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors line-clamp-2">
+                        {item.title}
+                      </h4>
+                    </div>
+
+                    <div className="pt-2">
+                      <Link
+                        to={item.link}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-900 hover:text-[#0A7A74] transition-colors"
+                      >
+                        <span>Read More</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Photo Gallery Section */}
+      <section className="max-w-7xl mx-auto px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#0A7A74] text-center mb-8">
+          Photo Gallery
+        </h2>
+
+        <div className="relative">
+          {/* Navigation Arrows */}
+          <button
+            type="button"
+            aria-label="Previous Photos"
+            onClick={() => setGalleryStartIndex((prev) => (prev - 1 + PHOTO_GALLERY_ITEMS.length) % PHOTO_GALLERY_ITEMS.length)}
+            className="absolute -left-2 sm:-left-5 top-1/3 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-slate-700 hover:text-[#0A7A74] shadow-md border border-slate-200 flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-110"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next Photos"
+            onClick={() => setGalleryStartIndex((prev) => (prev + 1) % PHOTO_GALLERY_ITEMS.length)}
+            className="absolute -right-2 sm:-right-5 top-1/3 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-slate-700 hover:text-[#0A7A74] shadow-md border border-slate-200 flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-110"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* 4 Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {[0, 1, 2, 3].map((offset) => {
+              const item = PHOTO_GALLERY_ITEMS[(galleryStartIndex + offset) % PHOTO_GALLERY_ITEMS.length];
+              return (
+                <div
+                  key={offset}
+                  className="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-2xs hover:shadow-md transition-all group flex flex-col"
+                >
+                  <div className="relative h-44 sm:h-48 overflow-hidden bg-slate-100">
+                    <img
+                      src={item.image}
+                      alt={item.caption}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-3 text-center flex-1 flex items-center justify-center">
+                    <p className="text-xs text-slate-700 font-medium leading-snug line-clamp-3">
+                      {item.caption}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

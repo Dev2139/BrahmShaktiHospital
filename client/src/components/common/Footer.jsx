@@ -15,26 +15,6 @@ export const Footer = () => {
   return (
     <footer className="bg-secondary text-white pt-14 pb-8 border-t border-secondary-light">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Top Highlight: Emergency & Ambulance Quick Response */}
-        <div className="bg-gradient-to-r from-primary to-primary-dark p-5 sm:p-6 rounded-2xl mb-12 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-5 shadow-xl">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-white/10 flex items-center justify-center text-white backdrop-blur-sm shrink-0">
-              <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6 animate-bounce" />
-            </div>
-            <div>
-              <div className="text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold">24x7 Immediate Medical Assistance</div>
-              <div className="text-base sm:text-xl lg:text-2xl font-black text-white tracking-wide leading-snug mt-0.5">
-                Emergency Trauma & ICU Ambulance: <span className="text-accent underline font-black">7840089703</span>
-              </div>
-            </div>
-          </div>
-          <Link
-            to="/appointments"
-            className="w-full md:w-auto px-6 py-3 rounded-xl bg-white text-primary font-bold text-xs sm:text-sm hover:bg-accent transition-colors shadow-md whitespace-nowrap text-center shrink-0"
-          >
-            Book Instant Consultation
-          </Link>
-        </div>
 
         {/* Main Footer Columns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-12">
