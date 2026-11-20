@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, Activity } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -12,64 +12,49 @@ export const Footer = () => {
           <div className="space-y-5">
             {/* Logo & Tagline */}
             <div className="flex items-center gap-3">
-              {/* SGRH Medical Emblem */}
-              <div className="w-11 h-11 shrink-0 flex items-center justify-center">
-                <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none">
-                  {/* Stylized human figure with welcoming arms */}
-                  <circle cx="24" cy="11" r="5" fill="#E65100" />
-                  <path
-                    d="M14 18C15 23 20 25 24 25C28 25 33 23 34 18"
-                    stroke="#E65100"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M24 25V39M18 43H30"
-                    stroke="#0A7A74"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M17 28C14 31 13 36 13 41M31 28C34 31 35 36 35 41"
-                    stroke="#0A7A74"
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#0A7A74] to-[#0d9488] flex items-center justify-center text-white shadow-md shadow-[#0A7A74]/20 shrink-0">
+                <Activity className="w-6 h-6 stroke-[2.2]" />
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-tight">
-                  SIR GANGA RAM HOSPITAL
+                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight leading-tight">
+                  BRAHM SHAKTI HOSPITAL
                 </h3>
-                <p className="text-xs text-[#0A7A74] italic font-medium tracking-wide">
-                  Trust of Generations
+                <p className="text-xs text-[#0A7A74] font-semibold tracking-wide">
+                  Caring for you for Life
                 </p>
               </div>
             </div>
 
             {/* Address */}
             <div className="text-xs sm:text-[13px] text-slate-700 leading-relaxed space-y-0.5">
-              <p className="font-bold text-slate-900">Sir Ganga Ram Hospital</p>
-              <p>Sir Ganga Ram Hospital Marg,</p>
-              <p>Rajinder Nagar, New Delhi,</p>
-              <p>Delhi - 110060</p>
+              <p className="font-bold text-slate-900">Brahm Shakti Hospital</p>
+              <p>Pocket C, Budh Vihar Phase I,</p>
+              <p>Pooth Kurd, New Delhi,</p>
+              <p>Delhi - 110085</p>
             </div>
 
             {/* Contact Details */}
             <div className="space-y-2 text-xs sm:text-[13px]">
               <a
-                href="mailto:gangaram@sgrh.com"
+                href="mailto:enquiry@brahmshaktihospital.com"
                 className="flex items-center gap-2 text-slate-700 hover:text-[#0A7A74] transition-colors"
               >
                 <Mail className="w-4 h-4 text-[#0A7A74] shrink-0" />
-                <span>gangaram@sgrh.com</span>
+                <span>enquiry@brahmshaktihospital.com</span>
               </a>
               <a
-                href="tel:+911142254000"
+                href="tel:7840089703"
                 className="flex items-center gap-2 text-slate-700 hover:text-[#0A7A74] transition-colors"
               >
                 <Phone className="w-4 h-4 text-[#0A7A74] shrink-0" />
-                <span>+91 11-42254000</span>
+                <span>+91 7840089703 (Emergency)</span>
+              </a>
+              <a
+                href="tel:01127531683"
+                className="flex items-center gap-2 text-slate-700 hover:text-[#0A7A74] transition-colors"
+              >
+                <Phone className="w-4 h-4 text-[#0A7A74] shrink-0" />
+                <span>011-27531683 (Reception)</span>
               </a>
             </div>
 
@@ -244,12 +229,12 @@ export const Footer = () => {
                 </li>
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Newsletter for SGRH
+                    Newsletter for Hospital
                   </span>
                 </li>
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Newsletter for GRIPMER
+                    Newsletter for Clinical Research
                   </span>
                 </li>
                 <li>
@@ -376,9 +361,9 @@ export const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Sir Ganga Ram City Hospital
-                  </span>
+                  <Link to="/facilities" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                    Hospital Facilities
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -406,7 +391,7 @@ export const Footer = () => {
 
         {/* Clean subtle bottom bar */}
         <div className="pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
-          <p>© {new Date().getFullYear()} Sir Ganga Ram Hospital. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Brahm Shakti Hospital. All rights reserved.</p>
           <div className="flex items-center gap-4 text-[11px]">
             <span>Privacy Policy</span>
             <span>·</span>
