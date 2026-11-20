@@ -527,8 +527,8 @@ export const doctorsData = [
   },
   {
     "id": "doc-surg-01",
-    "name": "Dr. Sanjeev Verma",
-    "email": "sanjeevverma@brahmshaktihospital.com",
+    "name": "Dr. Nishant Verma",
+    "email": "nishantverma@brahmshaktihospital.com",
     "phone": "+91-9811234003",
     "qualification": "MBBS, MS",
     "category": "In house",
@@ -559,8 +559,8 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
-    "bio": "Senior laparoscopic surgeon Dr. Sanjeev Verma brings 22+ years of surgical mastery. He specializes in minimally invasive keyhole procedures that reduce pain and enable swift patient discharge.",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795184683/Screenshot_2026-11-20_195358.png",
+    "bio": "Senior laparoscopic surgeon Dr. Nishant Verma brings 22+ years of surgical mastery. He specializes in minimally invasive keyhole procedures that reduce pain and enable swift patient discharge.",
     "isActive": true,
     "rating": 4.9
   },
@@ -635,7 +635,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795184698/Screenshot_2026-11-20_195407.png",
     "bio": "Dr. Manisha Jain is a revered DNB gynaecologist who has overseen thousands of safe, painless deliveries and complex obstetric cases with empathetic clinical care.",
     "isActive": true,
     "rating": 4.9
@@ -711,7 +711,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795184698/Screenshot_2026-11-20_195407.png",
     "bio": "Dr. Disha Menani is a skilled visiting specialist focusing on reproductive medicine, colposcopy, laparoscopic cyst removal, and patient-tailored fertility protocols.",
     "isActive": true,
     "rating": 4.8
@@ -1175,7 +1175,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795184698/Screenshot_2026-11-20_195407.png",
     "bio": "Dr. Monika Kumar is an MS-qualified ophthalmic surgeon specializing in corneal conditions, computer vision syndrome, childhood squint, and comprehensive vision care.",
     "isActive": true,
     "rating": 4.8

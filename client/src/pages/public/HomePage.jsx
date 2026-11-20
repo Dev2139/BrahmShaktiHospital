@@ -45,7 +45,7 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
     ]
   },
   'general-surgery': {
-    faculty: 'Dr. Sanjeev Verma (MS) · Dr. Rishabh Jain (MS)',
+    faculty: 'Dr. Nishant Verma (MS) · Dr. Rishabh Jain (MS)',
     location: 'Surgical Block, 2nd Floor',
     procedures: [
       'Laparoscopic Cholecystectomy (Gallbladder)',
@@ -149,7 +149,7 @@ const UPCOMING_EVENTS = [
     tagColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     title: 'CME Symposium: Modern Keyhole Laparoscopic & Laser Proctology Surgery',
     date: 'Dec 05, 2026 · 10:30 AM',
-    speaker: 'Dr. Sanjeev Verma & Dr. Rishabh Jain (Surgical Sciences)',
+    speaker: 'Dr. Nishant Verma & Dr. Rishabh Jain (Surgical Sciences)',
     venue: 'Auditorium Hall, 4th Floor',
     image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=600'
   },

@@ -32,7 +32,7 @@ const BOT_KNOWLEDGE = [
   },
   {
     keywords: ['doctor', 'specialist', 'surgeon', 'physician', 'faculty', 'who is', 'dr'],
-    reply: 'Brahm Shakti Hospital has 20+ verified senior consultants including Dr. S.K. Goyal (Medicine), Dr. Sanjeev Verma & Dr. Rishabh Jain (Surgery), Dr. Manisha Jain & Dr. Renu Gupta (Gynaecology), and Dr. Kapil Goyal & Dr. Ravi Shankar Gupta (Orthopaedics).',
+    reply: 'Brahm Shakti Hospital has 20+ verified senior consultants including Dr. S.K. Goyal (Medicine), Dr. Nishant Verma & Dr. Rishabh Jain (Surgery), Dr. Manisha Jain & Dr. Renu Gupta (Gynaecology), and Dr. Kapil Goyal & Dr. Ravi Shankar Gupta (Orthopaedics).',
     actions: [
       { label: 'Explore Doctor Directory', link: '/doctors', primary: true },
       { label: 'Book Consultation', link: '/consultation' }

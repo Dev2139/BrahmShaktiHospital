@@ -64,8 +64,8 @@ const newDoctors = [
   },
   {
     id: "doc-surg-01",
-    name: "Dr. Sanjeev Verma",
-    email: "sanjeevverma@brahmshaktihospital.com",
+    name: "Dr. Nishant Verma",
+    email: "nishantverma@brahmshaktihospital.com",
     phone: "+91-9811234003",
     qualification: "MBBS, MS",
     category: "In house",
@@ -83,8 +83,8 @@ const newDoctors = [
     opdSchedule: "Mon, Wed, Fri, Sat: 10:00 AM - 03:00 PM (Room 105)",
     room: "OPD Chamber 105, Block B",
     languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
-    bio: "Senior laparoscopic surgeon Dr. Sanjeev Verma brings 22+ years of surgical mastery. He specializes in minimally invasive keyhole procedures that reduce pain and enable swift patient discharge.",
+    image: "https://res.cloudinary.com/urzka7oz/image/upload/v1795184683/Screenshot_2026-11-20_195358.png",
+    bio: "Senior laparoscopic surgeon Dr. Nishant Verma brings 22+ years of surgical mastery. He specializes in minimally invasive keyhole procedures that reduce pain and enable swift patient discharge.",
     isActive: true,
     rating: 4.9
   },
@@ -135,7 +135,7 @@ const newDoctors = [
     opdSchedule: "Mon, Wed, Fri: 09:30 AM - 02:00 PM (Room 108)",
     room: "Mother & Child Wing Chamber 108",
     languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    image: "https://res.cloudinary.com/urzka7oz/image/upload/v1795184698/Screenshot_2026-11-20_195407.png",
     bio: "Dr. Manisha Jain is a revered DNB gynaecologist who has overseen thousands of safe, painless deliveries and complex obstetric cases with empathetic clinical care.",
     isActive: true,
     rating: 4.9
@@ -187,7 +187,7 @@ const newDoctors = [
     opdSchedule: "Mon, Thu, Sat: 04:00 PM - 07:00 PM (Room 108)",
     room: "Mother & Child Wing Chamber 108",
     languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    image: "https://res.cloudinary.com/urzka7oz/image/upload/v1795184698/Screenshot_2026-11-20_195407.png",
     bio: "Dr. Disha Menani is a skilled visiting specialist focusing on reproductive medicine, colposcopy, laparoscopic cyst removal, and patient-tailored fertility protocols.",
     isActive: true,
     rating: 4.8
@@ -499,7 +499,7 @@ const newDoctors = [
     opdSchedule: "Tue, Thu, Sat: 09:30 AM - 02:30 PM (Room 124)",
     room: "Ophthalmology Department Room 124",
     languages: ["English", "Hindi"],
-    image: "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    image: "https://res.cloudinary.com/urzka7oz/image/upload/v1795184698/Screenshot_2026-11-20_195407.png",
     bio: "Dr. Monika Kumar is an MS-qualified ophthalmic surgeon specializing in corneal conditions, computer vision syndrome, childhood squint, and comprehensive vision care.",
     isActive: true,
     rating: 4.8

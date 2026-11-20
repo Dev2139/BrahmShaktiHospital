@@ -32,7 +32,7 @@ const todayISO = () => new Date().toISOString().split('T')[0];
 const PORTAL_DOCTOR_NAMES = [
   'Dr. S.K. Goyal',
   'Dr. Vineet Mittal',
-  'Dr. Sanjeev Verma',
+  'Dr. Nishant Verma',
   'Dr. Rishabh Jain',
   'Dr. Manisha Jain',
   'Dr. Renu Gupta',
