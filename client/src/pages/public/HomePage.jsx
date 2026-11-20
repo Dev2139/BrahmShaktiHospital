@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Calendar,
@@ -20,6 +20,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronDown,
+  X,
   Sparkles,
   Search,
   Plane,
@@ -117,94 +118,113 @@ const CLINICAL_DISCIPLINES = [
   { id: 'specialist', label: 'Eye & Dermatology', deptIds: ['ophthalmology', 'skin'] }
 ];
 
-const LATEST_NEWS_ITEMS = [
+const FEATURED_EVENT = {
+  id: 'event-mega-camp',
+  title: 'Annual Free Mega Health Checkup & Diabetes Screening Camp 2026',
+  badge: 'Free Trust Health Camp',
+  date: 'Sunday, Dec 14, 2026',
+  time: '09:00 AM - 03:00 PM',
+  venue: 'Main OPD Block & Diagnostic Wing, Budh Vihar',
+  image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
+  description: 'Organized under the philanthropic mission of Brahm Shakti Trust. Offering free comprehensive health examinations, blood glucose tests, vital triage, and 1-on-1 consultations with senior DMC-registered medical specialists.',
+  highlights: [
+    'Free Blood Sugar, HbA1c & Random Glucose Tests',
+    'Free Blood Pressure & 12-Lead ECG Evaluation',
+    'Consultations with Internal Medicine & Cardiology Faculty',
+    'Free Bone Density (BMD) & Gynaecology Advice for Women'
+  ]
+};
+
+const UPCOMING_EVENTS = [
   {
-    id: 1,
-    image: '/news/news-convocation.jpg',
-    date: '2026-11-03',
-    title: 'Dr. D. S. Rana Conferred Honorary Doctorate at Convocation',
-    link: '/about'
+    id: 'event-1',
+    category: 'Clinical Workshop',
+    tagColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    title: 'CME Symposium: Modern Keyhole Laparoscopic & Laser Proctology Surgery',
+    date: 'Dec 05, 2026 · 10:30 AM',
+    speaker: 'Dr. Sanjeev Verma & Dr. Rishabh Jain (Surgical Sciences)',
+    venue: 'Auditorium Hall, 4th Floor',
+    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=600'
   },
   {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800',
-    date: '2026-10-15',
-    title: 'Brahm Shakti Hospital Inaugurates Subsidized High-Flux Dialysis Wing',
-    link: '/departments'
+    id: 'event-2',
+    category: 'Mother & Child Care',
+    tagColor: 'bg-pink-50 text-pink-700 border-pink-200',
+    title: 'Painless Normal Delivery, High-Risk ANC & Newborn Intensive Care Seminar',
+    date: 'Dec 20, 2026 · 11:00 AM',
+    speaker: 'Dr. Manisha Jain & Dr. Renu Gupta (Gynae & Obst)',
+    venue: 'Mother & Child Care Wing',
+    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600'
   },
   {
-    id: 3,
-    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800',
-    date: '2026-10-01',
-    title: '24x7 Cath Lab Rapid Cardiac Response Network Saves 150+ Golden Hour Lives',
-    link: '/facilities'
+    id: 'event-3',
+    category: 'Renal Awareness',
+    tagColor: 'bg-sky-50 text-sky-700 border-sky-200',
+    title: 'Kidney Health Day: Prevention & Subsidized Hemodialysis Access Drive',
+    date: 'Jan 08, 2027 · 02:00 PM',
+    speaker: 'Dialysis Clinical Faculty & Certified Nephrologists',
+    venue: 'Dialysis Wing Conference Room',
+    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=600'
   }
 ];
 
-const EVENTS_ITEMS = [
-  {
-    id: 1,
-    image: '/news/event-palliative.jpg',
-    date: '2026-10-09',
-    title: 'World Hospice and Palliative Care Day Celebrations & Workshop',
-    link: '/about'
-  },
-  {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&q=80&w=800',
-    date: '2026-11-14',
-    title: 'Free Community Health & Diabetes Screening Camp for Senior Citizens',
-    link: '/about'
-  }
-];
-
-const LOCATION_ITEMS = [
-  {
-    id: 1,
-    image: '/news/location-map.jpg',
-    date: '2024-01-16',
-    title: 'Brahm Shakti Hospital is located in Budh Vihar, North-West Delhi',
-    link: '/contact'
-  },
-  {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800',
-    date: '2024-03-20',
-    title: 'Main Campus Udyog Nagar Metro Station Road, Budh Vihar Phase-1',
-    link: '/contact'
-  }
+const GALLERY_CATEGORIES = [
+  { id: 'all', label: 'All Facilities' },
+  { id: 'ot', label: 'Operation Theatres' },
+  { id: 'icu', label: 'ICU & NICU' },
+  { id: 'dialysis', label: 'Dialysis Wing' },
+  { id: 'diagnostics', label: 'Diagnostics & Labs' },
+  { id: 'campus', label: 'Hospital Campus' }
 ];
 
 const PHOTO_GALLERY_ITEMS = [
   {
     id: 1,
-    image: '/gallery/gallery-homage.jpg',
-    caption: "Dr Ajay Swaroop Chairman - BOM paying homage to Sir Ganga Ram on Founder's Day Celebrations."
+    category: 'ot',
+    categoryLabel: 'Modular OT',
+    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200',
+    title: 'State-of-the-Art 4K Modular Laparoscopic OT',
+    caption: 'Equipped with laminar airflow, harmonic scalpel, and 4K surgical imaging towers for minimally invasive precision.'
   },
   {
     id: 2,
-    image: '/gallery/gallery-surgery.jpg',
-    caption: 'Dr. Munish Sachdeva'
+    category: 'icu',
+    categoryLabel: 'Level-III NICU',
+    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=1200',
+    title: 'Level-III Neonatal Critical Care Incubators',
+    caption: 'Round-the-clock neonatal critical care, radiant warmers, and continuous vital monitoring for fragile newborns.'
   },
   {
     id: 3,
-    image: '/gallery/gallery-padmashri.jpg',
-    caption: "Dr. (Prof.) A.K Bhalla receiving Padma Shri from the Hon'ble President of India"
+    category: 'dialysis',
+    categoryLabel: 'Dialysis Wing',
+    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200',
+    title: 'Subsidized High-Flux Hemodialysis Center',
+    caption: 'Charitable renal wing operating 24x7 with specialized clinical staff and an ultra-pure RO water filtration system.'
   },
   {
     id: 4,
-    image: '/gallery/gallery-felicitation.jpg',
-    caption: 'Dr. D. S. Rana'
+    category: 'diagnostics',
+    categoryLabel: 'Diagnostics',
+    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200',
+    title: 'Digital Radiography & Pathology Diagnostics',
+    caption: 'NABL-compliant diagnostic precision with rapid turnaround for IPD, OPD, and trauma casualty patients.'
   },
   {
     id: 5,
-    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800',
-    caption: 'Advanced 24x7 Cath Lab & Cardiac Angiography Suite'
+    category: 'ot',
+    categoryLabel: 'Orthopaedic OT',
+    image: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=1200',
+    title: 'Orthopaedic Joint Replacement Theatre',
+    caption: 'Ultra-sterile surgical environment specialized for total knee and hip replacements with fast-track recovery.'
   },
   {
     id: 6,
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800',
-    caption: 'Subsidized High-Flux Charitable Hemodialysis Wing'
+    category: 'campus',
+    categoryLabel: 'Budh Vihar Campus',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200',
+    title: 'Brahm Shakti Hospital Modern Campus',
+    caption: '250+ bed tertiary healthcare center serving North-West Delhi families with trusted DMC consultants.'
   }
 ];
 
@@ -250,12 +270,15 @@ export const HomePage = () => {
   const [internationalModalOpen, setInternationalModalOpen] = useState(false);
   const [selectedDisciplineTab, setSelectedDisciplineTab] = useState('all');
 
-  // Interactive carousel states for News, Events, Location & Photo Gallery
-  const [newsIndex, setNewsIndex] = useState(0);
-  const [eventIndex, setEventIndex] = useState(0);
-  const [locationIndex, setLocationIndex] = useState(0);
-  const [galleryStartIndex, setGalleryStartIndex] = useState(0);
+  // Gallery category filter and lightbox preview state
+  const [selectedGalleryCategory, setSelectedGalleryCategory] = useState('all');
+  const [lightboxPhoto, setLightboxPhoto] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  const displayedGalleryItems = useMemo(() => {
+    if (selectedGalleryCategory === 'all') return PHOTO_GALLERY_ITEMS;
+    return PHOTO_GALLERY_ITEMS.filter((item) => item.category === selectedGalleryCategory);
+  }, [selectedGalleryCategory]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -979,242 +1002,283 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 7. Latest News, Events & Location Section */}
+      {/* 7. Community Health Camps & Hospital Events Section */}
       <section className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {/* Column 1: Latest News */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#0A7A74] mb-4">
-              Latest News
-            </h3>
-            {(() => {
-              const item = LATEST_NEWS_ITEMS[newsIndex];
-              return (
-                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
-                  <div className="relative h-48 sm:h-52 bg-slate-100 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {/* Navigation Arrows */}
-                    <button
-                      type="button"
-                      aria-label="Previous News"
-                      onClick={() => setNewsIndex((prev) => (prev - 1 + LATEST_NEWS_ITEMS.length) % LATEST_NEWS_ITEMS.length)}
-                      className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                    </button>
-                    <button
-                      type="button"
-                      aria-label="Next News"
-                      onClick={() => setNewsIndex((prev) => (prev + 1) % LATEST_NEWS_ITEMS.length)}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+              <span>COMMUNITY HEALTH CAMPS & CLINICAL WORKSHOPS</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0B2545] tracking-tight">
+              Hospital Events & Healthcare Initiatives
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 mt-1 max-w-2xl">
+              Participate in free community screening camps, specialist CME symposiums, and patient awareness programs at Brahm Shakti Hospital.
+            </p>
+          </div>
+          <Link
+            to={appointmentTarget}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#0A7A74] hover:text-[#08625d] transition-colors self-start sm:self-auto shrink-0"
+          >
+            <span>Register for Free Camp</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
 
-                  <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                        <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
-                        <span>{item.date}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          {/* Left Column: Featured Event Card */}
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
+            <div className="relative h-64 sm:h-72 overflow-hidden bg-slate-900">
+              <img
+                src={FEATURED_EVENT.image}
+                alt={FEATURED_EVENT.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />
+              <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span className="px-3 py-1 rounded-full bg-emerald-600 text-white text-xs font-bold shadow-sm">
+                  {FEATURED_EVENT.badge}
+                </span>
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-medium text-emerald-200 mb-1.5">
+                  <span className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-md">
+                    <Calendar className="w-3.5 h-3.5 text-emerald-400" />
+                    {FEATURED_EVENT.date}
+                  </span>
+                  <span className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-md">
+                    <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                    {FEATURED_EVENT.time}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-2xl font-bold leading-snug drop-shadow-sm">
+                  {FEATURED_EVENT.title}
+                </h3>
+              </div>
+            </div>
+
+            <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
+                  <MapPin className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                  <span className="font-medium text-slate-700">{FEATURED_EVENT.venue}</span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {FEATURED_EVENT.description}
+                </p>
+
+                {/* Highlights List */}
+                <div className="pt-2">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                    Camp Benefits & Free Services
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {FEATURED_EVENT.highlights.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
+                        <CheckCircle2 className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                        <span>{item}</span>
                       </div>
-                      <h4 className="text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors line-clamp-2">
-                        {item.title}
-                      </h4>
-                    </div>
-
-                    <div className="pt-2">
-                      <Link
-                        to={item.link}
-                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-900 hover:text-[#0A7A74] transition-colors"
-                      >
-                        <span>Read More</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                    </div>
+                    ))}
                   </div>
                 </div>
-              );
-            })()}
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <Link
+                  to={appointmentTarget}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08625d] text-white text-sm font-semibold transition-all shadow-sm cursor-pointer"
+                >
+                  <span>Book Free Screening Slot</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <a
+                  href="tel:7840089703"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:text-[#0A7A74] hover:border-[#0A7A74]/30 text-xs sm:text-sm font-medium transition-colors cursor-pointer"
+                >
+                  <PhoneCall className="w-3.5 h-3.5 text-[#0A7A74]" />
+                  <span>Enquiry: 7840089703</span>
+                </a>
+              </div>
+            </div>
           </div>
 
-          {/* Column 2: Events */}
-          <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#0A7A74] mb-4">
-              Events
-            </h3>
-            {(() => {
-              const item = EVENTS_ITEMS[eventIndex];
-              return (
-                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
-                  <div className="relative h-48 sm:h-52 bg-slate-100 overflow-hidden">
+          {/* Right Column: Stacked Upcoming Events */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+            <div className="flex items-center justify-between mb-1">
+              <h3 className="text-base sm:text-lg font-bold text-[#0B2545]">
+                Upcoming Medical Workshops
+              </h3>
+              <span className="text-xs font-medium text-slate-500">DMC Certified</span>
+            </div>
+
+            <div className="space-y-4 flex-1 flex flex-col justify-between">
+              {UPCOMING_EVENTS.map((event) => (
+                <div
+                  key={event.id}
+                  className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all p-4 sm:p-5 flex flex-col sm:flex-row gap-4 group cursor-default"
+                >
+                  <div className="relative w-full sm:w-28 sm:h-28 h-36 rounded-xl overflow-hidden shrink-0 bg-slate-100">
                     <img
-                      src={item.image}
-                      alt={item.title}
+                      src={event.image}
+                      alt={event.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Navigation Arrows */}
-                    <button
-                      type="button"
-                      aria-label="Previous Event"
-                      onClick={() => setEventIndex((prev) => (prev - 1 + EVENTS_ITEMS.length) % EVENTS_ITEMS.length)}
-                      className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                    </button>
-                    <button
-                      type="button"
-                      aria-label="Next Event"
-                      onClick={() => setEventIndex((prev) => (prev + 1) % EVENTS_ITEMS.length)}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
                   </div>
-
-                  <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                        <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
-                        <span>{item.date}</span>
+                  <div className="flex-1 flex flex-col justify-between min-w-0">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span className={`px-2 py-0.5 rounded text-[11px] font-semibold border ${event.tagColor}`}>
+                          {event.category}
+                        </span>
+                        <span className="text-[11px] text-slate-400 font-medium">
+                          {event.date}
+                        </span>
                       </div>
-                      <h4 className="text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors line-clamp-2">
-                        {item.title}
+                      <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors line-clamp-2 leading-snug">
+                        {event.title}
                       </h4>
+                      <p className="text-xs text-slate-500 mt-1 line-clamp-1 font-medium">
+                        Faculty: {event.speaker}
+                      </p>
                     </div>
 
-                    <div className="pt-2">
+                    <div className="flex items-center justify-between pt-2 mt-2 border-t border-slate-100 text-[11px] text-slate-500">
+                      <span className="truncate max-w-[200px]">{event.venue}</span>
                       <Link
-                        to={item.link}
-                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-900 hover:text-[#0A7A74] transition-colors"
+                        to={appointmentTarget}
+                        className="text-[#0A7A74] hover:underline font-semibold shrink-0 flex items-center gap-1"
                       >
-                        <span>Read More</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
+                        Attend <ArrowRight className="w-3 h-3" />
                       </Link>
                     </div>
                   </div>
                 </div>
-              );
-            })()}
-          </div>
-
-          {/* Column 3: Location and Directions */}
-          <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#0A7A74] mb-4">
-              Location and Directions
-            </h3>
-            {(() => {
-              const item = LOCATION_ITEMS[locationIndex];
-              return (
-                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
-                  <div className="relative h-48 sm:h-52 bg-slate-100 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {/* Navigation Arrows */}
-                    <button
-                      type="button"
-                      aria-label="Previous Location Slide"
-                      onClick={() => setLocationIndex((prev) => (prev - 1 + LOCATION_ITEMS.length) % LOCATION_ITEMS.length)}
-                      className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                    </button>
-                    <button
-                      type="button"
-                      aria-label="Next Location Slide"
-                      onClick={() => setLocationIndex((prev) => (prev + 1) % LOCATION_ITEMS.length)}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#0A7A74] shadow-md flex items-center justify-center transition-all cursor-pointer z-10"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
-
-                  <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                        <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
-                        <span>{item.date}</span>
-                      </div>
-                      <h4 className="text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors line-clamp-2">
-                        {item.title}
-                      </h4>
-                    </div>
-
-                    <div className="pt-2">
-                      <Link
-                        to={item.link}
-                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-900 hover:text-[#0A7A74] transition-colors"
-                      >
-                        <span>Read More</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })()}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 8. Photo Gallery Section */}
+      {/* 8. Campus & Infrastructure Photo Gallery Section */}
       <section className="max-w-7xl mx-auto px-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#0A7A74] text-center mb-8">
-          Photo Gallery
-        </h2>
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-xs font-semibold text-teal-800 mb-2">
+            <Building2 className="w-3.5 h-3.5 text-[#0A7A74]" />
+            <span>NABH-ACCREDITED TERTIARY INFRASTRUCTURE</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#0B2545] tracking-tight">
+            Hospital Campus & Clinical Gallery
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 mt-1">
+            Take a virtual tour of our state-of-the-art modular operating suites, specialized critical care units, and patient facilities in Budh Vihar.
+          </p>
 
-        <div className="relative">
-          {/* Navigation Arrows */}
-          <button
-            type="button"
-            aria-label="Previous Photos"
-            onClick={() => setGalleryStartIndex((prev) => (prev - 1 + PHOTO_GALLERY_ITEMS.length) % PHOTO_GALLERY_ITEMS.length)}
-            className="absolute -left-2 sm:-left-5 top-1/3 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-slate-700 hover:text-[#0A7A74] shadow-md border border-slate-200 flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-110"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next Photos"
-            onClick={() => setGalleryStartIndex((prev) => (prev + 1) % PHOTO_GALLERY_ITEMS.length)}
-            className="absolute -right-2 sm:-right-5 top-1/3 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-slate-700 hover:text-[#0A7A74] shadow-md border border-slate-200 flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-110"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-
-          {/* 4 Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            {[0, 1, 2, 3].map((offset) => {
-              const item = PHOTO_GALLERY_ITEMS[(galleryStartIndex + offset) % PHOTO_GALLERY_ITEMS.length];
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
+            {GALLERY_CATEGORIES.map((cat) => {
+              const active = selectedGalleryCategory === cat.id;
               return (
-                <div
-                  key={offset}
-                  className="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-2xs hover:shadow-md transition-all group flex flex-col"
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedGalleryCategory(cat.id)}
+                  className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                    active
+                      ? 'bg-[#0A7A74] text-white shadow-sm'
+                      : 'bg-slate-100 hover:bg-slate-200/80 text-slate-700'
+                  }`}
                 >
-                  <div className="relative h-44 sm:h-48 overflow-hidden bg-slate-100">
-                    <img
-                      src={item.image}
-                      alt={item.caption}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-3 text-center flex-1 flex items-center justify-center">
-                    <p className="text-xs text-slate-700 font-medium leading-snug line-clamp-3">
-                      {item.caption}
-                    </p>
-                  </div>
-                </div>
+                  {cat.label}
+                </button>
               );
             })}
           </div>
         </div>
+
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayedGalleryItems.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => setLightboxPhoto(item)}
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-2xs hover:shadow-lg transition-all group cursor-pointer flex flex-col"
+            >
+              <div className="relative h-56 sm:h-60 overflow-hidden bg-slate-100">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition-colors" />
+                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
+                  {item.categoryLabel}
+                </span>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="px-3 py-1.5 rounded-full bg-white/95 text-slate-900 text-xs font-bold shadow-md flex items-center gap-1.5">
+                    Click to Enlarge
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 mt-1.5 leading-relaxed">
+                    {item.caption}
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#0A7A74]">
+                  <span>View Details</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Lightbox Modal */}
+        {lightboxPhoto && (
+          <div
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setLightboxPhoto(null)}
+          >
+            <div
+              className="bg-white rounded-3xl overflow-hidden max-w-3xl w-full shadow-2xl relative animate-in fade-in zoom-in-95 duration-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                aria-label="Close photo preview"
+                onClick={() => setLightboxPhoto(null)}
+                className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center z-10 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="relative max-h-[65vh] bg-slate-950 flex items-center justify-center overflow-hidden">
+                <img
+                  src={lightboxPhoto.image}
+                  alt={lightboxPhoto.title}
+                  className="w-full h-full max-h-[65vh] object-cover sm:object-contain"
+                />
+              </div>
+
+              <div className="p-6 bg-white space-y-2">
+                <div className="inline-block px-2.5 py-0.5 rounded text-xs font-semibold bg-teal-50 text-[#0A7A74] border border-teal-200">
+                  {lightboxPhoto.categoryLabel}
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900">
+                  {lightboxPhoto.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {lightboxPhoto.caption}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 9. Frequently Asked Questions Section */}
