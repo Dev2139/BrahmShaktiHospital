@@ -4,16 +4,16 @@ import { Mail, Phone, Activity } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="bg-white text-slate-800 border-t border-slate-200 pt-12 pb-8">
+    <footer className="bg-white text-slate-800 border-t border-slate-200 pt-8 sm:pt-12 pb-6 sm:pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 pb-6 sm:pb-10">
           
           {/* Column 1: Hospital Identity, Contact, Socials, Accreditations */}
-          <div className="space-y-5">
+          <div className="space-y-4 sm:space-y-5">
             {/* Logo & Tagline */}
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#0A7A74] to-[#0d9488] flex items-center justify-center text-white shadow-md shadow-[#0A7A74]/20 shrink-0">
-                <Activity className="w-6 h-6 stroke-[2.2]" />
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-[#0A7A74] to-[#0d9488] flex items-center justify-center text-white shadow-md shadow-[#0A7A74]/20 shrink-0">
+                <Activity className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
               </div>
               <div>
                 <h3 className="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight leading-tight">
@@ -34,17 +34,17 @@ export const Footer = () => {
             </div>
 
             {/* Contact Details */}
-            <div className="space-y-2 text-xs sm:text-[13px]">
+            <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-[13px]">
               <a
                 href="mailto:enquiry@brahmshaktihospital.com"
                 className="flex items-center gap-2 text-slate-700 hover:text-[#0A7A74] transition-colors"
               >
                 <Mail className="w-4 h-4 text-[#0A7A74] shrink-0" />
-                <span>enquiry@brahmshaktihospital.com</span>
+                <span className="truncate">enquiry@brahmshaktihospital.com</span>
               </a>
               <a
                 href="tel:7840089703"
-                className="flex items-center gap-2 text-slate-700 hover:text-[#0A7A74] transition-colors"
+                className="flex items-center gap-2 text-slate-700 hover:text-[#0A7A74] transition-colors font-medium"
               >
                 <Phone className="w-4 h-4 text-[#0A7A74] shrink-0" />
                 <span>+91 7840089703 (Emergency)</span>
@@ -59,7 +59,7 @@ export const Footer = () => {
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex items-center gap-2.5 pt-1">
+            <div className="flex items-center gap-2 pt-0.5">
               {/* Facebook */}
               <a
                 href="https://facebook.com"
@@ -127,40 +127,40 @@ export const Footer = () => {
             </div>
 
             {/* Accreditation Badges (NABH, NABH, NABL) */}
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-3 pt-1">
               {/* NABH Red Badge */}
               <div className="flex flex-col items-center">
-                <div className="w-9 h-9 rounded-full border-2 border-red-600 bg-white flex flex-col items-center justify-center text-[8px] font-black text-red-600 shadow-xs">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 border-red-600 bg-white flex flex-col items-center justify-center text-[7.5px] sm:text-[8px] font-black text-red-600 shadow-xs">
                   <span>NABH</span>
                 </div>
               </div>
 
               {/* NABH Green/Teal Badge */}
               <div className="flex flex-col items-center">
-                <div className="w-9 h-9 rounded-full border-2 border-emerald-600 bg-white flex flex-col items-center justify-center text-[8px] font-black text-emerald-700 shadow-xs">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 border-emerald-600 bg-white flex flex-col items-center justify-center text-[7.5px] sm:text-[8px] font-black text-emerald-700 shadow-xs">
                   <span>NABH</span>
                 </div>
               </div>
 
               {/* NABL Star Badge */}
               <div className="flex flex-col items-center">
-                <div className="w-9 h-9 rounded-full border-2 border-blue-900 bg-white flex flex-col items-center justify-center shadow-xs">
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 text-blue-900 fill-current">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 border-blue-900 bg-white flex flex-col items-center justify-center shadow-xs">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-900 fill-current">
                     <path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z" />
                   </svg>
                 </div>
-                <span className="text-[9px] font-bold text-blue-900 mt-0.5">NABL</span>
+                <span className="text-[8.5px] sm:text-[9px] font-bold text-blue-900 mt-0.5">NABL</span>
               </div>
             </div>
           </div>
 
           {/* Column 2: For Patients & Visitors, For Vendors & Suppliers, News & Events */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div>
-              <h4 className="text-[14px] sm:text-[15px] font-bold text-slate-900 mb-3 tracking-tight">
+              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
                 For Patients & Visitors
               </h4>
-              <ul className="space-y-1.5 text-xs sm:text-[13px] text-slate-600">
+              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
                 <li>
                   <Link to="/consultation" className="hover:text-[#0A7A74] hover:underline transition-colors">
                     Request an Appointment
@@ -188,7 +188,7 @@ export const Footer = () => {
                 </li>
                 <li>
                   <Link to="/about" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Patients & Visitors Guide
+                    Patients Guide
                   </Link>
                 </li>
                 <li>
@@ -205,7 +205,7 @@ export const Footer = () => {
             </div>
 
             <div>
-              <h4 className="text-[14px] sm:text-[15px] font-bold text-slate-900 mb-2.5 tracking-tight">
+              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
                 For Vendors & Suppliers
               </h4>
               <ul className="space-y-1 text-xs sm:text-[13px] text-slate-600">
@@ -218,28 +218,23 @@ export const Footer = () => {
             </div>
 
             <div>
-              <h4 className="text-[14px] sm:text-[15px] font-bold text-slate-900 mb-2.5 tracking-tight">
+              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
                 News & Events
               </h4>
-              <ul className="space-y-1.5 text-xs sm:text-[13px] text-slate-600">
+              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Latest News and Achieves
+                    Latest News
                   </span>
                 </li>
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Newsletter for Hospital
+                    Hospital Newsletter
                   </span>
                 </li>
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Newsletter for Clinical Research
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Newsletter for Microbiology
+                    Clinical Research
                   </span>
                 </li>
                 <li>
@@ -252,12 +247,12 @@ export const Footer = () => {
           </div>
 
           {/* Column 3: For Medical Professionals, For International Appointments, Career */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div>
-              <h4 className="text-[14px] sm:text-[15px] font-bold text-slate-900 mb-3 tracking-tight">
+              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
                 For Medical Professionals
               </h4>
-              <ul className="space-y-1.5 text-xs sm:text-[13px] text-slate-600">
+              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
                     Research
@@ -265,12 +260,12 @@ export const Footer = () => {
                 </li>
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    General Nursing & Midwifery Course (GNM) 2026
+                    Nursing & GNM
                   </span>
                 </li>
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Academic Programme
+                    Academics
                   </span>
                 </li>
                 <li>
@@ -287,31 +282,31 @@ export const Footer = () => {
             </div>
 
             <div>
-              <h4 className="text-[14px] sm:text-[15px] font-bold text-slate-900 mb-2.5 tracking-tight">
+              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
                 For International Appointments
               </h4>
-              <ul className="space-y-1.5 text-xs sm:text-[13px] text-slate-600">
+              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Patients Information
+                    Patients Info
                   </span>
                 </li>
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Authorization Committee
+                    Authorization
                   </span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-[14px] sm:text-[15px] font-bold text-slate-900 mb-2.5 tracking-tight">
+              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
                 Career opportunities
               </h4>
               <ul className="space-y-1 text-xs sm:text-[13px] text-slate-600">
                 <li>
                   <Link to="/contact" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Career
+                    Career at BSH
                   </Link>
                 </li>
               </ul>
@@ -319,15 +314,15 @@ export const Footer = () => {
           </div>
 
           {/* Column 4: Additional Resources, Education and Research */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div>
-              <h4 className="text-[14px] sm:text-[15px] font-bold text-slate-900 mb-3 tracking-tight">
+              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
                 Additional Resources
               </h4>
-              <ul className="space-y-1.5 text-xs sm:text-[13px] text-slate-600">
+              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Life Certificate for Ex Employees
+                    Life Certificate
                   </span>
                 </li>
                 <li>
@@ -347,12 +342,12 @@ export const Footer = () => {
                 </li>
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Ceiling Prices & other related PDFs
+                    Ceiling Prices
                   </span>
                 </li>
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Environmental Approval Compliance
+                    Compliance
                   </span>
                 </li>
                 <li>
@@ -362,20 +357,20 @@ export const Footer = () => {
                 </li>
                 <li>
                   <Link to="/facilities" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Hospital Facilities
+                    Facilities
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-[14px] sm:text-[15px] font-bold text-slate-900 mb-2.5 tracking-tight">
+              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
                 Education and Research
               </h4>
-              <ul className="space-y-1.5 text-xs sm:text-[13px] text-slate-600">
+              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
                 <li>
                   <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Academics Program
+                    Academics
                   </span>
                 </li>
                 <li>
@@ -390,9 +385,9 @@ export const Footer = () => {
         </div>
 
         {/* Clean subtle bottom bar */}
-        <div className="pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
-          <p>© {new Date().getFullYear()} Brahm Shakti Hospital. All rights reserved.</p>
-          <div className="flex items-center gap-4 text-[11px]">
+        <div className="pt-4 sm:pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2 sm:gap-3">
+          <p className="text-center sm:text-left">© {new Date().getFullYear()} Brahm Shakti Hospital. All rights reserved.</p>
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[11px]">
             <span>Privacy Policy</span>
             <span>·</span>
             <span>Terms of Use</span>
