@@ -18,7 +18,9 @@ import {
   Droplets,
   ArrowRight,
   RefreshCw,
-  Phone
+  Phone,
+  ChevronRight,
+  ChevronLeft
 } from 'lucide-react';
 
 const BOT_KNOWLEDGE = [
@@ -102,6 +104,7 @@ const QUICK_PROMPTS = [
 export const ChatbotFloatingWidget = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [isDocked, setIsDocked] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -207,59 +210,106 @@ export const ChatbotFloatingWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-3 sm:bottom-5 sm:right-6 z-50 flex flex-col items-center gap-2.5 sm:gap-3 pointer-events-none">
-      
-      {/* 1. GO TO TOP BUTTON - Round Circular Button */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          type="button"
-          aria-label="Back to Top"
-          title="Back to Top"
-          className="pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-slate-50 text-[#0B2545] shadow-lg border border-slate-200 flex items-center justify-center transition-all duration-200 hover:-translate-y-1 active:scale-95 cursor-pointer"
-        >
-          <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5" />
-        </button>
+    <>
+      {/* 0. DOCKED / HIDDEN TO SIDE - Peeking Edge Tab */}
+      {isDocked && !isOpen && (
+        <div className="fixed bottom-24 right-0 z-50 pointer-events-auto animate-in fade-in slide-in-from-right-4 duration-300">
+          <button
+            onClick={() => setIsDocked(false)}
+            type="button"
+            aria-label="Open Emergency Helpline & AI Chatbot"
+            title="Open Emergency Helpline & AI Chatbot"
+            className="group flex items-center gap-2 py-2.5 px-3 rounded-l-2xl bg-gradient-to-l from-[#0A7A74] to-[#0B2545] text-white shadow-2xl hover:pl-3.5 transition-all cursor-pointer border-t border-b border-l border-white/30 active:scale-95"
+          >
+            <ChevronLeft className="w-4 h-4 text-emerald-300 animate-pulse group-hover:-translate-x-0.5 transition-transform" />
+            <div className="flex flex-col items-start leading-none text-left">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                <span className="text-[10px] font-black uppercase tracking-wider text-emerald-200">
+                  24x7 Help
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 mt-1.5">
+                <span className="w-5 h-5 rounded-full bg-rose-600 flex items-center justify-center shadow-xs">
+                  <Phone className="w-2.5 h-2.5 text-white" />
+                </span>
+                <span className="w-5 h-5 rounded-full bg-sky-600 flex items-center justify-center shadow-xs">
+                  <Bot className="w-2.5 h-2.5 text-white" />
+                </span>
+              </div>
+            </div>
+          </button>
+        </div>
       )}
 
-      {/* 2. DIRECT CALL HELPLINE BUTTON - Round Circular Button */}
-      <a
-        href="tel:7840089703"
-        aria-label="Call 24x7 Helpline"
-        title="Call 24x7 Helpline: 7840089703"
-        className="pointer-events-auto relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
-      >
-        {/* Pulsing ring animation */}
-        <span className="absolute -inset-1 rounded-full bg-rose-500 opacity-40 animate-ping pointer-events-none" />
-        <Phone className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
-      </a>
+      {/* EXPANDED FLOATING ACTION STACK */}
+      {!isDocked && (
+        <div className="fixed bottom-4 right-3 sm:bottom-5 sm:right-6 z-50 flex flex-col items-center gap-2 sm:gap-2.5 pointer-events-none animate-in fade-in slide-in-from-right-3 duration-200">
+          {/* Hide / Dock Button */}
+          <button
+            onClick={() => setIsDocked(true)}
+            type="button"
+            aria-label="Hide buttons to side"
+            title="Hide buttons to side"
+            className="pointer-events-auto flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-900/90 hover:bg-slate-950 text-white text-[10px] font-bold shadow-md transition-all hover:scale-105 active:scale-95 border border-white/20 cursor-pointer"
+          >
+            <span>Hide</span>
+            <ChevronRight className="w-3 h-3 text-teal-300" />
+          </button>
 
-      {/* 3. WORKING & ANIMATED CHATBOT BUTTON - Round Circular Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        type="button"
-        aria-label={isOpen ? "Close Assistant" : "Chat with BSH Assistant"}
-        title={isOpen ? "Close Assistant" : "Chat with BSH Assistant"}
-        className={`pointer-events-auto relative w-11 h-11 sm:w-13 sm:h-13 rounded-full shadow-xl flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer border ${
-          isOpen
-            ? 'bg-[#0B2545] text-white border-slate-700'
-            : 'bg-gradient-to-tr from-[#0B2545] via-[#103b6e] to-[#006699] text-white border-white/20 hover:scale-110'
-        }`}
-      >
-        {/* Subtle Animated Glow Effect */}
-        {!isOpen && (
-          <span className="absolute -inset-1 rounded-full bg-sky-400 opacity-30 blur-xs animate-pulse pointer-events-none" />
-        )}
+          {/* 1. GO TO TOP BUTTON - Round Circular Button */}
+          {showScrollTop && (
+            <button
+              onClick={scrollToTop}
+              type="button"
+              aria-label="Back to Top"
+              title="Back to Top"
+              className="pointer-events-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white hover:bg-slate-50 text-[#0B2545] shadow-lg border border-slate-200 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+            >
+              <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
+          )}
 
-        {isOpen ? (
-          <X className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
-        ) : (
-          <Bot className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
-        )}
+          {/* 2. DIRECT CALL HELPLINE BUTTON - Round Circular Button */}
+          <a
+            href="tel:7840089703"
+            aria-label="Call 24x7 Helpline"
+            title="Call 24x7 Helpline: 7840089703"
+            className="pointer-events-auto relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
+          >
+            {/* Pulsing ring animation */}
+            <span className="absolute -inset-1 rounded-full bg-rose-500 opacity-40 animate-ping pointer-events-none" />
+            <Phone className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
+          </a>
 
-        {/* Live Green Online Dot */}
-        <span className="absolute top-1 right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-400 border-2 border-[#0B2545]" />
-      </button>
+          {/* 3. WORKING & ANIMATED CHATBOT BUTTON - Round Circular Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            type="button"
+            aria-label={isOpen ? "Close Assistant" : "Chat with BSH Assistant"}
+            title={isOpen ? "Close Assistant" : "Chat with BSH Assistant"}
+            className={`pointer-events-auto relative w-11 h-11 sm:w-13 sm:h-13 rounded-full shadow-xl flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer border ${
+              isOpen
+                ? 'bg-[#0B2545] text-white border-slate-700'
+                : 'bg-gradient-to-tr from-[#0B2545] via-[#103b6e] to-[#006699] text-white border-white/20 hover:scale-110'
+            }`}
+          >
+            {/* Subtle Animated Glow Effect */}
+            {!isOpen && (
+              <span className="absolute -inset-1 rounded-full bg-sky-400 opacity-30 blur-xs animate-pulse pointer-events-none" />
+            )}
+
+            {isOpen ? (
+              <X className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
+            ) : (
+              <Bot className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
+            )}
+
+            {/* Live Green Online Dot */}
+            <span className="absolute top-1 right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-400 border-2 border-[#0B2545]" />
+          </button>
+        </div>
+      )}
 
       {/* 4. CHATBOT INTERACTIVE DIALOG WINDOW */}
       {isOpen && (
@@ -411,7 +461,7 @@ export const ChatbotFloatingWidget = () => {
           </form>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
