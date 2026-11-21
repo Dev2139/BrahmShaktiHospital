@@ -6,8 +6,11 @@ import {
   Clock,
   IndianRupee,
   CheckCircle2,
-  Stethoscope
+  Stethoscope,
+  ExternalLink,
+  Eye
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
 
@@ -22,6 +25,10 @@ export const DepartmentManagementPage = () => {
   const [code, setCode] = useState('');
   const [category, setCategory] = useState('Super Specialty');
   const [shortDescription, setShortDescription] = useState('');
+  const [description, setDescription] = useState('');
+  const [facilitiesOffered, setFacilitiesOffered] = useState('');
+  const [services, setServices] = useState('');
+  const [techniques, setTechniques] = useState('');
   const [consultationCharges, setConsultationCharges] = useState('800');
   const [opdTimings, setOpdTimings] = useState('Mon - Sat: 09:00 AM - 05:00 PM');
   const [headOfDepartment, setHeadOfDepartment] = useState('');
@@ -50,6 +57,10 @@ export const DepartmentManagementPage = () => {
     setCode('');
     setCategory('Super Specialty');
     setShortDescription('');
+    setDescription('');
+    setFacilitiesOffered('');
+    setServices('');
+    setTechniques('');
     setConsultationCharges('800');
     setOpdTimings('Mon - Sat: 09:00 AM - 05:00 PM');
     setHeadOfDepartment('');
@@ -58,10 +69,14 @@ export const DepartmentManagementPage = () => {
 
   const handleOpenEditModal = (dept) => {
     setEditingDept(dept);
-    setName(dept.name);
-    setCode(dept.code);
-    setCategory(dept.category);
-    setShortDescription(dept.shortDescription);
+    setName(dept.name || '');
+    setCode(dept.code || '');
+    setCategory(dept.category || 'Clinical Specialties');
+    setShortDescription(dept.shortDescription || '');
+    setDescription(dept.description || '');
+    setFacilitiesOffered(dept.facilitiesOffered || (Array.isArray(dept.features) ? dept.features.join('\n') : ''));
+    setServices(Array.isArray(dept.services) ? dept.services.join('\n') : (dept.services || ''));
+    setTechniques(dept.techniques || '');
     setConsultationCharges(String(dept.consultationCharges || 800));
     setOpdTimings(dept.opdTimings || 'Mon - Sat: 09:00 AM - 05:00 PM');
     setHeadOfDepartment(dept.headOfDepartment || '');
@@ -82,6 +97,10 @@ export const DepartmentManagementPage = () => {
         code,
         category,
         shortDescription,
+        description,
+        facilitiesOffered,
+        services,
+        techniques,
         consultationCharges: Number(consultationCharges),
         opdTimings,
         headOfDepartment
@@ -110,7 +129,7 @@ export const DepartmentManagementPage = () => {
         <div>
           <h2 className="text-2xl font-black text-secondary tracking-tight">Clinical Departments & Specialties</h2>
           <p className="text-xs text-medical-muted">
-            Configure hospital clinical disciplines, OPD fee structures, and department heads.
+            Configure hospital clinical disciplines, detailed narratives, facilities offered, and specialists overview.
           </p>
         </div>
         <button
@@ -135,7 +154,6 @@ export const DepartmentManagementPage = () => {
                   <th className="py-3.5 px-5 font-bold">Department Name</th>
                   <th className="py-3.5 px-5 font-bold">Category</th>
                   <th className="py-3.5 px-5 font-bold">Department Head</th>
-                  <th className="py-3.5 px-5 font-bold">Consultation Fee</th>
                   <th className="py-3.5 px-5 font-bold">OPD Schedule</th>
                   <th className="py-3.5 px-5 font-bold text-right">Actions</th>
                 </tr>
@@ -157,13 +175,20 @@ export const DepartmentManagementPage = () => {
                     <td className="py-3.5 px-5 text-medical-muted">
                       {dept.headOfDepartment || 'Senior Clinical Director'}
                     </td>
-                    <td className="py-3.5 px-5 font-black text-secondary">
-                      ₹{dept.consultationCharges || 800}
-                    </td>
                     <td className="py-3.5 px-5 text-medical-muted">
                       {dept.opdTimings}
                     </td>
-                    <td className="py-3.5 px-5 text-right">
+                    <td className="py-3.5 px-5 text-right space-x-2">
+                      <Link
+                        to={`/departments/${dept.id}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-[#0A7A74] hover:text-white text-[#0A7A74] font-bold transition-all text-[11px] border border-teal-200"
+                        title="View Public Department Page"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>View Page</span>
+                      </Link>
                       <button
                         onClick={() => handleOpenEditModal(dept)}
                         className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-medical-coolgray hover:bg-primary hover:text-white text-secondary font-bold transition-all text-[11px] border border-medical-border"
@@ -183,12 +208,12 @@ export const DepartmentManagementPage = () => {
       {/* Add / Edit Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl">
+          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-medical-border pb-3">
               <h3 className="text-lg font-bold text-secondary">
-                {editingDept ? 'Edit Department' : 'Add Clinical Department'}
+                {editingDept ? `Edit Department: ${editingDept.name}` : 'Add Clinical Department'}
               </h3>
-              <button onClick={() => setModalOpen(false)} className="text-medical-muted font-bold text-sm">✕</button>
+              <button onClick={() => setModalOpen(false)} className="text-medical-muted font-bold text-sm hover:text-slate-900">✕</button>
             </div>
 
             <form onSubmit={handleSave} className="space-y-4 text-xs">
@@ -199,7 +224,7 @@ export const DepartmentManagementPage = () => {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Cardiology & Vascular"
+                    placeholder="e.g. Anaesthesiology, Pain & Perioperative Medicine"
                     required
                     className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
                   />
@@ -210,7 +235,7 @@ export const DepartmentManagementPage = () => {
                     type="text"
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
-                    placeholder="CARD"
+                    placeholder="ANES"
                     required
                     className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden uppercase"
                   />
@@ -233,51 +258,96 @@ export const DepartmentManagementPage = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-bold uppercase text-medical-muted">Consultation Fee (₹)</label>
+                  <label className="font-bold uppercase text-medical-muted">Head of Department / Clinical Chairperson</label>
                   <input
-                    type="number"
-                    value={consultationCharges}
-                    onChange={(e) => setConsultationCharges(e.target.value)}
-                    required
-                    className="w-full p-2.5 rounded-xl border border-medical-border text-secondary font-bold focus:border-primary focus:outline-hidden"
+                    type="text"
+                    value={headOfDepartment}
+                    onChange={(e) => setHeadOfDepartment(e.target.value)}
+                    placeholder="Dr. Senior Consultant Name"
+                    className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="font-bold uppercase text-medical-muted">Head of Department</label>
-                <input
-                  type="text"
-                  value={headOfDepartment}
-                  onChange={(e) => setHeadOfDepartment(e.target.value)}
-                  placeholder="Dr. Specialist Name"
-                  className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="font-bold uppercase text-medical-muted">OPD Schedule Timings</label>
-                <input
-                  type="text"
-                  value={opdTimings}
-                  onChange={(e) => setOpdTimings(e.target.value)}
-                  placeholder="Mon - Sat: 09:00 AM - 05:00 PM"
-                  className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="font-bold uppercase text-medical-muted">Short Description</label>
+                <label className="font-bold uppercase text-medical-muted">Clinical Introduction / Summary</label>
                 <textarea
                   rows={2}
                   value={shortDescription}
                   onChange={(e) => setShortDescription(e.target.value)}
-                  placeholder="Clinical scope and facilities..."
-                  className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden resize-none"
+                  placeholder="Overview paragraph displayed at the top of the department page..."
+                  className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
                 ></textarea>
               </div>
 
-              <div className="pt-3 flex justify-end gap-3">
+              <div className="space-y-1">
+                <label className="font-bold uppercase text-medical-muted">About the Department (Comprehensive Reading Narrative)</label>
+                <textarea
+                  rows={4}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Full clinical background, decades of existence, faculty excellence, academic framework, and clinical milestones..."
+                  className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
+                ></textarea>
+              </div>
+
+              <div className="space-y-1">
+                <label className="font-bold uppercase text-medical-muted">Facilities Offered</label>
+                <textarea
+                  rows={3}
+                  value={facilitiesOffered}
+                  onChange={(e) => setFacilitiesOffered(e.target.value)}
+                  placeholder="Clinical services, DNB training, Fellowship training, specialized ICUs, modular operation theaters, etc..."
+                  className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
+                ></textarea>
+              </div>
+
+              <div className="space-y-1">
+                <label className="font-bold uppercase text-medical-muted">Key Services (Enter one service per line)</label>
+                <textarea
+                  rows={3}
+                  value={services}
+                  onChange={(e) => setServices(e.target.value)}
+                  placeholder="1. Clinical Anesthesia&#10;2. Postoperative Pain Service&#10;3. Critical Care Management"
+                  className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
+                ></textarea>
+              </div>
+
+              <div className="space-y-1">
+                <label className="font-bold uppercase text-medical-muted">State-of-the-art Techniques (Optional)</label>
+                <textarea
+                  rows={2}
+                  value={techniques}
+                  onChange={(e) => setTechniques(e.target.value)}
+                  placeholder="Modern clinical monitoring, non-invasive cardiac output management, robotic assisted techniques..."
+                  className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
+                ></textarea>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="font-bold uppercase text-medical-muted">OPD Schedule Timings</label>
+                  <input
+                    type="text"
+                    value={opdTimings}
+                    onChange={(e) => setOpdTimings(e.target.value)}
+                    placeholder="Mon - Sat: 09:00 AM - 05:00 PM"
+                    className="w-full p-2.5 rounded-xl border border-medical-border text-secondary focus:border-primary focus:outline-hidden"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold uppercase text-medical-muted">Consultation Fee (₹ - Internal Record)</label>
+                  <input
+                    type="number"
+                    value={consultationCharges}
+                    onChange={(e) => setConsultationCharges(e.target.value)}
+                    className="w-full p-2.5 rounded-xl border border-medical-border text-secondary font-bold focus:border-primary focus:outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-3 flex justify-end gap-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}

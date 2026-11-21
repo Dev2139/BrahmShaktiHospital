@@ -53,23 +53,31 @@ export const getDepartmentById = async (req, res, next) => {
 
 export const createDepartment = async (req, res, next) => {
   try {
-    const { name, code, category, shortDescription, opdTimings, consultationCharges, headOfDepartment, services } = req.body;
+    const { name, code, category, shortDescription, opdTimings, consultationCharges, headOfDepartment, services, description, facilitiesOffered, techniques } = req.body;
     if (!name || !code) {
       return res.status(400).json({ success: false, message: 'Department name and code are required.' });
     }
 
     const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const parsedServices = Array.isArray(services)
+      ? services
+      : (typeof services === 'string'
+          ? services.split('\n').map(s => s.trim()).filter(Boolean)
+          : ['Clinical Consultations', 'Diagnostic Follow-up']);
+
     const newDept = {
       id,
       code: code.toUpperCase(),
       name,
       category: category || 'Specialty Care',
       shortDescription: shortDescription || `${name} clinical service.`,
-      description: req.body.description || shortDescription || '',
+      description: description || shortDescription || '',
+      facilitiesOffered: facilitiesOffered || '',
+      techniques: techniques || '',
       headOfDepartment: headOfDepartment || 'Senior Clinical Director',
       opdTimings: opdTimings || 'Mon - Sat: 09:00 AM - 05:00 PM',
       consultationCharges: Number(consultationCharges) || 800,
-      services: services || ['Clinical Consultations', 'Diagnostic Follow-up'],
+      services: parsedServices,
       image: req.body.image || 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800'
     };
 
@@ -88,11 +96,18 @@ export const createDepartment = async (req, res, next) => {
 export const updateDepartment = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const updateData = { ...req.body };
+    if (typeof updateData.services === 'string') {
+      updateData.services = updateData.services
+        .split('\n')
+        .map(s => s.trim())
+        .filter(Boolean);
+    }
 
     if (isMongoConnected) {
       const updated = await Department.findOneAndUpdate(
         { $or: [{ id }, { _id: id.match(/^[0-9a-fA-F]{24}$/) ? id : null }] },
-        req.body,
+        updateData,
         { new: true }
       );
       if (updated) {
@@ -102,7 +117,7 @@ export const updateDepartment = async (req, res, next) => {
 
     const idx = inMemoryDepartments.findIndex(d => d.id === id || d._id === id);
     if (idx === -1) return res.status(404).json({ success: false, message: 'Department not found' });
-    inMemoryDepartments[idx] = { ...inMemoryDepartments[idx], ...req.body };
+    inMemoryDepartments[idx] = { ...inMemoryDepartments[idx], ...updateData };
     return res.status(200).json({ success: true, message: 'Department updated successfully', data: inMemoryDepartments[idx] });
   } catch (error) {
     next(error);

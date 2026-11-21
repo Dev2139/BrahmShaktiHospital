@@ -13,6 +13,8 @@ const departmentSchema = new mongoose.Schema(
     headOfDepartment: { type: String },
     features: [{ type: String }],
     services: [{ type: String }],
+    facilitiesOffered: { type: String, default: '' },
+    techniques: { type: String, default: '' },
     opdTimings: { type: String, default: 'Mon - Sat: 09:00 AM - 05:00 PM' },
     consultationCharges: { type: Number, default: 800 },
     floorLocation: { type: String, default: 'Main Hospital Building' },
