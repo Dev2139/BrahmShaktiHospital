@@ -19,7 +19,7 @@ export const getDashboardForRole = (role) => {
     case 'receptionist':
       return '/receptionist/dashboard';
     case 'blood_bank_technician':
-      return '/admin/dashboard';
+      return '/admin/blood-bank';
     case 'patient':
       return '/patient/dashboard';
     default:
@@ -140,6 +140,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateUserData = (updatedFields) => {
+    setUser((prev) => {
+      const merged = { ...prev, ...updatedFields };
+      localStorage.setItem('bsh_user', JSON.stringify(merged));
+      return merged;
+    });
+  };
+
   const switchDemoRole = async (targetRole) => {
     const roleCredentials = {
       superadmin: { email: 'superadmin@brahmshaktihospital.com', password: 'SuperAdmin@123' },
@@ -172,7 +180,8 @@ export const AuthProvider = ({ children }) => {
         register,
         logout,
         changePassword,
-        switchDemoRole
+        switchDemoRole,
+        updateUserData
       }}
     >
       {children}

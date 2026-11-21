@@ -280,6 +280,328 @@ export const departmentsData = [
 
 export const doctorsData = [
   {
+    "id": "doc-anes-04",
+    "name": "Dr. Gaurav Kaushik",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795270039/Gemini_Generated_Image_3yb39r3yb39r3yb3.png",
+    "departmentId": "anesthesia",
+    "departmentName": "Anaesthesiology & Critical Care",
+    "designation": "Senior Consultant Anaesthesiologist & Critical Care Specialist",
+    "qualification": "MBBS, MD (Anaesthesiology), IDCCM",
+    "email": "gauravkaushik@brahmshaktihospital.com",
+    "phone": "+91-9811234028",
+    "category": "In house",
+    "dmcNo": "29871",
+    "validity": "17/12/2029",
+    "experienceYears": 15,
+    "specializations": [
+      "Neuro-anaesthesia",
+      "Advanced Hemodynamic Monitoring",
+      "ICU Resuscitation & Sepsis Care",
+      "Difficult Airway Management"
+    ],
+    "consultationFee": 700,
+    "birthdate": "1985-05-30",
+    "availableDays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "availableTimings": "08:00 AM - 03:00 PM",
+    "opdSchedule": "Mon - Sat: 08:00 AM - 03:00 PM (OT Complex)",
+    "room": "Critical Care ICU Complex",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "bio": "Dr. Gaurav Kaushik is an expert critical care specialist ensuring perioperative safety, neuro-anaesthetic vigilance, and round-the-clock intensive life support.",
+    "isActive": true,
+    "rating": 4.9
+  },
+
+  {
+    "id": "doc-surg-03",
+    "name": "Dr. Sanjeev Verma",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269965/Gemini_Generated_Image_syipulsyipulsyip.png",
+    "departmentId": "general-surgery",
+    "departmentName": "General & Laparoscopic Surgery",
+    "designation": "Senior Consultant & Head of General & Laparoscopic Surgery",
+    "qualification": "MBBS, MS (General Surgery)",
+    "email": "sanjeevverma@brahmshaktihospital.com",
+    "phone": "+91-9811234027",
+    "category": "In house",
+    "dmcNo": "11843",
+    "validity": "23/05/2027",
+    "experienceYears": 25,
+    "specializations": [
+      "Advanced Laparoscopic GI Surgery",
+      "Complex Hernia Repair",
+      "Gallbladder & Biliary Procedures",
+      "Surgical Oncology Triage"
+    ],
+    "consultationFee": 800,
+    "birthdate": "1975-03-24",
+    "availableDays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "availableTimings": "09:30 AM - 02:30 PM",
+    "opdSchedule": "Mon - Sat: 09:30 AM - 02:30 PM (Room 105)",
+    "room": "Surgical OPD Block Chamber 105",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "bio": "Dr. Sanjeev Verma heads the Department of General & Laparoscopic Surgery at Brahm Shakti Hospital with over 25 years of surgical mastery and compassionate patient guidance.",
+    "isActive": true,
+    "rating": 5
+  },
+
+  {
+    "id": "doc-ped-03",
+    "name": "Dr. Hitesh Aggarwal",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269572/Gemini_Generated_Image_2yjmm12yjmm12yjm.png",
+    "departmentId": "pediatrics",
+    "departmentName": "Pediatrics & Neonatal Care (NICU)",
+    "designation": "Senior Consultant Pediatric Intensivist",
+    "qualification": "MBBS, DNB (Pediatrics), Fellowship Pediatric Critical Care",
+    "email": "hiteshaggarwal@brahmshaktihospital.com",
+    "phone": "+91-9811234026",
+    "category": "In house",
+    "dmcNo": "23501",
+    "validity": "14/06/2028",
+    "experienceYears": 16,
+    "specializations": [
+      "Pediatric ICU (PICU)",
+      "Neonatal Emergencies",
+      "Childhood Infectious Diseases",
+      "Nutritional Counseling"
+    ],
+    "consultationFee": 700,
+    "birthdate": "1984-08-05",
+    "availableDays": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "availableTimings": "10:00 AM - 03:00 PM",
+    "opdSchedule": "Mon, Wed, Fri: 10:00 AM - 03:00 PM (Room 105)",
+    "room": "Pediatrics Block Chamber 105",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "bio": "Dr. Hitesh Aggarwal brings specialized expertise in pediatric intensive care, resuscitation, childhood fever protocols, and preventive immunizations.",
+    "isActive": true,
+    "rating": 4.9
+  },
+
+  {
+    "id": "doc-ortho-04",
+    "name": "Dr. Anuj Valecha",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269335/Gemini_Generated_Image_u5mjr3u5mjr3u5mj.png",
+    "departmentId": "orthopaedics",
+    "departmentName": "Orthopaedics & Joint Replacement",
+    "designation": "Consultant Orthopaedic & Spine Surgeon",
+    "qualification": "MBBS, MS (Orthopaedics)",
+    "email": "anujvalecha@brahmshaktihospital.com",
+    "phone": "+91-9811234025",
+    "category": "In house",
+    "dmcNo": "28456",
+    "validity": "18/10/2030",
+    "experienceYears": 14,
+    "specializations": [
+      "Spine Surgery & Decompression",
+      "Disc Prolapse Management",
+      "Orthopaedic Trauma & Fixation",
+      "Arthritis Care"
+    ],
+    "consultationFee": 700,
+    "birthdate": "1986-07-22",
+    "availableDays": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "10:00 AM - 03:00 PM",
+    "opdSchedule": "Tue, Thu, Sat: 10:00 AM - 03:00 PM (Room 114)",
+    "room": "Orthopaedic Wing Room 114",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "bio": "Dr. Anuj Valecha provides specialized expertise in spinal decompression, herniated disc management, and comprehensive orthopaedic trauma reconstruction.",
+    "isActive": true,
+    "rating": 4.8
+  },
+
+  {
+    "id": "doc-gyn-04",
+    "name": "Dr. Manju Bansal",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795268967/Gemini_Generated_Image_vyhpaavyhpaavyhp.png",
+    "departmentId": "gynae-obst",
+    "departmentName": "Obstetrics & Gynaecology (Maternity)",
+    "designation": "Senior Consultant Obstetrician & Gynaecologist",
+    "qualification": "MBBS, MS (Obstetrics & Gynaecology)",
+    "email": "manjubansal@brahmshaktihospital.com",
+    "phone": "+91-9811234024",
+    "category": "In house",
+    "dmcNo": "15408",
+    "validity": "15/04/2026",
+    "experienceYears": 22,
+    "specializations": [
+      "High-Risk Pregnancy",
+      "Normal & Operative Deliveries",
+      "Laparoscopic Hysterectomy",
+      "Infertility Counseling"
+    ],
+    "consultationFee": 700,
+    "birthdate": "1978-02-18",
+    "availableDays": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "availableTimings": "09:30 AM - 02:30 PM",
+    "opdSchedule": "Mon, Wed, Fri: 09:30 AM - 02:30 PM (Room 109)",
+    "room": "Mother & Child Wing Chamber 109",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "bio": "Dr. Manju Bansal is a revered senior gynaecologist dedicated to high-risk obstetric monitoring, painless deliveries, and advanced gynaecological laparoscopy.",
+    "isActive": true,
+    "rating": 4.9
+  },
+
+  {
+    "id": "doc-cardio-02",
+    "name": "Dr. Bharat Ratan Jindal",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795268883/Gemini_Generated_Image_anmzo1anmzo1anmz.png",
+    "departmentId": "cardiology",
+    "departmentName": "Cardiology & Vascular Center",
+    "designation": "Senior Consultant Cardiologist & Electrophysiologist",
+    "qualification": "MBBS, MD, DNB (Cardiology)",
+    "email": "bharatjindal@brahmshaktihospital.com",
+    "phone": "+91-9811234023",
+    "category": "Visiting",
+    "dmcNo": "18390",
+    "validity": "19/09/2027",
+    "experienceYears": 20,
+    "specializations": [
+      "Clinical Electrophysiology",
+      "Arrhythmia Management",
+      "Cardiac Resynchronization Therapy (CRT)",
+      "Echocardiography & TEE"
+    ],
+    "consultationFee": 800,
+    "birthdate": "1980-09-08",
+    "availableDays": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "availableTimings": "11:00 AM - 03:00 PM",
+    "opdSchedule": "Tue, Thu, Sat: 11:00 AM - 03:00 PM (Room 205)",
+    "room": "Cardiac Science Center Room 205",
+    "languages": [
+      "English",
+      "Hindi",
+      "Punjabi"
+    ],
+    "bio": "Dr. Bharat Ratan Jindal is a seasoned cardiologist specializing in cardiac rhythm disorders, advanced echocardiography, and preventive cardiology protocols.",
+    "isActive": true,
+    "rating": 4.9
+  },
+
+  {
+    "id": "doc-med-03",
+    "name": "Dr. Lakashya Kumawat",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795268794/Gemini_Generated_Image_jox0g5jox0g5jox0.png",
+    "departmentId": "medicine",
+    "departmentName": "Internal Medicine & Diabetology",
+    "designation": "Consultant Physician & Diabetologist",
+    "qualification": "MBBS, MD (Internal Medicine)",
+    "email": "lakashyakumawat@brahmshaktihospital.com",
+    "phone": "+91-9811234022",
+    "category": "In house",
+    "dmcNo": "31245",
+    "validity": "22/07/2029",
+    "experienceYears": 12,
+    "specializations": [
+      "Metabolic Syndrome & Diabetes",
+      "Hypertension & Lipid Clinics",
+      "Infectious Disease Triage",
+      "Geriatric Chronic Care"
+    ],
+    "consultationFee": 700,
+    "birthdate": "1987-03-12",
+    "availableDays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "availableTimings": "09:00 AM - 02:00 PM",
+    "opdSchedule": "Mon - Sat: 09:00 AM - 02:00 PM (Room 103)",
+    "room": "Medical OPD Chamber 103",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "bio": "Dr. Lakashya Kumawat brings clinical diligence to comprehensive diabetes titration, adult metabolic syndrome, and systemic internal medicine care.",
+    "isActive": true,
+    "rating": 4.8
+  },
+
+  {
+    "id": "doc-cardio-01",
+    "name": "Dr. Nishant Verma (Cardio)",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795268417/Gemini_Generated_Image_dv68midv68midv68.png",
+    "departmentId": "cardiology",
+    "departmentName": "Cardiology & Vascular Center",
+    "designation": "Senior Consultant Interventional Cardiologist",
+    "qualification": "MBBS, MD, DM (Cardiology)",
+    "email": "nishant.cardio@brahmshaktihospital.com",
+    "phone": "+91-9811234021",
+    "category": "In house",
+    "dmcNo": "24119",
+    "validity": "10/08/2028",
+    "experienceYears": 18,
+    "specializations": [
+      "Coronary Angiography & Angioplasty",
+      "Complex PCI & Stenting",
+      "Pacemaker & ICD Implantation",
+      "Heart Failure Management"
+    ],
+    "consultationFee": 800,
+    "birthdate": "1982-05-14",
+    "availableDays": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "availableTimings": "10:00 AM - 03:00 PM",
+    "opdSchedule": "Mon, Wed, Fri: 10:00 AM - 03:00 PM (Cardio OPD 204)",
+    "room": "Cardiac Science Center Room 204",
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "bio": "Dr. Nishant Verma is a distinguished interventional cardiologist specialized in radial approach coronary interventions, acute myocardial infarction salvage, and cardiovascular wellness.",
+    "isActive": true,
+    "rating": 4.9
+  },
+
+  {
     "id": "doc-med-01",
     "name": "Dr. S.K. Goyal",
     "email": "skgoyal@brahmshaktihospital.com",
@@ -315,7 +637,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269079/Gemini_Generated_Image_kap530kap530kap5.png",
     "bio": "Dr. S.K. Goyal is a senior consultant physician with over 24 years of clinical excellence at Brahm Shakti Hospital. Known for accurate diagnostic acumen in complex multi-system ailments, diabetes management, and geriatric care.",
     "isActive": true,
     "rating": 4.9
@@ -363,7 +685,7 @@ export const doctorsData = [
   },
   {
     "id": "doc-surg-01",
-    "name": "Dr. Nishant Verma",
+    "name": "Dr. Nishant Verma (Neuro Sergion)",
     "email": "nishantverma@brahmshaktihospital.com",
     "phone": "+91-9811234003",
     "qualification": "MBBS, MS",
@@ -395,7 +717,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795184683/Screenshot_2026-11-20_195358.png",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269744/Gemini_Generated_Image_iy20x7iy20x7iy20.png",
     "bio": "Senior laparoscopic surgeon Dr. Nishant Verma brings 22+ years of surgical mastery. He specializes in minimally invasive keyhole procedures that reduce pain and enable swift patient discharge.",
     "isActive": true,
     "rating": 4.9
@@ -433,7 +755,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "/doctors/dr-rishabh-jain.jpg",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795268665/Gemini_Generated_Image_v2dcnxv2dcnxv2dc.png",
     "bio": "Dr. Rishabh Jain is an expert surgeon specializing in modern laser proctology, advanced surgical trauma resuscitation, and scarless laparoscopic abdominal interventions.",
     "isActive": true,
     "rating": 4.8
@@ -509,7 +831,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "/doctors/dr-renu-gupta.jpg",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795266679/Gemini_Generated_Image_pihl4ipihl4ipihl.png",
     "bio": "With over two decades of obstetric and gynaecological practice, Dr. Renu Gupta is committed to empowering women's health through comprehensive maternal screenings and preventive wellness.",
     "isActive": true,
     "rating": 4.8
@@ -588,7 +910,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269399/Gemini_Generated_Image_ey958bey958bey95.png",
     "bio": "Head of Pediatrics and Level-III NICU at Brahm Shakti Hospital, Dr. Rupesh Sharma has dedicated his career to safeguarding the health of newborns, infants, and young children.",
     "isActive": true,
     "rating": 4.9
@@ -665,7 +987,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269246/Gemini_Generated_Image_5eui7k5eui7k5eui.png",
     "bio": "A premier joint replacement surgeon with over 20 years of expertise, Dr. Kapil Goyal has performed thousands of robotic and minimally invasive knee and hip surgeries.",
     "isActive": true,
     "rating": 4.9
@@ -703,7 +1025,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "/doctors/dr-ravi-shankar-gupta.jpg",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795268266/Gemini_Generated_Image_shswfoshswfoshsw_1.png",
     "bio": "Dr. Ravi Shankar Gupta is a spine and sports injury specialist focusing on endoscopic spinal decompression, cruciate ligament repairs, and advanced trauma care.",
     "isActive": true,
     "rating": 4.8
@@ -866,7 +1188,7 @@ export const doctorsData = [
   },
   {
     "id": "doc-skin-01",
-    "name": "Dr. Anish Goel",
+    "name": "Dr. Avnish Goel",
     "email": "anishgoel@brahmshaktihospital.com",
     "phone": "+91-9811234016",
     "qualification": "MBBS, MD",
@@ -897,7 +1219,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269652/Gemini_Generated_Image_ikbi8rikbi8rikbi.png",
     "bio": "A stalwart dermatologist with 23+ years of clinical acumen, Dr. Anish Goel provides state-of-the-art dermatological care, laser therapies, and anti-aging treatments.",
     "isActive": true,
     "rating": 4.9
@@ -935,14 +1257,14 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269489/Gemini_Generated_Image_ewlawbewlawbewla.png",
     "bio": "Dr. Swati Gupta is a DDVL-trained clinical dermatologist focusing on adolescent skin disorders, hair restoration, skin brightening, and minor dermatological surgeries.",
     "isActive": true,
     "rating": 4.8
   },
   {
     "id": "doc-eye-01",
-    "name": "Dr. Rajesh Kumar",
+    "name": "Dr. Rajesh",
     "email": "rajeshkumar@brahmshaktihospital.com",
     "phone": "+91-9811234018",
     "qualification": "MBBS, MD, MS",
@@ -973,14 +1295,14 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269864/Gemini_Generated_Image_w4nq3zw4nq3zw4nq.png",
     "bio": "With over 20 years of ophthalmic experience, Dr. Rajesh Kumar is renowned for micro-incision stitchless cataract surgeries and diabetic retinal laser treatments.",
     "isActive": true,
     "rating": 4.9
   },
   {
     "id": "doc-eye-02",
-    "name": "Dr. Monika Kumar",
+    "name": "Dr. Monnica Kumawat",
     "email": "monikakumar@brahmshaktihospital.com",
     "phone": "+91-9811234019",
     "qualification": "MBBS, MD, MS (Ophtha.)",
@@ -1011,7 +1333,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269960/WhatsApp_Image_2026-11-21_at_6.30.59_PM.jpg",
     "bio": "Dr. Monika Kumar is an MS-qualified ophthalmic surgeon specializing in corneal conditions, computer vision syndrome, childhood squint, and comprehensive vision care.",
     "isActive": true,
     "rating": 4.8

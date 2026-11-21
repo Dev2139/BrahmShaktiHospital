@@ -161,7 +161,7 @@ const newDoctors = [
     opdSchedule: "Tue, Thu, Sat: 09:30 AM - 02:00 PM (Room 108)",
     room: "Mother & Child Wing Chamber 108",
     languages: ["English", "Hindi"],
-    image: "/doctors/dr-renu-gupta.jpg",
+    image: "https://res.cloudinary.com/urzka7oz/image/upload/v1795266679/Gemini_Generated_Image_pihl4ipihl4ipihl.png",
     bio: "With over two decades of obstetric and gynaecological practice, Dr. Renu Gupta is committed to empowering women's health through comprehensive maternal screenings and preventive wellness.",
     isActive: true,
     rating: 4.8

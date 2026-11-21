@@ -213,16 +213,40 @@ export const updateDoctor = async (req, res, next) => {
 
     if (isMongoConnected) {
       const updated = await Doctor.findOneAndUpdate(
-        { $or: [{ id }, { _id: id.match(/^[0-9a-fA-F]{24}$/) ? id : null }] },
+        {
+          $or: [
+            { id },
+            { id: id.toLowerCase() },
+            { email: id.toLowerCase() },
+            { _id: id.match(/^[0-9a-fA-F]{24}$/) ? id : null }
+          ]
+        },
         req.body,
         { new: true }
       );
       if (updated) {
+        if (req.body.image || req.body.name || req.body.phone) {
+          await User.updateMany(
+            { $or: [{ doctorId: updated.id }, { email: updated.email.toLowerCase() }] },
+            {
+              $set: {
+                ...(req.body.image && { avatar: req.body.image }),
+                ...(req.body.name && { name: req.body.name }),
+                ...(req.body.phone && { phone: req.body.phone })
+              }
+            }
+          ).catch(() => {});
+        }
         return res.status(200).json({ success: true, message: 'Doctor updated successfully', data: updated });
       }
     }
 
-    const idx = inMemoryDoctors.findIndex(d => d.id === id || d._id === id);
+    const idx = inMemoryDoctors.findIndex(d =>
+      d.id === id ||
+      d.id.toLowerCase() === id.toLowerCase() ||
+      d.email.toLowerCase() === id.toLowerCase() ||
+      d._id === id
+    );
     if (idx === -1) return res.status(404).json({ success: false, message: 'Doctor not found' });
     inMemoryDoctors[idx] = { ...inMemoryDoctors[idx], ...req.body };
     return res.status(200).json({ success: true, message: 'Doctor updated successfully', data: inMemoryDoctors[idx] });

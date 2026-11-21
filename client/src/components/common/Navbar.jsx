@@ -555,19 +555,18 @@ export const Navbar = () => {
               <div className="space-y-6 pt-1">
                 <div>
                   <h4 className="text-lg font-bold text-[#0A7A74] mb-2">24/7 Helpline</h4>
-                  <a href="tel:01142254000" className="text-sm font-semibold text-slate-800 block">+91-11-4225 4000</a>
+                  <a href="tel:7840089703" className="text-sm font-semibold text-slate-800 block hover:text-[#0A7A74] transition-colors">+91 7840089703</a>
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-[#0A7A74] mb-2">Casualty</h4>
+                  <h4 className="text-lg font-bold text-[#0A7A74] mb-2">Casualty &amp; Reception</h4>
                   <div className="space-y-1 text-sm font-semibold text-slate-800">
-                    <a href="tel:01142251097" className="block">+91-11-4225 1097</a>
-                    <a href="tel:01142251098" className="block">+91-11-4225 1098</a>
-                    <a href="tel:01142251099" className="block">+91-11-4225 1099</a>
+                    <a href="tel:7840089703" className="block hover:text-[#0A7A74] transition-colors">+91 7840089703 (24x7)</a>
+                    <a href="tel:01127531683" className="block hover:text-[#0A7A74] transition-colors">011-27531683 (Desk)</a>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-[#0A7A74] mb-2">Ambulance</h4>
-                  <a href="tel:01142253030" className="text-sm font-semibold text-slate-800 block">+91-11-4225 3030</a>
+                  <h4 className="text-lg font-bold text-[#0A7A74] mb-2">Emergency Ambulance</h4>
+                  <a href="tel:7840089703" className="text-sm font-semibold text-rose-600 block hover:text-rose-700 transition-colors">+91 7840089703</a>
                 </div>
               </div>
             </div>

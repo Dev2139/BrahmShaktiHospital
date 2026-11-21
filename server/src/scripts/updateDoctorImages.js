@@ -17,7 +17,7 @@ async function updateImages() {
 
   const updates = [
     { id: 'doc-surg-02', name: 'Dr. Rishabh Jain', image: '/doctors/dr-rishabh-jain.jpg' },
-    { id: 'doc-gyn-02', name: 'Dr. Renu Gupta', image: '/doctors/dr-renu-gupta.jpg' },
+    { id: 'doc-gyn-02', name: 'Dr. Renu Gupta', image: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795266679/Gemini_Generated_Image_pihl4ipihl4ipihl.png' },
     { id: 'doc-ortho-02', name: 'Dr. Ravi Shankar Gupta', image: '/doctors/dr-ravi-shankar-gupta.jpg' }
   ];
 
