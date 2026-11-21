@@ -27,6 +27,8 @@ import FacilitiesPage from './pages/public/FacilitiesPage';
 import ContactPage from './pages/public/ContactPage';
 import LabResultsPage from './pages/public/LabResultsPage';
 import SearchPage from './pages/public/SearchPage';
+import PrivacyPolicyPage from './pages/public/PrivacyPolicyPage';
+import TermsOfUsePage from './pages/public/TermsOfUsePage';
 
 // Auth Pages & Guards
 import LoginPage from './pages/auth/LoginPage';
@@ -93,6 +95,10 @@ export default function App() {
           <Route path="/lab-results" element={<LabResultsPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-of-use" element={<TermsOfUsePage />} />
+          <Route path="/terms" element={<TermsOfUsePage />} />
         </Route>
 
         {/* Authentication Routes */}

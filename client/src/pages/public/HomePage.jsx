@@ -679,49 +679,46 @@ export const HomePage = () => {
             </form>
           </div>
 
-          {/* Service Action Cards: International Patients & Immigration */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
-            {/* 1. International Patients */}
-            <button
-              type="button"
-              onClick={() => setInternationalModalOpen(true)}
-              className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-pointer"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-sky-50 text-sky-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                  <path d="m14 14 3-3-3-3" />
-                  <path d="M8 11h9" />
-                </svg>
+          {/* Static Appointment Booking Highlights Banner (Fills Space Under Search) */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-6 max-w-4xl mx-auto pt-2">
+            {/* 1. Instant Slot Booking */}
+            <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs flex items-start gap-3.5 hover:shadow-md transition-shadow">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-teal-50 text-primary flex items-center justify-center shrink-0">
+                <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <h3 className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors leading-tight">
-                International Patients
-              </h3>
-              <p className="text-[11px] text-slate-500 mt-1 font-medium">Visit International Desk</p>
-            </button>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900 leading-snug">Instant Slot Booking</h4>
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  Direct digital appointment confirmation with 20+ verified senior clinicians.
+                </p>
+              </div>
+            </div>
 
-            {/* 2. Immigration */}
-            <button
-              type="button"
-              onClick={() => setInternationalModalOpen(true)}
-              className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-pointer"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                  <rect x="14" y="6" width="6" height="4" rx="1" fill="currentColor" fillOpacity="0.2" />
-                </svg>
+            {/* 2. Subsidized Trust Tariffs */}
+            <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs flex items-start gap-3.5 hover:shadow-md transition-shadow">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <h3 className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors leading-tight">
-                Immigration
-              </h3>
-              <p className="text-[11px] text-slate-500 mt-1 font-medium">Visa Medical Appointment</p>
-            </button>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900 leading-snug">Subsidized Trust Care</h4>
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  High-tech tertiary surgical and IPD care provided at charitable trust rates.
+                </p>
+              </div>
+            </div>
+
+            {/* 3. Zero Waiting Time Support */}
+            <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs flex items-start gap-3.5 hover:shadow-md transition-shadow">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center shrink-0">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900 leading-snug">Zero Waiting Time</h4>
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  Fast-track triage, priority senior desk, and 24x7 emergency ramp access.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1033,58 +1030,234 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 6. Patient Testimonials & Trust */}
-      <section className="bg-secondary text-white py-8 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-5 sm:mb-10">
-            <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent mb-1.5">
-                <Star className="w-4 h-4 fill-accent" />
-                <span>Patient Stories</span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-                Words From Our Recovered Patients
-              </h2>
-            </div>
-            <span className="sm:hidden text-xs text-accent font-bold self-start">Swipe to read stories →</span>
+      {/* 6. Patient Testimonials & Trust - Auto-scrolling Continuous Marquee (Matches Landing Page BG) */}
+      <section className="py-10 sm:py-16 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-4 mb-6 sm:mb-10 text-center">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#0A7A74] mb-2">
+            <Star className="w-4 h-4 fill-[#0A7A74]" />
+            <span>Real Patient Feedback & Stories</span>
           </div>
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Words of Gratitude From Our Patients
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-500 mt-1.5 max-w-xl mx-auto">
+            Real experiences from recovered patients treated across super-specialty departments at Brahm Shakti Hospital.
+          </p>
+        </div>
 
-          {/* Testimonial Cards: Mobile Swipe Carousel, Desktop Grid */}
-          <div className="flex md:grid md:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto md:overflow-visible pb-4 md:pb-0 scrollbar-none snap-x -mx-4 px-4 sm:mx-0 sm:px-0">
+        {/* Dual-Row Infinite Auto-Scrolling Marquee with Edge Fade Masks */}
+        <div className="relative w-full space-y-4 sm:space-y-6">
+          {/* Subtle Left & Right Edge Fade Gradient Masks */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-[#F4F8FA] to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-[#F4F8FA] to-transparent z-10" />
+
+          {/* Row 1: Auto-scrolling to the left */}
+          <div className="animate-marquee-left gap-4 sm:gap-6 px-4">
             {[
               {
                 name: 'Satish Narang',
                 treatment: 'Total Knee Replacement',
-                text: 'Dr. Kapil Goyal and the orthopaedic team at Brahm Shakti Hospital gave me a second chance to walk without pain. Subsidized package made it truly affordable for our family.',
-                location: 'Rohini, Sector 22'
+                location: 'Rohini, Sector 22',
+                initials: 'SN',
+                avatarBg: 'bg-amber-100',
+                avatarText: 'text-amber-800',
+                text: 'Dr. Kapil Goyal and the orthopaedic team at Brahm Shakti Hospital gave me a second chance to walk pain-free. Subsidized package made it truly affordable for our family.'
               },
               {
                 name: 'Kavita Mathur',
                 treatment: 'Emergency Cath Angioplasty',
-                text: 'When my husband suffered severe chest pain at midnight, Brahm Shakti casualty team stabilized him in minutes. The 24x7 Cath Lab angioplasty saved his life. Eternally grateful.',
-                location: 'Budh Vihar Phase I'
+                location: 'Budh Vihar Phase I',
+                initials: 'KM',
+                avatarBg: 'bg-teal-100',
+                avatarText: 'text-teal-800',
+                text: 'When my husband suffered severe chest angina at midnight, Brahm Shakti casualty team stabilized him in minutes. The 24x7 Cath Lab angioplasty saved his life. Eternally grateful.'
               },
               {
                 name: 'Mohd. Salim',
                 treatment: 'Maintenance Hemodialysis',
-                text: 'I have been coming to Brahm Shakti dialysis wing for 2 years. Ultra-pure water system, friendly nurses, and philanthropic trust rates have relieved my family completely.',
-                location: 'Pooth Khurd, Delhi'
+                location: 'Pooth Khurd, Delhi',
+                initials: 'MS',
+                avatarBg: 'bg-blue-100',
+                avatarText: 'text-blue-800',
+                text: 'I have been coming to Brahm Shakti dialysis wing for 2 years. Ultra-pure water system, friendly nurses, and philanthropic trust rates have relieved my family completely.'
+              },
+              {
+                name: 'Anita Sharma',
+                treatment: 'Maternity & High-Risk Delivery',
+                location: 'Sector 24, Rohini',
+                initials: 'AS',
+                avatarBg: 'bg-rose-100',
+                avatarText: 'text-rose-800',
+                text: 'Under Dr. Manisha Jain’s gentle guidance, our twin delivery went smoothly. The Level-III NICU nursery and compassionate nursing staff gave us unmatched reassurance.'
+              },
+              // Duplicate items for continuous seamless loop
+              {
+                name: 'Satish Narang',
+                treatment: 'Total Knee Replacement',
+                location: 'Rohini, Sector 22',
+                initials: 'SN',
+                avatarBg: 'bg-amber-100',
+                avatarText: 'text-amber-800',
+                text: 'Dr. Kapil Goyal and the orthopaedic team at Brahm Shakti Hospital gave me a second chance to walk pain-free. Subsidized package made it truly affordable for our family.'
+              },
+              {
+                name: 'Kavita Mathur',
+                treatment: 'Emergency Cath Angioplasty',
+                location: 'Budh Vihar Phase I',
+                initials: 'KM',
+                avatarBg: 'bg-teal-100',
+                avatarText: 'text-teal-800',
+                text: 'When my husband suffered severe chest angina at midnight, Brahm Shakti casualty team stabilized him in minutes. The 24x7 Cath Lab angioplasty saved his life. Eternally grateful.'
+              },
+              {
+                name: 'Mohd. Salim',
+                treatment: 'Maintenance Hemodialysis',
+                location: 'Pooth Khurd, Delhi',
+                initials: 'MS',
+                avatarBg: 'bg-blue-100',
+                avatarText: 'text-blue-800',
+                text: 'I have been coming to Brahm Shakti dialysis wing for 2 years. Ultra-pure water system, friendly nurses, and philanthropic trust rates have relieved my family completely.'
+              },
+              {
+                name: 'Anita Sharma',
+                treatment: 'Maternity & High-Risk Delivery',
+                location: 'Sector 24, Rohini',
+                initials: 'AS',
+                avatarBg: 'bg-rose-100',
+                avatarText: 'text-rose-800',
+                text: 'Under Dr. Manisha Jain’s gentle guidance, our twin delivery went smoothly. The Level-III NICU nursery and compassionate nursing staff gave us unmatched reassurance.'
               }
             ].map((t, idx) => (
-              <div key={idx} className="w-[84vw] xs:w-[76vw] md:w-auto shrink-0 snap-start bg-white/5 rounded-2xl p-5 sm:p-6 border border-white/10 flex flex-col justify-between">
+              <div
+                key={idx}
+                className="w-[290px] xs:w-[320px] sm:w-[360px] bg-white rounded-3xl p-5 sm:p-6 shadow-xs border border-slate-200/90 flex flex-col justify-between shrink-0 select-none hover:shadow-md transition-shadow"
+              >
                 <div>
-                  <div className="flex gap-1 text-accent mb-3">
+                  <div className="flex items-center gap-1 text-amber-400 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-accent" />
+                      <Star key={i} className="w-4 h-4 fill-amber-400" />
                     ))}
                   </div>
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed italic">
+                  <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed italic">
                     "{t.text}"
                   </p>
                 </div>
-                <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-white/10">
-                  <div className="font-bold text-white text-sm">{t.name}</div>
-                  <div className="text-xs text-accent">{t.treatment} · {t.location}</div>
+                <div className="mt-5 pt-4 border-t border-slate-100 flex items-center gap-3">
+                  <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${t.avatarBg} ${t.avatarText} font-bold flex items-center justify-center text-xs shrink-0 shadow-2xs`}>
+                    {t.initials}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-bold text-slate-900 text-xs sm:text-sm truncate">{t.name}</div>
+                    <div className="text-[10px] sm:text-[11px] font-bold text-slate-400 tracking-wider uppercase truncate mt-0.5">
+                      {t.treatment} · {t.location}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2: Auto-scrolling to the right */}
+          <div className="animate-marquee-right gap-4 sm:gap-6 px-4">
+            {[
+              {
+                name: 'Rajeshwar Singh',
+                treatment: 'Laparoscopic Surgery',
+                location: 'Rithala, Delhi',
+                initials: 'RS',
+                avatarBg: 'bg-indigo-100',
+                avatarText: 'text-indigo-800',
+                text: 'Dr. Nishant Verma’s surgical expertise is outstanding. Minimal incisions, discharged within 36 hours with zero post-operative pain. Cleanest hospital wards in North-West Delhi.'
+              },
+              {
+                name: 'Pooja Aggarwal',
+                treatment: 'Paediatric Emergency Care',
+                location: 'Narela, Delhi',
+                initials: 'PA',
+                avatarBg: 'bg-emerald-100',
+                avatarText: 'text-emerald-800',
+                text: 'When my 3-year-old daughter had high fever complications, the paediatric critical care unit reacted instantly. The doctors explained every medication with great empathy.'
+              },
+              {
+                name: 'Harpreet Kaur',
+                treatment: 'Endoscopic Sinus Surgery',
+                location: 'Pitampura, Delhi',
+                initials: 'HK',
+                avatarBg: 'bg-purple-100',
+                avatarText: 'text-purple-800',
+                text: 'Had suffered from chronic sinusitis for 5 years. The ENT day-care surgery at Brahm Shakti gave me permanent relief. Very courteous administration and billing desk.'
+              },
+              {
+                name: 'Dharmendra Verma',
+                treatment: 'Trauma & Fracture Fixation',
+                location: 'Bawana, Delhi',
+                initials: 'DV',
+                avatarBg: 'bg-amber-100',
+                avatarText: 'text-amber-800',
+                text: 'Admitted through emergency casualty following an accident. Immediate CT scans, round-the-clock surgeon availability, and cashless TPA insurance processing was seamless.'
+              },
+              // Duplicate items for continuous seamless loop
+              {
+                name: 'Rajeshwar Singh',
+                treatment: 'Laparoscopic Surgery',
+                location: 'Rithala, Delhi',
+                initials: 'RS',
+                avatarBg: 'bg-indigo-100',
+                avatarText: 'text-indigo-800',
+                text: 'Dr. Nishant Verma’s surgical expertise is outstanding. Minimal incisions, discharged within 36 hours with zero post-operative pain. Cleanest hospital wards in North-West Delhi.'
+              },
+              {
+                name: 'Pooja Aggarwal',
+                treatment: 'Paediatric Emergency Care',
+                location: 'Narela, Delhi',
+                initials: 'PA',
+                avatarBg: 'bg-emerald-100',
+                avatarText: 'text-emerald-800',
+                text: 'When my 3-year-old daughter had high fever complications, the paediatric critical care unit reacted instantly. The doctors explained every medication with great empathy.'
+              },
+              {
+                name: 'Harpreet Kaur',
+                treatment: 'Endoscopic Sinus Surgery',
+                location: 'Pitampura, Delhi',
+                initials: 'HK',
+                avatarBg: 'bg-purple-100',
+                avatarText: 'text-purple-800',
+                text: 'Had suffered from chronic sinusitis for 5 years. The ENT day-care surgery at Brahm Shakti gave me permanent relief. Very courteous administration and billing desk.'
+              },
+              {
+                name: 'Dharmendra Verma',
+                treatment: 'Trauma & Fracture Fixation',
+                location: 'Bawana, Delhi',
+                initials: 'DV',
+                avatarBg: 'bg-amber-100',
+                avatarText: 'text-amber-800',
+                text: 'Admitted through emergency casualty following an accident. Immediate CT scans, round-the-clock surgeon availability, and cashless TPA insurance processing was seamless.'
+              }
+            ].map((t, idx) => (
+              <div
+                key={idx}
+                className="w-[290px] xs:w-[320px] sm:w-[360px] bg-white rounded-3xl p-5 sm:p-6 shadow-xs border border-slate-200/90 flex flex-col justify-between shrink-0 select-none hover:shadow-md transition-shadow"
+              >
+                <div>
+                  <div className="flex items-center gap-1 text-amber-400 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed italic">
+                    "{t.text}"
+                  </p>
+                </div>
+                <div className="mt-5 pt-4 border-t border-slate-100 flex items-center gap-3">
+                  <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${t.avatarBg} ${t.avatarText} font-bold flex items-center justify-center text-xs shrink-0 shadow-2xs`}>
+                    {t.initials}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-bold text-slate-900 text-xs sm:text-sm truncate">{t.name}</div>
+                    <div className="text-[10px] sm:text-[11px] font-bold text-slate-400 tracking-wider uppercase truncate mt-0.5">
+                      {t.treatment} · {t.location}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}

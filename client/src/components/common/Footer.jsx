@@ -149,247 +149,156 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2: For Patients & Visitors, For Vendors & Suppliers, News & Events */}
-          <div className="space-y-4 sm:space-y-6">
-            <div>
-              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
-                For Patients & Visitors
-              </h4>
-              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
-                <li>
-                  <Link to="/consultation" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Request an Appointment
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/doctors" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Specialists
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/departments" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Medical Departments
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/departments" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Specialty Clinics
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services/ipd" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Admissions & Discharge
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Patients Guide
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/lab-results" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Lab Results
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services/opd" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    EWS Care
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
-                For Vendors & Suppliers
-              </h4>
-              <ul className="space-y-1 text-xs sm:text-[13px] text-slate-600">
-                <li>
-                  <Link to="/supplier/dashboard" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Tenders
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
-                News & Events
-              </h4>
-              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Latest News
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Hospital Newsletter
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Clinical Research
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Events
-                  </span>
-                </li>
-              </ul>
-            </div>
+          {/* Column 2: Clinical Services & Patient Care */}
+          <div className="space-y-4">
+            <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
+              Patient Care & Services
+            </h4>
+            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-2 text-xs sm:text-[13px] text-slate-600">
+              <li>
+                <Link to="/appointments" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Book an Appointment
+                </Link>
+              </li>
+              <li>
+                <Link to="/doctors" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Find a Specialist
+                </Link>
+              </li>
+              <li>
+                <Link to="/departments" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Clinical Departments
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/opd" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  OPD Clinical Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/ipd" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  IPD Inpatient Care
+                </Link>
+              </li>
+              <li>
+                <Link to="/lab-results" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Lab Test Results
+                </Link>
+              </li>
+              <li>
+                <Link to="/blood-bank" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Blood Bank Availability
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  24x7 Emergency Services
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Column 3: For Medical Professionals, For International Appointments, Career */}
-          <div className="space-y-4 sm:space-y-6">
-            <div>
-              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
-                For Medical Professionals
-              </h4>
-              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Research
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Nursing & GNM
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Academics
-                  </span>
-                </li>
-                <li>
-                  <Link to="/consultation" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Refer a Patient
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/login" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Doctor's Portal
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
-                For International Appointments
-              </h4>
-              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Patients Info
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Authorization
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
-                Career opportunities
-              </h4>
-              <ul className="space-y-1 text-xs sm:text-[13px] text-slate-600">
-                <li>
-                  <Link to="/contact" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Career at BSH
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          {/* Column 3: Hospital & Trust Governance */}
+          <div className="space-y-4">
+            <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
+              Hospital & Trust
+            </h4>
+            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-2 text-xs sm:text-[13px] text-slate-600">
+              <li>
+                <Link to="/about" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  About Brahm Shakti
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Brahm Shakti Trust (Regd.)
+                </Link>
+              </li>
+              <li>
+                <Link to="/facilities" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Facilities & Diagnostics
+                </Link>
+              </li>
+              <li>
+                <Link to="/pharmacy" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Hospital Pharmacy
+                </Link>
+              </li>
+              <li>
+                <Link to="/blood-bank/donate" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Donate Blood
+                </Link>
+              </li>
+              <li>
+                <Link to="/search" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Quick Search Portal
+                </Link>
+              </li>
+              <li>
+                <Link to="/login" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Staff & Doctor Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/supplier/dashboard" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Suppliers & Tenders
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Column 4: Additional Resources, Education and Research */}
-          <div className="space-y-4 sm:space-y-6">
-            <div>
-              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
-                Additional Resources
-              </h4>
-              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Life Certificate
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Quality Policy
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Bio Medical Reports
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Organ Donation
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Ceiling Prices
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Compliance
-                  </span>
-                </li>
-                <li>
-                  <Link to="/services/opd" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Health Services
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/facilities" className="hover:text-[#0A7A74] hover:underline transition-colors">
-                    Facilities
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-1.5 sm:mb-2.5 tracking-tight">
-                Education and Research
-              </h4>
-              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-1.5 text-xs sm:text-[13px] text-slate-600">
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Academics
-                  </span>
-                </li>
-                <li>
-                  <span className="cursor-pointer hover:text-[#0A7A74] hover:underline transition-colors">
-                    Research
-                  </span>
-                </li>
-              </ul>
-            </div>
+          {/* Column 4: Help, Guidance & Policies */}
+          <div className="space-y-4">
+            <h4 className="text-[13px] sm:text-[15px] font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
+              Help & Policies
+            </h4>
+            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-2 text-xs sm:text-[13px] text-slate-600">
+              <li>
+                <Link to="/contact" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Contact & Directions
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy-policy" className="hover:text-[#0A7A74] hover:underline transition-colors font-medium">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms-of-use" className="hover:text-[#0A7A74] hover:underline transition-colors font-medium">
+                  Terms of Use
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                  Patient Guide & FAQs
+                </Link>
+              </li>
+              <li>
+                <a href="tel:7840089703" className="hover:text-rose-600 font-semibold transition-colors">
+                  Emergency: 7840089703
+                </a>
+              </li>
+              <li>
+                <a href="tel:01127531683" className="hover:text-[#0A7A74] transition-colors">
+                  Reception: 011-27531683
+                </a>
+              </li>
+            </ul>
           </div>
 
         </div>
 
         {/* Clean subtle bottom bar */}
         <div className="pt-4 sm:pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2 sm:gap-3">
-          <p className="text-center sm:text-left">© {new Date().getFullYear()} Brahm Shakti Hospital. All rights reserved.</p>
+          <p className="text-center sm:text-left">© {new Date().getFullYear()} Brahm Shakti Hospital. Managed by Brahm Shakti Trust (Regd.). All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[11px]">
-            <span>Privacy Policy</span>
+            <Link to="/privacy-policy" className="hover:text-[#0A7A74] hover:underline transition-colors">Privacy Policy</Link>
             <span>·</span>
-            <span>Terms of Use</span>
+            <Link to="/terms-of-use" className="hover:text-[#0A7A74] hover:underline transition-colors">Terms of Use</Link>
             <span>·</span>
-            <span>NABH Accredited</span>
+            <span className="text-slate-400">NABH Accredited</span>
             <span>·</span>
-            <span>NABL Certified</span>
+            <span className="text-slate-400">NABL Certified</span>
           </div>
         </div>
       </div>

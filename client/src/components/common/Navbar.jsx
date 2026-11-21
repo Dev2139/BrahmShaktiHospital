@@ -296,7 +296,7 @@ export const Navbar = () => {
               className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-md shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
             >
               <Calendar className="w-4 h-4" />
-              <span>{isStaff ? 'My Dashboard' : 'Book Appointment'}</span>
+              <span>Book Appointment</span>
             </Link>
 
             <button
@@ -346,7 +346,7 @@ export const Navbar = () => {
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-primary text-white font-bold text-sm shadow-md"
               >
                 <Calendar className="w-4 h-4" />
-                <span>{isStaff ? 'My Dashboard' : 'Book Appointment'}</span>
+                <span>Book Appointment</span>
               </Link>
 
               {!isAuthenticated && (
@@ -423,10 +423,10 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Quick Access Strip (second row with popups) */}
+      {/* Quick Access Strip (second row with popups - 4 equal columns) */}
       <div className="hidden lg:block bg-medical-white border-t border-medical-border/70 shadow-sm relative">
         <div className="max-w-[1400px] mx-auto px-6 relative">
-          <div className="grid grid-cols-5 relative">
+          <div className="grid grid-cols-4 relative">
             {/* 1. Find a Doctor */}
             <Link
               to="/doctors"
@@ -472,7 +472,7 @@ export const Navbar = () => {
                 <span className="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Emergency</span>
               </button>
 
-              {/* Emergency Popup (as shown in Screenshot 1) */}
+              {/* Emergency Popup */}
               {emergencyModalOpen && (
                 <div
                   onClick={(e) => e.stopPropagation()}
@@ -532,15 +532,6 @@ export const Navbar = () => {
                 </div>
               )}
             </div>
-
-            {/* 5. Quick Search Page */}
-            <Link
-              to="/search"
-              className="group flex items-center justify-center gap-2.5 py-3.5 transition-colors hover:bg-primary-50 border-l border-medical-border/70"
-            >
-              <Zap className="w-5 h-5 text-primary" />
-              <span className="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Quick Search</span>
-            </Link>
           </div>
         </div>
       </div>
