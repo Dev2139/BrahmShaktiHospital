@@ -29,6 +29,7 @@ import LabResultsPage from './pages/public/LabResultsPage';
 import SearchPage from './pages/public/SearchPage';
 import PrivacyPolicyPage from './pages/public/PrivacyPolicyPage';
 import TermsOfUsePage from './pages/public/TermsOfUsePage';
+import EventDetailPage from './pages/public/EventDetailPage';
 
 // Auth Pages & Guards
 import LoginPage from './pages/auth/LoginPage';
@@ -49,6 +50,7 @@ import ReportsPage from './pages/admin/ReportsPage';
 import DoctorLeaveCalendarPage from './pages/admin/DoctorLeaveCalendarPage';
 import AdminGalleryPage from './pages/admin/AdminGalleryPage';
 import AdminInquiriesPage from './pages/admin/AdminInquiriesPage';
+import AdminEventsPage from './pages/admin/AdminEventsPage';
 
 // Specialized Role Dashboards
 import DoctorDashboardPage from './pages/doctor/DoctorDashboardPage';
@@ -100,6 +102,8 @@ export default function App() {
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-use" element={<TermsOfUsePage />} />
           <Route path="/terms" element={<TermsOfUsePage />} />
+          <Route path="/events/:id" element={<EventDetailPage />} />
+          <Route path="/events" element={<EventDetailPage />} />
         </Route>
 
         {/* Authentication Routes */}
@@ -213,6 +217,14 @@ export default function App() {
             element={
               <ProtectedRoute allowedRoles={['admin', 'superadmin', 'receptionist']}>
                 <AdminInquiriesPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/events"
+            element={
+              <ProtectedRoute allowedRoles={['admin', 'superadmin']}>
+                <AdminEventsPage />
               </ProtectedRoute>
             }
           />

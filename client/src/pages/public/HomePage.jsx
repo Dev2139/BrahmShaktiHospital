@@ -28,7 +28,8 @@ import {
   FlaskConical,
   Home as HomeIcon,
   FileCheck2,
-  FileText
+  FileText,
+  ExternalLink
 } from 'lucide-react';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
@@ -323,6 +324,45 @@ const FAQ_ITEMS = [
   }
 ];
 
+const INITIAL_HOME_EVENTS = [
+  {
+    _id: 'evt-hospice-care-2026',
+    title: 'World Hospice and Palliative Care Day 2026',
+    slug: 'world-hospice-and-palliative-care-day-2026',
+    coverImage: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795183378/brahmshakti_event_hero_resized.jpg',
+    location: 'Main Auditorium, Brahm Shakti Hospital, Pocket C, Budh Vihar, New Delhi',
+    date: '2026-10-09',
+    summary: 'A day of learning, clinical reflection, and compassionate healthcare at Brahm Shakti Hospital.'
+  },
+  {
+    _id: 'evt-national-flag-ceremony-2026',
+    title: 'National Flag Ceremony & Healthcare Dedication Assembly',
+    slug: 'national-flag-ceremony-and-healthcare-dedication-assembly',
+    coverImage: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795179941/Proud_Indian_Flag_Group_Portrait.png',
+    location: 'Hospital Front Courtyard, Budh Vihar Main Campus, Delhi',
+    date: '2026-08-15',
+    summary: 'Senior doctors, surgeons, nurses, and administrative leadership assemble to celebrate national service.'
+  },
+  {
+    _id: 'evt-mega-health-camp-2026',
+    title: 'Mega Multi-Specialty Free Health Camp & Screening Drive',
+    slug: 'mega-multi-specialty-free-health-camp-and-screening-drive',
+    coverImage: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795183537/WhatsApp_Image_2026-11-04_at_8.03.05_AM_2.jpg',
+    location: 'Super-Specialty OPD Complex, Brahm Shakti Hospital, New Delhi',
+    date: '2026-11-02',
+    summary: 'Complimentary specialist consultations in Cardiology, Orthopaedics, Gynaecology, and Paediatrics for local families.'
+  },
+  {
+    _id: 'evt-blood-donation-drive-2026',
+    title: 'Voluntary Blood Donation Drive & Donor Felicitations',
+    slug: 'voluntary-blood-donation-drive-and-donor-felicitations',
+    coverImage: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795185836/WhatsApp_Image_2026-11-04_at_8.03.05_AM.jpg',
+    location: 'Licensed Blood Centre, Brahm Shakti Hospital Campus',
+    date: '2026-06-14',
+    summary: 'Replenishing vital emergency blood reserves with 135 volunteer donors on World Blood Donor Day.'
+  }
+];
+
 export const HomePage = () => {
   const navigate = useNavigate();
   const { isAuthenticated, isStaff, dashboardPath } = useAuth();
@@ -430,6 +470,38 @@ export const HomePage = () => {
   const handleCategoryClick = (catId) => {
     setSelectedGalleryCategory(catId);
     setGalleryActiveIndex(0);
+  };
+
+  // Events Slider State & Dynamic Fetching
+  const [eventsList, setEventsList] = useState(INITIAL_HOME_EVENTS);
+  const [eventSlideIndex, setEventSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await api.get('/events');
+        if (res.data?.success && Array.isArray(res.data?.data) && res.data.data.length > 0) {
+          setEventsList(res.data.data);
+        }
+      } catch (err) {
+        console.warn('Events fetch fallback:', err);
+      }
+    };
+    fetchEvents();
+  }, []);
+
+  const currentEvent = eventsList[eventSlideIndex] || eventsList[0] || INITIAL_HOME_EVENTS[0];
+
+  const handlePrevEvent = (e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    setEventSlideIndex((prev) => (prev - 1 + eventsList.length) % eventsList.length);
+  };
+
+  const handleNextEvent = (e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    setEventSlideIndex((prev) => (prev + 1) % eventsList.length);
   };
 
   useEffect(() => {
@@ -1024,6 +1096,213 @@ export const HomePage = () => {
                   alt="Orthopaedic Joint Surgery"
                   className="rounded-2xl shadow-md h-36 sm:h-56 w-full object-cover"
                 />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5.5 Events & Location and Directions Showcase (Matches Reference Layout with Hospital Medical Palette) */}
+      <section id="events-section" className="py-12 sm:py-16 bg-[#F4F8FA]/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            {/* Column 1: Events */}
+            <div className="flex flex-col justify-between space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl sm:text-3xl font-black text-[#0A7A74] tracking-tight">
+                  Events
+                </h2>
+                <Link
+                  to={`/events/${currentEvent?.slug || currentEvent?._id || ''}`}
+                  className="text-xs font-bold text-[#0A7A74] hover:underline flex items-center gap-1"
+                >
+                  <span>Explore Events</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+
+              {/* Event Card */}
+              <div className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden flex flex-col justify-between flex-1 group hover:border-[#0A7A74]/40 transition-all">
+                {/* Event Photo with Floating Slider Arrows */}
+                <div className="relative aspect-16/10 bg-slate-900 overflow-hidden">
+                  <img
+                    src={currentEvent?.coverImage}
+                    alt={currentEvent?.title || 'Brahm Shakti Hospital Event'}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      e.target.src = 'https://res.cloudinary.com/urzka7oz/image/upload/v1795183378/brahmshakti_event_hero_resized.jpg';
+                    }}
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none" />
+
+                  {/* Floating Previous Arrow */}
+                  <button
+                    type="button"
+                    onClick={handlePrevEvent}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center hover:bg-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                    aria-label="Previous Event"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-slate-700" />
+                  </button>
+
+                  {/* Floating Next Arrow */}
+                  <button
+                    type="button"
+                    onClick={handleNextEvent}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center hover:bg-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                    aria-label="Next Event"
+                  >
+                    <ChevronRight className="w-5 h-5 text-slate-700" />
+                  </button>
+
+                  {/* Slide Counter Pill */}
+                  <div className="absolute bottom-3 left-4 z-10">
+                    <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold">
+                      {eventSlideIndex + 1} / {eventsList.length}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Event Content & Read More Link */}
+                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-4">
+                  <div className="space-y-2">
+                    {/* Date with Clock Icon */}
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                      <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <span>{currentEvent?.date || '2026-10-09'}</span>
+                    </div>
+
+                    {/* Event Title */}
+                    <Link
+                      to={`/events/${currentEvent?.slug || currentEvent?._id}`}
+                      className="block text-lg sm:text-xl font-black text-slate-900 tracking-tight leading-snug line-clamp-2 hover:text-[#0A7A74] transition-colors"
+                    >
+                      {currentEvent?.title}
+                    </Link>
+
+                    {/* Short Summary Snippet */}
+                    {currentEvent?.summary && (
+                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                        {currentEvent.summary}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Read More Link */}
+                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <Link
+                      to={`/events/${currentEvent?.slug || currentEvent?._id}`}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 hover:text-[#0A7A74] transition-colors group/link"
+                    >
+                      <span>Read More</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+
+                    {/* Slide Dots */}
+                    <div className="flex items-center gap-1.5">
+                      {eventsList.map((_, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setEventSlideIndex(idx)}
+                          className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                            idx === eventSlideIndex ? 'w-5 bg-[#0A7A74]' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
+                          }`}
+                          aria-label={`Go to slide ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 2: Location and Directions */}
+            <div className="flex flex-col justify-between space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl sm:text-3xl font-black text-[#0A7A74] tracking-tight">
+                  Location and Directions
+                </h2>
+                <a
+                  href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-[#0A7A74] hover:underline flex items-center gap-1"
+                >
+                  <span>Google Maps</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+
+              {/* Location Card */}
+              <div className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden flex flex-col justify-between flex-1 group hover:border-[#0A7A74]/40 transition-all">
+                {/* Hospital Google Map Interactive Embed */}
+                <div className="relative aspect-16/10 bg-slate-100 overflow-hidden">
+                  <iframe
+                    title="Brahm Shakti Hospital Campus Directions"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.9754714488344!2d77.06745197631726!3d28.719894475619106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d06f6bf53bc47%3A0xe53be0c8fc0283f3!2sBrahm%20Shakti%20Hospital!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                    className="w-full h-full border-0"
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+
+                  {/* Campus Pin Pill */}
+                  <div className="absolute top-3 right-3 z-10">
+                    <span className="px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md text-white text-[10px] font-bold flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-emerald-400" />
+                      <span>Budh Vihar Main Campus</span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Location Info & Read More Link */}
+                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-4">
+                  <div className="space-y-2">
+                    {/* Date / 24x7 Status with Clock Icon */}
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                      <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <span>Open 24 Hours / 7 Days a Week (Emergency Casualty)</span>
+                    </div>
+
+                    {/* Location Title */}
+                    <a
+                      href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-lg sm:text-xl font-black text-slate-900 tracking-tight leading-snug line-clamp-2 hover:text-[#0A7A74] transition-colors"
+                    >
+                      Brahm Shakti Hospital is located in Budh Vihar, Rohini Zone
+                    </a>
+
+                    {/* Address Detail Snippet */}
+                    <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                      Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085 (Near Udyog Nagar &amp; Rithala Metro Stations).
+                    </p>
+                  </div>
+
+                  {/* Read More / Get Directions Link */}
+                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <a
+                      href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 hover:text-[#0A7A74] transition-colors group/link"
+                    >
+                      <span>Read More &amp; Directions</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                    </a>
+
+                    <Link
+                      to="/contact"
+                      className="text-xs font-bold text-[#0A7A74] hover:underline flex items-center gap-1"
+                    >
+                      <span>Helpdesk Contacts</span>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

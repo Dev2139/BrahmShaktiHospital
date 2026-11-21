@@ -28,7 +28,8 @@ import {
   Scissors,
   Eye,
   Baby,
-  MessageSquare
+  MessageSquare,
+  CalendarDays
 } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
@@ -597,6 +598,14 @@ export const AdminDashboardPage = () => {
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>Patient Inquiries &amp; Helpdesk Form</span>
+                  </Link>
+
+                  <Link
+                    to="/admin/events"
+                    className="flex items-center gap-3 p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-900 text-xs font-bold transition-all"
+                  >
+                    <CalendarDays className="w-4 h-4" />
+                    <span>Hospital Events &amp; Ceremonies</span>
                   </Link>
 
                   <Link

@@ -19,6 +19,7 @@ import enquiryRoutes from './routes/enquiryRoutes.js';
 import labReportRoutes from './routes/labReportRoutes.js';
 import leaveRoutes from './routes/leaveRoutes.js';
 import galleryRoutes from './routes/galleryRoutes.js';
+import eventRoutes from './routes/eventRoutes.js';
 
 import { notFoundHandler, errorHandler } from './middleware/errorHandler.js';
 import { isMongoConnected } from './config/db.js';
@@ -87,6 +88,7 @@ app.use('/api/enquiries', enquiryRoutes);
 app.use('/api/lab-reports', labReportRoutes);
 app.use('/api/leaves', leaveRoutes);
 app.use('/api/gallery', galleryRoutes);
+app.use('/api/events', eventRoutes);
 
 // Serve static client production build if available
 if (fs.existsSync(clientDistPath)) {
