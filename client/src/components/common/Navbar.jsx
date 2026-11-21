@@ -102,8 +102,10 @@ export const Navbar = () => {
   const isMenuActive = (menu) => menu.match.some((m) => location.pathname.startsWith(m));
 
   const navLinkClass = (active) =>
-    `flex items-center gap-1 px-3.5 py-2 rounded-lg text-[15px] font-semibold transition-colors ${
-      active ? 'text-primary' : 'text-secondary hover:text-primary'
+    `flex items-center gap-1.5 px-4 py-2 rounded-xl text-[15px] font-bold transition-all select-none ${
+      active
+        ? 'text-primary bg-primary-50 ring-1 ring-primary/20'
+        : 'text-secondary hover:text-primary hover:bg-slate-100/80'
     }`;
 
   const appointmentTarget = isStaff
@@ -113,20 +115,23 @@ export const Navbar = () => {
   return (
     <header ref={navRef} className="sticky top-0 z-50 w-full bg-white shadow-md transition-shadow">
       {/* Main White Navbar */}
-      <nav className="bg-medical-white px-3 sm:px-6 py-2.5 sm:py-3">
-        <div className="max-w-[1400px] mx-auto flex items-center gap-3">
-          {/* Hospital Logo (Standalone branding graphic with no adjacent text) */}
-          <Link to="/" className="flex items-center group shrink-0" aria-label="Brahm Shakti Hospital Home">
-            <img
-              src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
-              alt="Brahm Shakti Hospital"
-              className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
-              loading="eager"
-            />
-          </Link>
+      <nav className="bg-medical-white px-3 sm:px-6 py-2.5 sm:py-3 border-b border-medical-border/60">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+          {/* Left: Hospital Logo (Wider and prominent) */}
+          <div className="flex-1 flex items-center justify-start min-w-0">
+            <Link to="/" className="flex items-center group shrink-0" aria-label="Brahm Shakti Hospital Home">
+              <img
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                alt="Brahm Shakti Hospital"
+                className="h-11 sm:h-13 md:h-15 lg:h-16 w-auto max-w-[240px] sm:max-w-[300px] md:max-w-[360px] object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                loading="eager"
+              />
+            </Link>
+          </div>
 
-          {/* Centered Navigation With Click-To-Open Persistent Dropdowns */}
-          <div className="hidden lg:flex items-center gap-2 flex-1 justify-center">
+          {/* Centered Navigation (Speciality, About Us, Quick Search, Contact Us) */}
+          <div className="hidden lg:flex items-center justify-center gap-1.5 xl:gap-2.5 shrink-0">
+            {/* 1 & 2: Speciality & About Us Dropdowns */}
             {Object.entries(menus).map(([label, menu]) => {
               const active = isMenuActive(menu);
               const isOpen = openMenu === label;
@@ -140,7 +145,7 @@ export const Navbar = () => {
                       setEmergencyModalOpen(false);
                       setQuickSearchModalOpen(false);
                     }}
-                    className={`${navLinkClass(active)} whitespace-nowrap cursor-pointer select-none`}
+                    className={`${navLinkClass(active || isOpen)} whitespace-nowrap cursor-pointer select-none`}
                   >
                     <span>{label}</span>
                     <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
@@ -176,6 +181,103 @@ export const Navbar = () => {
               );
             })}
 
+            {/* 3. Quick Search (Positioned between About Us and Contact Us) */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setQuickSearchModalOpen(!quickSearchModalOpen);
+                  setEmergencyModalOpen(false);
+                  setOpenMenu(null);
+                }}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-[15px] font-bold transition-all cursor-pointer select-none ${
+                  quickSearchModalOpen
+                    ? 'text-primary bg-primary-50 ring-1 ring-primary/20'
+                    : 'text-secondary hover:text-primary hover:bg-slate-100/80'
+                }`}
+              >
+                <Search className="w-4 h-4 text-primary" />
+                <span>Quick Search</span>
+              </button>
+
+              {quickSearchModalOpen && (
+                <div
+                  onClick={(e) => e.stopPropagation()}
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-80 sm:w-[350px] bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-7 z-50 text-left animate-in fade-in zoom-in-95 duration-150"
+                >
+                  {/* Pointer triangle */}
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-slate-200" />
+
+                  {/* Circular Teal Close Button */}
+                  <button
+                    type="button"
+                    aria-label="Close"
+                    onClick={() => setQuickSearchModalOpen(false)}
+                    className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#0A7A74] hover:bg-[#075954] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer z-20"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+
+                  <h3 className="text-lg font-bold text-slate-900 text-center mb-5 tracking-tight">
+                    Quick Search
+                  </h3>
+
+                  <form onSubmit={handleQuickSearchSubmit} className="space-y-4">
+                    {/* Department Dropdown */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                        Department
+                      </label>
+                      <select
+                        value={searchDept}
+                        onChange={(e) => {
+                          setSearchDept(e.target.value);
+                          setSearchDoctor('');
+                        }}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 bg-white focus:outline-none focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] cursor-pointer"
+                      >
+                        <option value="">Select Department</option>
+                        {departmentsData.map((d) => (
+                          <option key={d.id} value={d.id}>
+                            {d.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Doctor Dropdown */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                        Doctor
+                      </label>
+                      <select
+                        value={searchDoctor}
+                        onChange={(e) => setSearchDoctor(e.target.value)}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 bg-white focus:outline-none focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] cursor-pointer"
+                      >
+                        <option value="">Select Doctor</option>
+                        {filteredDoctors.map((doc) => (
+                          <option key={doc.id} value={doc.name}>
+                            {doc.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Orange Search Button */}
+                    <button
+                      type="submit"
+                      className="w-full mt-5 py-3 rounded-xl bg-[#E06D2D] hover:bg-[#C95B1F] text-white font-bold text-sm shadow-md transition-all cursor-pointer hover:shadow-lg active:scale-[0.98]"
+                    >
+                      Search
+                    </button>
+                  </form>
+                </div>
+              )}
+            </div>
+
+            {/* 4. Contact Us */}
             {plainLinks.map((link) => (
               <Link
                 key={link.path}
@@ -187,8 +289,8 @@ export const Navbar = () => {
             ))}
           </div>
 
-          {/* Right Side: Book Appointment Pill + Mobile Toggle */}
-          <div className="flex items-center gap-2 shrink-0 lg:flex-1 lg:justify-end">
+          {/* Right: Book Appointment Pill + Mobile Toggle */}
+          <div className="flex-1 flex items-center justify-end gap-2 shrink-0">
             <Link
               to={appointmentTarget}
               className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-md shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
@@ -431,100 +533,14 @@ export const Navbar = () => {
               )}
             </div>
 
-            {/* 5. Quick Search Trigger */}
-            <div className="relative border-l border-medical-border/70">
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setQuickSearchModalOpen(!quickSearchModalOpen);
-                  setEmergencyModalOpen(false);
-                  setOpenMenu(null);
-                }}
-                className={`w-full group flex items-center justify-center gap-2.5 py-3.5 transition-colors cursor-pointer ${
-                  quickSearchModalOpen ? 'bg-primary-50' : 'hover:bg-primary-50'
-                }`}
-              >
-                <Zap className="w-5 h-5 text-primary" />
-                <span className="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Quick Search</span>
-              </button>
-
-              {/* Quick Search Popup (as shown in Screenshot 2) */}
-              {quickSearchModalOpen && (
-                <div
-                  onClick={(e) => e.stopPropagation()}
-                  className="absolute top-full right-2 mt-3 w-80 sm:w-[350px] bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-7 z-50 text-left animate-in fade-in zoom-in-95 duration-150"
-                >
-                  {/* Pointer triangle pointing up to Quick Search tab */}
-                  <div className="absolute -top-2 right-16 w-4 h-4 bg-white rotate-45 border-t border-l border-slate-200" />
-
-                  {/* Circular Teal Close Button */}
-                  <button
-                    type="button"
-                    aria-label="Close"
-                    onClick={() => setQuickSearchModalOpen(false)}
-                    className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#0A7A74] hover:bg-[#075954] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer z-20"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-
-                  <h3 className="text-lg font-bold text-slate-900 text-center mb-5 tracking-tight">
-                    Quick Search
-                  </h3>
-
-                  <form onSubmit={handleQuickSearchSubmit} className="space-y-4">
-                    {/* Department Dropdown */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-600 mb-1.5">
-                        Department
-                      </label>
-                      <select
-                        value={searchDept}
-                        onChange={(e) => {
-                          setSearchDept(e.target.value);
-                          setSearchDoctor('');
-                        }}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 bg-white focus:outline-none focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] cursor-pointer"
-                      >
-                        <option value="">Select Department</option>
-                        {departmentsData.map((d) => (
-                          <option key={d.id} value={d.id}>
-                            {d.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Doctor Dropdown */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-600 mb-1.5">
-                        Doctor
-                      </label>
-                      <select
-                        value={searchDoctor}
-                        onChange={(e) => setSearchDoctor(e.target.value)}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 bg-white focus:outline-none focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] cursor-pointer"
-                      >
-                        <option value="">Select Doctor</option>
-                        {filteredDoctors.map((doc) => (
-                          <option key={doc.id} value={doc.name}>
-                            {doc.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Orange Search Button */}
-                    <button
-                      type="submit"
-                      className="w-full mt-5 py-3 rounded-xl bg-[#E06D2D] hover:bg-[#C95B1F] text-white font-bold text-sm shadow-md transition-all cursor-pointer hover:shadow-lg active:scale-[0.98]"
-                    >
-                      Search
-                    </button>
-                  </form>
-                </div>
-              )}
-            </div>
+            {/* 5. Quick Search Page */}
+            <Link
+              to="/search"
+              className="group flex items-center justify-center gap-2.5 py-3.5 transition-colors hover:bg-primary-50 border-l border-medical-border/70"
+            >
+              <Zap className="w-5 h-5 text-primary" />
+              <span className="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Quick Search</span>
+            </Link>
           </div>
         </div>
       </div>
