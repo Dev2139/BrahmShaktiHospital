@@ -30,7 +30,8 @@ import {
   Baby,
   MessageSquare,
   CalendarDays,
-  MapPin
+  MapPin,
+  FileText
 } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
@@ -615,6 +616,14 @@ export const AdminDashboardPage = () => {
                   >
                     <MapPin className="w-4 h-4" />
                     <span>Location &amp; Directions Guide</span>
+                  </Link>
+
+                  <Link
+                    to="/admin/news"
+                    className="flex items-center gap-3 p-3.5 rounded-2xl bg-teal-50 hover:bg-teal-600 hover:text-white text-teal-900 text-xs font-bold transition-all"
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span>News &amp; Official Circulars</span>
                   </Link>
 
                   <Link

@@ -53,6 +53,7 @@ import AdminGalleryPage from './pages/admin/AdminGalleryPage';
 import AdminInquiriesPage from './pages/admin/AdminInquiriesPage';
 import AdminEventsPage from './pages/admin/AdminEventsPage';
 import AdminLocationPage from './pages/admin/AdminLocationPage';
+import AdminNewsPage from './pages/admin/AdminNewsPage';
 
 // Specialized Role Dashboards
 import DoctorDashboardPage from './pages/doctor/DoctorDashboardPage';
@@ -238,6 +239,14 @@ export default function App() {
             element={
               <ProtectedRoute allowedRoles={['admin', 'superadmin']}>
                 <AdminLocationPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/news"
+            element={
+              <ProtectedRoute allowedRoles={['admin', 'superadmin']}>
+                <AdminNewsPage />
               </ProtectedRoute>
             }
           />

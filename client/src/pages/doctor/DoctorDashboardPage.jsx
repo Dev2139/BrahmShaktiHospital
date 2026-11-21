@@ -20,7 +20,9 @@ import {
   ShieldCheck,
   Building2,
   Eye,
-  RefreshCw
+  RefreshCw,
+  Bell,
+  Pin
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
@@ -37,6 +39,10 @@ export const DoctorDashboardPage = () => {
   const [loadingAppointments, setLoadingAppointments] = useState(true);
   const [selectedApt, setSelectedApt] = useState(null);
   const [clinicalNotes, setClinicalNotes] = useState('');
+
+  // Doctor Clinical Notices & Circulars
+  const [doctorNotices, setDoctorNotices] = useState([]);
+  const [selectedNotice, setSelectedNotice] = useState(null);
 
   // Doctor Profile state
   const [doctorProfile, setDoctorProfile] = useState(null);
@@ -149,10 +155,23 @@ export const DoctorDashboardPage = () => {
     }
   };
 
+  const fetchDoctorNotices = async () => {
+    try {
+      const docId = doctorProfile?.id || user?.doctorId || '';
+      const res = await api.get(`/news?audience=doctors&doctorId=${docId}`);
+      if (res.data?.success && Array.isArray(res.data.data)) {
+        setDoctorNotices(res.data.data);
+      }
+    } catch (err) {
+      console.warn('Failed to load doctor circulars:', err);
+    }
+  };
+
   useEffect(() => {
     fetchDoctorAppointments();
     fetchDoctorProfile();
-  }, [user]);
+    fetchDoctorNotices();
+  }, [user, doctorProfile?.id]);
 
   // Handle Note Save
   const handleSaveNotes = async (e) => {
@@ -340,7 +359,7 @@ export const DoctorDashboardPage = () => {
 
         <button
           onClick={() => setActiveTab('profile')}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
             activeTab === 'profile'
               ? 'bg-primary text-white shadow-sm'
               : 'text-secondary hover:bg-medical-coolgray'
@@ -348,6 +367,18 @@ export const DoctorDashboardPage = () => {
         >
           <User className="w-4 h-4" />
           <span>Doctor Profile &amp; Settings</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('notices')}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            activeTab === 'notices'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-secondary hover:bg-medical-coolgray'
+          }`}
+        >
+          <Bell className="w-4 h-4" />
+          <span>Clinical Circulars &amp; Notices ({doctorNotices.length})</span>
         </button>
       </div>
 
@@ -709,6 +740,141 @@ export const DoctorDashboardPage = () => {
               </div>
             </div>
           </form>
+        </div>
+      )}
+
+      {/* Tab 3: Clinical Circulars & Administrative Notices for Doctors */}
+      {activeTab === 'notices' && (
+        <div className="bg-white rounded-3xl border border-medical-border shadow-soft p-6 sm:p-8 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-medical-border">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-purple-50 text-purple-700 text-[10px] font-bold uppercase tracking-wider mb-1">
+                <ShieldCheck className="w-3 h-3" />
+                <span>Internal Medical Governance &amp; Directives</span>
+              </div>
+              <h3 className="text-xl font-black text-secondary">Clinical Bulletins &amp; Doctor Circulars</h3>
+              <p className="text-xs text-medical-muted">
+                Official medical protocols, audit announcements, and alerts distributed to hospital clinicians.
+              </p>
+            </div>
+            <button
+              onClick={fetchDoctorNotices}
+              className="p-2 rounded-xl border border-medical-border text-secondary hover:bg-medical-coolgray self-start sm:self-auto cursor-pointer"
+              title="Refresh Bulletins"
+            >
+              <RefreshCw className="w-4 h-4" />
+            </button>
+          </div>
+
+          {doctorNotices.length === 0 ? (
+            <div className="py-12 text-center text-medical-muted">
+              <Bell className="w-10 h-10 mx-auto mb-2 text-slate-300" />
+              <p className="text-xs font-bold">No active circulars at this moment.</p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {doctorNotices.map((notice) => (
+                <div
+                  key={notice.id || notice._id}
+                  className="p-4 sm:p-5 rounded-2xl border border-slate-200/90 hover:border-[#0A7A74]/50 hover:bg-slate-50/60 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                >
+                  <div className="flex items-start gap-4 flex-1">
+                    <div className="w-14 h-14 rounded-xl bg-slate-900 text-white flex flex-col items-center justify-center shrink-0 border border-slate-700 shadow-2xs">
+                      <span className="text-[10px] uppercase font-bold text-teal-300">
+                        {notice.date ? new Date(notice.date).toLocaleDateString('en-US', { month: 'short' }) : 'NOV'}
+                      </span>
+                      <span className="text-base font-black leading-none mt-0.5">
+                        {notice.date ? new Date(notice.date).getDate() : '22'}
+                      </span>
+                    </div>
+
+                    <div className="space-y-1.5 flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {notice.refNumber && (
+                          <span className="font-mono text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
+                            {notice.refNumber}
+                          </span>
+                        )}
+                        <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-teal-50 text-[#0A7A74] border border-teal-200/60">
+                          {notice.category}
+                        </span>
+                        {notice.audience === 'specific_doctors' && (
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                            Directly Assigned to You
+                          </span>
+                        )}
+                        {notice.isNewBadge && (
+                          <span className="px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-black uppercase tracking-wider animate-pulse">
+                            NEW
+                          </span>
+                        )}
+                      </div>
+
+                      <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                        {notice.title}
+                      </h4>
+                      <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                        {notice.summary || notice.excerpt}
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setSelectedNotice(notice)}
+                    className="px-4 py-2 rounded-xl bg-[#0A7A74] text-white text-xs font-bold hover:bg-[#08635e] transition-colors shrink-0 self-end sm:self-center cursor-pointer"
+                  >
+                    Read Circular
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Notice Detail Modal for Doctor */}
+      {selectedNotice && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs">
+          <div className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 space-y-5 shadow-2xl border border-slate-200 max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-medical-border">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
+                  {selectedNotice.refNumber || 'BSH/NOTICE'}
+                </span>
+                <span className="px-2 py-0.5 rounded text-xs font-bold bg-teal-50 text-[#0A7A74]">
+                  {selectedNotice.category}
+                </span>
+              </div>
+              <button onClick={() => setSelectedNotice(null)} className="text-medical-muted font-bold text-sm">✕</button>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-lg font-black text-secondary leading-snug">
+                {selectedNotice.title}
+              </h3>
+              <div className="flex items-center gap-3 text-xs text-medical-muted">
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5 text-primary" />
+                  {selectedNotice.date}
+                </span>
+                <span>•</span>
+                <span>By: {selectedNotice.author || 'Hospital Administration'}</span>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-medical-coolgray font-mono text-xs text-secondary leading-relaxed whitespace-pre-line border border-medical-border">
+                {selectedNotice.content || selectedNotice.summary}
+              </div>
+
+              <div className="pt-2 text-right">
+                <button
+                  onClick={() => setSelectedNotice(null)}
+                  className="px-5 py-2 rounded-xl bg-secondary text-white font-bold text-xs"
+                >
+                  Dismiss
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 

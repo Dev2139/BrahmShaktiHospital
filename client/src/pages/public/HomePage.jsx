@@ -29,7 +29,10 @@ import {
   Home as HomeIcon,
   FileCheck2,
   FileText,
-  ExternalLink
+  ExternalLink,
+  Bell,
+  Pin,
+  Megaphone
 } from 'lucide-react';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
@@ -364,6 +367,162 @@ const INITIAL_HOME_EVENTS = [
   }
 ];
 
+const HOSPITAL_FACILITIES = [
+  {
+    id: 'fac-01',
+    title: 'Modular 4K Laparoscopic OT Suites',
+    badge: 'Surgical Block · 2nd Floor',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200',
+    description: 'Precision surgical operating suites with laminar positive airflow, HEPA-14 filtration, Stryker 4K laparoscopic vision towers, and high-frequency C-Arm fluoroscopy for zero-infection minimally invasive surgeries.',
+    features: ['Laminar Airflow & HEPA-14 Clean Rooms', 'Stryker 4K Laparoscopy Systems', 'Laser Proctology & Endourology Station', 'Continuous Anesthesia Gas Scavenging']
+  },
+  {
+    id: 'fac-02',
+    title: 'Level-III Neonatal & Pediatric ICU (NICU / PICU)',
+    badge: 'Mother & Child Wing · Block C',
+    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=1200',
+    description: 'Round-the-clock tertiary neonatal intensive care for premature and high-risk neonates, equipped with GE Giraffe radiant warmers, neonatal ventilators, and 1:1 dedicated nursing care.',
+    features: ['GE Giraffe Micro-Environment Warmers', 'High-Frequency Oscillatory Ventilators', 'Continuous Multipara Cardio-Respiratory Monitors', 'Double Surface LED Phototherapy']
+  },
+  {
+    id: 'fac-03',
+    title: 'Hemodialysis & Charitable Renal Care Center',
+    badge: 'Dialysis Center · Ground Floor',
+    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200',
+    description: 'High-flux hemodialysis unit equipped with Fresenius 4008S machines and multi-stage reverse osmosis (RO) water purification delivering subsidized, infection-free renal treatment.',
+    features: ['Fresenius 4008S Dialysis Consoles', 'Double-Pass Ultra-Pure RO Water Plant', 'Dedicated Serology-Isolated Bays', 'Subsidized Charitable Trust Tariff']
+  },
+  {
+    id: 'fac-04',
+    title: '24x7 Emergency Casualty & Trauma Resuscitation Bay',
+    badge: 'Emergency Ramp · 24x7 Triage',
+    image: 'https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&q=80&w=1200',
+    description: 'Direct ground-level ambulance ramp with cardiac defibrillators, crash carts, mobile ICU ambulances, and on-duty emergency physicians ready 24 hours a day.',
+    features: ['Direct Road-Level Ambulance Ramp', 'Zoll Biphasic Defibrillators & Crash Carts', 'Rapid Triage & Toxicology Protocol', 'Mobile ICU Ambulance Fleet on Call']
+  },
+  {
+    id: 'fac-05',
+    title: 'Digital Radiology, Ultrasonography & Diagnostics',
+    badge: 'Radiology Wing · Ground Floor',
+    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200',
+    description: 'High-frequency digital radiography, Color Doppler 3D/4D ultrasound, echocardiography, and cloud PACS integration providing rapid diagnostic imaging reports.',
+    features: ['High-Frequency Digital X-Ray (DR)', 'Color Doppler 3D/4D Ultrasound', '2D Echocardiography & Cardiac TMT', 'Immediate Cloud PACS Digital Reporting']
+  },
+  {
+    id: 'fac-06',
+    title: 'NABL-Accredited 24x7 Central Diagnostic Pathology',
+    badge: 'Central Lab · Block A',
+    image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&q=80&w=1200',
+    description: 'Fully automated clinical biochemistry, hematology, and clinical pathology analyzers delivering urgent STAT patient reports in under 45 minutes.',
+    features: ['Automated Clinical Chemistry Analysers', 'Coulter 5-Part Differential Haematology', 'STAT Emergency Turnaround < 45 Mins', 'Online Lab Report Retrieval System']
+  }
+];
+
+const INITIAL_PATIENT_NOTICES = [
+  {
+    id: 'notice-patient-01',
+    title: 'Winter Seasonal Respiratory Care & Subsidized OPD Nebulization Desk Notification',
+    summary: 'Special winter pediatric and geriatric respiratory desk operational in Block A. Daily nebulization, pulse oximetry, and senior physician consultations available at subsidized trust rates.',
+    content: `CIRCULAR REF: BSH/ADM/2026/104
+DATE OF ISSUANCE: 22nd November 2026
+ISSUED BY: Office of the Medical Superintendent, Brahm Shakti Hospital, Budh Vihar
+
+All patients, outpatients, and visiting families are hereby informed that in view of winter air quality fluctuations and seasonal bronchitis prevalence across North-West Delhi, Brahm Shakti Hospital has instituted a Dedicated Respiratory Support Desk at the Ground Floor OPD Block.
+
+Key Patient Facilities:
+1. Subsidized Consultation: Daily OPD assessment by consultant chest physicians and pediatricians between 09:00 AM and 04:00 PM.
+2. Rapid Nebulization Suite: Equipped with hospital-grade ultrasonic nebulizers and oxygen concentrators.
+3. Priority Senior Citizen Desk: Wheelchair access and zero-wait triage for patients aged 60 and above experiencing acute shortness of breath.
+4. 24x7 Emergency Casualty: Round-the-clock emergency admission and nebulization available via Emergency Desk (Tel: 011-27531683 / 7840089703).
+
+For further assistance, please contact the Main Hospital Reception or consult the Desk Officer at Counter 4.`,
+    category: 'Patient Advisory',
+    refNumber: 'BSH/ADM/2026/104',
+    audience: 'patients',
+    date: '2026-11-22',
+    isPinned: true,
+    isNewBadge: true,
+    status: 'published',
+    author: 'Medical Superintendent Office',
+    readTime: '2 min read'
+  },
+  {
+    id: 'notice-patient-02',
+    title: 'Ayushman Bharat (PM-JAY) & Delhi Arogya Kosh (DAK) Cashless Helpdesk Operational Hours',
+    summary: 'Designated Ayushman Mitras available 24x7 at the Cashless Triage Counter. Pre-authorization guidelines for tertiary surgical procedures and critical care admissions.',
+    content: `CIRCULAR REF: BSH/GOV/2026/098
+DATE OF ISSUANCE: 18th November 2026
+ISSUED BY: Department of Government Empanelment & Public Welfare, Brahm Shakti Hospital
+
+Brahm Shakti Hospital reaffirms its commitment to providing accessible, cashless healthcare under Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (PM-JAY) and Delhi Arogya Kosh (DAK).
+
+Beneficiary Guidelines:
+- Beneficiaries must present their active PM-JAY Golden Card or DAK allotment certificate along with Aadhaar authentication at Counter 2.
+- Dedicated Ayushman Mitras will complete digital biometric verification and initiate real-time pre-authorization with the National Health Authority (NHA) within 45 minutes of admission.
+- Covered specialties include General & Laparoscopic Surgery, Orthopedics & Joint Trauma, Dialysis & Nephrology, ICU/HDU Care, and Obstetrics & Gynecology.
+
+Helpdesk Contact: 7840089703 (Ayushman Desk / Trauma Triage).`,
+    category: 'Public Notice',
+    refNumber: 'BSH/GOV/2026/098',
+    audience: 'patients',
+    date: '2026-11-18',
+    isPinned: true,
+    isNewBadge: true,
+    status: 'published',
+    author: 'Government Schemes Liaison Desk',
+    readTime: '3 min read'
+  },
+  {
+    id: 'notice-patient-03',
+    title: 'Revised Morning & Evening OPD Consultation Timings for Winter Session 2026',
+    summary: 'Clinical consultation schedule updated across General Medicine, General Surgery, Pediatrics, Orthopedics, and Gynecology departments.',
+    content: `CIRCULAR REF: BSH/OPD/2026/091
+DATE OF ISSUANCE: 15th November 2026
+ISSUED BY: Director Clinical Services, Brahm Shakti Hospital
+
+To optimize patient comfort and minimize early-morning chill exposure for infants and elderly visitors, OPD consultation hours have been revised as follows, effective immediately:
+
+- Morning OPD Session: 09:30 AM to 01:30 PM (Monday through Saturday)
+- Evening OPD Session: 04:30 PM to 07:30 PM (Monday through Saturday)
+- Sunday Specialty Clinics: 10:00 AM to 01:00 PM (Cardiology, Diabetology & Pediatrics)
+- Emergency Casualty & Trauma Ward: Functioning 24 Hours / 7 Days continuously.
+
+Digital appointment tokens can be scheduled via our official online booking portal or by calling our desk at 011-27531683.`,
+    category: 'OPD Schedule',
+    refNumber: 'BSH/OPD/2026/091',
+    audience: 'patients',
+    date: '2026-11-15',
+    isPinned: false,
+    isNewBadge: false,
+    status: 'published',
+    author: 'Clinical Administration',
+    readTime: '2 min read'
+  },
+  {
+    id: 'notice-patient-04',
+    title: 'Free Weekly Community Diabetes & Hypertension Screening Camp Every Sunday',
+    summary: 'Complimentary blood sugar, HbA1c screening, blood pressure monitoring, and nutritionist consultations for local residents of Budh Vihar and Rohini.',
+    content: `CIRCULAR REF: BSH/WLF/2026/085
+DATE OF ISSUANCE: 10th November 2026
+ISSUED BY: Community Health Outreach Division, Brahm Shakti Trust
+
+Under the philanthropic banner of Brahm Shakti Trust, the hospital will conduct a Free Preventive Diabetes & Hypertension Camp on every Sunday throughout November and December 2026.
+
+Camp Venue: Main OPD Foyer, Brahm Shakti Hospital, Pocket C, Budh Vihar Phase I, Delhi 110085.
+Timings: 09:00 AM to 01:00 PM.
+Free Deliverables: Random Blood Sugar Test, BP checkup, BMI calculation, and diet counseling by certified nutritionists. No registration fee required.`,
+    category: 'Health Campaign',
+    refNumber: 'BSH/WLF/2026/085',
+    audience: 'patients',
+    date: '2026-11-10',
+    isPinned: false,
+    isNewBadge: false,
+    status: 'published',
+    author: 'Brahm Shakti Trust Board',
+    readTime: '2 min read'
+  }
+];
+
 export const HomePage = () => {
   const navigate = useNavigate();
   const { isAuthenticated, isStaff, dashboardPath } = useAuth();
@@ -474,9 +633,47 @@ export const HomePage = () => {
     setGalleryActiveIndex(0);
   };
 
+  // Showcase Unified Section State ('events' | 'location' | 'facilities')
+  const [activeShowcaseTab, setActiveShowcaseTab] = useState('events');
+  const [facilitySlideIndex, setFacilitySlideIndex] = useState(0);
+
   // Events Slider State & Dynamic Fetching
   const [eventsList, setEventsList] = useState(INITIAL_HOME_EVENTS);
   const [eventSlideIndex, setEventSlideIndex] = useState(0);
+
+  // Government Style Patient News & Official Bulletins
+  const [patientNewsList, setPatientNewsList] = useState(INITIAL_PATIENT_NOTICES);
+  const [newsFilterCategory, setNewsFilterCategory] = useState('all');
+  const [selectedNoticeModal, setSelectedNoticeModal] = useState(null);
+  const [newsSearchTerm, setNewsSearchTerm] = useState('');
+
+  useEffect(() => {
+    const fetchPatientNews = async () => {
+      try {
+        const res = await api.get('/news?audience=patients');
+        if (res.data?.success && Array.isArray(res.data.data) && res.data.data.length > 0) {
+          setPatientNewsList(res.data.data);
+        }
+      } catch (err) {
+        console.warn('Patient news fetch fallback:', err);
+      }
+    };
+    fetchPatientNews();
+  }, []);
+
+  const currentFacility = HOSPITAL_FACILITIES[facilitySlideIndex] || HOSPITAL_FACILITIES[0];
+
+  const handlePrevFacility = (e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    setFacilitySlideIndex((prev) => (prev - 1 + HOSPITAL_FACILITIES.length) % HOSPITAL_FACILITIES.length);
+  };
+
+  const handleNextFacility = (e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    setFacilitySlideIndex((prev) => (prev + 1) % HOSPITAL_FACILITIES.length);
+  };
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -1125,105 +1322,166 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 5.5 Events & Location and Directions Showcase (Matches Reference Layout with Hospital Medical Palette) */}
-      <section id="events-section" className="py-12 sm:py-16 bg-[#F4F8FA]/70">
+      {/* 5.5 Unified Hospital Showcase (Events / Location & Directions / Facilities) */}
+      <section id="showcase-section" className="py-12 sm:py-16 bg-[#F4F8FA]/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            {/* Column 1: Events */}
-            <div className="flex flex-col justify-between space-y-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl sm:text-3xl font-black text-[#0A7A74] tracking-tight">
-                  Events
-                </h2>
-                <Link
-                  to={`/events/${currentEvent?.slug || currentEvent?._id || ''}`}
-                  className="text-xs font-bold text-[#0A7A74] hover:underline flex items-center gap-1"
-                >
-                  <span>Explore Events</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </Link>
+          {/* Header & Segmented Switcher Controls */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] text-xs font-bold uppercase tracking-wider mb-2">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Hospital Highlights &amp; Visitor Guide</span>
               </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                Explore Brahm Shakti Hospital
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-xl">
+                Browse our institutional events, hospital transit directions, and advanced tertiary facilities all in one interactive space.
+              </p>
+            </div>
 
-              {/* Event Card */}
-              <div className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden flex flex-col justify-between flex-1 group hover:border-[#0A7A74]/40 transition-all">
-                {/* Event Photo with Floating Slider Arrows */}
-                <div className="relative h-60 sm:h-72 w-full bg-slate-900 overflow-hidden">
+            {/* Unified Segmented Switcher Buttons */}
+            <div className="inline-flex items-center p-1.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs self-start md:self-auto">
+              <button
+                type="button"
+                onClick={() => setActiveShowcaseTab('events')}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  activeShowcaseTab === 'events'
+                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+              >
+                <Calendar className="w-4 h-4" />
+                <span>Events</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                  activeShowcaseTab === 'events' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
+                }`}>
+                  {eventsList.length}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveShowcaseTab('location')}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  activeShowcaseTab === 'location'
+                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+              >
+                <MapPin className="w-4 h-4" />
+                <span>Location &amp; Directions</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveShowcaseTab('facilities')}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  activeShowcaseTab === 'facilities'
+                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+              >
+                <Building2 className="w-4 h-4" />
+                <span>Facilities</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                  activeShowcaseTab === 'facilities' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
+                }`}>
+                  {HOSPITAL_FACILITIES.length}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Unified Container - Switches in the same place */}
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden transition-all duration-300">
+            {/* VIEW 1: EVENTS */}
+            {activeShowcaseTab === 'events' && (
+              <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[380px]">
+                {/* Event Photo with Floating Slider Controls */}
+                <div className="lg:col-span-7 relative h-64 sm:h-80 lg:h-auto min-h-[280px] bg-slate-950 overflow-hidden group">
                   <img
                     src={currentEvent?.coverImage}
                     alt={currentEvent?.title || 'Brahm Shakti Hospital Event'}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     onError={(e) => {
                       e.target.src = 'https://res.cloudinary.com/urzka7oz/image/upload/v1795183378/brahmshakti_event_hero_resized.jpg';
                     }}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20 pointer-events-none" />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none" />
-
-                  {/* Floating Previous Arrow */}
+                  {/* Previous Button */}
                   <button
                     type="button"
                     onClick={handlePrevEvent}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center hover:bg-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center hover:bg-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
                     aria-label="Previous Event"
                   >
                     <ChevronLeft className="w-5 h-5 text-slate-700" />
                   </button>
 
-                  {/* Floating Next Arrow */}
+                  {/* Next Button */}
                   <button
                     type="button"
                     onClick={handleNextEvent}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center hover:bg-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center hover:bg-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
                     aria-label="Next Event"
                   >
                     <ChevronRight className="w-5 h-5 text-slate-700" />
                   </button>
 
-                  {/* Slide Counter Pill */}
+                  {/* Slide Counter */}
                   <div className="absolute bottom-3 left-4 z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold">
-                      {eventSlideIndex + 1} / {eventsList.length}
+                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-bold">
+                      Event {eventSlideIndex + 1} of {eventsList.length}
                     </span>
                   </div>
                 </div>
 
-                {/* Event Content & Read More Link */}
-                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-4">
-                  <div className="space-y-2">
-                    {/* Date with Clock Icon */}
-                    <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                      <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
-                      <span>{currentEvent?.date || '2026-10-09'}</span>
+                {/* Event Details Content */}
+                <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-5 bg-white">
+                  <div className="space-y-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="px-2.5 py-0.5 rounded-md bg-teal-50 text-[#0A7A74] text-xs font-bold border border-teal-200/60">
+                        Hospital Outreach
+                      </span>
+                      <div className="flex items-center gap-1 text-xs text-slate-500 font-medium">
+                        <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <span>{currentEvent?.date || '2026-10-09'}</span>
+                      </div>
                     </div>
 
-                    {/* Event Title */}
                     <Link
                       to={`/events/${currentEvent?.slug || currentEvent?._id}`}
-                      className="block text-lg sm:text-xl font-black text-slate-900 tracking-tight leading-snug line-clamp-2 hover:text-[#0A7A74] transition-colors"
+                      className="block text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug hover:text-[#0A7A74] transition-colors"
                     >
                       {currentEvent?.title}
                     </Link>
 
-                    {/* Short Summary Snippet */}
+                    {currentEvent?.location && (
+                      <div className="flex items-start gap-1.5 text-xs text-slate-500">
+                        <MapPin className="w-3.5 h-3.5 text-[#0A7A74] shrink-0 mt-0.5" />
+                        <span>{currentEvent.location}</span>
+                      </div>
+                    )}
+
                     {currentEvent?.summary && (
-                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-4">
                         {currentEvent.summary}
                       </p>
                     )}
                   </div>
 
-                  {/* Read More Link */}
-                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                  <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
                     <Link
                       to={`/events/${currentEvent?.slug || currentEvent?._id}`}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 hover:text-[#0A7A74] transition-colors group/link"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-sm group/btn"
                     >
-                      <span>Read More</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                      <span>Read Event Details</span>
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
 
-                    {/* Slide Dots */}
+                    {/* Dots */}
                     <div className="flex items-center gap-1.5">
                       {eventsList.map((_, idx) => (
                         <button
@@ -1231,99 +1489,192 @@ export const HomePage = () => {
                           type="button"
                           onClick={() => setEventSlideIndex(idx)}
                           className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                            idx === eventSlideIndex ? 'w-5 bg-[#0A7A74]' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
+                            idx === eventSlideIndex ? 'w-6 bg-[#0A7A74]' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
                           }`}
-                          aria-label={`Go to slide ${idx + 1}`}
+                          aria-label={`Slide ${idx + 1}`}
                         />
                       ))}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Column 2: Location and Directions */}
-            <div className="flex flex-col justify-between space-y-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl sm:text-3xl font-black text-[#0A7A74] tracking-tight">
-                  Location and Directions
-                </h2>
-                <a
-                  href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-bold text-[#0A7A74] hover:underline flex items-center gap-1"
-                >
-                  <span>Google Maps</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-
-              {/* Location Card */}
-              <div className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden flex flex-col justify-between flex-1 group hover:border-[#0A7A74]/40 transition-all">
-                {/* Hospital Google Map Interactive Embed */}
-                <div className="relative h-60 sm:h-72 w-full bg-slate-100 overflow-hidden">
+            {/* VIEW 2: LOCATION & DIRECTIONS */}
+            {activeShowcaseTab === 'location' && (
+              <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[380px]">
+                {/* Google Map Interactive Embed */}
+                <div className="lg:col-span-7 relative h-64 sm:h-80 lg:h-auto min-h-[300px] bg-slate-100 overflow-hidden">
                   <iframe
                     title="Brahm Shakti Hospital Campus Directions"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.9754714488344!2d77.06745197631726!3d28.719894475619106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d06f6bf53bc47%3A0xe53be0c8fc0283f3!2sBrahm%20Shakti%20Hospital!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                    className="w-full h-full border-0"
+                    className="w-full h-full border-0 min-h-[300px]"
                     loading="lazy"
                     allowFullScreen
                     referrerPolicy="no-referrer-when-downgrade"
                   />
-
-                  {/* Campus Pin Pill */}
                   <div className="absolute top-3 right-3 z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md text-white text-[10px] font-bold flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-emerald-400" />
+                    <span className="px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-bold flex items-center gap-1.5 shadow-md">
+                      <MapPin className="w-3.5 h-3.5 text-emerald-400" />
                       <span>Budh Vihar Main Campus</span>
                     </span>
                   </div>
                 </div>
 
-                {/* Location Info & Read More Link */}
-                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-4">
-                  <div className="space-y-2">
-                    {/* Date / 24x7 Status with Clock Icon */}
+                {/* Location Details Content */}
+                <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-5 bg-white">
+                  <div className="space-y-3">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
                       <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
                       <span>Open 24 Hours / 7 Days a Week (Emergency Casualty)</span>
                     </div>
 
-                    {/* Location Title */}
-                    <Link
-                      to="/location-and-directions"
-                      className="block text-lg sm:text-xl font-black text-slate-900 tracking-tight leading-snug line-clamp-2 hover:text-[#0A7A74] transition-colors"
-                    >
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug">
                       Brahm Shakti Hospital is located in Budh Vihar, Rohini Zone
-                    </Link>
+                    </h3>
 
-                    {/* Address Detail Snippet */}
-                    <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
-                      Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085 (Near Udyog Nagar &amp; Rithala Metro Stations).
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085. Managed by Brahm Shakti Trust (Regd.).
                     </p>
+
+                    <div className="space-y-2 pt-2 border-t border-slate-100 text-xs text-slate-700">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-md bg-teal-50 text-[#0A7A74] flex items-center justify-center font-bold text-[11px] shrink-0">
+                          🚇
+                        </span>
+                        <span><strong>Nearest Metro:</strong> Rithala Metro (Red Line) &amp; Udyog Nagar (Green Line)</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-md bg-teal-50 text-[#0A7A74] flex items-center justify-center font-bold text-[11px] shrink-0">
+                          🚌
+                        </span>
+                        <span><strong>Road Access:</strong> Outer Ring Road &amp; Mangolpuri Flyover Corridor</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-md bg-rose-50 text-rose-600 flex items-center justify-center font-bold text-[11px] shrink-0">
+                          🚑
+                        </span>
+                        <span><strong>Emergency Triage:</strong> 24x7 Direct Road-Level Ambulance Ramp</span>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Read More / Get Directions Link */}
-                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                  <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
                     <Link
                       to="/location-and-directions"
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 hover:text-[#0A7A74] transition-colors group/link"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-sm group/btn"
                     >
-                      <span>Read More</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                      <span>Full Transit &amp; Route Guide</span>
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
 
-                    <Link
-                      to="/contact"
-                      className="text-xs font-bold text-[#0A7A74] hover:underline flex items-center gap-1"
+                    <a
+                      href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0A7A74] hover:underline"
                     >
-                      <span>Helpdesk Contacts</span>
-                    </Link>
+                      <span>Open in Google Maps</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* VIEW 3: FACILITIES */}
+            {activeShowcaseTab === 'facilities' && (
+              <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[380px]">
+                {/* Facility Photo with Slider Controls */}
+                <div className="lg:col-span-7 relative h-64 sm:h-80 lg:h-auto min-h-[280px] bg-slate-950 overflow-hidden group">
+                  <img
+                    src={currentFacility.image}
+                    alt={currentFacility.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20 pointer-events-none" />
+
+                  {/* Previous Button */}
+                  <button
+                    type="button"
+                    onClick={handlePrevFacility}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center hover:bg-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                    aria-label="Previous Facility"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-slate-700" />
+                  </button>
+
+                  {/* Next Button */}
+                  <button
+                    type="button"
+                    onClick={handleNextFacility}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center hover:bg-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                    aria-label="Next Facility"
+                  >
+                    <ChevronRight className="w-5 h-5 text-slate-700" />
+                  </button>
+
+                  {/* Slide Counter */}
+                  <div className="absolute bottom-3 left-4 z-10">
+                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-bold">
+                      Facility {facilitySlideIndex + 1} of {HOSPITAL_FACILITIES.length}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Facility Details Content */}
+                <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-5 bg-white">
+                  <div className="space-y-3">
+                    <span className="px-2.5 py-0.5 rounded-md bg-teal-50 text-[#0A7A74] text-xs font-bold border border-teal-200/60">
+                      {currentFacility.badge}
+                    </span>
+
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug">
+                      {currentFacility.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {currentFacility.description}
+                    </p>
+
+                    {/* Features list */}
+                    <div className="pt-2 border-t border-slate-100 grid grid-cols-1 gap-2">
+                      {currentFacility.features.map((feat, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs text-slate-700">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                    <Link
+                      to={appointmentTarget}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-sm group/btn"
+                    >
+                      <span>Book OPD Consultation</span>
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+
+                    {/* Dots */}
+                    <div className="flex items-center gap-1.5">
+                      {HOSPITAL_FACILITIES.map((_, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setFacilitySlideIndex(idx)}
+                          className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                            idx === facilitySlideIndex ? 'w-6 bg-[#0A7A74]' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
+                          }`}
+                          aria-label={`Facility ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -1563,191 +1914,180 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 7. Community Health Camps & Hospital Events Section */}
-      <section className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-5 sm:mb-8">
+      {/* 7. Government-Style Official News, Announcements & Patient Circulars */}
+      <section id="news-section" className="max-w-7xl mx-auto px-4">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#0B2545] tracking-tight">
-              Hospital Events & Healthcare Initiatives
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] text-xs font-bold uppercase tracking-wider mb-2">
+              <FileText className="w-3.5 h-3.5" />
+              <span>Official Notices &amp; Patient Advisories</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Hospital Announcements &amp; Public Circulars
             </h2>
-            <p className="text-xs sm:text-base text-slate-600 mt-1 max-w-2xl">
-              Participate in free community screening camps, specialist CME symposiums, and patient awareness programs at Brahm Shakti Hospital.
+            <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
+              Official medical orders, health camp circulars, and public health advisories issued by Brahm Shakti Hospital Administration for visiting patients and families.
             </p>
           </div>
-          <Link
-            to={appointmentTarget}
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0A7A74] hover:text-[#08625d] transition-colors self-start sm:self-auto shrink-0"
-          >
-            <span>Register for Free Camp</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+
+          <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+            <span className="text-xs text-slate-500 font-semibold">
+              Showing {patientNewsList.length} Official Bulletins
+            </span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch">
-          {/* Left Column: Featured Event Card */}
-          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
-            <div className="relative h-48 sm:h-72 overflow-hidden bg-slate-900">
-              <img
-                src={FEATURED_EVENT.image}
-                alt={FEATURED_EVENT.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />
-              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap gap-2">
-                <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-600 text-white text-[11px] sm:text-xs font-bold shadow-sm">
-                  {FEATURED_EVENT.badge}
-                </span>
-              </div>
-              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-white">
-                <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[11px] sm:text-sm font-medium text-emerald-200 mb-1">
-                  <span className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md">
-                    <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400" />
-                    {FEATURED_EVENT.date}
-                  </span>
-                  <span className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md">
-                    <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400" />
-                    {FEATURED_EVENT.time}
-                  </span>
-                </div>
-                <h3 className="text-base sm:text-2xl font-bold leading-snug drop-shadow-sm line-clamp-2">
-                  {FEATURED_EVENT.title}
-                </h3>
-              </div>
-            </div>
-
-            <div className="p-4 sm:p-7 flex-1 flex flex-col justify-between space-y-4 sm:space-y-6">
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
-                  <MapPin className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
-                  <span className="font-medium text-slate-700">{FEATURED_EVENT.venue}</span>
-                </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3 sm:line-clamp-none">
-                  {FEATURED_EVENT.description}
-                </p>
-
-                {/* Highlights List */}
-                <div className="pt-1 sm:pt-2">
-                  <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 sm:mb-3">
-                    Camp Benefits & Free Services
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2.5">
-                    {FEATURED_EVENT.highlights.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#0A7A74] shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-3 sm:pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3">
-                <Link
-                  to={appointmentTarget}
-                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08625d] text-white text-xs sm:text-sm font-semibold transition-all shadow-sm cursor-pointer"
-                >
-                  <span>Book Free Screening Slot</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-                <a
-                  href="tel:7840089703"
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2 sm:py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:text-[#0A7A74] hover:border-[#0A7A74]/30 text-xs sm:text-sm font-medium transition-colors cursor-pointer"
-                >
-                  <PhoneCall className="w-3.5 h-3.5 text-[#0A7A74]" />
-                  <span>Enquiry: 7840089703</span>
-                </a>
-              </div>
-            </div>
+        {/* Institutional Alert / Urgent Advisory Banner */}
+        <div className="bg-slate-900 text-white rounded-2xl p-3.5 sm:px-5 flex items-center justify-between gap-4 mb-6 shadow-sm overflow-hidden border border-slate-800">
+          <div className="flex items-center gap-2.5 shrink-0">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-emerald-300 bg-emerald-950/90 px-2 py-0.5 rounded border border-emerald-800/60">
+              LATEST CIRCULAR
+            </span>
           </div>
 
-          {/* Right Column: Stacked Upcoming Events (Swipeable on Mobile, Stacked on Desktop) */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-3 sm:space-y-4">
-            <div className="flex items-center justify-between mb-0.5 sm:mb-1">
-              <h3 className="text-base sm:text-lg font-bold text-[#0B2545]">
-                Upcoming Medical Workshops
-              </h3>
-              <span className="sm:hidden text-xs text-[#0A7A74] font-bold">Swipe →</span>
-              <span className="hidden sm:inline text-xs font-medium text-slate-500">DMC Certified</span>
-            </div>
+          <div className="text-xs sm:text-sm text-slate-200 font-medium truncate flex-1">
+            Winter Seasonal Respiratory Desk Operational in Block A · Free Sunday Diabetes Screening · 24x7 Cashless Ayushman Helpdesk Counter 2
+          </div>
 
-            <div className="flex lg:flex-col gap-3 sm:gap-4 overflow-x-auto lg:overflow-visible pb-3 lg:pb-0 scrollbar-none snap-x -mx-4 px-4 lg:mx-0 lg:px-0">
-              {UPCOMING_EVENTS.map((event) => (
-                <div
-                  key={event.id}
-                  className="w-[84vw] xs:w-[76vw] lg:w-auto shrink-0 snap-start bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all p-4 sm:p-5 flex flex-col sm:flex-row gap-3 sm:gap-4 group cursor-default"
-                >
-                  <div className="relative w-full sm:w-28 sm:h-28 h-32 sm:h-auto rounded-xl overflow-hidden shrink-0 bg-slate-100">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+          <span className="text-[11px] text-teal-300 font-mono font-bold shrink-0 hidden md:inline">
+            BSH / Budh Vihar Main Campus
+          </span>
+        </div>
+
+        {/* Filter Pills & Search */}
+        <div className="mb-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+            {[
+              { id: 'all', label: 'All Notices' },
+              { id: 'Patient Advisory', label: 'Patient Advisories' },
+              { id: 'Public Notice', label: 'Public Notices' },
+              { id: 'OPD Schedule', label: 'OPD Schedule' },
+              { id: 'Health Campaign', label: 'Health Campaigns' }
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setNewsFilterCategory(cat.id)}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                  newsFilterCategory === cat.id
+                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="relative w-full sm:w-64">
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type="text"
+              value={newsSearchTerm}
+              onChange={(e) => setNewsSearchTerm(e.target.value)}
+              placeholder="Search circulars, topics..."
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
+            />
+          </div>
+        </div>
+
+        {/* Notice Board List (Authentic Government Institutional Design) */}
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden divide-y divide-slate-100">
+          {patientNewsList
+            .filter((item) => {
+              if (newsFilterCategory !== 'all' && item.category !== newsFilterCategory) return false;
+              if (newsSearchTerm) {
+                const term = newsSearchTerm.toLowerCase();
+                return (
+                  (item.title || '').toLowerCase().includes(term) ||
+                  (item.summary || '').toLowerCase().includes(term) ||
+                  (item.refNumber || '').toLowerCase().includes(term)
+                );
+              }
+              return true;
+            })
+            .map((item) => (
+              <div
+                key={item.id || item._id}
+                className="p-5 sm:p-6 hover:bg-slate-50/80 transition-colors flex flex-col md:flex-row items-start md:items-center justify-between gap-4 group"
+              >
+                <div className="flex items-start gap-4 flex-1 min-w-0">
+                  {/* Government Date Badge */}
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-slate-900 text-white flex flex-col items-center justify-center shrink-0 border border-slate-800 shadow-2xs group-hover:border-[#0A7A74] transition-colors">
+                    <span className="text-[10px] uppercase font-bold text-teal-300 tracking-wider">
+                      {item.date ? new Date(item.date).toLocaleDateString('en-US', { month: 'short' }) : 'NOV'}
+                    </span>
+                    <span className="text-base sm:text-lg font-black leading-none mt-0.5">
+                      {item.date ? new Date(item.date).getDate() : '22'}
+                    </span>
                   </div>
-                  <div className="flex-1 flex flex-col justify-between min-w-0">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <span className={`px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-semibold border ${event.tagColor}`}>
-                          {event.category}
+
+                  {/* Notice Content */}
+                  <div className="space-y-1.5 flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      {item.refNumber && (
+                        <span className="font-mono text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200/60">
+                          {item.refNumber}
                         </span>
-                        <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium">
-                          {event.date}
+                      )}
+                      <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-teal-50 text-[#0A7A74] border border-teal-200/60">
+                        {item.category}
+                      </span>
+                      {item.isPinned && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-rose-50 text-rose-600 text-[10px] font-bold">
+                          <Pin className="w-3 h-3 fill-rose-600" />
+                          <span>Pinned</span>
                         </span>
-                      </div>
-                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors line-clamp-2 leading-snug">
-                        {event.title}
-                      </h4>
-                      <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5 line-clamp-1 font-medium">
-                        Faculty: {event.speaker}
-                      </p>
+                      )}
+                      {item.isNewBadge && (
+                        <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-black uppercase tracking-wider animate-pulse">
+                          NEW
+                        </span>
+                      )}
                     </div>
 
-                    <div className="flex items-center justify-between pt-2 mt-2 border-t border-slate-100 text-[11px] text-slate-500">
-                      <span className="truncate max-w-[170px] sm:max-w-[200px]">{event.venue}</span>
-                      <Link
-                        to={appointmentTarget}
-                        className="text-[#0A7A74] hover:underline font-semibold shrink-0 flex items-center gap-1"
-                      >
-                        Attend <ArrowRight className="w-3 h-3" />
-                      </Link>
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                      {item.summary || item.excerpt}
+                    </p>
+
+                    <div className="flex items-center gap-3 text-[11px] text-slate-400 pt-0.5">
+                      <span>Issued by: {item.author || 'Brahm Shakti Hospital Administration'}</span>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+
+                {/* Read Button */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedNoticeModal(item)}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-200 group-hover:border-[#0A7A74] group-hover:bg-[#0A7A74] group-hover:text-white text-slate-700 text-xs font-bold transition-all shrink-0 self-end md:self-center cursor-pointer shadow-2xs"
+                >
+                  <span>Read Circular</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+              </div>
+            ))}
         </div>
       </section>
 
-      {/* 8. Campus & Infrastructure Photo Gallery Section - 3D Cover Flow Carousel */}
+      {/* 8. Campus Moments (Photo Gallery Section - 3D Cover Flow Carousel) */}
       <section className="max-w-7xl mx-auto px-4 overflow-hidden">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0B2545] tracking-tight">
-            Hospital Campus & Clinical Gallery
+            Campus Moments
           </h2>
           <p className="text-sm sm:text-base text-slate-600 mt-1">
-            Explore our state-of-the-art modular operating suites, specialized critical care units, and patient facilities in Budh Vihar.
+            A visual walk through our advanced surgical suites, intensive care units, emergency bay, and hospital campus.
           </p>
-
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
-            {GALLERY_CATEGORIES.map((cat) => {
-              const active = selectedGalleryCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  type="button"
-                  onClick={() => handleCategoryClick(cat.id)}
-                  className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                    active
-                      ? 'bg-[#0A7A74] text-white shadow-sm'
-                      : 'bg-slate-100 hover:bg-slate-200/80 text-slate-700'
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              );
-            })}
-          </div>
         </div>
 
         {/* 3D Auto-Scrolling One-Line Carousel Container */}
@@ -1895,6 +2235,71 @@ export const HomePage = () => {
                   alt="Brahm Shakti Hospital Gallery Full View"
                   className="w-full h-auto max-h-[84vh] object-contain rounded-2xl shadow-lg"
                 />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Official Hospital Circular / Patient Advisory Modal */}
+        {selectedNoticeModal && (
+          <div
+            className="fixed inset-0 z-50 bg-black/75 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
+            onClick={() => setSelectedNoticeModal(null)}
+          >
+            <div
+              className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 max-h-[88vh] overflow-y-auto space-y-5 animate-in fade-in zoom-in-95 duration-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
+                <div className="space-y-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {selectedNoticeModal.refNumber && (
+                      <span className="font-mono text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded border border-slate-200">
+                        {selectedNoticeModal.refNumber}
+                      </span>
+                    )}
+                    <span className="px-2.5 py-0.5 rounded text-xs font-bold bg-teal-50 text-[#0A7A74] border border-teal-200/60">
+                      {selectedNoticeModal.category}
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-snug pt-1">
+                    {selectedNoticeModal.title}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelectedNoticeModal(null)}
+                  className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-[#0A7A74]" />
+                  <span>Date: {selectedNoticeModal.date}</span>
+                </span>
+                <span>•</span>
+                <span>Issued by: {selectedNoticeModal.author || 'Brahm Shakti Hospital Administration'}</span>
+              </div>
+
+              {/* Official notification text */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 font-mono text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                {selectedNoticeModal.content || selectedNoticeModal.summary}
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-[11px] text-slate-400">
+                  Brahm Shakti Hospital · Budh Vihar, Delhi 110085
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedNoticeModal(null)}
+                  className="px-5 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 transition-colors cursor-pointer"
+                >
+                  Close Notice
+                </button>
               </div>
             </div>
           </div>
