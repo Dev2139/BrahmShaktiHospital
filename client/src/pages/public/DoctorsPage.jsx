@@ -18,16 +18,6 @@ import {
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 
-const HOSPITAL_LOCATIONS = [
-  { id: 'main-campus', label: 'Brahm Shakti Hospital, Budh Vihar Main Campus' },
-  { id: 'super-specialty', label: 'Super Specialty OPD Block' },
-  { id: 'mother-child', label: 'Mother & Child Healthcare Wing' },
-  { id: 'casualty-trauma', label: 'Casualty & Critical Trauma Centre' },
-  { id: 'dialysis-center', label: 'Dialysis & Nephrology Wing' },
-  { id: 'ayurveda-wing', label: 'Ayurveda & Rehabilitation Wing' },
-  { id: 'diagnostic-center', label: 'Diagnostic & Imaging Center' }
-];
-
 const SPECIALTY_LIST = [
   { id: 'medicine', label: 'Internal Medicine & Diabetology' },
   { id: 'general-surgery', label: 'General & Laparoscopic Surgery' },
@@ -62,8 +52,6 @@ export const DoctorsPage = () => {
 
   // Filter state
   const [sortBy, setSortBy] = useState('experience'); // 'experience' | 'earliest' | 'fee'
-  const [selectedLocations, setSelectedLocations] = useState([]);
-  const [locationSearch, setLocationSearch] = useState('');
   const [selectedSpecialties, setSelectedSpecialties] = useState(
     searchParams.get('department') && searchParams.get('department') !== 'all'
       ? [searchParams.get('department')]
@@ -75,7 +63,6 @@ export const DoctorsPage = () => {
   // Accordion toggle state
   const [accordions, setAccordions] = useState({
     sort: true,
-    location: true,
     speciality: true,
     gender: true,
     category: true
@@ -105,12 +92,6 @@ export const DoctorsPage = () => {
     setAccordions((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const toggleLocation = (locLabel) => {
-    setSelectedLocations((prev) =>
-      prev.includes(locLabel) ? prev.filter((l) => l !== locLabel) : [...prev, locLabel]
-    );
-  };
-
   const toggleSpecialty = (specId) => {
     setSelectedSpecialties((prev) =>
       prev.includes(specId) ? prev.filter((s) => s !== specId) : [...prev, specId]
@@ -132,7 +113,6 @@ export const DoctorsPage = () => {
   const clearAllFilters = () => {
     setSearchQuery('');
     setSortBy('experience');
-    setSelectedLocations([]);
     setSelectedSpecialties([]);
     setSelectedGenders([]);
     setSelectedCategories([]);
@@ -141,7 +121,6 @@ export const DoctorsPage = () => {
   const hasActiveFilters =
     searchQuery ||
     sortBy !== 'experience' ||
-    selectedLocations.length > 0 ||
     selectedSpecialties.length > 0 ||
     selectedGenders.length > 0 ||
     selectedCategories.length > 0;
@@ -202,13 +181,6 @@ export const DoctorsPage = () => {
 
     return result;
   }, [doctors, searchQuery, selectedSpecialties, selectedGenders, selectedCategories, sortBy]);
-
-  const filteredLocationsList = useMemo(() => {
-    if (!locationSearch.trim()) return HOSPITAL_LOCATIONS;
-    return HOSPITAL_LOCATIONS.filter((l) =>
-      l.label.toLowerCase().includes(locationSearch.toLowerCase().trim())
-    );
-  }, [locationSearch]);
 
   return (
     <div className="bg-[#F8FAFC] min-h-screen pb-20">
@@ -336,68 +308,7 @@ export const DoctorsPage = () => {
                 )}
               </div>
 
-              {/* 2. Location Accordion */}
-              <div className="py-4 border-b border-slate-200">
-                <button
-                  type="button"
-                  onClick={() => toggleAccordion('location')}
-                  className="w-full flex items-center justify-between text-sm font-bold text-slate-800 hover:text-primary transition-colors text-left cursor-pointer"
-                >
-                  <span>Location</span>
-                  {accordions.location ? (
-                    <ChevronUp className="w-4 h-4 text-slate-400" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-400" />
-                  )}
-                </button>
-
-                {accordions.location && (
-                  <div className="mt-3 space-y-3">
-                    {/* Location nested search */}
-                    <div className="relative">
-                      <input
-                        type="text"
-                        value={locationSearch}
-                        onChange={(e) => setLocationSearch(e.target.value)}
-                        placeholder="Search location..."
-                        className="w-full px-3 py-1.5 pr-7 text-xs rounded-lg border border-slate-200 bg-slate-50 focus:bg-white focus:outline-hidden focus:border-primary text-slate-700"
-                      />
-                      {locationSearch && (
-                        <button
-                          type="button"
-                          onClick={() => setLocationSearch('')}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                        >
-                          <X className="w-3 h-3" />
-                        </button>
-                      )}
-                    </div>
-
-                    {/* Scrollable list with scrollbar accent matching screenshot */}
-                    <div className="max-h-48 overflow-y-auto space-y-2 pr-1 scrollbar-thin scrollbar-thumb-teal-600 scrollbar-track-slate-100">
-                      {filteredLocationsList.map((loc) => {
-                        const isChecked = selectedLocations.includes(loc.label);
-                        return (
-                          <label
-                            key={loc.id}
-                            className="flex items-start gap-2.5 text-xs text-slate-700 cursor-pointer select-none hover:text-slate-900"
-                          >
-                            <input
-                              type="checkbox"
-                              checked={isChecked}
-                              onChange={() => toggleLocation(loc.label)}
-                              className="mt-0.5 rounded border-slate-300 text-[#0B2545] focus:ring-[#0B2545] cursor-pointer"
-                            />
-                            <span className="leading-tight">{loc.label}</span>
-                          </label>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* 3. Speciality Accordion */}
+              {/* 2. Speciality Accordion */}
               <div className="py-4 border-b border-slate-200">
                 <button
                   type="button"
@@ -700,10 +611,10 @@ export const DoctorsPage = () => {
                         </div>
 
                         <Link
-                          to={isStaff ? (dashboardPath || '/admin/dashboard') : (isAuthenticated ? `/appointments?doctor=${doc.id}` : `/login?redirect=${encodeURIComponent(`/appointments?doctor=${doc.id}`)}`)}
+                          to={`/appointments?doctor=${doc.id}`}
                           className="w-full sm:w-auto px-5 py-2.5 bg-[#0B2545] hover:bg-[#123661] text-white text-xs sm:text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow flex items-center justify-center shrink-0 cursor-pointer"
                         >
-                          {isStaff ? 'My Staff Dashboard' : 'Book an Appointment'}
+                          Book an Appointment
                         </Link>
                       </div>
                     </div>
