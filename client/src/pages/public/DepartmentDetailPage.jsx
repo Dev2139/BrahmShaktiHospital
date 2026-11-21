@@ -63,23 +63,24 @@ export const DepartmentDetailPage = () => {
 
   return (
     <div className="space-y-12 pb-20">
-      {/* Header Banner */}
-      <section className="bg-secondary text-white py-14 px-4 border-b border-white/10">
-        <div className="max-w-7xl mx-auto space-y-4">
-          <Link to="/departments" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
+      {/* Header Banner - Matches Original Medical Palette */}
+      <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0A7A74]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto space-y-3 relative z-10">
+          <Link to="/departments" className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary-hover uppercase tracking-wider mb-1">
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>All Departments</span>
           </Link>
           <div className="flex flex-wrap items-center gap-3">
-            <span className="px-3 py-1 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-wider">
+            <span className="px-3 py-1 rounded-full bg-[#0A7A74]/10 border border-[#0A7A74]/20 text-[#0A7A74] text-xs font-bold uppercase tracking-wider">
               {department.category}
             </span>
-            <span className="text-xs font-bold text-slate-300">Code: {department.code}</span>
+            <span className="text-xs font-bold text-slate-500">Code: {department.code}</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
             {department.name}
           </h1>
-          <p className="text-base text-slate-300 max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
             {department.shortDescription}
           </p>
         </div>

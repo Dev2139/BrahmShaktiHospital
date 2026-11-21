@@ -24,7 +24,8 @@ import {
   Sparkles,
   KeyRound,
   AlertTriangle,
-  Image as ImageIcon
+  Image as ImageIcon,
+  MessageSquare
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -100,7 +101,8 @@ export const DashboardLayout = () => {
         { label: 'Pharmacy Store', path: '/admin/pharmacy', icon: Pill },
         { label: 'Billing & Invoices', path: '/admin/billing', icon: Receipt },
         { label: 'Hospital Reports', path: '/admin/reports', icon: BarChart3 },
-        { label: 'Photo Gallery', path: '/admin/gallery', icon: ImageIcon }
+        { label: 'Photo Gallery', path: '/admin/gallery', icon: ImageIcon },
+        { label: 'Patient Inquiries', path: '/admin/inquiries', icon: MessageSquare }
       ];
     }
 
@@ -139,6 +141,7 @@ export const DashboardLayout = () => {
         { label: 'Book Appointments', path: '/admin/appointments', icon: Calendar },
         { label: 'Leave & Duty Calendar', path: '/admin/leaves', icon: Calendar },
         { label: 'Quick Billing Desk', path: '/admin/billing', icon: Receipt },
+        { label: 'Patient Inquiries', path: '/admin/inquiries', icon: MessageSquare },
         { label: 'Doctors On Duty', path: '/doctors', icon: UserCheck }
       ];
     }

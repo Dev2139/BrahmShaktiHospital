@@ -27,7 +27,8 @@ import {
   AlertCircle,
   Scissors,
   Eye,
-  Baby
+  Baby,
+  MessageSquare
 } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
@@ -590,6 +591,14 @@ export const AdminDashboardPage = () => {
                 </div>
 
                 <div className="space-y-2.5">
+                  <Link
+                    to="/admin/inquiries"
+                    className="flex items-center gap-3 p-3.5 rounded-2xl bg-teal-50 hover:bg-teal-600 hover:text-white text-teal-900 text-xs font-bold transition-all"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Patient Inquiries &amp; Helpdesk Form</span>
+                  </Link>
+
                   <Link
                     to="/admin/patients"
                     className="flex items-center gap-3 p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-900 text-xs font-bold transition-all"

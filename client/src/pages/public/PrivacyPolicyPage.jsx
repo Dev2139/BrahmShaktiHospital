@@ -5,27 +5,28 @@ import { ShieldCheck, Lock, FileText, CheckCircle2, Phone, Mail, ArrowLeft } fro
 export const PrivacyPolicyPage = () => {
   return (
     <div className="space-y-12 sm:space-y-16 pb-20">
-      {/* Header Banner */}
-      <section className="bg-secondary text-white py-12 sm:py-16 px-4 border-b border-white/10 relative overflow-hidden">
-        <div className="max-w-5xl mx-auto space-y-4">
+      {/* Header Banner - Matches Original Medical Palette */}
+      <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0A7A74]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-5xl mx-auto space-y-3 relative z-10">
           <Link
             to="/"
-            className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-white font-bold uppercase tracking-wider mb-2 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary-hover font-bold uppercase tracking-wider mb-2 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Home</span>
           </Link>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-accent text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0A7A74]/10 border border-[#0A7A74]/20 text-[#0A7A74] text-xs font-bold uppercase tracking-wider">
             <Lock className="w-3.5 h-3.5" />
             <span>Legal & Data Protection</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
             Privacy Policy
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
             Brahm Shakti Hospital &amp; Research Centre (Managed by Brahm Shakti Trust) is committed to protecting the confidentiality, dignity, and personal health data of our patients, visitors, and website users.
           </p>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             Effective Date: November 2026 · Compliant with Indian Information Technology Act (2000), Digital Personal Data Protection Act (DPDP 2023), and NABH Patient Safety Standards.
           </p>
         </div>

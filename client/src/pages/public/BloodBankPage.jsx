@@ -41,28 +41,29 @@ export const BloodBankPage = () => {
 
   return (
     <div className="space-y-14 pb-20">
-      {/* Top Banner */}
-      <section className="bg-secondary text-white py-14 px-4 border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+      {/* Top Banner - Matches Original Medical Palette */}
+      <section className="relative bg-gradient-to-b from-rose-50/60 via-teal-50/40 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-red-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/20 text-red-200 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-rose-700 text-xs font-bold uppercase tracking-wider">
               <Droplets className="w-3.5 h-3.5" />
               <span>24x7 Licensed Blood Bank</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight">Blood Bank & Component Separation</h1>
-            <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">Blood Bank & Component Separation</h1>
+            <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
               Serving emergency trauma, surgical suites, and patients across North-West Delhi with verified, infection-screened blood products.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Link to="/blood-bank/request" className="px-6 py-3.5 rounded-xl bg-status-error hover:bg-red-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2">
+            <Link to="/blood-bank/request" className="px-5 py-3 rounded-xl bg-status-error hover:bg-red-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2">
               <AlertTriangle className="w-4 h-4" /> Request Blood
             </Link>
-            <Link to="/blood-bank/donate" className="px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs shadow-md transition-all flex items-center gap-2">
+            <Link to="/blood-bank/donate" className="px-5 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs shadow-md transition-all flex items-center gap-2">
               <HeartHandshake className="w-4 h-4" /> Donate Blood
             </Link>
-            <a href="tel:7840089703" className="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all flex items-center gap-2">
+            <a href="tel:7840089703" className="px-5 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs border border-slate-300 shadow-2xs transition-all flex items-center gap-2">
               <PhoneCall className="w-4 h-4 text-accent" /> 24x7 Desk: 7840089703
             </a>
           </div>

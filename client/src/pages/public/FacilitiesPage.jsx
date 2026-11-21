@@ -77,17 +77,18 @@ export const FacilitiesPage = () => {
 
   return (
     <div className="space-y-16 pb-20">
-      {/* Header Banner */}
-      <section className="bg-secondary text-white py-14 px-4 border-b border-white/10">
-        <div className="max-w-7xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-accent text-xs font-bold uppercase tracking-wider">
+      {/* Header Banner - Matches Original Medical Palette */}
+      <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0A7A74]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto space-y-3 relative z-10">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0A7A74]/10 border border-[#0A7A74]/20 text-[#0A7A74] text-xs font-bold uppercase tracking-wider">
             <Building2 className="w-3.5 h-3.5" />
             <span>Infrastructure & Diagnostics</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
             Hospital Facilities & Technology
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
             Engineered to international healthcare benchmarks, ensuring rapid triage, clinical safety, and comprehensive diagnostic reliability.
           </p>
         </div>

@@ -104,13 +104,14 @@ export const BloodDonatePage = () => {
 
   return (
     <div className="space-y-10 pb-20">
-      <section className="bg-secondary text-white py-12 px-4">
-        <div className="max-w-3xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-accent text-xs font-bold uppercase tracking-wider">
+      <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-12 px-4 overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0A7A74]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-3xl mx-auto space-y-2 relative z-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A7A74]/10 border border-[#0A7A74]/20 text-[#0A7A74] text-xs font-bold uppercase tracking-wider">
             <HeartHandshake className="w-3.5 h-3.5" /> Donate Blood
           </div>
-          <h1 className="text-4xl font-black tracking-tight">Voluntary Blood Donation Registration</h1>
-          <p className="text-sm text-slate-300">Register your intent to donate. One donation can save up to three lives. Our team will guide you through screening and scheduling.</p>
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Voluntary Blood Donation Registration</h1>
+          <p className="text-sm text-slate-600">Register your intent to donate. One donation can save up to three lives. Our team will guide you through screening and scheduling.</p>
         </div>
       </section>
 
