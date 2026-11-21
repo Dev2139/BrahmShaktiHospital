@@ -26,7 +26,8 @@ import {
   AlertTriangle,
   Image as ImageIcon,
   MessageSquare,
-  CalendarDays
+  CalendarDays,
+  MapPin
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -104,7 +105,8 @@ export const DashboardLayout = () => {
         { label: 'Hospital Reports', path: '/admin/reports', icon: BarChart3 },
         { label: 'Photo Gallery', path: '/admin/gallery', icon: ImageIcon },
         { label: 'Patient Inquiries', path: '/admin/inquiries', icon: MessageSquare },
-        { label: 'Events & Outreach', path: '/admin/events', icon: CalendarDays }
+        { label: 'Events & Outreach', path: '/admin/events', icon: CalendarDays },
+        { label: 'Location & Transit Guide', path: '/admin/location', icon: MapPin }
       ];
     }
 

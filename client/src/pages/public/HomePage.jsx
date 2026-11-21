@@ -34,6 +34,7 @@ import {
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { InternationalModal } from '../../components/InternationalModal';
+import { departmentsData, doctorsData } from '../../data/seedData';
 
 const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
   medicine: {
@@ -370,13 +371,14 @@ export const HomePage = () => {
     ? (dashboardPath || '/admin/dashboard')
     : (isAuthenticated ? '/appointments' : '/login?redirect=/appointments');
 
-  const [departments, setDepartments] = useState([]);
-  const [doctors, setDoctors] = useState([]);
+  const [departments, setDepartments] = useState(departmentsData || []);
+  const [allDoctors, setAllDoctors] = useState(doctorsData || []);
+  const [doctors, setDoctors] = useState((doctorsData || []).slice(0, 4));
   const [loading, setLoading] = useState(true);
 
-  // Max Healthcare appointment search & action cards state
-  const [searchQuery, setSearchQuery] = useState('');
+  // Department & Doctor selection state
   const [selectedDepartment, setSelectedDepartment] = useState('');
+  const [selectedDoctor, setSelectedDoctor] = useState('');
   const [internationalModalOpen, setInternationalModalOpen] = useState(false);
   const [selectedDisciplineTab, setSelectedDisciplineTab] = useState('all');
 
@@ -511,8 +513,13 @@ export const HomePage = () => {
           api.get('/departments'),
           api.get('/doctors')
         ]);
-        if (deptRes.data.success) setDepartments(deptRes.data.data);
-        if (docRes.data.success) setDoctors(docRes.data.data.slice(0, 4));
+        if (deptRes.data?.success && Array.isArray(deptRes.data.data)) {
+          setDepartments(deptRes.data.data);
+        }
+        if (docRes.data?.success && Array.isArray(docRes.data.data)) {
+          setAllDoctors(docRes.data.data);
+          setDoctors(docRes.data.data.slice(0, 4));
+        }
       } catch (err) {
         console.error('Error fetching home page data:', err);
       } finally {
@@ -522,36 +529,39 @@ export const HomePage = () => {
     fetchData();
   }, []);
 
+  // Filter doctors based strictly on the selected department
+  const availableDoctors = useMemo(() => {
+    if (!selectedDepartment) {
+      return allDoctors;
+    }
+    return allDoctors.filter(
+      (doc) =>
+        doc.departmentId === selectedDepartment ||
+        doc.departmentName?.toLowerCase().includes(selectedDepartment.toLowerCase())
+    );
+  }, [allDoctors, selectedDepartment]);
+
+  const handleDepartmentChange = (e) => {
+    const val = e.target.value;
+    setSelectedDepartment(val);
+    setSelectedDoctor(''); // reset doctor selection when department changes
+  };
+
   const handleSearchAppointment = (e) => {
     if (e) e.preventDefault();
-    const q = searchQuery.trim().toLowerCase();
+    if (selectedDoctor && selectedDepartment) {
+      navigate(`/consultation?doctor=${encodeURIComponent(selectedDoctor)}&department=${encodeURIComponent(selectedDepartment)}`);
+      return;
+    }
+    if (selectedDoctor) {
+      navigate(`/consultation?doctor=${encodeURIComponent(selectedDoctor)}`);
+      return;
+    }
     if (selectedDepartment) {
-      if (q) {
-        navigate(`/doctors?search=${encodeURIComponent(searchQuery.trim())}&department=${selectedDepartment}`);
-      } else {
-        navigate(`/departments/${selectedDepartment}`);
-      }
+      navigate(`/consultation?department=${encodeURIComponent(selectedDepartment)}`);
       return;
     }
-    if (!q) {
-      navigate('/consultation');
-      return;
-    }
-    const matchedDoc = doctors.find(
-      (d) => d.name?.toLowerCase().includes(q) || d.speciality?.toLowerCase().includes(q)
-    );
-    if (matchedDoc) {
-      navigate(`/consultation?doctor=${matchedDoc.id}`);
-      return;
-    }
-    const matchedDept = departments.find(
-      (dept) => dept.name?.toLowerCase().includes(q)
-    );
-    if (matchedDept) {
-      navigate(`/consultation?specialty=${matchedDept.id}`);
-      return;
-    }
-    navigate(`/doctors?search=${encodeURIComponent(searchQuery.trim())}`);
+    navigate('/consultation');
   };
 
   const activeTabObj = CLINICAL_DISCIPLINES.find((t) => t.id === selectedDisciplineTab);
@@ -710,32 +720,45 @@ export const HomePage = () => {
             {/* White Search Box */}
             <form
               onSubmit={handleSearchAppointment}
-              className="bg-white rounded-2xl shadow-lg border border-slate-200/90 p-2 sm:p-2.5 flex flex-col md:flex-row items-stretch gap-2 relative z-20"
+              className="bg-white rounded-2xl shadow-lg border border-slate-200/90 p-2 sm:p-2.5 flex flex-col md:flex-row items-stretch gap-2.5 relative z-20"
             >
-              {/* Search for Doctor or Speciality */}
-              <div className="flex-1 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-slate-50/70 border border-slate-200/60 focus-within:bg-white focus-within:border-primary transition-all">
-                <Search className="w-5 h-5 text-slate-400 shrink-0" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search for Doctor or Speciality"
-                  className="w-full bg-transparent text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-hidden"
-                />
-              </div>
-
-              {/* Department Dropdown (Replaced Location dropdown) */}
-              <div className="md:w-72 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-50/70 border border-slate-200/60 focus-within:bg-white focus-within:border-primary transition-all">
-                <Stethoscope className="w-5 h-5 text-slate-400 shrink-0" />
+              {/* Step 1: Select Department First */}
+              <div className="flex-1 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-50/70 border border-slate-200/60 focus-within:bg-white focus-within:border-[#0A7A74] transition-all">
+                <Building2 className="w-5 h-5 text-[#0A7A74] shrink-0" />
                 <select
                   value={selectedDepartment}
-                  onChange={(e) => setSelectedDepartment(e.target.value)}
-                  className="w-full bg-transparent text-xs sm:text-sm font-medium text-slate-700 focus:outline-hidden cursor-pointer"
+                  onChange={handleDepartmentChange}
+                  className="w-full bg-transparent text-xs sm:text-sm font-semibold text-slate-800 focus:outline-hidden cursor-pointer"
+                  aria-label="Select Department"
                 >
-                  <option value="">Select Department</option>
+                  <option value="">1. Select Clinical Department</option>
                   {departments.map((dept) => (
                     <option key={dept.id} value={dept.id}>
                       {dept.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Step 2: Select Doctor From Selected Department Only */}
+              <div className="flex-1 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-50/70 border border-slate-200/60 focus-within:bg-white focus-within:border-[#0A7A74] transition-all">
+                <Stethoscope className="w-5 h-5 text-[#0A7A74] shrink-0" />
+                <select
+                  value={selectedDoctor}
+                  onChange={(e) => setSelectedDoctor(e.target.value)}
+                  className="w-full bg-transparent text-xs sm:text-sm font-semibold text-slate-800 focus:outline-hidden cursor-pointer"
+                  aria-label="Select Doctor"
+                >
+                  {!selectedDepartment ? (
+                    <option value="">2. Select Doctor (Choose department first)</option>
+                  ) : availableDoctors.length === 0 ? (
+                    <option value="">No specialists found in this department</option>
+                  ) : (
+                    <option value="">2. Select Doctor ({availableDoctors.length} Specialists Available)</option>
+                  )}
+                  {availableDoctors.map((doc) => (
+                    <option key={doc.id} value={doc.id}>
+                      {doc.name} — {doc.qualification || doc.designation}
                     </option>
                   ))}
                 </select>
@@ -1124,7 +1147,7 @@ export const HomePage = () => {
               {/* Event Card */}
               <div className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden flex flex-col justify-between flex-1 group hover:border-[#0A7A74]/40 transition-all">
                 {/* Event Photo with Floating Slider Arrows */}
-                <div className="relative aspect-16/10 bg-slate-900 overflow-hidden">
+                <div className="relative h-60 sm:h-72 w-full bg-slate-900 overflow-hidden">
                   <img
                     src={currentEvent?.coverImage}
                     alt={currentEvent?.title || 'Brahm Shakti Hospital Event'}
@@ -1239,7 +1262,7 @@ export const HomePage = () => {
               {/* Location Card */}
               <div className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden flex flex-col justify-between flex-1 group hover:border-[#0A7A74]/40 transition-all">
                 {/* Hospital Google Map Interactive Embed */}
-                <div className="relative aspect-16/10 bg-slate-100 overflow-hidden">
+                <div className="relative h-60 sm:h-72 w-full bg-slate-100 overflow-hidden">
                   <iframe
                     title="Brahm Shakti Hospital Campus Directions"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.9754714488344!2d77.06745197631726!3d28.719894475619106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d06f6bf53bc47%3A0xe53be0c8fc0283f3!2sBrahm%20Shakti%20Hospital!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
@@ -1268,14 +1291,12 @@ export const HomePage = () => {
                     </div>
 
                     {/* Location Title */}
-                    <a
-                      href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/location-and-directions"
                       className="block text-lg sm:text-xl font-black text-slate-900 tracking-tight leading-snug line-clamp-2 hover:text-[#0A7A74] transition-colors"
                     >
                       Brahm Shakti Hospital is located in Budh Vihar, Rohini Zone
-                    </a>
+                    </Link>
 
                     {/* Address Detail Snippet */}
                     <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
@@ -1285,15 +1306,13 @@ export const HomePage = () => {
 
                   {/* Read More / Get Directions Link */}
                   <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-                    <a
-                      href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/location-and-directions"
                       className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 hover:text-[#0A7A74] transition-colors group/link"
                     >
-                      <span>Read More &amp; Directions</span>
+                      <span>Read More</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
-                    </a>
+                    </Link>
 
                     <Link
                       to="/contact"
