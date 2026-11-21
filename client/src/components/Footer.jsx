@@ -31,7 +31,7 @@ export const Footer = ({
           <div className="lg:col-span-4 space-y-4">
             <div className="inline-block p-1.5 sm:p-2 bg-white rounded-xl shadow-xs border border-white/20">
               <img
-                src="https://res.cloudinary.com/urzka7oz/image/upload/v1792869678/bsh_img_01_02.gif"
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
                 className="h-10 sm:h-12 w-auto object-contain"
               />

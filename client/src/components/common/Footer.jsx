@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, Activity } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -10,20 +10,15 @@ export const Footer = () => {
           
           {/* Column 1: Hospital Identity, Contact, Socials, Accreditations */}
           <div className="space-y-4 sm:space-y-5">
-            {/* Logo & Tagline */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-[#0A7A74] to-[#0d9488] flex items-center justify-center text-white shadow-md shadow-[#0A7A74]/20 shrink-0">
-                <Activity className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
-              </div>
-              <div>
-                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight leading-tight">
-                  BRAHM SHAKTI HOSPITAL
-                </h3>
-                <p className="text-xs text-[#0A7A74] font-semibold tracking-wide">
-                  Caring for you for Life
-                </p>
-              </div>
-            </div>
+            {/* Hospital Logo (Standalone branding graphic) */}
+            <Link to="/" className="inline-block" aria-label="Brahm Shakti Hospital Home">
+              <img
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                alt="Brahm Shakti Hospital"
+                className="h-12 sm:h-14 w-auto object-contain"
+                loading="lazy"
+              />
+            </Link>
 
             {/* Address */}
             <div className="text-xs sm:text-[13px] text-slate-700 leading-relaxed space-y-0.5">

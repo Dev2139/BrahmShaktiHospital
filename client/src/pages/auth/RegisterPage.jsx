@@ -124,19 +124,13 @@ export const RegisterPage = () => {
 
         {/* Top Header */}
         <div className="relative z-10 flex items-center justify-between">
-          <Link to="/" className="inline-flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-cyan-400 p-0.5 shadow-xl shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
-                <Activity className="w-6 h-6 text-emerald-400 stroke-[2.4]" />
-              </div>
-            </div>
-            <div>
-              <span className="text-lg font-black text-white tracking-tight block">
-                BRAHM SHAKTI
-              </span>
-              <span className="text-[10px] font-bold text-emerald-400 tracking-widest uppercase block -mt-1">
-                Hospital &amp; Research Center
-              </span>
+          <Link to="/" className="inline-flex items-center group" aria-label="Brahm Shakti Hospital Home">
+            <div className="bg-white rounded-2xl p-2 sm:p-2.5 shadow-lg group-hover:scale-105 transition-transform">
+              <img
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                alt="Brahm Shakti Hospital"
+                className="h-9 sm:h-11 w-auto object-contain"
+              />
             </div>
           </Link>
 

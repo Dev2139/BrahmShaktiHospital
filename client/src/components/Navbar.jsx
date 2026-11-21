@@ -156,7 +156,7 @@ export const Navbar = ({
             aria-label="Brahm Shakti Hospital Home"
           >
             <img
-              src="https://res.cloudinary.com/urzka7oz/image/upload/v1792869678/bsh_img_01_02.gif"
+              src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
               alt="Brahm Shakti Hospital"
               className="h-9 xs:h-11 sm:h-13 md:h-15 w-auto max-w-[200px] xs:max-w-[240px] sm:max-w-[320px] md:max-w-[360px] object-contain transition-transform duration-200 group-hover:scale-[1.01]"
               loading="eager"

@@ -173,15 +173,13 @@ export const DashboardLayout = () => {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex flex-col w-64 bg-secondary text-white border-r border-secondary-light/20 shrink-0">
         {/* Brand Header */}
-        <div className="p-5 border-b border-white/10 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-primary-light flex items-center justify-center text-white shadow-md">
-              <Activity className="w-5 h-5 stroke-[2.2]" />
-            </div>
-            <div>
-              <div className="font-extrabold text-white text-base tracking-tight leading-tight">BRAHM SHAKTI</div>
-              <div className="text-[10px] text-accent tracking-wider font-bold uppercase">Hospital Management</div>
-            </div>
+        <div className="p-4 border-b border-white/10 flex items-center justify-center">
+          <Link to="/" className="inline-block bg-white rounded-xl p-2 shadow-sm group hover:scale-105 transition-transform" aria-label="Brahm Shakti Hospital Home">
+            <img
+              src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+              alt="Brahm Shakti Hospital"
+              className="h-10 w-auto object-contain"
+            />
           </Link>
         </div>
 
@@ -351,7 +349,13 @@ export const DashboardLayout = () => {
             <div className="fixed inset-0 bg-black/50 backdrop-blur-xs" onClick={() => setSidebarOpen(false)}></div>
             <div className="relative w-64 bg-secondary text-white flex flex-col z-10">
               <div className="p-4 border-b border-white/10 flex items-center justify-between">
-                <div className="font-bold text-white text-base">BRAHM SHAKTI</div>
+                <Link to="/" onClick={() => setSidebarOpen(false)} className="inline-block bg-white rounded-xl p-1.5 shadow-sm" aria-label="Brahm Shakti Hospital Home">
+                  <img
+                    src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                    alt="Brahm Shakti Hospital"
+                    className="h-8 w-auto object-contain"
+                  />
+                </Link>
                 <button onClick={() => setSidebarOpen(false)} className="p-1 rounded text-white/70 hover:text-white">
                   <X className="w-5 h-5" />
                 </button>

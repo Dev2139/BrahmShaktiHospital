@@ -7,7 +7,6 @@ import {
   Menu,
   X,
   ChevronDown,
-  Activity,
   Stethoscope,
   Building2,
   Search,
@@ -112,28 +111,18 @@ export const Navbar = () => {
     : (isAuthenticated ? '/appointments' : '/login?redirect=/appointments');
 
   return (
-    <header ref={navRef} className="sticky top-0 z-50 bg-white shadow-sm">
+    <header ref={navRef} className="sticky top-0 z-50 w-full bg-white shadow-md transition-shadow">
       {/* Main White Navbar */}
-      <nav className="bg-medical-white px-3 sm:px-6 py-3">
+      <nav className="bg-medical-white px-3 sm:px-6 py-2.5 sm:py-3">
         <div className="max-w-[1400px] mx-auto flex items-center gap-3">
-          {/* Hospital Logo & Brand Title */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-primary to-primary-light flex items-center justify-center text-white shadow-md shadow-primary/20 group-hover:scale-105 transition-transform shrink-0">
-              <Activity className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
-            </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5">
-                <span className="text-base sm:text-xl font-extrabold tracking-tight text-secondary truncate">
-                  BRAHM SHAKTI
-                </span>
-                <span className="text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-accent text-accent-dark font-bold uppercase tracking-wider shrink-0">
-                  HOSPITAL
-                </span>
-              </div>
-              <p className="text-[10px] sm:text-[11px] font-semibold text-primary tracking-wide -mt-0.5 hidden sm:block truncate">
-                250-Bedded Tertiary Healthcare · Caring for you for Life
-              </p>
-            </div>
+          {/* Hospital Logo (Standalone branding graphic with no adjacent text) */}
+          <Link to="/" className="flex items-center group shrink-0" aria-label="Brahm Shakti Hospital Home">
+            <img
+              src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+              alt="Brahm Shakti Hospital"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+              loading="eager"
+            />
           </Link>
 
           {/* Centered Navigation With Click-To-Open Persistent Dropdowns */}

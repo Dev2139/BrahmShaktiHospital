@@ -247,12 +247,11 @@ export const BillingManagementPage = () => {
             {/* Header: Hospital Logo & Details */}
             <div className="flex items-start justify-between border-b-2 border-secondary pb-4">
               <div>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center font-bold">
-                    BSH
-                  </div>
-                  <h3 className="text-xl font-black text-secondary tracking-tight">BRAHM SHAKTI HOSPITAL</h3>
-                </div>
+                <img
+                  src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                  alt="Brahm Shakti Hospital"
+                  className="h-10 sm:h-12 w-auto object-contain mb-1"
+                />
                 <p className="text-[11px] text-medical-muted mt-0.5">
                   Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi - 110085
                 </p>
