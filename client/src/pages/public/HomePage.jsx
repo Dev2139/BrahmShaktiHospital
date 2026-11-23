@@ -832,185 +832,84 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 2. Schedule Your Appointment Online - Max Healthcare Authentic Layout */}
-      <section className="relative bg-[#F0F6FA] py-6 sm:py-12 lg:py-16 border-y border-slate-200/80 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 relative">
-          {/* Centered Heading */}
-          <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-8">
-            <h2 className="text-xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
-              Schedule Your Appointment Online
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1 sm:mt-2">
-              Book verified consultant doctors, clinical departments & visa medical appointments
-            </p>
-          </div>
-
-          {/* Appointment Booking Search Card with Flanking Hospital Illustrations */}
-          <div className="relative max-w-4xl mx-auto mb-5 sm:mb-8">
-            {/* Left Patient Illustration (Mother & Child waiting with masks) */}
-            <div className="hidden xl:block absolute -left-48 bottom-0 w-44 h-40 pointer-events-none z-10">
-              <svg viewBox="0 0 200 160" className="w-full h-full object-contain drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Waiting bench */}
-                <rect x="20" y="115" width="160" height="8" rx="4" fill="#94A3B8" />
-                <rect x="40" y="123" width="6" height="28" rx="2" fill="#64748B" />
-                <rect x="154" y="123" width="6" height="28" rx="2" fill="#64748B" />
-                {/* Mother figure */}
-                <ellipse cx="65" cy="46" rx="14" ry="16" fill="#F8C8A0" />
-                <path d="M51 44 Q65 30 79 44 Q79 26 65 24 Q51 26 51 44 Z" fill="#292524" />
-                {/* Mask */}
-                <rect x="55" y="47" width="20" height="12" rx="4" fill="#E2E8F0" stroke="#CBD5E1" strokeWidth="1" />
-                {/* Torso & clothing */}
-                <path d="M42 110 L48 64 C48 64 56 62 65 62 C74 62 82 64 82 64 L88 110 Z" fill="#F97316" />
-                {/* Legs */}
-                <rect x="52" y="105" width="10" height="42" rx="3" fill="#1E293B" />
-                <rect x="66" y="105" width="10" height="42" rx="3" fill="#1E293B" />
-                <ellipse cx="57" cy="148" rx="7" ry="3" fill="#0F172A" />
-                <ellipse cx="71" cy="148" rx="7" ry="3" fill="#0F172A" />
-                {/* Child figure */}
-                <ellipse cx="120" cy="68" rx="11" ry="13" fill="#F8C8A0" />
-                <path d="M109 66 Q120 54 131 66 Q131 52 120 50 Q109 52 109 66 Z" fill="#451A03" />
-                {/* Mask */}
-                <rect x="112" y="69" width="16" height="10" rx="3" fill="#E2E8F0" stroke="#CBD5E1" strokeWidth="1" />
-                {/* Child torso */}
-                <path d="M104 112 L108 81 C108 81 114 80 120 80 C126 80 132 81 132 81 L136 112 Z" fill="#FDE047" />
-                {/* Child legs */}
-                <rect x="112" y="108" width="7" height="32" rx="2" fill="#0284C7" />
-                <rect x="122" y="108" width="7" height="32" rx="2" fill="#0284C7" />
-                <ellipse cx="115" cy="141" rx="5" ry="2.5" fill="#0F172A" />
-                <ellipse cx="125" cy="141" rx="5" ry="2.5" fill="#0F172A" />
-                {/* Floating medical cross badge */}
-                <circle cx="165" cy="40" r="14" fill="#E0F2FE" />
-                <path d="M165 33 V47 M158 40 H172" stroke="#0284C7" strokeWidth="3" strokeLinecap="round" />
-              </svg>
-            </div>
-
-            {/* Right Hospital Receptionist Illustration */}
-            <div className="hidden xl:block absolute -right-48 bottom-0 w-44 h-40 pointer-events-none z-10">
-              <svg viewBox="0 0 200 160" className="w-full h-full object-contain drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Clinic Counter */}
-                <path d="M30 90 L170 90 L170 152 L30 152 Z" fill="#E2E8F0" stroke="#CBD5E1" strokeWidth="1.5" />
-                <path d="M25 84 L175 84 L175 92 L25 92 Z" rx="3" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="1" />
-                <rect x="42" y="104" width="20" height="28" rx="2" fill="#FFFFFF" stroke="#CBD5E1" />
-                <line x1="47" y1="112" x2="57" y2="112" stroke="#94A3B8" strokeWidth="1.5" />
-                <line x1="47" y1="118" x2="55" y2="118" stroke="#94A3B8" strokeWidth="1.5" />
-                <line x1="47" y1="124" x2="53" y2="124" stroke="#94A3B8" strokeWidth="1.5" />
-                {/* Receptionist Doctor / Nurse */}
-                <ellipse cx="110" cy="38" rx="14" ry="16" fill="#F8C8A0" />
-                <path d="M96 36 Q110 20 124 36 Q125 18 110 16 Q95 18 96 36 Z" fill="#1E293B" />
-                {/* Mask */}
-                <rect x="101" y="39" width="18" height="12" rx="4" fill="#E0F2FE" stroke="#7DD3FC" strokeWidth="1" />
-                {/* Uniform / scrubs */}
-                <path d="M85 86 L94 54 C97 54 103 52 110 52 C117 52 123 54 126 54 L135 86 Z" fill="#0D9488" />
-                <path d="M100 54 L106 86 M120 54 L114 86" stroke="#FFFFFF" strokeWidth="1.5" />
-                <circle cx="110" cy="62" r="3" fill="#FDE047" />
-                {/* Desktop Monitor on Counter */}
-                <rect x="135" y="60" width="32" height="24" rx="2" fill="#334155" />
-                <rect x="137" y="62" width="28" height="18" rx="1" fill="#38BDF8" />
-                <path d="M149 84 L153 84 L152 88 L150 88 Z" fill="#64748B" />
-                {/* Medical Badge */}
-                <circle cx="65" cy="40" r="14" fill="#CCFBF1" />
-                <path d="M60 38 C60 45 70 45 70 38 V33" stroke="#0D9488" strokeWidth="2.5" strokeLinecap="round" />
-                <circle cx="70" cy="32" r="2" fill="#0D9488" />
-              </svg>
-            </div>
-
-            {/* White Search Box */}
-            <form
-              onSubmit={handleSearchAppointment}
-              className="bg-white rounded-2xl shadow-lg border border-slate-200/90 p-2 sm:p-2.5 flex flex-col md:flex-row items-stretch gap-2.5 relative z-20"
-            >
-              {/* Step 1: Select Department First */}
-              <div className="flex-1 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-50/70 border border-slate-200/60 focus-within:bg-white focus-within:border-[#0A7A74] transition-all">
-                <Building2 className="w-5 h-5 text-[#0A7A74] shrink-0" />
-                <select
-                  value={selectedDepartment}
-                  onChange={handleDepartmentChange}
-                  className="w-full bg-transparent text-xs sm:text-sm font-semibold text-slate-800 focus:outline-hidden cursor-pointer"
-                  aria-label="Select Department"
-                >
-                  <option value="">1. Select Clinical Department</option>
-                  {departments.map((dept) => (
-                    <option key={dept.id} value={dept.id}>
-                      {dept.name}
-                    </option>
-                  ))}
-                </select>
+      {/* 2. Our Doctor Team */}
+      <section className="bg-white py-8 sm:py-14 border-b border-medical-border">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-6 sm:mb-10">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200/60 text-[#0A7A74] text-xs font-bold uppercase tracking-wider mb-2">
+                <Stethoscope className="w-3.5 h-3.5" />
+                <span>Expert Healthcare Professionals</span>
               </div>
-
-              {/* Step 2: Select Doctor From Selected Department Only */}
-              <div className="flex-1 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-50/70 border border-slate-200/60 focus-within:bg-white focus-within:border-[#0A7A74] transition-all">
-                <Stethoscope className="w-5 h-5 text-[#0A7A74] shrink-0" />
-                <select
-                  value={selectedDoctor}
-                  onChange={(e) => setSelectedDoctor(e.target.value)}
-                  className="w-full bg-transparent text-xs sm:text-sm font-semibold text-slate-800 focus:outline-hidden cursor-pointer"
-                  aria-label="Select Doctor"
-                >
-                  {!selectedDepartment ? (
-                    <option value="">2. Select Doctor (Choose department first)</option>
-                  ) : availableDoctors.length === 0 ? (
-                    <option value="">No specialists found in this department</option>
-                  ) : (
-                    <option value="">2. Select Doctor ({availableDoctors.length} Specialists Available)</option>
-                  )}
-                  {availableDoctors.map((doc) => (
-                    <option key={doc.id} value={doc.id}>
-                      {doc.name} — {doc.qualification || doc.designation}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Book an Appointment Button */}
-              <button
-                type="submit"
-                className="px-7 py-3.5 bg-[#0B2545] hover:bg-[#123661] text-white font-bold text-sm rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center shrink-0 cursor-pointer"
+              <h2 className="text-2xl sm:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
+                Our Doctor Team
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+                Experienced, caring doctors and specialists dedicated to the health and well-being of you and your family.
+              </p>
+            </div>
+            <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+              <span className="sm:hidden text-xs text-[#0A7A74] font-bold">Swipe to view →</span>
+              <Link
+                to="/doctors"
+                className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover font-bold text-xs sm:text-sm"
               >
-                Book an Appointment
-              </button>
-            </form>
+                <span>View All Doctors</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
 
-          {/* Static Appointment Booking Highlights Banner (Fills Space Under Search) */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-6 max-w-4xl mx-auto pt-2">
-            {/* 1. Instant Slot Booking */}
-            <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs flex items-start gap-3.5 hover:shadow-md transition-shadow">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-teal-50 text-primary flex items-center justify-center shrink-0">
-                <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-slate-900 leading-snug">Instant Slot Booking</h4>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  Direct digital appointment confirmation with 20+ verified senior clinicians.
-                </p>
-              </div>
-            </div>
+          {/* Doctor Cards: Mobile Horizontal Swipe Carousel, Desktop Grid */}
+          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible pb-4 sm:pb-0 scrollbar-none snap-x -mx-4 px-4 sm:mx-0 sm:px-0">
+            {doctors.map((doctor) => (
+              <div
+                key={doctor.id}
+                className="w-[74vw] xs:w-[68vw] sm:w-auto shrink-0 snap-start bg-medical-coolgray rounded-2xl overflow-hidden border border-medical-border shadow-soft hover:shadow-card-hover transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="h-44 sm:h-56 overflow-hidden bg-slate-200 relative">
+                    <img
+                      src={doctor.image}
+                      alt={doctor.name}
+                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-2 right-2 bg-emerald-600/90 text-white backdrop-blur-xs px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">
+                      {doctor.category || 'In house'}
+                    </div>
+                    <div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-xs px-2 py-0.5 rounded-md text-[11px] font-bold text-secondary">
+                      ★ {doctor.rating || 4.9}
+                    </div>
+                  </div>
 
-            {/* 2. Subsidized Trust Tariffs */}
-            <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs flex items-start gap-3.5 hover:shadow-md transition-shadow">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-slate-900 leading-snug">Subsidized Trust Care</h4>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  High-tech tertiary surgical and IPD care provided at charitable trust rates.
-                </p>
-              </div>
-            </div>
+                  <div className="p-4 sm:p-5">
+                    <h3 className="text-base sm:text-lg font-bold text-secondary leading-tight">{doctor.name}</h3>
+                    <p className="text-xs font-semibold text-primary mt-1">{doctor.designation}</p>
+                    <p className="text-[11px] text-medical-muted mt-0.5">{doctor.qualification}</p>
+                    {doctor.dmcNo && (
+                      <p className="text-[10px] font-bold text-slate-500 mt-1 font-mono">
+                        DMC No. {doctor.dmcNo}
+                      </p>
+                    )}
 
-            {/* 3. Zero Waiting Time Support */}
-            <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs flex items-start gap-3.5 hover:shadow-md transition-shadow">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center shrink-0">
-                <Clock className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <div className="mt-2.5 sm:mt-3 text-xs text-medical-slate space-y-0.5 sm:space-y-1">
+                      <div>Experience: <strong>{doctor.experienceYears}+ Years</strong></div>
+                      <div>Fee: <strong>₹{doctor.consultationFee}</strong> (Subsidized)</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4 sm:p-5 pt-0">
+                  <Link
+                    to={`/doctors/${doctor.id}`}
+                    className="w-full flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-sm"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Book Appointment</span>
+                  </Link>
+                </div>
               </div>
-              <div>
-                <h4 className="text-sm font-bold text-slate-900 leading-snug">Zero Waiting Time</h4>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  Fast-track triage, priority senior desk, and 24x7 emergency ramp access.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1184,83 +1083,7 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 4. Consultant Doctor Profiles */}
-      <section className="bg-white py-8 sm:py-16 border-y border-medical-border">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-5 sm:mb-10">
-            <div>
-              <h2 className="text-2xl sm:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
-                Senior Consultant Specialists
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                Verified roster of Brahm Shakti Hospital doctors holding registered Delhi Medical Council licenses
-              </p>
-            </div>
-            <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
-              <span className="sm:hidden text-xs text-[#0A7A74] font-bold">Swipe to view →</span>
-              <Link
-                to="/doctors"
-                className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover font-bold text-xs sm:text-sm"
-              >
-                <span>Explore Directory</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
 
-          {/* Doctor Cards: Mobile Horizontal Swipe Carousel, Desktop Grid */}
-          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible pb-4 sm:pb-0 scrollbar-none snap-x -mx-4 px-4 sm:mx-0 sm:px-0">
-            {doctors.map((doctor) => (
-              <div
-                key={doctor.id}
-                className="w-[74vw] xs:w-[68vw] sm:w-auto shrink-0 snap-start bg-medical-coolgray rounded-2xl overflow-hidden border border-medical-border shadow-soft hover:shadow-card-hover transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="h-44 sm:h-56 overflow-hidden bg-slate-200 relative">
-                    <img
-                      src={doctor.image}
-                      alt={doctor.name}
-                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-2 right-2 bg-emerald-600/90 text-white backdrop-blur-xs px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">
-                      {doctor.category || 'In house'}
-                    </div>
-                    <div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-xs px-2 py-0.5 rounded-md text-[11px] font-bold text-secondary">
-                      ★ {doctor.rating || 4.9}
-                    </div>
-                  </div>
-
-                  <div className="p-4 sm:p-5">
-                    <h3 className="text-base sm:text-lg font-bold text-secondary leading-tight">{doctor.name}</h3>
-                    <p className="text-xs font-semibold text-primary mt-1">{doctor.designation}</p>
-                    <p className="text-[11px] text-medical-muted mt-0.5">{doctor.qualification}</p>
-                    {doctor.dmcNo && (
-                      <p className="text-[10px] font-bold text-slate-500 mt-1 font-mono">
-                        DMC No. {doctor.dmcNo}
-                      </p>
-                    )}
-
-                    <div className="mt-2.5 sm:mt-3 text-xs text-medical-slate space-y-0.5 sm:space-y-1">
-                      <div>Experience: <strong>{doctor.experienceYears}+ Years</strong></div>
-                      <div>Fee: <strong>₹{doctor.consultationFee}</strong> (Subsidized)</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-4 sm:p-5 pt-0">
-                  <Link
-                    to={`/doctors/${doctor.id}`}
-                    className="w-full flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-sm"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Book Appointment</span>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 5. Why Choose Brahm Shakti Hospital */}
       <section className="max-w-7xl mx-auto px-4">
