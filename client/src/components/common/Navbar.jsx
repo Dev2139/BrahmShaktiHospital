@@ -83,11 +83,11 @@ export const Navbar = () => {
       ]
     },
     'About Us': {
-      match: ['/about', '/facilities', '/services', '/lab-results', '/search'],
+      match: ['/about', '/facilities', '/services', '/search'],
       items: [
         { label: 'About the Hospital', sub: 'Heritage, mission & leadership', path: '/about', icon: Hospital },
         { label: 'Facilities & Diagnostics', sub: 'Labs, CT Scan & infrastructure', path: '/facilities', icon: FlaskConical },
-        { label: 'Lab Test Results', sub: 'Retrieve reports with UHID & mobile', path: '/lab-results', icon: FileText },
+        { label: 'Lab Test Results', sub: 'Online Oncquest Diagnostic Portal', path: 'https://itd.oncquest.net/oncquest/design/onlinelab', isExternal: true, icon: FileText },
         { label: 'Quick Search', sub: 'Search doctors, departments & services', path: '/search', icon: Search },
         { label: 'OPD Clinical Services', sub: 'Outpatient clinics & schedules', path: '/services/opd', icon: Stethoscope },
         { label: 'IPD Inpatient Care', sub: 'Rooms, ICU & admissions', path: '/services/ipd', icon: Building2 }
@@ -166,6 +166,26 @@ export const Navbar = () => {
                     >
                       {menu.items.map((item) => {
                         const Icon = item.icon;
+                        if (item.isExternal || item.path?.startsWith('http')) {
+                          return (
+                            <a
+                              key={item.label + item.path}
+                              href={item.path}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setOpenMenu(null)}
+                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-secondary hover:bg-primary-50 hover:text-primary transition-colors"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                                <Icon className="w-4 h-4 text-primary" />
+                              </div>
+                              <div className="min-w-0">
+                                <div className="font-bold leading-tight truncate">{item.label}</div>
+                                <div className="text-[11px] text-medical-muted truncate">{item.sub}</div>
+                              </div>
+                            </a>
+                          );
+                        }
                         return (
                           <Link
                             key={item.label + item.path}
@@ -218,6 +238,26 @@ export const Navbar = () => {
                     >
                       {menu.items.map((item) => {
                         const Icon = item.icon;
+                        if (item.isExternal || item.path?.startsWith('http')) {
+                          return (
+                            <a
+                              key={item.label + item.path}
+                              href={item.path}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setOpenMenu(null)}
+                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-secondary hover:bg-primary-50 hover:text-primary transition-colors"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                                <Icon className="w-4 h-4 text-primary" />
+                              </div>
+                              <div className="min-w-0">
+                                <div className="font-bold leading-tight truncate">{item.label}</div>
+                                <div className="text-[11px] text-medical-muted truncate">{item.sub}</div>
+                              </div>
+                            </a>
+                          );
+                        }
                         return (
                           <Link
                             key={item.label + item.path}
@@ -435,9 +475,11 @@ export const Navbar = () => {
                   </div>
                 </Link>
 
-                {/* 3. Lab Result */}
-                <Link
-                  to="/lab-results"
+                {/* 3. Lab Result (Redirects to Oncquest Online Lab Portal) */}
+                <a
+                  href="https://itd.oncquest.net/oncquest/design/onlinelab"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 hover:bg-teal-50/70 hover:border-teal-300 transition-all flex flex-col justify-between group active:scale-95 shadow-2xs"
                 >
@@ -449,10 +491,10 @@ export const Navbar = () => {
                       Lab Result
                     </div>
                     <div className="text-[10px] text-slate-500 mt-0.5 leading-tight">
-                      Online UHID Reports
+                      Online Oncquest Portal
                     </div>
                   </div>
-                </Link>
+                </a>
 
                 {/* 4. 24x7 Emergency Trigger Accordion */}
                 <button
@@ -574,6 +616,26 @@ export const Navbar = () => {
                   <div className="p-2 space-y-1 bg-white border-t border-slate-200/80 animate-in fade-in duration-150">
                     {menus['About Us'].items.map((item) => {
                       const Icon = item.icon;
+                      if (item.isExternal || item.path?.startsWith('http')) {
+                        return (
+                          <a
+                            key={item.path}
+                            href={item.path}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-teal-50 text-slate-800 hover:text-[#0A7A74] transition-colors"
+                          >
+                            <div className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
+                              <Icon className="w-3.5 h-3.5 text-primary" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold leading-tight">{item.label}</div>
+                              <div className="text-[10px] text-slate-500 leading-tight">{item.sub}</div>
+                            </div>
+                          </a>
+                        );
+                      }
                       return (
                         <Link
                           key={item.path}
@@ -712,18 +774,16 @@ export const Navbar = () => {
       <div className="hidden lg:block absolute top-full left-0 right-0 pointer-events-none -mt-px z-40">
         <div className="max-w-[1440px] mx-auto px-3 sm:px-6">
           <div className="inline-flex items-center pointer-events-auto bg-white/95 backdrop-blur-md border-b border-x border-slate-200/90 shadow-md rounded-b-2xl divide-x divide-slate-100">
-            {/* 1. Lab Result */}
-            <Link
-              to="/lab-results"
-              className={`group flex items-center gap-2 px-4 py-2 text-xs xl:text-sm font-bold transition-all rounded-bl-2xl ${
-                isActive('/lab-results')
-                  ? 'text-primary bg-primary-50'
-                  : 'text-slate-700 hover:text-primary hover:bg-slate-50'
-              }`}
+            {/* 1. Lab Result (Redirects to Oncquest Online Lab Portal) */}
+            <a
+              href="https://itd.oncquest.net/oncquest/design/onlinelab"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 px-4 py-2 text-xs xl:text-sm font-bold transition-all rounded-bl-2xl text-slate-700 hover:text-primary hover:bg-slate-50 cursor-pointer"
             >
               <FlaskConical className="w-4 h-4 text-primary transition-transform group-hover:scale-110" />
               <span>Lab Result</span>
-            </Link>
+            </a>
 
             {/* 2. Emergency Trigger */}
             <div className="relative">

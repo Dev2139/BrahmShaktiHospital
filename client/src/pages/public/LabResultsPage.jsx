@@ -106,7 +106,30 @@ export const LabResultsPage = () => {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 -mt-6 pb-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 -mt-6 pb-16 space-y-6">
+        {/* Official Oncquest Portal Banner */}
+        <div className="bg-gradient-to-r from-teal-900 to-teal-800 rounded-3xl p-5 sm:p-6 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center shrink-0">
+              <FlaskConical className="w-6 h-6 text-teal-300" />
+            </div>
+            <div>
+              <div className="text-base font-bold tracking-tight">Oncquest Laboratories Diagnostic Portal</div>
+              <div className="text-xs text-teal-100/90 mt-0.5">
+                Access your official outsourced &amp; specialized pathology reports directly via the Oncquest online portal.
+              </div>
+            </div>
+          </div>
+          <a
+            href="https://itd.oncquest.net/oncquest/design/onlinelab"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-teal-900 hover:bg-teal-50 font-bold text-xs sm:text-sm whitespace-nowrap text-center transition-all shadow-md active:scale-95"
+          >
+            Open Oncquest Portal &rarr;
+          </a>
+        </div>
+
         {/* Verification Card */}
         <div className="bg-white rounded-2xl shadow-elevated border border-medical-border p-5 sm:p-7">
           <form onSubmit={handleSearch} className="grid sm:grid-cols-[1fr_1fr_auto] gap-4 items-end">
