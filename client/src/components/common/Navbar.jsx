@@ -135,10 +135,12 @@ export const Navbar = () => {
             </Link>
           </div>
 
-          {/* Centered Navigation (Speciality, About Us, Quick Search, Contact Us) */}
-          <div className="hidden lg:flex items-center justify-center gap-1.5 xl:gap-2.5 shrink-0">
-            {/* 1 & 2: Speciality & About Us Dropdowns */}
-            {Object.entries(menus).map(([label, menu]) => {
+          {/* Centered Navigation: Speciality, About Us, Find a Doctor, Search by Department, Quick Search, Contact Us */}
+          <div className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 shrink-0">
+            {/* 1. Speciality Dropdown */}
+            {(() => {
+              const label = 'Speciality';
+              const menu = menus[label];
               const active = isMenuActive(menu);
               const isOpen = openMenu === label;
               return (
@@ -185,9 +187,77 @@ export const Navbar = () => {
                   )}
                 </div>
               );
-            })}
+            })()}
 
-            {/* 3. Quick Search (Positioned between About Us and Contact Us) */}
+            {/* 2. About Us Dropdown */}
+            {(() => {
+              const label = 'About Us';
+              const menu = menus[label];
+              const active = isMenuActive(menu);
+              const isOpen = openMenu === label;
+              return (
+                <div key={label} className="relative">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenMenu(isOpen ? null : label);
+                      setEmergencyModalOpen(false);
+                      setQuickSearchModalOpen(false);
+                    }}
+                    className={`${navLinkClass(active || isOpen)} whitespace-nowrap cursor-pointer select-none`}
+                  >
+                    <span>{label}</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {isOpen && (
+                    <div
+                      onClick={(e) => e.stopPropagation()}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white rounded-2xl shadow-elevated border border-medical-border py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                    >
+                      {menu.items.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.label + item.path}
+                            to={item.path}
+                            onClick={() => setOpenMenu(null)}
+                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-secondary hover:bg-primary-50 hover:text-primary transition-colors"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                              <Icon className="w-4 h-4 text-primary" />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="font-bold leading-tight truncate">{item.label}</div>
+                              <div className="text-[11px] text-medical-muted truncate">{item.sub}</div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* 3. Find a Doctor */}
+            <Link
+              to="/doctors"
+              className={`${navLinkClass(isActive('/doctors'))} whitespace-nowrap`}
+            >
+              <span>Find a Doctor</span>
+            </Link>
+
+            {/* 4. Search by Department */}
+            <Link
+              to="/departments"
+              className={`${navLinkClass(isActive('/departments'))} whitespace-nowrap`}
+            >
+              <span>Search by Department</span>
+            </Link>
+
+            {/* 5. Quick Search */}
             <div className="relative">
               <button
                 type="button"
@@ -197,7 +267,7 @@ export const Navbar = () => {
                   setEmergencyModalOpen(false);
                   setOpenMenu(null);
                 }}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-[15px] font-bold transition-all cursor-pointer select-none ${
+                className={`flex items-center gap-1.5 px-3 xl:px-4 py-2 rounded-xl text-[14px] xl:text-[15px] font-bold transition-all cursor-pointer select-none ${
                   quickSearchModalOpen
                     ? 'text-primary bg-primary-50 ring-1 ring-primary/20'
                     : 'text-secondary hover:text-primary hover:bg-slate-100/80'
@@ -283,16 +353,13 @@ export const Navbar = () => {
               )}
             </div>
 
-            {/* 4. Contact Us */}
-            {plainLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`${navLinkClass(isActive(link.path))} whitespace-nowrap`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {/* 6. Contact Us */}
+            <Link
+              to="/contact"
+              className={`${navLinkClass(isActive('/contact'))} whitespace-nowrap`}
+            >
+              <span>Contact Us</span>
+            </Link>
           </div>
 
           {/* Right: Book Appointment Pill + Mobile Toggle */}
@@ -641,39 +708,25 @@ export const Navbar = () => {
         )}
       </nav>
 
-      {/* Quick Access Strip (second row with popups - 4 equal columns) */}
-      <div className="hidden lg:block bg-medical-white border-t border-medical-border/70 shadow-sm relative">
-        <div className="max-w-[1400px] mx-auto px-6 relative">
-          <div className="grid grid-cols-4 relative">
-            {/* 1. Find a Doctor */}
-            <Link
-              to="/doctors"
-              className="group flex items-center justify-center gap-2.5 py-3.5 transition-colors hover:bg-primary-50"
-            >
-              <Search className="w-5 h-5 text-primary" />
-              <span className="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Find a Doctor</span>
-            </Link>
-
-            {/* 2. Search By Department */}
-            <Link
-              to="/departments"
-              className="group flex items-center justify-center gap-2.5 py-3.5 transition-colors hover:bg-primary-50 border-l border-medical-border/70"
-            >
-              <Stethoscope className="w-5 h-5 text-primary" />
-              <span className="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Search By Department</span>
-            </Link>
-
-            {/* 3. Lab Result */}
+      {/* Connected Left Corner Tab: Lab Result & Emergency (Sir Ganga Ram Hospital Style) */}
+      <div className="hidden lg:block absolute top-full left-0 right-0 pointer-events-none -mt-px z-40">
+        <div className="max-w-[1440px] mx-auto px-3 sm:px-6">
+          <div className="inline-flex items-center pointer-events-auto bg-white/95 backdrop-blur-md border-b border-x border-slate-200/90 shadow-md rounded-b-2xl divide-x divide-slate-100">
+            {/* 1. Lab Result */}
             <Link
               to="/lab-results"
-              className="group flex items-center justify-center gap-2.5 py-3.5 transition-colors hover:bg-primary-50 border-l border-medical-border/70"
+              className={`group flex items-center gap-2 px-4 py-2 text-xs xl:text-sm font-bold transition-all rounded-bl-2xl ${
+                isActive('/lab-results')
+                  ? 'text-primary bg-primary-50'
+                  : 'text-slate-700 hover:text-primary hover:bg-slate-50'
+              }`}
             >
-              <FlaskConical className="w-5 h-5 text-primary" />
-              <span className="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Lab Result</span>
+              <FlaskConical className="w-4 h-4 text-primary transition-transform group-hover:scale-110" />
+              <span>Lab Result</span>
             </Link>
 
-            {/* 4. Emergency Trigger */}
-            <div className="relative border-l border-medical-border/70">
+            {/* 2. Emergency Trigger */}
+            <div className="relative">
               <button
                 type="button"
                 onClick={(e) => {
@@ -682,22 +735,28 @@ export const Navbar = () => {
                   setQuickSearchModalOpen(false);
                   setOpenMenu(null);
                 }}
-                className={`w-full group flex items-center justify-center gap-2.5 py-3.5 transition-colors cursor-pointer ${
-                  emergencyModalOpen ? 'bg-primary-50' : 'hover:bg-primary-50'
+                className={`group flex items-center gap-2 px-4 py-2 text-xs xl:text-sm font-bold transition-all rounded-br-2xl cursor-pointer ${
+                  emergencyModalOpen
+                    ? 'bg-rose-50 text-rose-700'
+                    : 'text-rose-600 hover:text-rose-700 hover:bg-rose-50/60'
                 }`}
               >
-                <AlertTriangle className="w-5 h-5 text-primary" />
-                <span className="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Emergency</span>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600"></span>
+                </span>
+                <AlertTriangle className="w-4 h-4 text-rose-600 transition-transform group-hover:scale-110" />
+                <span>Emergency</span>
               </button>
 
-              {/* Emergency Popup */}
+              {/* Emergency Popup attached below button */}
               {emergencyModalOpen && (
                 <div
                   onClick={(e) => e.stopPropagation()}
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 sm:w-[350px] bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-7 z-50 text-center animate-in fade-in zoom-in-95 duration-150"
+                  className="absolute top-full left-0 mt-3 w-80 sm:w-[350px] bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-7 z-50 text-left animate-in fade-in zoom-in-95 duration-150"
                 >
                   {/* Pointer triangle */}
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-slate-200" />
+                  <div className="absolute -top-2 left-6 w-4 h-4 bg-white rotate-45 border-t border-l border-slate-200" />
 
                   {/* Circular Teal Close Button */}
                   <button
@@ -712,7 +771,8 @@ export const Navbar = () => {
                   <div className="space-y-6 pt-1">
                     {/* 24/7 Helpline */}
                     <div>
-                      <h4 className="text-lg font-bold text-[#0A7A74] mb-2 tracking-wide">
+                      <h4 className="text-lg font-bold text-[#0A7A74] mb-2 tracking-wide flex items-center gap-2">
+                        <PhoneCall className="w-4 h-4" />
                         24/7 Helpline
                       </h4>
                       <a
@@ -723,10 +783,10 @@ export const Navbar = () => {
                       </a>
                     </div>
 
-                    {/* Casualty */}
+                    {/* Casualty & Reception */}
                     <div>
                       <h4 className="text-lg font-bold text-[#0A7A74] mb-2 tracking-wide">
-                        Casualty & Reception
+                        Casualty &amp; Reception
                       </h4>
                       <div className="space-y-1 text-sm font-semibold text-slate-800">
                         <a href="tel:7840089703" className="block hover:text-[#0A7A74] transition-colors">+91 7840089703 (24x7)</a>
@@ -734,9 +794,9 @@ export const Navbar = () => {
                       </div>
                     </div>
 
-                    {/* Ambulance */}
+                    {/* Emergency Ambulance */}
                     <div>
-                      <h4 className="text-lg font-bold text-[#0A7A74] mb-2 tracking-wide">
+                      <h4 className="text-lg font-bold text-rose-600 mb-2 tracking-wide">
                         Emergency Ambulance
                       </h4>
                       <a
