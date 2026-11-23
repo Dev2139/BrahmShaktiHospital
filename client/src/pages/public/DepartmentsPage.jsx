@@ -39,7 +39,7 @@ export const DepartmentsPage = () => {
     fetchDepartments();
   }, []);
 
-  const categories = ['all', 'Super Specialty', 'Surgical Specialties', 'Clinical Specialties', 'Emergency & Critical Care'];
+  const categories = ['all', 'Clinical Specialties', 'Surgical Specialties', 'Critical Services'];
 
   const filteredDepts = selectedCategory === 'all'
     ? departments
@@ -53,13 +53,13 @@ export const DepartmentsPage = () => {
         <div className="max-w-7xl mx-auto space-y-3 relative z-10">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0A7A74]/10 border border-[#0A7A74]/20 text-[#0A7A74] text-xs font-bold uppercase tracking-wider">
             <Building2 className="w-3.5 h-3.5" />
-            <span>Clinical Specialties</span>
+            <span>Clinical Departments</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            Hospital Departments & Centers of Excellence
+            Hospital Departments &amp; Clinical Centers
           </h1>
           <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
-            From emergency 24x7 Cath Lab cardiology and advanced joint replacements to continuous renal dialysis and Level-III neonatal care.
+            Explore Brahm Shakti Hospital's 9 core clinical departments offering comprehensive outpatient consultation, day-care procedures, and inpatient tertiary surgical care.
           </p>
         </div>
       </section>

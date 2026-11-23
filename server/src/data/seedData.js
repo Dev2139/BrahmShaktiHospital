@@ -177,13 +177,14 @@ export const departmentsData = [
   {
     "id": "medicine",
     "code": "MED",
-    "name": "Internal Medicine & Diabetology",
+    "name": "Internal Medicine",
     "category": "Clinical Specialties",
     "icon": "Stethoscope",
     "image": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=800",
-    "shortDescription": "Comprehensive diagnosis, chronic disease management, diabetes, hypertension, and infectious diseases.",
+    "shortDescription": "Comprehensive adult diagnosis, fever workup, chronic disease management, diabetes, and hypertension.",
     "description": "Brahm Shakti Hospital's Department of Internal Medicine is the clinical backbone of outpatient and inpatient diagnostics. Led by senior physicians Dr. S.K. Goyal and Dr. Vineet Mittal, the department specializes in adult general health, metabolic syndrome, diabetic foot clinics, and fever triage.",
     "headOfDepartment": "Dr. S.K. Goyal (MBBS, MD)",
+    "dmcNo": "11847",
     "features": [
       "Advanced Adult Intensive Medical Care",
       "Comprehensive Diabetology & Metabolic Clinic",
@@ -209,9 +210,10 @@ export const departmentsData = [
     "category": "Surgical Specialties",
     "icon": "Scissors",
     "image": "https://images.unsplash.com/photo-1579684453423-f84349ef60b0?auto=format&fit=crop&q=80&w=800",
-    "shortDescription": "Minimally invasive keyhole laparoscopic surgeries for gallstones, hernia repair, appendicitis, and proctology.",
+    "shortDescription": "Minimally invasive keyhole laparoscopic surgeries for gallstones, hernia repair, appendicitis, and laser proctology.",
     "description": "Equipped with high-definition laparoscopic towers, harmonic scalpel energy devices, and modular sterile theatres, Brahm Shakti's surgical unit provides advanced keyhole surgeries for rapid recovery and minimal post-op pain.",
     "headOfDepartment": "Dr. Sanjeev Verma (MBBS, MS)",
+    "dmcNo": "11842",
     "features": [
       "4K Laparoscopic Towers for Keyhole Precision",
       "Laser Proctology Suite for Piles & Fistula",
@@ -227,75 +229,20 @@ export const departmentsData = [
     ],
     "opdTimings": "Mon - Sat: 10:00 AM - 03:00 PM",
     "consultationCharges": 800,
-    "floorLocation": "Block B, 1st Floor",
-    "emergencyAvailable": true
-  },
-  {
-    "id": "gynae-obst",
-    "code": "GYN",
-    "name": "Obstetrics & Gynaecology (Maternity)",
-    "category": "Clinical Specialties",
-    "icon": "Baby",
-    "image": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800",
-    "shortDescription": "Complete maternity, painless normal deliveries, high-risk pregnancies, and laparoscopic gynaecological surgeries.",
-    "description": "Dedicated to the health of women at every stage of life. Our maternity wing features modern labour delivery suites, cardiotocography (CTG) fetal monitoring, and 24x7 emergency caesarean availability.",
-    "headOfDepartment": "Dr. Manisha Jain (MBBS, DNB Obst. & Gyne)",
-    "features": [
-      "Painless Labour & Epidural Analgesia",
-      "High-Risk Pregnancy Intensive Monitoring",
-      "Advanced 3D/4D Fetal Anomaly Sonography",
-      "Minimally Invasive Hysterectomy & Cystectomy"
-    ],
-    "services": [
-      "Normal & Caesarean Deliveries",
-      "Antenatal & Postnatal Care Regimens",
-      "Infertility & IUI Consultation",
-      "PCOS, PCOD & Adolescent Gynaecology",
-      "Cervical Cancer Screening (Pap Smear & Colposcopy)"
-    ],
-    "opdTimings": "Mon - Sat: 09:30 AM - 07:00 PM",
-    "consultationCharges": 750,
-    "floorLocation": "Mother & Child Wing, Block C",
-    "emergencyAvailable": true
-  },
-  {
-    "id": "pediatrics",
-    "code": "PED",
-    "name": "Pediatrics & Neonatal Care (NICU)",
-    "category": "Clinical Specialties",
-    "icon": "Baby",
-    "image": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800",
-    "shortDescription": "Level-III Neonatal ICU, infant radiant warmers, pediatric emergency, growth & vaccination clinics.",
-    "description": "Caring for our youngest patients with tender clinical acumen. Our Level-III NICU provides round-the-clock intensive care for premature neonates, low-birth-weight babies, and pediatric critical illnesses.",
-    "headOfDepartment": "Dr. Rupesh Sharma (MBBS, DCH)",
-    "features": [
-      "Level-III Neonatal Intensive Care Unit (NICU)",
-      "Advanced Radiant Warmers & Phototherapy Units",
-      "Neonatal CPAP & Mechanical Ventilation",
-      "Comprehensive Immunization Registry"
-    ],
-    "services": [
-      "Preterm Baby Intensive Care",
-      "Universal Newborn Metabolic Screening",
-      "Childhood Asthma & Allergy Clinic",
-      "Routine & Travel Immunization",
-      "Growth Milestone Tracking"
-    ],
-    "opdTimings": "Mon - Sat: 09:00 AM - 07:00 PM",
-    "consultationCharges": 650,
-    "floorLocation": "Block A, 2nd Floor",
+    "floorLocation": "Surgical Block, 2nd Floor",
     "emergencyAvailable": true
   },
   {
     "id": "orthopaedics",
     "code": "ORTHO",
     "name": "Orthopaedics & Joint Replacement",
-    "category": "Super Specialty",
+    "category": "Surgical Specialties",
     "icon": "Activity",
     "image": "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=800",
-    "shortDescription": "Joint reconstruction, robotic-guided knee & hip replacement, arthroscopic ligament repair, and spine surgery.",
+    "shortDescription": "Joint reconstruction, robotic-guided knee & hip replacement, arthroscopic ligament repair, and fracture trauma.",
     "description": "Brahm Shakti Hospital's Department of Orthopaedics provides end-to-end musculoskeletal care. With dedicated modular laminar air flow surgical theatres and specialized arthroplasty suites, our surgeons offer rapid recovery joint replacements.",
     "headOfDepartment": "Dr. Kapil Goyal (MBBS, D.Ortho, DNB)",
+    "dmcNo": "2080",
     "features": [
       "Total Knee & Total Hip Joint Replacement Suites",
       "Arthroscopic Meniscal & Cruciate Ligament Repairs",
@@ -315,70 +262,15 @@ export const departmentsData = [
     "emergencyAvailable": true
   },
   {
-    "id": "anesthesia",
-    "code": "ANES",
-    "name": "Anaesthesiology & Critical Care",
-    "category": "Critical Services",
-    "icon": "Activity",
-    "image": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
-    "shortDescription": "Operating theatre surgical anaesthesia, painless labour epidurals, and tertiary ICU ventilator management.",
-    "description": "Operating round the clock to ensure painless surgical procedures, critical airway safety, and expert ICU care for post-operative recovery.",
-    "headOfDepartment": "Dr. Nikhil Bhambri (MBBS, MD)",
-    "features": [
-      "Modern Anaesthesia Workstations with Agent Monitors",
-      "Ultrasound Guided Regional Nerve Blocks",
-      "Painless Labour Epidural Analgesia Suite",
-      "Comprehensive ICU Airway Support"
-    ],
-    "services": [
-      "General, Spinal & Epidural Anaesthesia",
-      "Pre-Anaesthetic Medical Checkups (PAC)",
-      "Postoperative Pain Management Protocols",
-      "ICU Advanced Hemodynamic Resuscitation"
-    ],
-    "opdTimings": "Mon - Sat: 09:00 AM - 04:00 PM",
-    "consultationCharges": 600,
-    "floorLocation": "OT & ICU Complex, 2nd Floor",
-    "emergencyAvailable": true
-  },
-  {
-    "id": "skin",
-    "code": "DERM",
-    "name": "Dermatology & Skin Care",
-    "category": "Clinical Specialties",
-    "icon": "Activity",
-    "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800",
-    "shortDescription": "Specialized clinical dermatology, acne, psoriasis, vitiligo, hair fall treatments, and aesthetic lasers.",
-    "description": "Offering comprehensive diagnosis and treatment of complex skin ailments, allergic conditions, hair fall therapies, and cosmetic dermatology.",
-    "headOfDepartment": "Dr. Anish Goel (MBBS, MD)",
-    "features": [
-      "Phototherapy Unit for Vitiligo & Psoriasis",
-      "Aesthetic Laser & Scar Revision Clinic",
-      "PRP Therapy for Hair Loss",
-      "Electrocautery & Radiofrequency Surgical Suite"
-    ],
-    "services": [
-      "Acne & Acne Scar Revision",
-      "Chronic Psoriasis & Eczema Management",
-      "Hair Restoration & Scalp Treatments",
-      "Chemical Peeling & Skin Glow Therapies",
-      "Wart & Skin Tag Removal"
-    ],
-    "opdTimings": "Mon - Sat: 10:00 AM - 02:00 PM",
-    "consultationCharges": 700,
-    "floorLocation": "Block B, 2nd Floor",
-    "emergencyAvailable": false
-  },
-  {
     "id": "eye",
-    "code": "OPH",
-    "name": "Ophthalmology & Eye Care Center",
+    "code": "EYE",
+    "name": "Ophthalmology & Eye Care",
     "category": "Clinical Specialties",
     "icon": "Activity",
     "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
     "shortDescription": "Stitchless cataract micro-surgery (phaco), diabetic retinopathy laser, glaucoma care, and vision correction.",
     "description": "Complete eye care facilities equipped with modern slit lamps, non-contact tonometers, autorefractometers, and Carl Zeiss operating microscopes.",
-    "headOfDepartment": "Dr. Rajesh Kumar (MBBS, MD, MS)",
+    "headOfDepartment": "Dr. Monika Kumawat",
     "features": [
       "Stitchless Micro-Incision Phacoemulsification",
       "Zeiss Ophthalmic Surgical Microscope",
@@ -398,57 +290,142 @@ export const departmentsData = [
     "emergencyAvailable": true
   },
   {
-    "id": "cardiology",
-    "code": "CARD",
-    "name": "Cardiology & Vascular Center",
-    "category": "Super Specialty",
-    "icon": "HeartPulse",
-    "image": "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
-    "shortDescription": "24x7 Cath Lab emergency angioplasty, non-invasive cardiac diagnostics, pacemaker implantations, and coronary care.",
-    "description": "Equipped with state-of-the-art flat panel digital catheterization laboratory, Brahm Shakti Cardiology Center is a beacon for emergency cardiac resuscitation in North-West Delhi.",
-    "headOfDepartment": "Dr. S.K. Goyal (MD Medicine)",
+    "id": "gynae-obst",
+    "code": "GYN",
+    "name": "Obstetrics & Gynaecology (Maternity)",
+    "category": "Clinical Specialties",
+    "icon": "Baby",
+    "image": "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Complete maternity, painless normal deliveries, high-risk pregnancies, and laparoscopic gynaecological surgeries.",
+    "description": "Dedicated to the health of women at every stage of life. Our maternity wing features modern labour delivery suites, cardiotocography (CTG) fetal monitoring, and 24x7 emergency caesarean availability.",
+    "headOfDepartment": "Dr. Manisha Jain",
     "features": [
-      "24x7 Primary Angioplasty (Cath Lab Services)",
-      "16-Bed Advanced Coronary Care Unit (CCU)",
-      "TMT, Color Doppler Echocardiography & Holter Monitoring",
-      "Subsidized Coronary Care Program"
+      "Painless Labour & Epidural Analgesia",
+      "High-Risk Pregnancy Intensive Monitoring",
+      "Advanced 3D/4D Fetal Anomaly Sonography",
+      "Minimally Invasive Hysterectomy & Cystectomy"
     ],
     "services": [
-      "Coronary Angiography & Stenting",
-      "Emergency Heart Attack Resuscitation (Golden Hour)",
-      "Echocardiogram & Strain Imaging",
-      "Treadmill Stress Test (TMT)"
+      "Normal & Caesarean Deliveries",
+      "Antenatal & Postnatal Care Regimens",
+      "Infertility & IUI Consultation",
+      "PCOS, PCOD & Adolescent Gynaecology",
+      "Cervical Cancer Screening (Pap Smear & Colposcopy)"
     ],
-    "opdTimings": "Mon - Sat: 09:30 AM - 05:00 PM",
-    "consultationCharges": 800,
-    "floorLocation": "Ground Floor & Block B, 2nd Floor",
+    "opdTimings": "Mon - Sat: 09:30 AM - 07:00 PM",
+    "consultationCharges": 750,
+    "floorLocation": "Mother & Child Wing, Block C",
     "emergencyAvailable": true
   },
   {
-    "id": "emergency-icu",
-    "code": "EMERG",
-    "name": "24x7 Emergency Trauma & Critical Care",
-    "category": "Emergency & Critical Care",
-    "icon": "Ambulance",
-    "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800",
-    "shortDescription": "Immediate emergency casualty desk, ACLS mobile ambulances, 30-bed multi-disciplinary ICU, and round-the-clock doctors.",
-    "description": "The primary emergency lifeline of North-West Delhi. Our Casualty and Trauma center operates 24 hours a day, 365 days a year with on-duty emergency physicians, trauma surgeons, and anaesthesiologists.",
-    "headOfDepartment": "Dr. Sanjeev Verma (MS Surgery)",
+    "id": "skin",
+    "code": "SKIN",
+    "name": "Dermatology & Skin Care",
+    "category": "Clinical Specialties",
+    "icon": "Activity",
+    "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Specialized clinical dermatology, acne, psoriasis, vitiligo, hair fall treatments, and aesthetic lasers.",
+    "description": "Offering comprehensive diagnosis and treatment of complex skin ailments, allergic conditions, hair fall therapies, and cosmetic dermatology.",
+    "headOfDepartment": "Dr. Swati Gupta",
     "features": [
-      "24x7 Triage & Multi-Bay Resuscitation Facility",
-      "Fleet of GPS-Tracked Mobile ICU Ambulances",
-      "30-Bed State-of-the-Art Intensive Care Unit (ICU)",
-      "Direct Access to Blood Bank, 24x7 CT Scan & Labs"
+      "Phototherapy Unit for Vitiligo & Psoriasis",
+      "Aesthetic Laser & Scar Revision Clinic",
+      "PRP Therapy for Hair Loss",
+      "Electrocautery & Radiofrequency Surgical Suite"
     ],
     "services": [
-      "Polytrauma & Road Traffic Accident Resuscitation",
-      "Cardiac Arrest & Advanced Cardiac Life Support (ACLS)",
-      "Acute Respiratory Distress & Mechanical Ventilation",
-      "Stroke & Sepsis Protocol Management"
+      "Acne & Acne Scar Revision",
+      "Chronic Psoriasis & Eczema Management",
+      "Hair Restoration & Scalp Treatments",
+      "Chemical Peeling & Skin Glow Therapies",
+      "Wart & Skin Tag Removal"
     ],
-    "opdTimings": "24 Hours / 7 Days Active",
-    "consultationCharges": 800,
-    "floorLocation": "Ground Floor Main Entrance",
+    "opdTimings": "Mon - Sat: 10:00 AM - 02:00 PM",
+    "consultationCharges": 700,
+    "floorLocation": "Block B, 2nd Floor",
+    "emergencyAvailable": false
+  },
+  {
+    "id": "ent",
+    "code": "ENT",
+    "name": "ENT (Ear, Nose & Throat)",
+    "category": "Clinical Specialties",
+    "icon": "Activity",
+    "image": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Endoscopic sinus surgery, microscopic ear surgeries, hearing assessment, tonsillectomy, and vertigo treatment.",
+    "description": "Brahm Shakti Hospital's Department of ENT offers advanced medical and surgical treatments for diseases of the ear, nose, throat, head and neck. Equipped with high-definition diagnostic endoscopes and operating microscopes.",
+    "headOfDepartment": "Dr. Manju Bansal",
+    "features": [
+      "High-Definition Rigid & Flexible Video Endoscopy",
+      "Pure Tone Audiometry (PTA) Hearing Clinic",
+      "Micro-Laryngeal & Micro-Ear Surgical Unit",
+      "Vertigo & Dizziness Special Clinic"
+    ],
+    "services": [
+      "Tympanoplasty & Mastoidectomy (Ear Care)",
+      "Functional Endoscopic Sinus Surgery (FESS)",
+      "Septoplasty & Turbinoplasty (Nasal Airway)",
+      "Tonsillectomy & Adenoidectomy",
+      "Voice Disorder Therapy & Microlaryngoscopy"
+    ],
+    "opdTimings": "Mon - Sat: 10:00 AM - 04:00 PM",
+    "consultationCharges": 700,
+    "floorLocation": "Block B, 1st Floor",
+    "emergencyAvailable": true
+  },
+  {
+    "id": "pediatrics",
+    "code": "PED",
+    "name": "Pediatrics & Child Care",
+    "category": "Clinical Specialties",
+    "icon": "Baby",
+    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Level-III Neonatal ICU, infant radiant warmers, pediatric emergency, growth & vaccination clinics.",
+    "description": "Caring for our youngest patients with tender clinical acumen. Our pediatric unit provides round-the-clock intensive care for premature neonates, low-birth-weight babies, and pediatric critical illnesses.",
+    "headOfDepartment": "Dr. Rupesh Sharma",
+    "features": [
+      "Level-III Neonatal Intensive Care Unit (NICU)",
+      "Advanced Radiant Warmers & Phototherapy Units",
+      "Neonatal CPAP & Mechanical Ventilation",
+      "Comprehensive Immunization Registry"
+    ],
+    "services": [
+      "Preterm Baby Intensive Care",
+      "Universal Newborn Metabolic Screening",
+      "Childhood Asthma & Allergy Clinic",
+      "Routine & Travel Immunization",
+      "Growth Milestone Tracking"
+    ],
+    "opdTimings": "Mon - Sat: 09:00 AM - 07:00 PM",
+    "consultationCharges": 650,
+    "floorLocation": "Block A, 2nd Floor",
+    "emergencyAvailable": true
+  },
+  {
+    "id": "anesthesia",
+    "code": "ANES",
+    "name": "Anaesthesiology & Critical Care",
+    "category": "Critical Services",
+    "icon": "Activity",
+    "image": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
+    "shortDescription": "Operating theatre surgical anaesthesia, painless labour epidurals, and tertiary ICU ventilator management.",
+    "description": "Operating round the clock to ensure painless surgical procedures, critical airway safety, and expert ICU care for post-operative recovery.",
+    "headOfDepartment": "Dr. Sunil Gandhi",
+    "features": [
+      "Modern Anaesthesia Workstations with Agent Monitors",
+      "Ultrasound Guided Regional Nerve Blocks",
+      "Painless Labour Epidural Analgesia Suite",
+      "Comprehensive ICU Airway Support"
+    ],
+    "services": [
+      "General, Spinal & Epidural Anaesthesia",
+      "Pre-Anaesthetic Medical Checkups (PAC)",
+      "Postoperative Pain Management Protocols",
+      "ICU Advanced Hemodynamic Resuscitation"
+    ],
+    "opdTimings": "Mon - Sat: 09:00 AM - 04:00 PM",
+    "consultationCharges": 600,
+    "floorLocation": "OT & ICU Complex, 2nd Floor",
     "emergencyAvailable": true
   }
 ];
@@ -542,10 +519,10 @@ export const doctorsData = [
     "id": "doc-ped-03",
     "name": "Dr. Hitesh Aggarwal",
     "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269572/Gemini_Generated_Image_2yjmm12yjmm12yjm.png",
-    "departmentId": "pediatrics",
-    "departmentName": "Pediatrics & Neonatal Care (NICU)",
-    "designation": "Senior Consultant Pediatric Intensivist",
-    "qualification": "MBBS, DNB (Pediatrics), Fellowship Pediatric Critical Care",
+    "departmentId": "ent",
+    "departmentName": "ENT (Ear, Nose & Throat)",
+    "designation": "Consultant ENT Specialist & Surgeon",
+    "qualification": "MBBS, MS (ENT)",
     "email": "hiteshaggarwal@brahmshaktihospital.com",
     "phone": "+91-9811234026",
     "category": "In house",
@@ -553,10 +530,10 @@ export const doctorsData = [
     "validity": "14/06/2028",
     "experienceYears": 16,
     "specializations": [
-      "Pediatric ICU (PICU)",
-      "Neonatal Emergencies",
-      "Childhood Infectious Diseases",
-      "Nutritional Counseling"
+      "Endoscopic Sinus Surgery",
+      "Hearing & Audiology",
+      "Throat & Larynx Care",
+      "Vertigo Treatment"
     ],
     "consultationFee": 700,
     "birthdate": "1984-08-05",
@@ -620,10 +597,10 @@ export const doctorsData = [
     "id": "doc-gyn-04",
     "name": "Dr. Manju Bansal",
     "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795268967/Gemini_Generated_Image_vyhpaavyhpaavyhp.png",
-    "departmentId": "gynae-obst",
-    "departmentName": "Obstetrics & Gynaecology (Maternity)",
-    "designation": "Senior Consultant Obstetrician & Gynaecologist",
-    "qualification": "MBBS, MS (Obstetrics & Gynaecology)",
+    "departmentId": "ent",
+    "departmentName": "ENT (Ear, Nose & Throat)",
+    "designation": "Senior Consultant ENT Surgeon",
+    "qualification": "MBBS, MS (ENT)",
     "email": "manjubansal@brahmshaktihospital.com",
     "phone": "+91-9811234024",
     "category": "In house",
@@ -631,10 +608,10 @@ export const doctorsData = [
     "validity": "15/04/2026",
     "experienceYears": 22,
     "specializations": [
-      "High-Risk Pregnancy",
-      "Normal & Operative Deliveries",
-      "Laparoscopic Hysterectomy",
-      "Infertility Counseling"
+      "Micro-Ear Surgery (Tympanoplasty)",
+      "Endoscopic Sinus Surgery (FESS)",
+      "Tonsillectomy & Adenoidectomy",
+      "Hearing Loss & Tinnitus Management"
     ],
     "consultationFee": 700,
     "birthdate": "1978-02-18",
@@ -1044,7 +1021,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795184698/Screenshot_2026-11-20_195407.png",
+    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
     "bio": "Dr. Disha Menani is a skilled visiting specialist focusing on reproductive medicine, colposcopy, laparoscopic cyst removal, and patient-tailored fertility protocols.",
     "isActive": true,
     "rating": 4.8
@@ -1472,6 +1449,37 @@ export const doctorsData = [
     ],
     "image": "https://res.cloudinary.com/urzka7oz/image/upload/v1795269864/Gemini_Generated_Image_w4nq3zw4nq3zw4nq.png",
     "bio": "With over 20 years of ophthalmic experience, Dr. Rajesh Kumar is renowned for micro-incision stitchless cataract surgeries and diabetic retinal laser treatments.",
+    "isActive": true,
+    "rating": 4.9
+  },
+  {
+    "id": "doc-eye-03",
+    "name": "Dr. Manvi Aggarwal",
+    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "departmentId": "eye",
+    "departmentName": "Ophthalmology & Eye Care",
+    "designation": "Consultant Ophthalmologist & Eye Surgeon",
+    "qualification": "MBBS, MS (Ophthalmology)",
+    "email": "manviaggarwal@brahmshaktihospital.com",
+    "phone": "+91-9811234031",
+    "category": "In house",
+    "dmcNo": "31452",
+    "validity": "15/09/2028",
+    "experienceYears": 10,
+    "specializations": [
+      "Comprehensive Eye Examination",
+      "Cataract & Phaco Surgery",
+      "Corneal Diseases",
+      "Refractive Error Management"
+    ],
+    "consultationFee": 700,
+    "birthdate": "1990-04-12",
+    "availableDays": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "availableTimings": "10:00 AM - 04:00 PM",
+    "opdSchedule": "Mon - Sat: 10:00 AM - 04:00 PM (Eye Wing)",
+    "room": "Ophthalmology Clinic Chamber 104",
+    "languages": ["English", "Hindi"],
+    "bio": "Dr. Manvi Aggarwal is a dedicated eye surgeon specializing in comprehensive ophthalmic examinations, advanced micro-incision cataract surgeries, and vision correction.",
     "isActive": true,
     "rating": 4.9
   },

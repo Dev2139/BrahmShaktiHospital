@@ -122,12 +122,13 @@ const HERO_BANNER_IMAGES = [
 ];
 
 const CLINICAL_DISCIPLINES = [
-  { id: 'all', label: 'All Disciplines' },
-  { id: 'surgical', label: 'Surgical Sciences', deptIds: ['general-surgery', 'orthopedics'] },
-  { id: 'medical', label: 'Medicine & Diabetology', deptIds: ['medicine', 'cardiology'] },
-  { id: 'mother-child', label: 'Mother & Child', deptIds: ['gynecology', 'pediatrics'] },
-  { id: 'critical', label: 'Dialysis & Renal', deptIds: ['nephrology'] },
-  { id: 'specialist', label: 'Eye & Dermatology', deptIds: ['ophthalmology', 'skin'] }
+  { id: 'all', label: 'All 9 Departments' },
+  { id: 'surgical', label: 'Surgery & Ortho', deptIds: ['general-surgery', 'orthopaedics'] },
+  { id: 'medical', label: 'Internal Medicine', deptIds: ['medicine'] },
+  { id: 'mother-child', label: 'Mother & Child', deptIds: ['gynae-obst', 'pediatrics'] },
+  { id: 'eye-ent', label: 'Eye & ENT', deptIds: ['eye', 'ent'] },
+  { id: 'skin', label: 'Dermatology (Skin)', deptIds: ['skin'] },
+  { id: 'anesthesia', label: 'Anaesthesia & ICU', deptIds: ['anesthesia'] }
 ];
 
 const FEATURED_EVENT = {
@@ -764,7 +765,7 @@ export const HomePage = () => {
   const activeTabObj = CLINICAL_DISCIPLINES.find((t) => t.id === selectedDisciplineTab);
   const displayedDepartments = React.useMemo(() => {
     if (!activeTabObj || activeTabObj.id === 'all') {
-      return departments.slice(0, 6);
+      return departments;
     }
     return departments.filter((d) => activeTabObj.deptIds?.includes(d.id));
   }, [departments, activeTabObj]);
