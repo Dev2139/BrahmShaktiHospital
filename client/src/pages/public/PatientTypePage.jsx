@@ -15,7 +15,11 @@ import {
   AlertCircle,
   KeyRound,
   Loader2,
-  CheckCircle2
+  CheckCircle2,
+  Check,
+  Menu,
+  Stethoscope,
+  Activity
 } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
@@ -29,6 +33,7 @@ export const PatientTypePage = () => {
   const [viewMode, setViewMode] = useState('choose');
   const [refundModalOpen, setRefundModalOpen] = useState(false);
   const [securityModalOpen, setSecurityModalOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Preserve consultation booking parameters (doctor, date, mode, slot, etc.)
   const queryString = searchParams.toString() ? `?${searchParams.toString()}` : '';
@@ -87,7 +92,6 @@ export const PatientTypePage = () => {
 
     setVerifyingOtp(true);
     setTimeout(() => {
-      // Derive patient details
       const cleanEmail = registeredEmail.trim().toLowerCase();
       const patientName =
         cleanEmail === 'patient@brahmshaktihospital.com'
@@ -102,12 +106,10 @@ export const PatientTypePage = () => {
         uhid: `BSH-2026-${Math.floor(10000 + Math.random() * 90000)}`
       };
 
-      // Set logged-in session in AuthContext
       setAuthSession(patientUser, 'bsh_jwt_' + Date.now());
 
       toast.success(`Welcome back, ${patientName}! Redirecting to appointment booking...`);
 
-      // Redirect immediately back to /bookappointment with doctor/date params preserved
       const returnUrl = `/bookappointment${queryString}`;
       setTimeout(() => {
         navigate(returnUrl, { replace: true });
@@ -116,8 +118,8 @@ export const PatientTypePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F7F9] text-[#1E293B] flex flex-col font-sans selection:bg-[#0A7A74] selection:text-white">
-      {/* -------------------- DEDICATED PORTAL NAVBAR -------------------- */}
+    <div className="min-h-screen bg-[#F0F8F9] text-slate-800 flex flex-col font-sans selection:bg-[#0A7A74] selection:text-white">
+      {/* -------------------- 1. DEDICATED PORTAL NAVBAR -------------------- */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
           {/* Left: Hospital Brand & Tagline */}
@@ -129,143 +131,271 @@ export const PatientTypePage = () => {
                 className="h-10 sm:h-12 w-auto object-contain"
               />
               <div className="hidden sm:block border-l border-slate-200 pl-3">
-                <div className="text-xs font-black tracking-wider text-[#0B2545] uppercase">
-                  OPD Appointment Portal
+                <div className="text-xs font-black tracking-wider text-[#0B2545] uppercase leading-tight">
+                  OPD APPOINTMENT PORTAL
                 </div>
-                <div className="text-[11px] font-medium text-[#0A7A74] italic">
+                <div className="text-[11px] font-medium text-[#0A7A74] italic leading-tight">
                   Trust of Generations
                 </div>
               </div>
             </Link>
           </div>
 
-          {/* Right: Portal Links (Matching Reference UI) */}
-          <nav className="flex items-center gap-2 sm:gap-4 md:gap-6 text-xs sm:text-sm font-semibold text-slate-700">
-            <Link to="/" className="hidden md:inline-block hover:text-[#0A7A74] transition-colors">
-              Back Home
+          {/* Right: Desktop Navigation Links (Matching Reference UI) */}
+          <nav className="hidden md:flex items-center gap-6 text-xs sm:text-sm font-semibold text-slate-700">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4 text-[#0A7A74]" />
+              <span>Home</span>
+            </Link>
+            <Link
+              to="/doctors"
+              className="inline-flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
+            >
+              <Stethoscope className="w-4 h-4 text-[#0A7A74]" />
+              <span>Our Doctors</span>
             </Link>
             <button
               type="button"
               onClick={() => setRefundModalOpen(true)}
               className="hover:text-[#0A7A74] transition-colors cursor-pointer"
             >
-              Refund Policy
+              Help &amp; Support
             </button>
-            <Link to="/privacy-policy" className="hidden lg:inline-block hover:text-[#0A7A74] transition-colors">
-              Privacy Policy
-            </Link>
-            <Link to="/terms-of-use" className="hidden lg:inline-block hover:text-[#0A7A74] transition-colors">
-              Terms &amp; Conditions
-            </Link>
-            <Link to="/contact" className="hidden sm:inline-block hover:text-[#0A7A74] transition-colors">
-              Contact Us
-            </Link>
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/login'}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0A7A74]/10 hover:bg-[#0A7A74] text-[#0A7A74] hover:text-white font-bold transition-all border border-[#0A7A74]/20"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-teal-300 bg-teal-50 hover:bg-[#0A7A74] text-[#0A7A74] hover:text-white font-bold transition-all shadow-2xs"
             >
               <User className="w-3.5 h-3.5" />
-              <span>{isAuthenticated ? (user?.name?.split(' ')[0] ? `${user.name.split(' ')[0]}'s Portal` : 'Patient Portal') : 'Patient Portal'}</span>
+              <span>Patient Portal</span>
             </Link>
           </nav>
+
+          {/* Mobile Navigation Toggle Button */}
+          <div className="md:hidden flex items-center gap-2">
+            <Link
+              to={isAuthenticated ? '/patient/dashboard' : '/login'}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-teal-300 bg-teal-50 text-[#0A7A74] text-xs font-bold"
+            >
+              <User className="w-3.5 h-3.5" />
+              <span>Portal</span>
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-lg text-slate-700 hover:bg-slate-100"
+              aria-label="Toggle navigation"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2 text-sm font-semibold">
+            <Link
+              to="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-700 hover:text-[#0A7A74]"
+            >
+              Home
+            </Link>
+            <Link
+              to="/doctors"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-700 hover:text-[#0A7A74]"
+            >
+              Our Doctors
+            </Link>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setRefundModalOpen(true);
+              }}
+              className="block w-full text-left py-2 text-slate-700 hover:text-[#0A7A74]"
+            >
+              Help &amp; Support
+            </button>
+            <Link
+              to={isAuthenticated ? '/patient/dashboard' : '/login'}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-[#0A7A74] font-bold"
+            >
+              Patient Portal
+            </Link>
+          </div>
+        )}
       </header>
 
-      {/* -------------------- MAIN CLASSIFICATION CARD (IMAGE 2 REFERENCE) -------------------- */}
-      <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 py-12 sm:py-20 flex items-center justify-center">
+      {/* -------------------- 2. MAIN BENTO CARD (MATCHING REFERENCE IMAGE 2) -------------------- */}
+      <main className="flex-1 max-w-[1320px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex items-center justify-center">
         {viewMode === 'choose' ? (
           /* ================= VIEW 1: ARE YOU A NEW OR REGISTERED PATIENT ================= */
-          <div className="w-full max-w-3xl bg-white rounded-3xl border border-slate-200 shadow-md p-6 sm:p-12 text-center space-y-8 animate-in fade-in duration-200">
-            <div className="space-y-2">
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0A7A74] tracking-tight">
-                Book an Appointment
-              </h1>
-              <p className="text-base sm:text-lg font-bold text-slate-800">
-                Are you a new or registered patient?
-              </p>
-            </div>
-
-            {/* Two Large Selection Cards (Reference Image 2) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
-              {/* Registered Patient Card */}
-              <div className="p-6 rounded-2xl border-2 border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 bg-slate-50/50">
-                <div className="w-12 h-12 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200">
-                  <User className="w-6 h-6" />
-                </div>
-                <div className="space-y-1">
-                  <h2 className="font-extrabold text-slate-900 text-base">Registered Patient</h2>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    I have already registered with Brahm Shakti Hospital. Fast sign-in via Email OTP.
+          <div className="w-full bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden relative">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
+              {/* LEFT / CENTER PANEL: Classification Cards */}
+              <div className="lg:col-span-7 xl:col-span-7 p-6 sm:p-10 lg:p-12 space-y-7 relative z-10">
+                {/* Header Titles */}
+                <div className="text-center sm:text-left space-y-1">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0A7A74] tracking-tight">
+                    Book an Appointment
+                  </h1>
+                  <p className="text-sm sm:text-base font-bold text-slate-800">
+                    Are you a new or registered patient?
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setViewMode('registered-otp')}
-                  className="w-full py-3 px-5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-sm font-black transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span>Registered Patient</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
 
-              {/* New Patient Card */}
-              <div className="p-6 rounded-2xl border-2 border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 bg-slate-50/50">
-                <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-200">
-                  <UserPlus className="w-6 h-6" />
+                {/* The 2 Patient Classification Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                  {/* Card 1: Registered Patient */}
+                  <div className="p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 bg-white group">
+                    <div className="w-14 h-14 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 group-hover:scale-105 transition-transform">
+                      <User className="w-7 h-7" />
+                    </div>
+                    <div className="space-y-1.5 flex-1 flex flex-col justify-center">
+                      <h2 className="font-extrabold text-slate-900 text-base">
+                        Registered Patient
+                      </h2>
+                      <p className="text-xs text-slate-500 leading-relaxed">
+                        I have already registered with Brahm Shakti Hospital. Fast sign-in via Email OTP.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setViewMode('registered-otp')}
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98]"
+                    >
+                      <span>Registered Patient</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {/* Card 2: New Patient (with Recommended Badge) */}
+                  <div className="relative p-5 sm:p-6 rounded-2xl border-2 border-[#0A7A74] bg-teal-50/20 shadow-xs hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 group">
+                    {/* Top-Right Recommended Badge */}
+                    <div className="absolute -top-3 right-4 bg-[#0A7A74] text-white text-[10px] sm:text-[11px] font-black px-3 py-0.5 rounded-full shadow-xs flex items-center gap-1">
+                      <Check className="w-3 h-3 stroke-[3]" />
+                      <span>Recommended</span>
+                    </div>
+
+                    <div className="w-14 h-14 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 group-hover:scale-105 transition-transform mt-1">
+                      <UserPlus className="w-7 h-7" />
+                    </div>
+                    <div className="space-y-1.5 flex-1 flex flex-col justify-center">
+                      <h2 className="font-extrabold text-slate-900 text-base">
+                        New Patient
+                      </h2>
+                      <p className="text-xs text-slate-500 leading-relaxed">
+                        First visit to Brahm Shakti Hospital. Quick registration with Email OTP (No payment required).
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => navigate(`/bookappointment/new-patient${queryString}`)}
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98]"
+                    >
+                      <span>New Patient</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
-                <div className="space-y-1">
-                  <h2 className="font-extrabold text-slate-900 text-base">New Patient</h2>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    First visit to Brahm Shakti Hospital. Quick registration with Email OTP (No payment required).
-                  </p>
+
+                {/* TABLET / MOBILE VIEW ONLY: 3 Security Checkmarks rendered below cards */}
+                <div className="lg:hidden pt-4 border-t border-slate-100 space-y-2.5 text-xs text-slate-700">
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center shrink-0 border border-teal-200">
+                      <Check className="w-3 h-3 stroke-[3]" />
+                    </div>
+                    <span className="font-semibold">Your information is secure and protected</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center shrink-0 border border-teal-200">
+                      <Check className="w-3 h-3 stroke-[3]" />
+                    </div>
+                    <span className="font-semibold">Quick and easy appointment booking</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center shrink-0 border border-teal-200">
+                      <Check className="w-3 h-3 stroke-[3]" />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSecurityModalOpen(true)}
+                      className="font-bold text-[#0A7A74] hover:underline"
+                    >
+                      Security &amp; Fraud Prevention Notes
+                    </button>
+                  </div>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => navigate(`/bookappointment/new-patient${queryString}`)}
-                  className="w-full py-3 px-5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-sm font-black transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span>New Patient</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
 
-            {/* Bottom Security Badges (From Reference Image) */}
-            <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-slate-500 font-medium">
-              <div className="flex items-center gap-1.5 text-teal-800">
-                <ShieldCheck className="w-4 h-4 text-[#0A7A74]" />
-                <span>Your information is secure and protected</span>
+                {/* Back Link */}
+                <div className="pt-1 text-center sm:text-left">
+                  <Link
+                    to={`/bookappointment${queryString}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#0A7A74] transition-colors"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <span>Back to Slot &amp; Doctor Selection</span>
+                  </Link>
+                </div>
               </div>
-              <span className="hidden sm:inline text-slate-300">|</span>
-              <div className="flex items-center gap-1.5 text-teal-800">
-                <Clock className="w-4 h-4 text-[#0A7A74]" />
-                <span>Quick and easy appointment booking.</span>
-              </div>
-              <span className="hidden sm:inline text-slate-300">|</span>
-              <button
-                type="button"
-                onClick={() => setSecurityModalOpen(true)}
-                className="flex items-center gap-1.5 text-[#0A7A74] hover:underline font-bold cursor-pointer"
-              >
-                <Lock className="w-4 h-4" />
-                <span>Security &amp; Fraud Prevention Notes</span>
-              </button>
-            </div>
 
-            {/* Back link */}
-            <div className="pt-2">
-              <Link
-                to={`/bookappointment${queryString}`}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#0A7A74] transition-colors"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back to Slot &amp; Doctor Selection</span>
-              </Link>
+              {/* RIGHT PANEL (DESKTOP VIEW): Stethoscope Artwork & Trust Checkmarks */}
+              <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 relative self-stretch bg-gradient-to-br from-sky-50/70 via-teal-50/50 to-white flex-col justify-between p-8 xl:p-10 border-l border-slate-100 overflow-hidden">
+                {/* Background Stethoscope Graphic */}
+                <div className="relative w-full flex-1 flex items-center justify-center min-h-[220px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&q=80&w=700"
+                    alt="Brahm Shakti Clinical Stethoscope"
+                    className="w-full max-h-60 object-contain rounded-2xl drop-shadow-sm opacity-90"
+                  />
+                  {/* Soft ambient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none" />
+                </div>
+
+                {/* Desktop 3 Checkmark Items (Matching Reference Image 2) */}
+                <div className="space-y-3.5 pt-4 z-10 text-xs text-slate-800">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-5 h-5 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 shadow-2xs">
+                      <Check className="w-3 h-3 stroke-[3]" />
+                    </div>
+                    <span className="font-bold text-slate-800">
+                      Your information is secure and protected
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-5 h-5 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 shadow-2xs">
+                      <Check className="w-3 h-3 stroke-[3]" />
+                    </div>
+                    <span className="font-bold text-slate-800">
+                      Quick and easy appointment booking
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-5 h-5 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 shadow-2xs">
+                      <Check className="w-3 h-3 stroke-[3]" />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSecurityModalOpen(true)}
+                      className="font-bold text-[#0A7A74] hover:underline cursor-pointer text-left"
+                    >
+                      Security &amp; Fraud Prevention Notes
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         ) : (
           /* ================= VIEW 2: REGISTERED PATIENT EMAIL OTP VERIFICATION ================= */
-          <div className="w-full max-w-xl bg-white rounded-3xl border border-slate-200 shadow-md p-6 sm:p-10 space-y-6 animate-in fade-in duration-200">
+          <div className="w-full max-w-xl bg-white rounded-3xl border border-slate-200 shadow-xl p-6 sm:p-10 space-y-6 animate-in fade-in duration-200">
             <div className="flex items-center justify-between pb-3 border-b border-slate-200">
               <button
                 type="button"
@@ -323,7 +453,7 @@ export const PatientTypePage = () => {
                 <button
                   type="submit"
                   disabled={sendingOtp}
-                  className="w-full py-3.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:opacity-50 text-white text-sm font-black transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:opacity-50 text-white text-sm font-black transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {sendingOtp ? (
                     <>
@@ -368,7 +498,9 @@ export const PatientTypePage = () => {
 
                 <div className="text-center text-xs text-slate-500">
                   {otpTimer > 0 ? (
-                    <span>Resend OTP in <strong>{otpTimer}s</strong></span>
+                    <span>
+                      Resend OTP in <strong>{otpTimer}s</strong>
+                    </span>
                   ) : (
                     <button
                       type="button"
@@ -383,7 +515,7 @@ export const PatientTypePage = () => {
                 <button
                   type="submit"
                   disabled={verifyingOtp || enteredOtp.length < 6}
-                  className="w-full py-3.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-sm font-black transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-sm font-black transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {verifyingOtp ? (
                     <>
@@ -403,20 +535,28 @@ export const PatientTypePage = () => {
         )}
       </main>
 
-      {/* -------------------- DEDICATED PORTAL FOOTER -------------------- */}
-      <footer className="bg-white border-t border-slate-200 mt-auto py-4">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+      {/* -------------------- 3. DEDICATED PORTAL FOOTER (MATCHING IMAGE 2) -------------------- */}
+      <footer className="bg-white border-t border-slate-200 mt-auto py-3.5">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-600">
           <div className="font-semibold">&copy; 2026 Brahm Shakti Hospital.</div>
+
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-teal-300 bg-teal-50 text-[#0A7A74] font-bold text-xs">
             <ShieldCheck className="w-4 h-4 text-[#0A7A74]" />
             <span>NABH &amp; NABL Accredited</span>
           </div>
+
           <div className="flex flex-wrap items-center gap-4 text-xs font-medium">
-            <a href="mailto:helpdesk@brahmshaktihospital.com" className="flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors">
+            <a
+              href="mailto:helpdesk@brahmshaktihospital.com"
+              className="flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
+            >
               <Mail className="w-3.5 h-3.5 text-[#0A7A74]" />
               <span>helpdesk@brahmshaktihospital.com</span>
             </a>
-            <a href="tel:01127531683" className="flex items-center gap-1.5 text-rose-600 font-bold hover:underline">
+            <a
+              href="tel:01127531683"
+              className="flex items-center gap-1.5 text-rose-600 font-bold hover:underline"
+            >
               <Phone className="w-3.5 h-3.5" />
               <span>011-27531683 / 7840089703</span>
             </a>
@@ -426,7 +566,7 @@ export const PatientTypePage = () => {
 
       {/* Refund Policy Modal */}
       {refundModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 border border-slate-200 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div className="flex items-center gap-2 text-[#0A7A74]">
@@ -452,7 +592,7 @@ export const PatientTypePage = () => {
             <button
               type="button"
               onClick={() => setRefundModalOpen(false)}
-              className="w-full py-2.5 rounded-lg bg-[#0A7A74] text-white text-xs font-bold"
+              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold"
             >
               I Understand
             </button>
@@ -462,7 +602,7 @@ export const PatientTypePage = () => {
 
       {/* Security Notes Modal */}
       {securityModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 border border-slate-200 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div className="flex items-center gap-2 text-[#0A7A74]">
@@ -478,14 +618,20 @@ export const PatientTypePage = () => {
               </button>
             </div>
             <div className="text-xs text-slate-600 space-y-2.5 leading-relaxed">
-              <p>• Brahm Shakti Hospital will never ask for your bank OTP, debit card PIN, or UPI passwords over phone or email.</p>
-              <p>• Registration is 100% free. Doctor consultation fee is paid directly at the hospital registration billing counter (Block A, Ground Floor).</p>
-              <p>• Digital OTP verification is only used to secure your UHID and appointment records.</p>
+              <p>
+                • Brahm Shakti Hospital will never ask for your bank OTP, debit card PIN, or UPI passwords over phone or email.
+              </p>
+              <p>
+                • Registration is 100% free. Doctor consultation fee is paid directly at the hospital registration billing counter.
+              </p>
+              <p>
+                • Digital OTP verification is only used to secure your UHID and appointment records.
+              </p>
             </div>
             <button
               type="button"
               onClick={() => setSecurityModalOpen(false)}
-              className="w-full py-2.5 rounded-lg bg-[#0A7A74] text-white text-xs font-bold"
+              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold"
             >
               Close
             </button>
