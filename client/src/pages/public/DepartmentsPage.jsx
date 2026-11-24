@@ -164,7 +164,7 @@ export const DepartmentsPage = () => {
                   </Link>
 
                   <Link
-                    to={`/appointments?department=${dept.id}`}
+                    to={`/bookappointment?department=${dept.id}`}
                     className="flex items-center justify-center p-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-sm"
                     title="Book Appointment"
                   >

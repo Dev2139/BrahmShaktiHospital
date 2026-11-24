@@ -527,9 +527,7 @@ Free Deliverables: Random Blood Sugar Test, BP checkup, BMI calculation, and die
 export const HomePage = () => {
   const navigate = useNavigate();
   const { isAuthenticated, isStaff, dashboardPath } = useAuth();
-  const appointmentTarget = isStaff
-    ? (dashboardPath || '/admin/dashboard')
-    : '/appointments';
+  const appointmentTarget = '/bookappointment';
 
   const [departments, setDepartments] = useState(departmentsData || []);
   const [allDoctors, setAllDoctors] = useState(doctorsData || []);
@@ -748,18 +746,18 @@ export const HomePage = () => {
   const handleSearchAppointment = (e) => {
     if (e) e.preventDefault();
     if (selectedDoctor && selectedDepartment) {
-      navigate(`/consultation?doctor=${encodeURIComponent(selectedDoctor)}&department=${encodeURIComponent(selectedDepartment)}`);
+      navigate(`/bookappointment?doctor=${encodeURIComponent(selectedDoctor)}&department=${encodeURIComponent(selectedDepartment)}`);
       return;
     }
     if (selectedDoctor) {
-      navigate(`/consultation?doctor=${encodeURIComponent(selectedDoctor)}`);
+      navigate(`/bookappointment?doctor=${encodeURIComponent(selectedDoctor)}`);
       return;
     }
     if (selectedDepartment) {
-      navigate(`/consultation?department=${encodeURIComponent(selectedDepartment)}`);
+      navigate(`/bookappointment?department=${encodeURIComponent(selectedDepartment)}`);
       return;
     }
-    navigate('/consultation');
+    navigate('/bookappointment');
   };
 
   const activeTabObj = CLINICAL_DISCIPLINES.find((t) => t.id === selectedDisciplineTab);
@@ -1044,10 +1042,10 @@ export const HomePage = () => {
                     View Details
                   </Link>
                   <Link
-                    to={isStaff ? appointmentTarget : `/appointments?specialty=${dept.id}`}
+                    to={`/bookappointment?specialty=${dept.id}`}
                     className="flex-1 py-2 sm:py-2.5 rounded-xl bg-[#0B2545] hover:bg-[#123661] text-white text-xs font-bold text-center transition-all shadow-sm hover:shadow"
                   >
-                    {isStaff ? 'My Dashboard' : 'Book Slot'}
+                    Book Slot
                   </Link>
                 </div>
               </div>

@@ -86,7 +86,7 @@ export const OpdServicesPage = () => {
             </p>
           </div>
           <Link
-            to="/appointments"
+            to="/bookappointment"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-bold shadow-md hover:bg-primary-hover"
           >
             <Calendar className="w-4 h-4" />
@@ -124,7 +124,7 @@ export const OpdServicesPage = () => {
                     </td>
                     <td className="py-4 px-6 text-right">
                       <Link
-                        to={`/appointments?department=${dept.id}`}
+                        to={`/bookappointment?department=${dept.id}`}
                         className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary-50 text-primary hover:bg-primary hover:text-white font-bold transition-all text-[11px]"
                       >
                         <span>Book Slot</span>
@@ -165,7 +165,7 @@ export const OpdServicesPage = () => {
                 </div>
               </div>
               <Link
-                to={`/appointments?doctor=${doc.id}&department=${doc.departmentId}`}
+                to={`/bookappointment?doctor=${doc.id}&department=${doc.departmentId}`}
                 className="w-full flex items-center justify-center py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-hover shadow-xs"
               >
                 Book Appointment

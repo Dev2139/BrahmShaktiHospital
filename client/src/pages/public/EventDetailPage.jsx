@@ -363,7 +363,7 @@ export default function EventDetailPage() {
                   <span>Call Emergency: 7840089703</span>
                 </a>
                 <Link
-                  to="/consultation"
+                  to="/bookappointment"
                   className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs transition-colors"
                 >
                   <CalendarDays className="w-3.5 h-3.5" />

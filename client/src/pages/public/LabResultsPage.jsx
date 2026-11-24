@@ -340,7 +340,7 @@ export const LabResultsPage = () => {
                           Print / Save PDF
                         </button>
                         <Link
-                          to="/appointments"
+                          to="/bookappointment"
                           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-sm font-bold transition-all"
                         >
                           <CalendarDays className="w-4 h-4" />
@@ -378,7 +378,7 @@ export const LabResultsPage = () => {
               Call Lab Helpdesk
             </a>
             <Link
-              to="/consultation"
+              to="/bookappointment"
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-sm font-bold transition-all"
             >
               <CalendarDays className="w-4 h-4" />

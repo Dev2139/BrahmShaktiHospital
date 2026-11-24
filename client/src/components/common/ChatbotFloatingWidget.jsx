@@ -28,7 +28,7 @@ const BOT_KNOWLEDGE = [
     keywords: ['appointment', 'book', 'consult', 'slot', 'schedule', 'doctor appointment'],
     reply: 'You can instantly schedule an outpatient consultation with our senior specialists. Would you like to select a doctor now?',
     actions: [
-      { label: 'Book Appointment', link: '/consultation', primary: true },
+      { label: 'Book Appointment', link: '/bookappointment', primary: true },
       { label: 'View All Doctors', link: '/doctors' }
     ]
   },
@@ -37,7 +37,7 @@ const BOT_KNOWLEDGE = [
     reply: 'Brahm Shakti Hospital has 20+ verified senior consultants including Dr. S.K. Goyal (Medicine), Dr. Nishant Verma & Dr. Rishabh Jain (Surgery), Dr. Manisha Jain & Dr. Renu Gupta (Gynaecology), and Dr. Kapil Goyal & Dr. Ravi Shankar Gupta (Orthopaedics).',
     actions: [
       { label: 'Explore Doctor Directory', link: '/doctors', primary: true },
-      { label: 'Book Consultation', link: '/consultation' }
+      { label: 'Book Consultation', link: '/bookappointment' }
     ]
   },
   {
@@ -87,7 +87,7 @@ const BOT_KNOWLEDGE = [
     keywords: ['fee', 'charges', 'cost', 'price', 'consultation fee', 'subsidized'],
     reply: 'As a philanthropic institution managed by Brahm Shakti Trust, OPD consultation fee is subsidized at just ₹700 across super-specialties.',
     actions: [
-      { label: 'Book OPD Slot', link: '/consultation', primary: true }
+      { label: 'Book OPD Slot', link: '/bookappointment', primary: true }
     ]
   }
 ];
@@ -111,7 +111,7 @@ export const ChatbotFloatingWidget = () => {
       sender: 'bot',
       text: 'Namaste! Welcome to Brahm Shakti Hospital. How may I assist your medical journey today?',
       actions: [
-        { label: 'Book Appointment', link: '/consultation', primary: true },
+        { label: 'Book Appointment', link: '/bookappointment', primary: true },
         { label: 'Find a Doctor', link: '/doctors' }
       ]
     }
@@ -170,7 +170,7 @@ export const ChatbotFloatingWidget = () => {
         botReply =
           'Thank you for reaching out. For specific medical queries or doctor recommendations, you can consult our specialty desk or call our 24x7 hospital helpline.';
         botActions = [
-          { label: 'Book Doctor Appointment', link: '/consultation', primary: true },
+          { label: 'Book Doctor Appointment', link: '/bookappointment', primary: true },
           { label: 'Emergency Hotline: 7840089703', href: 'tel:7840089703', isCall: true }
         ];
       }
@@ -202,7 +202,7 @@ export const ChatbotFloatingWidget = () => {
         sender: 'bot',
         text: 'Chat history reset. How can Brahm Shakti Hospital help you right now?',
         actions: [
-          { label: 'Book Appointment', link: '/consultation', primary: true },
+          { label: 'Book Appointment', link: '/bookappointment', primary: true },
           { label: 'Find a Doctor', link: '/doctors' }
         ]
       }

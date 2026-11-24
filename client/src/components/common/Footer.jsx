@@ -156,7 +156,7 @@ export const Footer = () => {
             </h4>
             <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-2 gap-y-2 text-xs sm:text-[13px] text-slate-600">
               <li>
-                <Link to="/appointments" className="hover:text-[#0A7A74] hover:underline transition-colors">
+                <Link to="/bookappointment" className="hover:text-[#0A7A74] hover:underline transition-colors">
                   Book an Appointment
                 </Link>
               </li>

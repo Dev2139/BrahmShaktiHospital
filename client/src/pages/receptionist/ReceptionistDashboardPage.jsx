@@ -77,7 +77,7 @@ export const ReceptionistDashboardPage = () => {
             <span>Register Patient</span>
           </Link>
           <Link
-            to="/appointments"
+            to="/bookappointment"
             className="px-4 py-2.5 rounded-xl bg-white text-secondary font-bold text-xs hover:bg-accent transition-all shadow-md flex items-center gap-1.5"
           >
             <Calendar className="w-4 h-4" />

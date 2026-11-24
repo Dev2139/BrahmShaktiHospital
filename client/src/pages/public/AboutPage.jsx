@@ -173,7 +173,7 @@ export const AboutPage = () => {
             </p>
           </div>
           <Link
-            to="/appointments"
+            to="/bookappointment"
             className="px-8 py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-sm shadow-md whitespace-nowrap transition-transform hover:scale-105"
           >
             Consult Our Specialists

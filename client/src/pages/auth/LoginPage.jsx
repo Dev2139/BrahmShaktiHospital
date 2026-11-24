@@ -444,7 +444,7 @@ export const LoginPage = () => {
             <div className="flex items-center justify-between text-slate-500">
               <span>Patient seeking doctor consultation?</span>
               <Link
-                to="/consultation"
+                to="/bookappointment"
                 className="text-[#0A7A74] font-bold hover:underline inline-flex items-center gap-1"
               >
                 <span>Book without Login</span>

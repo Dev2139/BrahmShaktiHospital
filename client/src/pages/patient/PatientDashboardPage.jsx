@@ -126,7 +126,7 @@ export const PatientDashboardPage = () => {
         </div>
 
         <Link
-          to="/appointments"
+          to="/bookappointment"
           className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-secondary hover:bg-accent font-bold text-xs transition-all shadow-md self-start md:self-auto"
         >
           <Plus className="w-4 h-4 text-primary" />
@@ -174,7 +174,7 @@ export const PatientDashboardPage = () => {
             <h3 className="text-base font-bold text-secondary">My Consultations & Appointments</h3>
             <p className="text-xs text-medical-muted">History of past and upcoming appointments with doctors.</p>
           </div>
-          <Link to="/appointments" className="text-xs font-bold text-primary hover:underline">
+          <Link to="/bookappointment" className="text-xs font-bold text-primary hover:underline">
             Book Next Appointment ↗
           </Link>
         </div>

@@ -342,7 +342,7 @@ export default function LocationGuidePage() {
                   <span>Casualty Helpline: 7840089703</span>
                 </a>
                 <Link
-                  to="/consultation"
+                  to="/bookappointment"
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs transition-colors"
                 >
                   <CalendarDays className="w-4 h-4" />

@@ -201,7 +201,7 @@ export const DoctorProfilePage = () => {
             {/* Right: Quick Action Buttons & Header Stats */}
             <div className="w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
               <Link
-                to={`/consultation?doctor=${doctor.id}&department=${doctor.departmentId}`}
+                to={`/bookappointment?doctor=${doctor.id}&department=${doctor.departmentId}`}
                 className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black text-xs sm:text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all hover:scale-[1.02] cursor-pointer"
               >
                 <Calendar className="w-4 h-4" />
@@ -492,7 +492,7 @@ export const DoctorProfilePage = () => {
                     </div>
                   </div>
                   <Link
-                    to={`/consultation?doctor=${doctor.id}&department=${doctor.departmentId}`}
+                    to={`/bookappointment?doctor=${doctor.id}&department=${doctor.departmentId}`}
                     className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors cursor-pointer"
                   >
                     Select Slot
@@ -640,7 +640,7 @@ export const DoctorProfilePage = () => {
 
               {/* CTA Booking Button */}
               <Link
-                to={`/consultation?doctor=${doctor.id}&department=${doctor.departmentId}`}
+                to={`/bookappointment?doctor=${doctor.id}&department=${doctor.departmentId}`}
                 className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-black text-xs sm:text-sm shadow-lg shadow-emerald-600/25 transition-all cursor-pointer"
               >
                 <Calendar className="w-4 h-4" />

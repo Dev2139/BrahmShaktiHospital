@@ -314,7 +314,7 @@ export const DepartmentDetailPage = () => {
               </div>
 
               <Link
-                to={`/consultation?department=${department.id}`}
+                to={`/bookappointment?department=${department.id}`}
                 className="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs transition-all shadow-md shrink-0 cursor-pointer"
               >
                 Book an Appointment

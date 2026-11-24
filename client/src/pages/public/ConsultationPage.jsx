@@ -173,13 +173,6 @@ export const ConsultationPage = () => {
   const [refundModalOpen, setRefundModalOpen] = useState(false);
   const [photoViewMode, setPhotoViewMode] = useState('silhouette'); // 'silhouette' or 'real'
 
-  // If a hospital staff member enters this patient booking portal, redirect them to staff dashboard
-  useEffect(() => {
-    if (!isLoading && isAuthenticated && (isStaff || (user?.role && user.role !== 'patient'))) {
-      navigate(dashboardPath || '/admin/dashboard', { replace: true });
-    }
-  }, [isLoading, isAuthenticated, isStaff, user, dashboardPath, navigate]);
-
   // Autofill patient details if user is logged in
   useEffect(() => {
     if (user) {

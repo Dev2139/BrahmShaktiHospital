@@ -19,7 +19,7 @@ import api from '../../services/api';
 // Static site pages matched by keywords so Quick Search also navigates to
 // important hospital services, not just database records.
 const staticPages = [
-  { label: 'Book an Appointment', keywords: ['appoint', 'book', 'consult', 'opd'], path: '/consultation', icon: CalendarDays, desc: 'Public consultation portal — no login required' },
+  { label: 'Book an Appointment', keywords: ['appoint', 'book', 'consult', 'opd'], path: '/bookappointment', icon: CalendarDays, desc: 'Public consultation portal — no login required' },
   { label: 'Lab Test Results', keywords: ['lab', 'report', 'result', 'test', 'blood test'], path: '/lab-results', icon: FlaskConical, desc: 'Retrieve diagnostic reports with UHID + mobile' },
   { label: 'Blood Bank & Availability', keywords: ['blood', 'donate', 'platelet', 'plasma'], path: '/blood-bank', icon: Droplets, desc: 'Live inventory, donation & request workflows' },
   { label: 'Pharmacy & Medicines', keywords: ['pharmac', 'medicine', 'drug', 'prescription'], path: '/pharmacy', icon: Pill, desc: 'In-house 24x7 pharmacy store' },
@@ -145,7 +145,7 @@ export const SearchPage = () => {
               or jump straight to services like appointment booking and lab report retrieval.
             </p>
             <div className="mt-6 grid sm:grid-cols-3 gap-3 text-left">
-              <Link to="/consultation" className="p-4 rounded-xl border border-medical-border hover:border-primary hover:bg-primary-50/50 transition-all group">
+              <Link to="/bookappointment" className="p-4 rounded-xl border border-medical-border hover:border-primary hover:bg-primary-50/50 transition-all group">
                 <CalendarDays className="w-5 h-5 text-primary mb-2" />
                 <div className="font-bold text-secondary text-sm group-hover:text-primary">Book Appointment</div>
                 <div className="text-[11px] text-medical-muted mt-0.5">No login required consultation portal</div>

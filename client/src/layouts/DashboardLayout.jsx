@@ -162,7 +162,7 @@ export const DashboardLayout = () => {
     // Patient role
     return [
       { label: 'Patient Portal', path: '/patient/dashboard', icon: LayoutDashboard },
-      { label: 'Book Appointment', path: '/appointments', icon: Calendar },
+      { label: 'Book Appointment', path: '/bookappointment', icon: Calendar },
       { label: 'Doctor Directory', path: '/doctors', icon: UserCheck },
       { label: 'Blood Bank Status', path: '/blood-bank', icon: Droplets },
       { label: 'Hospital Pharmacy', path: '/pharmacy', icon: Pill }

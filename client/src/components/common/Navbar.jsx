@@ -114,9 +114,7 @@ export const Navbar = () => {
         : 'text-secondary hover:text-primary hover:bg-slate-100/80'
     }`;
 
-  const appointmentTarget = isStaff
-    ? (dashboardPath || '/admin/dashboard')
-    : '/appointments';
+  const appointmentTarget = '/bookappointment';
 
   return (
     <header ref={navRef} className="sticky top-0 z-50 w-full bg-white shadow-md transition-shadow">
