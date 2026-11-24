@@ -770,9 +770,9 @@ export const Navbar = () => {
         )}
       </nav>
 
-      {/* Connected Left Corner Tab: Lab Result & Emergency (Sir Ganga Ram Hospital Style) */}
+      {/* Connected Right Corner Tab: Lab Result & Emergency */}
       <div className="hidden lg:block absolute top-full left-0 right-0 pointer-events-none -mt-px z-40">
-        <div className="max-w-[1440px] mx-auto px-3 sm:px-6">
+        <div className="max-w-[1440px] mx-auto px-3 sm:px-6 flex justify-end">
           <div className="inline-flex items-center pointer-events-auto bg-white/95 backdrop-blur-md border-b border-x border-slate-200/90 shadow-md rounded-b-2xl divide-x divide-slate-100">
             {/* 1. Lab Result (Redirects to Oncquest Online Lab Portal) */}
             <a
@@ -813,10 +813,10 @@ export const Navbar = () => {
               {emergencyModalOpen && (
                 <div
                   onClick={(e) => e.stopPropagation()}
-                  className="absolute top-full left-0 mt-3 w-80 sm:w-[350px] bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-7 z-50 text-left animate-in fade-in zoom-in-95 duration-150"
+                  className="absolute top-full right-0 mt-3 w-80 sm:w-[350px] bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-7 z-50 text-left animate-in fade-in zoom-in-95 duration-150"
                 >
                   {/* Pointer triangle */}
-                  <div className="absolute -top-2 left-6 w-4 h-4 bg-white rotate-45 border-t border-l border-slate-200" />
+                  <div className="absolute -top-2 right-8 w-4 h-4 bg-white rotate-45 border-t border-l border-slate-200" />
 
                   {/* Circular Teal Close Button */}
                   <button
