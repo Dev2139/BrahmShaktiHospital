@@ -23,7 +23,7 @@ import toast from 'react-hot-toast';
 export const PatientTypePage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { setAuthSession } = useAuth();
+  const { setAuthSession, isAuthenticated, user } = useAuth();
 
   // 'choose' | 'registered-otp'
   const [viewMode, setViewMode] = useState('choose');
@@ -161,11 +161,11 @@ export const PatientTypePage = () => {
               Contact Us
             </Link>
             <Link
-              to="/login"
+              to={isAuthenticated ? '/patient/dashboard' : '/login'}
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0A7A74]/10 hover:bg-[#0A7A74] text-[#0A7A74] hover:text-white font-bold transition-all border border-[#0A7A74]/20"
             >
               <User className="w-3.5 h-3.5" />
-              <span>Patient Portal</span>
+              <span>{isAuthenticated ? (user?.name?.split(' ')[0] ? `${user.name.split(' ')[0]}'s Portal` : 'Patient Portal') : 'Patient Portal'}</span>
             </Link>
           </nav>
         </div>
@@ -443,7 +443,7 @@ export const PatientTypePage = () => {
             </div>
             <div className="text-xs text-slate-600 space-y-3 leading-relaxed">
               <p>
-                <strong>1. Registration Fee:</strong> The one-time registration fee of ₹200/- is non-refundable once registered in the hospital system.
+                <strong>1. Registration:</strong> Patient registration is completely FREE of charge. We do not collect registration fees.
               </p>
               <p>
                 <strong>2. Doctor Availability:</strong> If the doctor is called for emergency surgery, appointments are rescheduled at zero fee or consultation is adjusted at the counter.
@@ -479,7 +479,7 @@ export const PatientTypePage = () => {
             </div>
             <div className="text-xs text-slate-600 space-y-2.5 leading-relaxed">
               <p>• Brahm Shakti Hospital will never ask for your bank OTP, debit card PIN, or UPI passwords over phone or email.</p>
-              <p>• All OPD registration fees and consultation payments are taken directly at the hospital registration billing counter (Block A, Ground Floor).</p>
+              <p>• Registration is 100% free. Doctor consultation fee is paid directly at the hospital registration billing counter (Block A, Ground Floor).</p>
               <p>• Digital OTP verification is only used to secure your UHID and appointment records.</p>
             </div>
             <button

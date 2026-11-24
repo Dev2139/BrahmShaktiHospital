@@ -130,6 +130,24 @@ export default function App() {
         <Route path="/consultation" element={<ConsultationPage />} />
         <Route path="/opd-booking" element={<ConsultationPage />} />
 
+        {/* Dedicated Standalone Patient Portal (Matching Reference UI) */}
+        <Route
+          path="/patient/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={['patient', 'admin', 'superadmin']}>
+              <PatientDashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/patient-portal"
+          element={
+            <ProtectedRoute allowedRoles={['patient', 'admin', 'superadmin']}>
+              <PatientDashboardPage />
+            </ProtectedRoute>
+          }
+        />
+
         {/* Protected Admin & Clinical Dashboards */}
         <Route
           element={
@@ -290,14 +308,6 @@ export default function App() {
             element={
               <ProtectedRoute allowedRoles={['receptionist', 'admin', 'superadmin']}>
                 <ReceptionistDashboardPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/patient/dashboard"
-            element={
-              <ProtectedRoute allowedRoles={['patient', 'admin', 'superadmin']}>
-                <PatientDashboardPage />
               </ProtectedRoute>
             }
           />

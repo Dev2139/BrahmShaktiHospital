@@ -479,21 +479,13 @@ export const NewPatientRegisterPage = () => {
                 </label>
               </div>
 
-              {/* Yellow Notice Box (From Image 4) */}
-              <div className="bg-[#FFFDF0] border border-amber-300 rounded-xl p-4 text-xs space-y-1 text-slate-800">
+              {/* Free Registration Notice */}
+              <div className="bg-emerald-50/70 border border-emerald-300 rounded-xl p-4 text-xs space-y-1 text-slate-800">
                 <p>
-                  • One-time registration fee: <strong className="text-amber-800 font-black">₹200/</strong> is{' '}
-                  <strong className="text-rose-600 font-black">NON-REFUNDABLE.</strong>
+                  • Patient Registration &amp; UHID generation is <strong className="text-emerald-700 font-black">100% FREE</strong>.
                 </p>
-                <p>
-                  • Registration <strong className="text-rose-600 font-black">DOES NOT</strong> confirm your appointment.
-                </p>
-                <p>
-                  • ₹200 का शुल्क केवल एक बार के पंजीकरण (Registration) के लिए है। यह शुल्क{' '}
-                  <strong className="text-rose-600 font-black">वापस नहीं किया जाएगा।</strong>
-                </p>
-                <p>
-                  • केवल पंजीकरण कराने से आपका अपॉइंटमेंट <strong className="text-rose-600 font-black">मान्य नहीं होगा।</strong>
+                <p className="text-slate-600">
+                  • We do not charge any fee for registration. Subsidized doctor consultation fee is payable only when visiting the hospital OPD counter.
                 </p>
               </div>
 

@@ -402,6 +402,15 @@ export const Navbar = () => {
 
           {/* Right: Book Appointment Pill + Mobile Toggle */}
           <div className="flex-1 flex items-center justify-end gap-2 shrink-0">
+            {isAuthenticated && (
+              <Link
+                to="/patient/dashboard"
+                className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-[#0A7A74]/30 bg-teal-50 hover:bg-[#0A7A74] text-[#0A7A74] hover:text-white font-bold text-xs transition-all shadow-2xs"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>Patient Portal</span>
+              </Link>
+            )}
             <Link
               to={appointmentTarget}
               className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-md shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
@@ -753,7 +762,16 @@ export const Navbar = () => {
                 <span>Book Appointment Online</span>
               </Link>
 
-              {!isAuthenticated && (
+              {isAuthenticated ? (
+                <Link
+                  to="/patient/dashboard"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-teal-300 bg-teal-50 text-[#0A7A74] text-xs font-bold transition-colors"
+                >
+                  <User className="w-3.5 h-3.5" />
+                  <span>My Patient Portal</span>
+                </Link>
+              ) : (
                 <Link
                   to="/login"
                   onClick={() => setMobileMenuOpen(false)}

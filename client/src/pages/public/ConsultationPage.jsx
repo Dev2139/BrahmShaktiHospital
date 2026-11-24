@@ -340,7 +340,7 @@ export const ConsultationPage = () => {
         appointmentType: consultationMode === 'video' ? 'Video Consultation' : 'OPD Consultation',
         symptoms: symptoms.trim() || undefined,
         fee: activeDoctor.consultationFee || 700,
-        registrationFee: 200,
+        registrationFee: 0,
         paymentMethod: 'Pay at Hospital Counter'
       };
 
@@ -423,11 +423,11 @@ export const ConsultationPage = () => {
               Contact Us
             </Link>
             <Link
-              to="/login"
+              to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0A7A74]/10 hover:bg-[#0A7A74] text-[#0A7A74] hover:text-white font-bold transition-all border border-[#0A7A74]/20"
             >
               <User className="w-3.5 h-3.5" />
-              <span>Patient Portal</span>
+              <span>{isAuthenticated ? (user?.name?.split(' ')[0] ? `${user.name.split(' ')[0]}'s Portal` : 'Patient Portal') : 'Patient Portal'}</span>
             </Link>
           </nav>
         </div>
@@ -497,7 +497,7 @@ export const ConsultationPage = () => {
               <ul className="list-disc list-inside space-y-0.5 text-[11px] text-amber-800">
                 <li>Please report to the OPD reception counter 15 minutes prior to your time slot.</li>
                 <li>Show this digital appointment confirmation or quote Appointment ID: <strong className="font-mono">{confirmed.appointmentId}</strong>.</li>
-                <li>One-time registration fee of ₹200 is payable at the hospital registration counter.</li>
+                <li>Registration is completely FREE. Consultation fee is payable at the hospital OPD counter.</li>
               </ul>
             </div>
 
@@ -932,30 +932,17 @@ export const ConsultationPage = () => {
                 </div>
               </div>
 
-              {/* ================= BILINGUAL REGISTRATION WARNING BOX (EXACT COPY OF REFERENCE) ================= */}
-              <div className="bg-[#FFFDF0] border-l-4 border-[#F59E0B] rounded-r-xl p-5 shadow-xs text-xs sm:text-sm space-y-3">
-                {/* English Text */}
-                <div className="space-y-1">
-                  <p className="text-slate-800 font-bold">
-                    1. One-time registration fee: <strong className="text-rose-600 font-black">₹200/- is NON-REFUNDABLE.</strong>
-                  </p>
-                  <p className="text-slate-800 font-bold">
-                    2. Registration <strong className="text-rose-600 font-black">DOES NOT</strong> confirm your appointment.
-                  </p>
-                </div>
-
-                {/* Subtle dotted separator matching reference image */}
-                <div className="border-t border-dotted border-amber-300"></div>
-
-                {/* Hindi Text */}
-                <div className="space-y-1">
-                  <p className="text-slate-800 font-bold">
-                    1. ₹200 का शुल्क केवल एक बार के पंजीकरण (Registration) के लिए है। यह शुल्क <strong className="text-rose-600 font-black">वापस नहीं किया जाएगा।</strong>
-                  </p>
-                  <p className="text-slate-800 font-bold">
-                    2. केवल पंजीकरण कराने से आपका अपॉइंटमेंट <strong className="text-rose-600 font-black">मान्य नहीं होगा।</strong>
-                  </p>
-                </div>
+              {/* ================= PATIENT GUIDANCE CALLOUT (FREE REGISTRATION) ================= */}
+              <div className="bg-emerald-50/70 border-l-4 border-emerald-600 rounded-r-xl p-4 shadow-xs text-xs sm:text-sm space-y-1">
+                <p className="text-slate-800 font-bold">
+                  ✓ Patient Registration is <strong className="text-emerald-700 font-black">100% FREE</strong> of charge.
+                </p>
+                <p className="text-slate-700">
+                  • Subsidized trust consultation fee is payable only when visiting the doctor at the hospital OPD counter.
+                </p>
+                <p className="text-slate-600 text-[11px]">
+                  • OPD consultations include complimentary follow-up within 10 days of your visit.
+                </p>
               </div>
             </div>
           </div>
@@ -1108,8 +1095,8 @@ export const ConsultationPage = () => {
               {/* Fee Breakdown Card */}
               <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1.5">
                 <div className="flex justify-between text-slate-600">
-                  <span>Hospital Registration Fee (One-Time):</span>
-                  <span className="font-bold text-slate-800">₹200 (Non-Refundable)</span>
+                  <span>Hospital Registration Fee:</span>
+                  <span className="font-bold text-emerald-700">FREE (₹0)</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Doctor Consultation Fee:</span>
@@ -1117,7 +1104,7 @@ export const ConsultationPage = () => {
                 </div>
                 <div className="border-t border-slate-200 pt-1.5 flex justify-between font-black text-slate-900 text-sm">
                   <span>Total Payable at Counter:</span>
-                  <span className="text-[#0A7A74]">₹{(activeDoctor.consultationFee || 700) + 200}</span>
+                  <span className="text-[#0A7A74]">₹{activeDoctor.consultationFee || 700}</span>
                 </div>
               </div>
 
@@ -1168,7 +1155,7 @@ export const ConsultationPage = () => {
 
             <div className="text-xs text-slate-600 space-y-3 leading-relaxed">
               <p>
-                <strong>1. Registration Fee:</strong> The one-time registration fee of ₹200/- is non-refundable once registered in the hospital management system.
+                <strong>1. Registration:</strong> Patient registration is completely free of charge. No upfront fees are collected online.
               </p>
               <p>
                 <strong>2. Doctor Rescheduling:</strong> If the consulting doctor is called for emergency surgery or is indisposed, patient appointments will be rescheduled to the next available slot at no additional charge.
