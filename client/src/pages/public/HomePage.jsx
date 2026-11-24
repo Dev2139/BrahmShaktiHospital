@@ -32,7 +32,10 @@ import {
   ExternalLink,
   Bell,
   Pin,
-  Megaphone
+  Megaphone,
+  Info,
+  ListFilter,
+  Check
 } from 'lucide-react';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
@@ -465,7 +468,7 @@ const INITIAL_PATIENT_NOTICES = [
     title: 'Winter Seasonal Respiratory Care & Subsidized OPD Nebulization Desk Notification',
     summary: 'Special winter pediatric and geriatric respiratory desk operational in Block A. Daily nebulization, pulse oximetry, and senior physician consultations available at subsidized trust rates.',
     content: `CIRCULAR REF: BSH/ADM/2026/104
-DATE OF ISSUANCE: 22nd November 2026
+DATE OF ISSUANCE: 05th November 2026
 ISSUED BY: Office of the Medical Superintendent, Brahm Shakti Hospital, Budh Vihar
 
 All patients, outpatients, and visiting families are hereby informed that in view of winter air quality fluctuations and seasonal bronchitis prevalence across North-West Delhi, Brahm Shakti Hospital has instituted a Dedicated Respiratory Support Desk at the Ground Floor OPD Block.
@@ -480,12 +483,17 @@ For further assistance, please contact the Main Hospital Reception or consult th
     category: 'Patient Advisory',
     refNumber: 'BSH/ADM/2026/104',
     audience: 'patients',
-    date: '2026-11-22',
+    date: '2026-11-05',
     isPinned: true,
     isNewBadge: true,
     status: 'published',
     author: 'Medical Superintendent Office',
-    readTime: '2 min read'
+    readTime: '2 min read',
+    highlights: [
+      'Special respiratory care desk in Block A',
+      'Daily nebulization & pulse oximetry',
+      'Senior physician consultation at subsidized rates'
+    ]
   },
   {
     id: 'notice-patient-02',
@@ -511,7 +519,12 @@ Helpdesk Contact: 7840089703 (Ayushman Desk / Trauma Triage).`,
     isNewBadge: true,
     status: 'published',
     author: 'Government Schemes Liaison Desk',
-    readTime: '3 min read'
+    readTime: '3 min read',
+    highlights: [
+      '24x7 Ayushman Mitra helpdesk at Counter 2',
+      'Digital pre-authorization initiated in under 45 mins',
+      'Cashless surgical and intensive care admissions'
+    ]
   },
   {
     id: 'notice-patient-03',
@@ -536,12 +549,17 @@ Digital appointment tokens can be scheduled via our official online booking port
     isPinned: false,
     isNewBadge: false,
     status: 'published',
-    author: 'Clinical Administration',
-    readTime: '2 min read'
+    author: 'OPD Administration',
+    readTime: '2 min read',
+    highlights: [
+      'Morning Session: 09:30 AM to 01:30 PM (Mon - Sat)',
+      'Evening Session: 04:30 PM to 07:30 PM (Mon - Sat)',
+      '24x7 Emergency Casualty & Trauma Ward active continuously'
+    ]
   },
   {
     id: 'notice-patient-04',
-    title: 'Free Weekly Community Diabetes & Hypertension Screening Camp Every Sunday',
+    title: 'Health Camp — Free Checkup Camp for Senior Citizens',
     summary: 'Complimentary blood sugar, HbA1c screening, blood pressure monitoring, and nutritionist consultations for local residents of Budh Vihar and Rohini.',
     content: `CIRCULAR REF: BSH/WLF/2026/085
 DATE OF ISSUANCE: 10th November 2026
@@ -559,10 +577,153 @@ Free Deliverables: Random Blood Sugar Test, BP checkup, BMI calculation, and die
     isPinned: false,
     isNewBadge: false,
     status: 'published',
-    author: 'Brahm Shakti Trust Board',
-    readTime: '2 min read'
+    author: 'Community Health Department',
+    readTime: '2 min read',
+    highlights: [
+      'Free blood glucose, HbA1c screening & BP checkup',
+      'Specialized geriatric consultation with zero registration fees',
+      'Free nutrition & healthy aging diet counseling'
+    ]
+  },
+  {
+    id: 'notice-patient-05',
+    title: 'Vaccination Drive — Seasonal Flu (Children & Elderly)',
+    summary: 'Annual quadrivalent influenza vaccination protection drive initiated for pediatric visitors and senior citizens at subsidized trust rates.',
+    content: `CIRCULAR REF: BSH/VAC/2026/077
+DATE OF ISSUANCE: 08th November 2026
+ISSUED BY: Public Health Cell, Brahm Shakti Hospital
+
+To protect vulnerable demographics against seasonal respiratory influenza and secondary respiratory infections, Brahm Shakti Hospital announces its Annual Flu Immunization Drive.
+
+Key Information:
+- Recommended for all infants 6 months+, school-aged children, and senior citizens aged 60+.
+- Administered daily in the Immunization Suite (OPD Room 108).
+- Subsidized trust charges applied. No appointment fee.`,
+    category: 'Patient Advisory',
+    refNumber: 'BSH/VAC/2026/077',
+    audience: 'patients',
+    date: '2026-11-08',
+    isPinned: false,
+    isNewBadge: false,
+    status: 'published',
+    author: 'Public Health Cell',
+    readTime: '2 min read',
+    highlights: [
+      'Quadrivalent seasonal influenza vaccine administration',
+      'Dedicated immunization room for pediatric visitors',
+      'Special subsidized welfare tariff for elderly citizens'
+    ]
   }
 ];
+
+// Beautiful SVG artwork featuring Lungs & Stethoscope for the Key Highlights container
+const LungsStethoscopeArtwork = ({ className = 'w-36 h-36' }) => (
+  <svg
+    viewBox="0 0 200 200"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <defs>
+      <linearGradient id="lungLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#5EEAD4" />
+        <stop offset="60%" stopColor="#0D9488" />
+        <stop offset="100%" stopColor="#0A7A74" />
+      </linearGradient>
+      <linearGradient id="lungRightGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#5EEAD4" />
+        <stop offset="60%" stopColor="#0D9488" />
+        <stop offset="100%" stopColor="#0A7A74" />
+      </linearGradient>
+      <linearGradient id="stethTube" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#0F172A" />
+        <stop offset="50%" stopColor="#0A7A74" />
+        <stop offset="100%" stopColor="#042F2E" />
+      </linearGradient>
+      <linearGradient id="stethChrome" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#FFFFFF" />
+        <stop offset="40%" stopColor="#CBD5E1" />
+        <stop offset="100%" stopColor="#64748B" />
+      </linearGradient>
+    </defs>
+
+    {/* Background Soft Glow */}
+    <circle cx="100" cy="100" r="75" fill="#E6FFFA" fillOpacity="0.75" />
+
+    {/* Trachea (Windpipe) */}
+    <path
+      d="M100 35 L100 68"
+      stroke="#0A7A74"
+      strokeWidth="5"
+      strokeLinecap="round"
+    />
+    <line x1="95" y1="42" x2="105" y2="42" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" />
+    <line x1="95" y1="49" x2="105" y2="49" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" />
+    <line x1="95" y1="56" x2="105" y2="56" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" />
+
+    {/* Left Bronchus & Lobe */}
+    <path
+      d="M100 68 C88 78 72 75 62 82 C48 93 42 118 48 138 C53 154 68 162 84 152 C94 145 98 128 98 108 C98 90 98 78 100 68 Z"
+      fill="url(#lungLeftGrad)"
+      opacity="0.9"
+    />
+    <path
+      d="M88 88 C78 98 70 115 72 132"
+      stroke="#FFFFFF"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      opacity="0.45"
+    />
+    <path
+      d="M78 108 C68 114 62 124 64 135"
+      stroke="#FFFFFF"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      opacity="0.35"
+    />
+
+    {/* Right Bronchus & Lobe */}
+    <path
+      d="M100 68 C112 78 128 75 138 82 C152 93 158 118 152 138 C147 154 132 162 116 152 C106 145 102 128 102 108 C102 90 102 78 100 68 Z"
+      fill="url(#lungRightGrad)"
+      opacity="0.9"
+    />
+    <path
+      d="M112 88 C122 98 130 115 128 132"
+      stroke="#FFFFFF"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      opacity="0.45"
+    />
+    <path
+      d="M122 108 C132 114 138 124 136 135"
+      stroke="#FFFFFF"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      opacity="0.35"
+    />
+
+    {/* Stethoscope Tubing coiled around Lungs */}
+    <path
+      d="M85 140 C85 172 120 182 145 165 C162 152 162 135 150 120"
+      stroke="url(#stethTube)"
+      strokeWidth="4"
+      strokeLinecap="round"
+      fill="none"
+    />
+
+    {/* Stethoscope Chest Piece */}
+    <circle cx="152" cy="118" r="9" fill="url(#stethChrome)" stroke="#0F172A" strokeWidth="1.5" />
+    <circle cx="152" cy="118" r="5" fill="#0A7A74" />
+    <circle cx="152" cy="118" r="2" fill="#FFFFFF" />
+
+    {/* Medical Cross Accent */}
+    <g opacity="0.35" transform="translate(160, 48)">
+      <rect x="4" y="0" width="3" height="11" rx="1.5" fill="#0A7A74" />
+      <rect x="0" y="4" width="11" height="3" rx="1.5" fill="#0A7A74" />
+    </g>
+  </svg>
+);
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -682,6 +843,8 @@ export const HomePage = () => {
 
   // Government Style Patient News & Official Bulletins
   const [patientNewsList, setPatientNewsList] = useState(INITIAL_PATIENT_NOTICES);
+  const [selectedNoticeId, setSelectedNoticeId] = useState('notice-patient-01');
+  const [announcementPageIndex, setAnnouncementPageIndex] = useState(0);
   const [newsFilterCategory, setNewsFilterCategory] = useState('all');
   const [selectedNoticeModal, setSelectedNoticeModal] = useState(null);
   const [newsSearchTerm, setNewsSearchTerm] = useState('');
@@ -1784,169 +1947,247 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 7. Government-Style Official News, Announcements & Patient Circulars */}
-      <section id="news-section" className="max-w-7xl mx-auto px-4">
+      {/* 7. Redesigned Hospital Announcements & Public Circulars (Master-Detail Bento Grid) */}
+      <section id="news-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] text-xs font-bold uppercase tracking-wider mb-2">
-              <FileText className="w-3.5 h-3.5" />
-              <span>Official Notices &amp; Patient Advisories</span>
+        <div className="mb-6 space-y-1.5">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200/80 shrink-0">
+              <Megaphone className="w-4 h-4 text-[#0A7A74]" />
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
               Hospital Announcements &amp; Public Circulars
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
-              Official medical orders, health camp circulars, and public health advisories issued by Brahm Shakti Hospital Administration for visiting patients and families.
-            </p>
           </div>
-
-          <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
-            <span className="text-xs text-slate-500 font-semibold">
-              Showing {patientNewsList.length} Official Bulletins
-            </span>
-          </div>
+          <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
+            Official medical orders, health camp circulars, and public health advisories issued by Brahm Shakti Hospital Administration for visiting patients and families.
+          </p>
         </div>
 
-        {/* Institutional Alert / Urgent Advisory Banner */}
-        <div className="bg-slate-900 text-white rounded-2xl p-3.5 sm:px-5 flex items-center justify-between gap-4 mb-6 shadow-sm overflow-hidden border border-slate-800">
-          <div className="flex items-center gap-2.5 shrink-0">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-            </span>
-            <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-emerald-300 bg-emerald-950/90 px-2 py-0.5 rounded border border-emerald-800/60">
-              LATEST CIRCULAR
-            </span>
-          </div>
+        {/* Master-Detail 2-Column Bento Grid */}
+        {(() => {
+          const selectedNotice =
+            patientNewsList.find((n) => (n.id || n._id) === selectedNoticeId) || patientNewsList[0];
+          
+          const pageSize = 5;
+          const totalItems = patientNewsList.length;
+          const totalPages = Math.ceil(totalItems / pageSize) || 1;
+          const currentSlice = patientNewsList.slice(
+            announcementPageIndex * pageSize,
+            (announcementPageIndex + 1) * pageSize
+          );
 
-          <div className="text-xs sm:text-sm text-slate-200 font-medium truncate flex-1">
-            Winter Seasonal Respiratory Desk Operational in Block A · Free Sunday Diabetes Screening · 24x7 Cashless Ayushman Helpdesk Counter 2
-          </div>
+          const defaultHighlights = [
+            'Special respiratory care desk in Block A',
+            'Daily nebulization & pulse oximetry',
+            'Senior physician consultation at subsidized rates'
+          ];
+          const highlights = selectedNotice.highlights && selectedNotice.highlights.length > 0
+            ? selectedNotice.highlights
+            : defaultHighlights;
 
-          <span className="text-[11px] text-teal-300 font-mono font-bold shrink-0 hidden md:inline">
-            BSH / Budh Vihar Main Campus
-          </span>
-        </div>
+          const formattedDate = selectedNotice.date
+            ? new Date(selectedNotice.date).toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+              })
+            : '05 Nov 2026';
 
-        {/* Filter Pills & Search */}
-        <div className="mb-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
-            {[
-              { id: 'all', label: 'All Notices' },
-              { id: 'Patient Advisory', label: 'Patient Advisories' },
-              { id: 'Public Notice', label: 'Public Notices' },
-              { id: 'OPD Schedule', label: 'OPD Schedule' },
-              { id: 'Health Campaign', label: 'Health Campaigns' }
-            ].map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => setNewsFilterCategory(cat.id)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  newsFilterCategory === cat.id
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
-                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="relative w-full sm:w-64">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              value={newsSearchTerm}
-              onChange={(e) => setNewsSearchTerm(e.target.value)}
-              placeholder="Search circulars, topics..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
-            />
-          </div>
-        </div>
-
-        {/* Notice Board List (Authentic Government Institutional Design) */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden divide-y divide-slate-100">
-          {patientNewsList
-            .filter((item) => {
-              if (newsFilterCategory !== 'all' && item.category !== newsFilterCategory) return false;
-              if (newsSearchTerm) {
-                const term = newsSearchTerm.toLowerCase();
-                return (
-                  (item.title || '').toLowerCase().includes(term) ||
-                  (item.summary || '').toLowerCase().includes(term) ||
-                  (item.refNumber || '').toLowerCase().includes(term)
-                );
-              }
-              return true;
-            })
-            .map((item) => (
-              <div
-                key={item.id || item._id}
-                className="p-5 sm:p-6 hover:bg-slate-50/80 transition-colors flex flex-col md:flex-row items-start md:items-center justify-between gap-4 group"
-              >
-                <div className="flex items-start gap-4 flex-1 min-w-0">
-                  {/* Government Date Badge */}
-                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-slate-900 text-white flex flex-col items-center justify-center shrink-0 border border-slate-800 shadow-2xs group-hover:border-[#0A7A74] transition-colors">
-                    <span className="text-[10px] uppercase font-bold text-teal-300 tracking-wider">
-                      {item.date ? new Date(item.date).toLocaleDateString('en-US', { month: 'short' }) : 'NOV'}
-                    </span>
-                    <span className="text-base sm:text-lg font-black leading-none mt-0.5">
-                      {item.date ? new Date(item.date).getDate() : '22'}
-                    </span>
-                  </div>
-
-                  {/* Notice Content */}
-                  <div className="space-y-1.5 flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      {item.refNumber && (
-                        <span className="font-mono text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200/60">
-                          {item.refNumber}
-                        </span>
-                      )}
-                      <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-teal-50 text-[#0A7A74] border border-teal-200/60">
-                        {item.category}
-                      </span>
-                      {item.isPinned && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-rose-50 text-rose-600 text-[10px] font-bold">
-                          <Pin className="w-3 h-3 fill-rose-600" />
-                          <span>Pinned</span>
-                        </span>
-                      )}
-                      {item.isNewBadge && (
-                        <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-black uppercase tracking-wider animate-pulse">
-                          NEW
-                        </span>
-                      )}
+          return (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+              {/* ================= LEFT PANEL: SELECTED ANNOUNCEMENT CARD ================= */}
+              <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-xs p-5 sm:p-7 flex flex-col justify-between space-y-4">
+                <div className="space-y-3.5">
+                  {/* Top Badges Row */}
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] border border-teal-200/80 text-xs font-bold shadow-2xs">
+                      <Megaphone className="w-3.5 h-3.5" />
+                      <span>Selected Announcement</span>
                     </div>
 
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors leading-snug">
-                      {item.title}
-                    </h3>
+                    <div className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500">
+                      <Calendar className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <span>Date: {formattedDate}</span>
+                    </div>
+                  </div>
 
-                    <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                      {item.summary || item.excerpt}
-                    </p>
+                  {/* Heading */}
+                  <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-snug tracking-tight">
+                    {selectedNotice.title}
+                  </h3>
 
-                    <div className="flex items-center gap-3 text-[11px] text-slate-400 pt-0.5">
-                      <span>Issued by: {item.author || 'Brahm Shakti Hospital Administration'}</span>
+                  {/* Description / Summary */}
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    {selectedNotice.summary || selectedNotice.excerpt}
+                  </p>
+
+                  {/* Key Highlights Container with Medical Lungs & Stethoscope Vector */}
+                  <div className="bg-teal-50/60 border border-teal-200/80 rounded-2xl p-4 sm:p-5 relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    {/* Bullets List */}
+                    <div className="space-y-2.5 z-10 flex-1">
+                      <div className="flex items-center gap-1.5 text-xs font-black text-[#0A7A74] uppercase tracking-wider pb-0.5">
+                        <Info className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <span>Key Highlights</span>
+                      </div>
+
+                      <div className="space-y-2">
+                        {highlights.map((hl, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <div className="w-4 h-4 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                              <Check className="w-2.5 h-2.5 stroke-[3]" />
+                            </div>
+                            <span className="text-xs font-bold text-slate-800 leading-snug">
+                              {hl}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Vector Lungs & Stethoscope Artwork */}
+                    <div className="shrink-0 self-center sm:self-auto opacity-95">
+                      <LungsStethoscopeArtwork className="w-32 h-32 sm:w-36 sm:h-36 drop-shadow-xs select-none" />
                     </div>
                   </div>
                 </div>
 
-                {/* Read Button */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedNoticeModal(item)}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-200 group-hover:border-[#0A7A74] group-hover:bg-[#0A7A74] group-hover:text-white text-slate-700 text-xs font-bold transition-all shrink-0 self-end md:self-center cursor-pointer shadow-2xs"
-                >
-                  <span>Read Circular</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </button>
+                {/* Bottom Row */}
+                <div className="pt-2 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-1.5 text-slate-600 font-medium">
+                    <Building2 className="w-4 h-4 text-[#0A7A74] shrink-0" />
+                    <span>
+                      Issued by: <strong>{selectedNotice.author || 'Medical Superintendent Office'}</strong>
+                    </span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedNoticeModal(selectedNotice)}
+                    className="inline-flex items-center gap-1 font-bold text-[#0A7A74] hover:underline cursor-pointer self-start sm:self-auto"
+                  >
+                    <span>Read Full Circular</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
-            ))}
-        </div>
+
+              {/* ================= RIGHT PANEL: ALL ANNOUNCEMENTS LIST ================= */}
+              <div className="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 shadow-xs p-5 sm:p-6 flex flex-col justify-between space-y-3.5">
+                {/* Header Row */}
+                <div className="flex items-center justify-between pb-1 border-b border-slate-100">
+                  <div className="flex items-center gap-2">
+                    <ListFilter className="w-4 h-4 text-[#0A7A74]" />
+                    <h3 className="text-sm sm:text-base font-black text-slate-900">
+                      All Announcements
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-bold text-slate-500">
+                      Showing {currentSlice.length} of {totalItems}
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        aria-label="Previous circulars"
+                        disabled={announcementPageIndex === 0}
+                        onClick={() => setAnnouncementPageIndex((prev) => Math.max(0, prev - 1))}
+                        className="w-7 h-7 rounded-full border border-slate-200 hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center text-slate-600 transition-colors"
+                      >
+                        <ChevronLeft className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Next circulars"
+                        disabled={announcementPageIndex >= totalPages - 1}
+                        onClick={() => setAnnouncementPageIndex((prev) => Math.min(totalPages - 1, prev + 1))}
+                        className="w-7 h-7 rounded-full border border-slate-200 hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center text-slate-600 transition-colors"
+                      >
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* List of Announcements */}
+                <div className="space-y-2.5 flex-1">
+                  {currentSlice.map((item) => {
+                    const isSelected = (item.id || item._id) === (selectedNotice.id || selectedNotice._id);
+                    const itemDate = item.date ? new Date(item.date) : new Date();
+                    const monthStr = itemDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+                    const dayStr = String(itemDate.getDate()).padStart(2, '0');
+
+                    return (
+                      <div
+                        key={item.id || item._id}
+                        onClick={() => setSelectedNoticeId(item.id || item._id)}
+                        className={`rounded-2xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
+                          isSelected
+                            ? 'bg-teal-50/80 border-2 border-[#0A7A74] shadow-2xs'
+                            : 'bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-teal-300'
+                        }`}
+                      >
+                        {/* Date Badge */}
+                        <div
+                          className={`w-12 h-12 rounded-xl flex flex-col items-center justify-center shrink-0 border transition-colors ${
+                            isSelected
+                              ? 'bg-white border-teal-200 text-[#0A7A74]'
+                              : 'bg-slate-50 border-slate-200 text-slate-600'
+                          }`}
+                        >
+                          <span className={`text-[10px] font-black uppercase tracking-wider leading-tight ${isSelected ? 'text-[#0A7A74]' : 'text-slate-400'}`}>
+                            {monthStr}
+                          </span>
+                          <span className="text-base font-black leading-none mt-0.5">
+                            {dayStr}
+                          </span>
+                        </div>
+
+                        {/* Title & Issuer */}
+                        <div className="flex-1 min-w-0 space-y-0.5">
+                          <h4
+                            className={`text-xs sm:text-sm font-bold line-clamp-2 leading-snug ${
+                              isSelected ? 'text-slate-900' : 'text-slate-800'
+                            }`}
+                          >
+                            {item.title}
+                          </h4>
+                          <div className="flex items-center gap-1 text-[10px] text-slate-500 truncate">
+                            <Building2 className="w-3 h-3 text-slate-400 shrink-0" />
+                            <span>Issued by: {item.author || 'Hospital Administration'}</span>
+                          </div>
+                        </div>
+
+                        {/* Action Status Pill */}
+                        <div className="shrink-0">
+                          {isSelected ? (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#0A7A74] text-white text-[10px] font-black shadow-2xs">
+                              <Check className="w-3 h-3 stroke-[3]" />
+                              <span>Selected</span>
+                            </span>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedNoticeId(item.id || item._id);
+                              }}
+                              className="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-bold text-[#0A7A74] hover:bg-teal-50 transition-colors"
+                            >
+                              <span>Read Circular</span>
+                              <ArrowRight className="w-3 h-3" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
       </section>
 
       {/* 8. Campus Moments (Photo Gallery Section - 3D Cover Flow Carousel) */}
