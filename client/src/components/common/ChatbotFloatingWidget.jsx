@@ -104,7 +104,7 @@ const QUICK_PROMPTS = [
 export const ChatbotFloatingWidget = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isDocked, setIsDocked] = useState(false);
+  const [isDocked, setIsDocked] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -119,6 +119,16 @@ export const ChatbotFloatingWidget = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
+
+  // Auto-hide the expanded buttons back to the small edge arrow after 8 seconds of inactivity
+  useEffect(() => {
+    if (!isDocked && !isOpen) {
+      const timer = setTimeout(() => {
+        setIsDocked(true);
+      }, 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [isDocked, isOpen]);
 
   // Monitor scroll for Go-To-Top button
   useEffect(() => {
@@ -211,33 +221,17 @@ export const ChatbotFloatingWidget = () => {
 
   return (
     <>
-      {/* 0. DOCKED / HIDDEN TO SIDE - Peeking Edge Tab */}
+      {/* 0. DOCKED / AUTO-HIDDEN TO SIDE - Little Arrow-Only Edge Tab (Small & Unobtrusive) */}
       {isDocked && !isOpen && (
-        <div className="fixed bottom-24 right-0 z-50 pointer-events-auto animate-in fade-in slide-in-from-right-4 duration-300">
+        <div className="fixed bottom-24 right-0 z-50 pointer-events-auto animate-in fade-in slide-in-from-right-2 duration-200">
           <button
             onClick={() => setIsDocked(false)}
             type="button"
-            aria-label="Open Emergency Helpline & AI Chatbot"
-            title="Open Emergency Helpline & AI Chatbot"
-            className="group flex items-center gap-2 py-2.5 px-3 rounded-l-2xl bg-gradient-to-l from-[#0A7A74] to-[#0B2545] text-white shadow-2xl hover:pl-3.5 transition-all cursor-pointer border-t border-b border-l border-white/30 active:scale-95"
+            aria-label="Show quick actions"
+            title="Show quick actions"
+            className="w-5.5 sm:w-6 h-10 sm:h-11 rounded-l-xl bg-[#0A7A74]/90 hover:bg-[#0A7A74] text-white flex items-center justify-center shadow-md border-t border-b border-l border-white/30 hover:w-7 transition-all cursor-pointer active:scale-95 group"
           >
-            <ChevronLeft className="w-4 h-4 text-emerald-300 animate-pulse group-hover:-translate-x-0.5 transition-transform" />
-            <div className="flex flex-col items-start leading-none text-left">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                <span className="text-[10px] font-black uppercase tracking-wider text-emerald-200">
-                  24x7 Help
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5 mt-1.5">
-                <span className="w-5 h-5 rounded-full bg-rose-600 flex items-center justify-center shadow-xs">
-                  <Phone className="w-2.5 h-2.5 text-white" />
-                </span>
-                <span className="w-5 h-5 rounded-full bg-sky-600 flex items-center justify-center shadow-xs">
-                  <Bot className="w-2.5 h-2.5 text-white" />
-                </span>
-              </div>
-            </div>
+            <ChevronLeft className="w-3.5 h-3.5 text-white group-hover:-translate-x-0.5 transition-transform" />
           </button>
         </div>
       )}
@@ -245,16 +239,15 @@ export const ChatbotFloatingWidget = () => {
       {/* EXPANDED FLOATING ACTION STACK */}
       {!isDocked && (
         <div className="fixed bottom-4 right-3 sm:bottom-5 sm:right-6 z-50 flex flex-col items-center gap-2 sm:gap-2.5 pointer-events-none animate-in fade-in slide-in-from-right-3 duration-200">
-          {/* Hide / Dock Button */}
+          {/* Arrow-Only Collapse Button (NO "Hide" text) */}
           <button
             onClick={() => setIsDocked(true)}
             type="button"
-            aria-label="Hide buttons to side"
-            title="Hide buttons to side"
-            className="pointer-events-auto flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-900/90 hover:bg-slate-950 text-white text-[10px] font-bold shadow-md transition-all hover:scale-105 active:scale-95 border border-white/20 cursor-pointer"
+            aria-label="Collapse actions"
+            title="Collapse actions"
+            className="pointer-events-auto w-6 h-6 rounded-full bg-slate-900/85 hover:bg-slate-950 text-white flex items-center justify-center shadow-md border border-white/20 hover:scale-110 active:scale-95 cursor-pointer transition-all"
           >
-            <span>Hide</span>
-            <ChevronRight className="w-3 h-3 text-teal-300" />
+            <ChevronRight className="w-3.5 h-3.5 text-teal-300" />
           </button>
 
           {/* 1. GO TO TOP BUTTON - Round Circular Button */}
