@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import ScrollToTop from './components/common/ScrollToTop';
 
 // Layouts
 import PublicLayout from './layouts/PublicLayout';
@@ -65,6 +66,7 @@ import PatientDashboardPage from './pages/patient/PatientDashboardPage';
 export default function App() {
   return (
     <>
+      <ScrollToTop />
       <Toaster
         position="top-right"
         toastOptions={{
