@@ -20,7 +20,8 @@ import {
   Menu,
   Heart,
   Activity,
-  Home
+  Home,
+  Calendar
 } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
