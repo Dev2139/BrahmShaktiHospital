@@ -115,7 +115,7 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
 };
 
 const HERO_BANNER_IMAGES = [
-  'https://res.cloudinary.com/urzka7oz/image/upload/v1795183537/WhatsApp_Image_2026-11-04_at_8.03.05_AM_2.jpg',
+  'https://res.cloudinary.com/urzka7oz/image/upload/v1795179941/Proud_Indian_Flag_Group_Portrait.png',
   'https://res.cloudinary.com/urzka7oz/image/upload/v1795514697/Brahm_Shakti_Hospital_Advanced_Care.png',
   'https://res.cloudinary.com/urzka7oz/image/upload/v1795514679/Brahm_Shakti_Hospital_Healthcare_Banner.png',
   'https://res.cloudinary.com/urzka7oz/image/upload/v1795514685/Brahm_Shakti_Advancing_Healthcare_Research.png',
@@ -778,18 +778,26 @@ export const HomePage = () => {
         onTouchMove={handleHeroTouchMove}
         onTouchEnd={handleHeroTouchEnd}
       >
-        <div className="relative w-full h-[210px] xs:h-[260px] sm:h-[380px] md:h-[480px] lg:h-[580px] xl:h-[660px]">
+        <div className="relative w-full h-[220px] xs:h-[280px] sm:h-[380px] md:h-[480px] lg:h-[580px] xl:h-[660px] bg-slate-950 flex items-center justify-center">
           {HERO_BANNER_IMAGES.map((imageUrl, idx) => (
             <div
               key={idx}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+              className={`absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center transition-opacity duration-700 ease-in-out ${
                 idx === heroSlideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
               }`}
             >
+              {/* Ambient blurred backdrop to seamlessly fill any aspect letterbox */}
+              <img
+                src={imageUrl}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-30 select-none pointer-events-none"
+              />
+              {/* Full banner displayed crisp and uncropped */}
               <img
                 src={imageUrl}
                 alt={`Brahm Shakti Hospital Hero Slide ${idx + 1}`}
-                className="w-full h-full object-cover object-center"
+                className="relative z-10 w-full h-full object-contain object-center select-none"
                 loading={idx === 0 ? 'eager' : 'lazy'}
               />
             </div>
