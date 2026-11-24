@@ -41,7 +41,7 @@ import { departmentsData, doctorsData } from '../../data/seedData';
 
 const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
   medicine: {
-    faculty: 'Dr. S.K. Goyal (MD) · Dr. Vineet Mittal (DNB)',
+    faculty: 'Dr. S.K. Goyal (MD) · Dr. Vineet Mittal (MD)',
     location: 'Block A, 1st Floor',
     procedures: [
       'Comprehensive Diabetology & Insulin Titration',
@@ -50,7 +50,7 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
     ]
   },
   'general-surgery': {
-    faculty: 'Dr. Nishant Verma (MS) · Dr. Rishabh Jain (MS)',
+    faculty: 'Dr. Sanjeev Verma (MS) · Dr. Rishabh Jain',
     location: 'Surgical Block, 2nd Floor',
     procedures: [
       'Laparoscopic Cholecystectomy (Gallbladder)',
@@ -58,8 +58,17 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
       'Keyhole Inguinal & Umbilical Hernia Repair'
     ]
   },
+  'gynae-obst': {
+    faculty: 'Dr. Manisha Jain · Dr. Renu Gupta',
+    location: 'Mother & Child Wing, 3rd Floor',
+    procedures: [
+      'Painless Normal & Caesarean (LSCS) Deliveries',
+      'High-Risk Pregnancy & Ante-Natal Care (ANC)',
+      'Laparoscopic Hysterectomy & Ovarian Cyst Surgery'
+    ]
+  },
   gynecology: {
-    faculty: 'Dr. Manisha Jain (DNB) · Dr. Renu Gupta (DGO)',
+    faculty: 'Dr. Manisha Jain · Dr. Renu Gupta',
     location: 'Mother & Child Wing, 3rd Floor',
     procedures: [
       'Painless Normal & Caesarean (LSCS) Deliveries',
@@ -68,7 +77,7 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
     ]
   },
   pediatrics: {
-    faculty: 'Dr. Rupesh Sharma (DCH) · Dr. Satpal Yadav (DCH)',
+    faculty: 'Dr. Rupesh',
     location: 'Mother & Child Wing, 2nd Floor',
     procedures: [
       'Level-III NICU Neonatal Critical Care & Incubators',
@@ -76,8 +85,8 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
       'Complete Pediatric Immunization & Growth Tracking'
     ]
   },
-  orthopedics: {
-    faculty: 'Dr. Kapil Goyal (DNB) · Dr. Ravi Shankar Gupta (DNB)',
+  orthopaedics: {
+    faculty: 'Dr. Kapil Goyal (DNB) · Dr. Dinesh Chand Sharma · Dr. Ravi Shankar Gupta',
     location: 'Ortho Spine Wing, 1st Floor',
     procedures: [
       'Total Knee Replacement (TKR) & Hip Arthroplasty',
@@ -85,17 +94,26 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
       'Complex Fracture & Trauma Stabilization'
     ]
   },
-  nephrology: {
-    faculty: 'Senior Dialysis Physicians & Faculty',
-    location: 'Renal Care Block, Ground Floor',
+  orthopedics: {
+    faculty: 'Dr. Kapil Goyal (DNB) · Dr. Dinesh Chand Sharma · Dr. Ravi Shankar Gupta',
+    location: 'Ortho Spine Wing, 1st Floor',
     procedures: [
-      '24x7 Subsidized Maintenance Hemodialysis',
-      'Arteriovenous (AV) Fistula Creation & Monitoring',
-      'Diabetic Nephropathy & Renal Failure Management'
+      'Total Knee Replacement (TKR) & Hip Arthroplasty',
+      'Arthroscopic ACL & Meniscal Ligament Repair',
+      'Complex Fracture & Trauma Stabilization'
+    ]
+  },
+  eye: {
+    faculty: 'Dr. Manvi Aggarwal · Dr. Monika Kumawat',
+    location: 'Eye Care OPD, 1st Floor',
+    procedures: [
+      'Stitchless MICS Micro-Phaco Cataract Surgery',
+      'Glaucoma Screening, Tonometry & Laser Iridotomy',
+      'Diabetic Retinopathy Screening & Fundus Evaluation'
     ]
   },
   ophthalmology: {
-    faculty: 'Dr. Monika Kumar (MS) · Dr. Rajesh Kumar (MS)',
+    faculty: 'Dr. Manvi Aggarwal · Dr. Monika Kumawat',
     location: 'Eye Care OPD, 1st Floor',
     procedures: [
       'Stitchless MICS Micro-Phaco Cataract Surgery',
@@ -104,12 +122,30 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
     ]
   },
   skin: {
-    faculty: 'Dr. Anish Goel (MD) · Dr. Swati Gupta (DDVL)',
+    faculty: 'Dr. Swati Gupta · Dr. Avnish Goyal',
     location: 'Dermatology OPD, 1st Floor',
     procedures: [
       'Laser Resurfacing for Acne Scars & Hyperpigmentation',
       'Radiofrequency Mole, Wart & Skin Tag Excision',
       'Chronic Psoriasis & Eczema Immunotherapy'
+    ]
+  },
+  ent: {
+    faculty: 'Dr. Manju Bansal · Dr. Hitesh Aggarwal',
+    location: 'ENT OPD, 1st Floor',
+    procedures: [
+      'Micro-Ear Surgery (Tympanoplasty & Mastoidectomy)',
+      'Endoscopic Sinus Surgery (FESS)',
+      'Coblation Tonsillectomy & Adenoidectomy'
+    ]
+  },
+  anesthesia: {
+    faculty: 'Dr. Sunil (Senior Consultant Anesthesiology)',
+    location: 'ICU & Operation Complex',
+    procedures: [
+      'Critical Care & Mechanical Ventilation Management',
+      'Advanced Cardiac Life Support (ACLS)',
+      'Post-Operative Acute Pain Management'
     ]
   }
 };
@@ -124,12 +160,15 @@ const HERO_BANNER_IMAGES = [
 
 const CLINICAL_DISCIPLINES = [
   { id: 'all', label: 'All 9 Departments' },
-  { id: 'surgical', label: 'Surgery & Ortho', deptIds: ['general-surgery', 'orthopaedics'] },
-  { id: 'medical', label: 'Internal Medicine', deptIds: ['medicine'] },
-  { id: 'mother-child', label: 'Mother & Child', deptIds: ['gynae-obst', 'pediatrics'] },
-  { id: 'eye-ent', label: 'Eye & ENT', deptIds: ['eye', 'ent'] },
-  { id: 'skin', label: 'Dermatology (Skin)', deptIds: ['skin'] },
-  { id: 'anesthesia', label: 'Anaesthesia & ICU', deptIds: ['anesthesia'] }
+  { id: 'medicine', label: 'Medicine', deptIds: ['medicine'] },
+  { id: 'general-surgery', label: 'Surgery', deptIds: ['general-surgery', 'surgery'] },
+  { id: 'orthopaedics', label: 'Ortho', deptIds: ['orthopaedics', 'orthopedics'] },
+  { id: 'eye', label: 'Eye', deptIds: ['eye', 'ophthalmology'] },
+  { id: 'gynae-obst', label: 'Gynae & Obs', deptIds: ['gynae-obst', 'gynecology'] },
+  { id: 'skin', label: 'Skin', deptIds: ['skin'] },
+  { id: 'ent', label: 'ENT', deptIds: ['ent'] },
+  { id: 'pediatrics', label: 'Pediatric', deptIds: ['pediatrics'] },
+  { id: 'anesthesia', label: 'Anesthesia', deptIds: ['anesthesia'] }
 ];
 
 const FEATURED_EVENT = {
@@ -770,7 +809,7 @@ export const HomePage = () => {
   }, [departments, activeTabObj]);
 
   return (
-    <div className="space-y-7 sm:space-y-12 lg:space-y-16 pb-12 sm:pb-20">
+    <div className="space-y-6 sm:space-y-8 lg:space-y-10 pb-8 sm:pb-12">
       {/* 1. Hero Section - Full-Width Hospital Banner Carousel */}
       <section
         className="relative w-full overflow-hidden bg-slate-900 shadow-md touch-pan-y"
@@ -841,9 +880,9 @@ export const HomePage = () => {
       </section>
 
       {/* 2. Our Doctor Team */}
-      <section className="bg-white py-8 sm:py-14 border-b border-medical-border">
+      <section className="bg-white py-6 sm:py-8 border-b border-medical-border">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-6 sm:mb-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200/60 text-[#0A7A74] text-xs font-bold uppercase tracking-wider mb-2">
                 <Stethoscope className="w-3.5 h-3.5" />
@@ -922,16 +961,16 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 3. Specialities & Procedures Section - Professional Hospital Architecture */}
+      {/* 3. Our Departments Section */}
       <section className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-5 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
           <div>
             <h2 className="text-2xl sm:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
-              Specialities & Procedures
+              Our Departments
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl leading-relaxed">
-              Evidence-based clinical treatments, advanced day-care surgeries & tertiary inpatient care led by DMC-registered faculty
+              Comprehensive clinical care across all 9 hospital departments led by experienced consultants and specialists.
             </p>
           </div>
           <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
@@ -940,14 +979,14 @@ export const HomePage = () => {
               to="/departments"
               className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover font-bold text-xs sm:text-sm shrink-0"
             >
-              <span>View All Specialities</span>
+              <span>View All Departments</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
 
-        {/* Clinical Discipline Switcher Tabs */}
-        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2.5 mb-5 sm:mb-8 scrollbar-none flex-nowrap -mx-4 px-4 sm:mx-0 sm:px-0">
+        {/* 9 Clinical Department Switcher Tabs */}
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2.5 mb-4 sm:mb-6 scrollbar-none flex-nowrap -mx-4 px-4 sm:mx-0 sm:px-0">
           {CLINICAL_DISCIPLINES.map((tab) => {
             const isActive = selectedDisciplineTab === tab.id;
             return (
@@ -1154,10 +1193,10 @@ export const HomePage = () => {
       </section>
 
       {/* 5.5 Unified Hospital Showcase (Events / Location & Directions / Facilities) */}
-      <section id="showcase-section" className="py-12 sm:py-16 bg-[#F4F8FA]/70">
+      <section id="showcase-section" className="py-8 sm:py-10 bg-[#F4F8FA]/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Header & Segmented Switcher Controls */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4 sm:mb-6">
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] text-xs font-bold uppercase tracking-wider mb-2">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -1511,8 +1550,8 @@ export const HomePage = () => {
       </section>
 
       {/* 6. Patient Testimonials & Trust - Auto-scrolling Continuous Marquee (Matches Landing Page BG) */}
-      <section className="py-10 sm:py-16 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 mb-6 sm:mb-10 text-center">
+      <section className="py-6 sm:py-10 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-4 mb-4 sm:mb-6 text-center">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#0A7A74] mb-2">
             <Star className="w-4 h-4 fill-[#0A7A74]" />
             <span>Real Patient Feedback & Stories</span>
