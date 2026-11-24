@@ -35,7 +35,8 @@ import {
   Megaphone,
   Info,
   ListFilter,
-  Check
+  Check,
+  Printer
 } from 'lucide-react';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
@@ -725,6 +726,92 @@ const LungsStethoscopeArtwork = ({ className = 'w-36 h-36' }) => (
   </svg>
 );
 
+// Cleanly parses administrative circular text into structured, elegant document sections
+const parseCircularContent = (rawText) => {
+  if (!rawText) return { intro: '', items: [], outro: '' };
+
+  const rawLines = rawText.split('\n');
+  const filteredLines = [];
+
+  for (const line of rawLines) {
+    const trimmed = line.trim();
+    // Exclude redundant header meta lines already displayed in the official memo bar
+    if (
+      trimmed.startsWith('CIRCULAR REF:') ||
+      trimmed.startsWith('DATE OF ISSUANCE:') ||
+      trimmed.startsWith('ISSUED BY:')
+    ) {
+      continue;
+    }
+    filteredLines.push(line);
+  }
+
+  const cleanText = filteredLines.join('\n').trim();
+  const paragraphs = cleanText.split(/\n\s*\n/);
+  let intro = '';
+  const items = [];
+  let outro = '';
+
+  for (const para of paragraphs) {
+    const trimmed = para.trim();
+    if (!trimmed) continue;
+
+    // Check if paragraph contains list items (numbered 1. or bullets - / *)
+    const lines = trimmed.split('\n');
+    const hasListItems = lines.some((l) => /^\s*(\d+\.|\-|\*)\s+/.test(l));
+
+    if (hasListItems) {
+      for (const line of lines) {
+        const lTrim = line.trim();
+        const numMatch = lTrim.match(/^(\d+)\.\s*(.+)$/);
+        const bulletMatch = lTrim.match(/^[-*]\s*(.+)$/);
+
+        if (numMatch) {
+          const full = numMatch[2].trim();
+          const colonIdx = full.indexOf(':');
+          if (colonIdx !== -1) {
+            items.push({
+              title: full.slice(0, colonIdx).trim(),
+              desc: full.slice(colonIdx + 1).trim()
+            });
+          } else {
+            items.push({
+              title: full,
+              desc: ''
+            });
+          }
+        } else if (bulletMatch) {
+          const full = bulletMatch[1].trim();
+          const colonIdx = full.indexOf(':');
+          if (colonIdx !== -1) {
+            items.push({
+              title: full.slice(0, colonIdx).trim(),
+              desc: full.slice(colonIdx + 1).trim()
+            });
+          } else {
+            items.push({
+              title: full,
+              desc: ''
+            });
+          }
+        }
+      }
+    } else if (!intro) {
+      if (/^(Key\s+[A-Za-z\s]+|Beneficiary\s+Guidelines|Guidelines|Operational\s+Highlights):?$/i.test(trimmed)) {
+        continue;
+      }
+      intro = trimmed;
+    } else {
+      if (/^(Key\s+[A-Za-z\s]+|Beneficiary\s+Guidelines|Guidelines|Operational\s+Highlights):?$/i.test(trimmed)) {
+        continue;
+      }
+      outro = outro ? `${outro}\n\n${trimmed}` : trimmed;
+    }
+  }
+
+  return { intro, items, outro };
+};
+
 export const HomePage = () => {
   const navigate = useNavigate();
   const { isAuthenticated, isStaff, dashboardPath } = useAuth();
@@ -862,6 +949,18 @@ export const HomePage = () => {
     };
     fetchPatientNews();
   }, []);
+
+  // Prevent background scrolling while notice circular modal is open
+  useEffect(() => {
+    if (selectedNoticeModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedNoticeModal]);
 
   const currentFacility = HOSPITAL_FACILITIES[facilitySlideIndex] || HOSPITAL_FACILITIES[0];
 
@@ -2352,69 +2451,231 @@ export const HomePage = () => {
         )}
 
         {/* Official Hospital Circular / Patient Advisory Modal */}
-        {selectedNoticeModal && (
-          <div
-            className="fixed inset-0 z-50 bg-black/75 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
-            onClick={() => setSelectedNoticeModal(null)}
-          >
+        {selectedNoticeModal && (() => {
+          const parsed = parseCircularContent(selectedNoticeModal.content || selectedNoticeModal.summary);
+          const modalFormattedDate = selectedNoticeModal.date
+            ? new Date(selectedNoticeModal.date).toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+              })
+            : '05 Nov 2026';
+
+          const highlightsList = selectedNoticeModal.highlights && selectedNoticeModal.highlights.length > 0
+            ? selectedNoticeModal.highlights
+            : [];
+
+          return (
             <div
-              className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 max-h-[88vh] overflow-y-auto space-y-5 animate-in fade-in zoom-in-95 duration-200"
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5 md:p-6 overflow-y-auto"
+              onClick={() => setSelectedNoticeModal(null)}
             >
-              <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
-                <div className="space-y-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    {selectedNoticeModal.refNumber && (
-                      <span className="font-mono text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded border border-slate-200">
-                        {selectedNoticeModal.refNumber}
+              <div
+                className="bg-white rounded-3xl max-w-3xl w-full shadow-2xl border border-slate-200/90 overflow-hidden flex flex-col my-auto max-h-[92vh] animate-in fade-in zoom-in-95 duration-200 font-sans"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* 1. Official Institutional Letterhead Header */}
+                <div className="p-4 sm:p-5 md:p-6 bg-slate-50/90 border-b border-slate-200/80 shrink-0">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#0A7A74] text-white flex items-center justify-center shadow-xs shrink-0">
+                        <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-xs sm:text-sm font-black text-[#0B2545] tracking-tight uppercase truncate">
+                            Brahm Shakti Hospital &amp; Research Centre
+                          </span>
+                          <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
+                            <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                            NABH &amp; NABL Accredited
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-slate-500 font-medium truncate">
+                          Official Administrative Circular &amp; Public Health Bulletin · Budh Vihar, Delhi
+                        </p>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setSelectedNoticeModal(null)}
+                      aria-label="Close Notice"
+                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white hover:bg-slate-200/80 text-slate-400 hover:text-slate-800 border border-slate-200 flex items-center justify-center transition-colors cursor-pointer shrink-0 shadow-2xs"
+                    >
+                      <X className="w-4 h-4 stroke-[2.5]" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* 2. Scrollable Notice Body */}
+                <div className="overflow-y-auto p-4 sm:p-6 md:p-7 space-y-5 text-slate-700">
+                  {/* Metadata Banner: Ref ID, Category, Date */}
+                  <div className="flex flex-wrap items-center justify-between gap-2.5 py-2.5 px-3.5 sm:px-4 rounded-2xl bg-teal-50/70 border border-teal-200/70">
+                    <div className="flex flex-wrap items-center gap-2">
+                      {selectedNoticeModal.refNumber && (
+                        <span className="font-mono text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-teal-200/70 shadow-2xs">
+                          Ref: {selectedNoticeModal.refNumber}
+                        </span>
+                      )}
+                      <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[#0A7A74] text-white shadow-2xs">
+                        {selectedNoticeModal.category || 'Patient Advisory'}
                       </span>
-                    )}
-                    <span className="px-2.5 py-0.5 rounded text-xs font-bold bg-teal-50 text-[#0A7A74] border border-teal-200/60">
-                      {selectedNoticeModal.category}
+                    </div>
+
+                    <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <span>Date: {modalFormattedDate}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title & Department */}
+                  <div className="space-y-1.5">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-black text-[#0B2545] tracking-tight leading-snug">
+                      {selectedNoticeModal.title}
+                    </h3>
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium pt-0.5">
+                      <Award className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <span>
+                        Issued by: <strong className="text-slate-700">{selectedNoticeModal.author || 'Office of Medical Superintendent'}</strong>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Executive Overview Paragraph */}
+                  {parsed.intro && (
+                    <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal bg-slate-50/70 p-3.5 sm:p-4 rounded-2xl border border-slate-200/80">
+                      <p>{parsed.intro}</p>
+                    </div>
+                  )}
+
+                  {/* Key Highlights Card (Identical in styling to the home page announcement panel) */}
+                  {highlightsList.length > 0 && (
+                    <div className="bg-teal-50/60 border border-teal-200/80 rounded-2xl p-4 sm:p-5 space-y-3">
+                      <div className="flex items-center gap-2 text-xs font-black text-[#0A7A74] uppercase tracking-wider">
+                        <Info className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <span>Key Directives &amp; Advisory Highlights</span>
+                      </div>
+                      <div className="space-y-2">
+                        {highlightsList.map((hl, idx) => (
+                          <div key={idx} className="flex items-start gap-2.5">
+                            <div className="w-4 h-4 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                              <Check className="w-2.5 h-2.5 stroke-[3]" />
+                            </div>
+                            <span className="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
+                              {hl}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Structured Guidelines / Operational Facilities Bento Grid */}
+                  {parsed.items.length > 0 && (
+                    <div className="space-y-3">
+                      <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                        <FileText className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <span>Operational Facilities &amp; Beneficiary Guidelines</span>
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {parsed.items.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="p-3.5 rounded-2xl bg-slate-50/90 hover:bg-teal-50/40 border border-slate-200/80 hover:border-teal-300 transition-all space-y-1.5"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="w-5 h-5 rounded-full bg-[#0A7A74]/10 text-[#0A7A74] text-xs font-black flex items-center justify-center shrink-0">
+                                {idx + 1}
+                              </span>
+                              <span className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+                                {item.title}
+                              </span>
+                            </div>
+                            {item.desc && (
+                              <p className="text-xs text-slate-600 leading-relaxed pl-7">
+                                {item.desc}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Additional / Outro Notice Details */}
+                  {parsed.outro && (
+                    <div className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1">
+                      <p>{parsed.outro}</p>
+                    </div>
+                  )}
+
+                  {/* Official Hospital Seal & Authentication Card */}
+                  <div className="p-4 rounded-2xl bg-linear-to-r from-teal-50/40 via-white to-slate-50 border border-teal-200/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-teal-50 border border-teal-200 text-[#0A7A74] flex items-center justify-center shrink-0">
+                        <FileCheck2 className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-black text-[#0B2545] uppercase tracking-wide">
+                          Verified Administrative Notice
+                        </p>
+                        <p className="text-[11px] text-slate-500 font-medium">
+                          Signed &amp; Approved by Directorate of Clinical Governance, Brahm Shakti Hospital
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-teal-200/90 text-[#0A7A74] text-[11px] font-bold shadow-2xs self-end sm:self-auto">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <span>Authorized Circular</span>
+                    </div>
+                  </div>
+
+                  {/* Helpdesk & Emergency Support Line */}
+                  <div className="p-3 sm:p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <PhoneCall className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+                      <span>Patient Assistance &amp; 24x7 Emergency Casualty:</span>
+                    </div>
+                    <div className="font-bold text-[#0B2545] flex items-center gap-2 text-xs">
+                      <span>011-27531683</span>
+                      <span>·</span>
+                      <span>7840089703</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. Action Footer */}
+                <div className="p-4 sm:p-5 bg-slate-50/90 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+                  <div className="flex items-center gap-2 text-xs text-slate-500">
+                    <button
+                      type="button"
+                      onClick={() => window.print()}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold transition-colors cursor-pointer shadow-2xs"
+                    >
+                      <Printer className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <span>Print Circular</span>
+                    </button>
+                    <span className="text-[11px] text-slate-400 hidden sm:inline">
+                      Brahm Shakti Hospital · Budh Vihar, Delhi 110085
                     </span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-snug pt-1">
-                    {selectedNoticeModal.title}
-                  </h3>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedNoticeModal(null)}
+                    className="w-full sm:w-auto px-6 py-2 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-black transition-all shadow-xs hover:shadow-sm cursor-pointer"
+                  >
+                    Close Circular
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setSelectedNoticeModal(null)}
-                  className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
-                <span className="flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-[#0A7A74]" />
-                  <span>Date: {selectedNoticeModal.date}</span>
-                </span>
-                <span>•</span>
-                <span>Issued by: {selectedNoticeModal.author || 'Brahm Shakti Hospital Administration'}</span>
-              </div>
-
-              {/* Official notification text */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 font-mono text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
-                {selectedNoticeModal.content || selectedNoticeModal.summary}
-              </div>
-
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[11px] text-slate-400">
-                  Brahm Shakti Hospital · Budh Vihar, Delhi 110085
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setSelectedNoticeModal(null)}
-                  className="px-5 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 transition-colors cursor-pointer"
-                >
-                  Close Notice
-                </button>
               </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
       </section>
 
       {/* 9. Frequently Asked Questions Section */}
