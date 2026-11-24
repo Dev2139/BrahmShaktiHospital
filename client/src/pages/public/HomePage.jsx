@@ -154,54 +154,26 @@ const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
   }
 };
 
-const HERO_SLIDES = [
+const HERO_BANNER_IMAGES = [
   {
-    id: 'research',
-    badge: 'Pioneering in Research',
-    titleLine1: 'Advancing Better Healthcare',
-    titleLine2: 'Through Knowledge',
-    highlightColor: 'text-[#0284C7]',
-    description: 'Committed to continuous learning and innovation for improved patient care.',
-    ctaText: 'Explore Our Research & Excellence',
-    ctaLink: '/about',
-    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1200',
-    alt: 'Brahm Shakti Hospital Medical Researcher with Microscope in Laboratory'
+    url: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795514685/Brahm_Shakti_Advancing_Healthcare_Research.png',
+    alt: 'Advancing Better Healthcare Through Knowledge - Brahm Shakti Hospital'
   },
   {
-    id: 'surgery',
-    badge: 'Advanced Surgical Infrastructure',
-    titleLine1: 'Excellence in Surgical Care',
-    titleLine2: 'Precision & Trust',
-    highlightColor: 'text-[#0A7A74]',
-    description: 'Modular 4K Laparoscopic OT suites, laminar clean air rooms, and minimally invasive surgeries.',
-    ctaText: 'Explore Surgical Specialties',
-    ctaLink: '/departments',
-    image: 'https://images.unsplash.com/photo-1579684453423-f84349ef60b0?auto=format&fit=crop&q=80&w=1200',
-    alt: 'Surgeons in Advanced Operating Theatre'
+    url: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795514679/Brahm_Shakti_Hospital_Healthcare_Banner.png',
+    alt: 'Healthcare Excellence - Brahm Shakti Hospital'
   },
   {
-    id: 'emergency',
-    badge: '24x7 Critical Care & Trauma',
-    titleLine1: 'Immediate Emergency Care',
-    titleLine2: 'When Every Second Counts',
-    highlightColor: 'text-rose-600',
-    description: 'Round-the-clock emergency casualty, advanced ICU/ICCU monitoring, and mobile cardiac ambulances.',
-    ctaText: '24x7 Emergency Services',
-    ctaLink: '/contact',
-    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200',
-    alt: 'Critical Care ICU Resuscitation Suite'
+    url: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795514697/Brahm_Shakti_Hospital_Advanced_Care.png',
+    alt: 'Advanced Clinical Care - Brahm Shakti Hospital'
   },
   {
-    id: 'mission',
-    badge: 'Charitable Healthcare Mission',
-    titleLine1: 'Affordable World-Class Care',
-    titleLine2: 'Trust of Generations',
-    highlightColor: 'text-[#0A7A74]',
-    description: 'Subsidized OPD consultations, cashless Ayushman Bharat (PM-JAY) & DAK, and charitable renal dialysis.',
-    ctaText: 'Book an Appointment',
-    ctaLink: '/bookappointment',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200',
-    alt: 'Hospital Reception and Patient Care Desk'
+    url: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795514695/Brahm_Shakti_Hospital_Hero_Banner.png',
+    alt: 'Brahm Shakti Hospital & Research Centre'
+  },
+  {
+    url: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795179941/Proud_Indian_Flag_Group_Portrait.png',
+    alt: 'Proud Indian Flag Group Portrait'
   }
 ];
 
@@ -887,16 +859,16 @@ export const HomePage = () => {
   const handleHeroTouchEnd = () => {
     const diff = heroTouchStartX.current - heroTouchEndX.current;
     if (diff > 45) {
-      setHeroSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+      setHeroSlideIndex((prev) => (prev + 1) % HERO_BANNER_IMAGES.length);
     } else if (diff < -45) {
-      setHeroSlideIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+      setHeroSlideIndex((prev) => (prev - 1 + HERO_BANNER_IMAGES.length) % HERO_BANNER_IMAGES.length);
     }
   };
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setHeroSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 6000);
+      setHeroSlideIndex((prev) => (prev + 1) % HERO_BANNER_IMAGES.length);
+    }, 5500);
     return () => clearInterval(timer);
   }, []);
 
@@ -1114,98 +1086,61 @@ export const HomePage = () => {
   }, [departments, activeTabObj]);
 
   return (
-    <div className="space-y-6 sm:space-y-8 lg:space-y-10 pb-8 sm:pb-12">
-      {/* 1. Hero Section - Modern Light Clinical Hero Slider (Matches Image 3) */}
+    <div className="pb-8 sm:pb-12">
+      {/* 1. Hero Section - Full-Width Hospital Banner Carousel (Zero space above/below image) */}
       <section
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-1 sm:mt-2"
+        className="relative w-full overflow-hidden p-0 m-0 leading-none select-none touch-pan-y"
         onTouchStart={handleHeroTouchStart}
         onTouchMove={handleHeroTouchMove}
         onTouchEnd={handleHeroTouchEnd}
       >
-        <div className="relative w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-xs bg-gradient-to-r from-sky-50/90 via-teal-50/50 to-white">
-          {/* Slides Carousel */}
-          <div className="relative w-full">
-            {HERO_SLIDES.map((slide, idx) => {
-              const isActive = idx === heroSlideIndex;
+        <div className="relative w-full overflow-hidden p-0 m-0 leading-none">
+          {/* Spacer image establishes the exact responsive aspect ratio and height with 0px gap */}
+          <img
+            src={HERO_BANNER_IMAGES[0].url}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-auto block opacity-0 pointer-events-none select-none m-0 p-0"
+          />
 
-              return (
-                <div
-                  key={slide.id}
-                  className={`w-full transition-opacity duration-700 ease-in-out ${
-                    isActive ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 pointer-events-none z-0'
-                  }`}
-                >
-                  <div className="flex flex-col lg:flex-row items-center justify-between p-6 sm:p-10 lg:p-12 gap-8 lg:gap-12 min-h-[380px] sm:min-h-[440px] lg:min-h-[480px]">
-                    {/* Left Column: Text & CTA */}
-                    <div className="space-y-4 sm:space-y-5 max-w-xl text-left z-10 flex-1">
-                      <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-teal-50 text-[#0A7A74] border border-teal-200/80 text-xs font-bold uppercase tracking-wider shadow-2xs">
-                        <FlaskConical className="w-3.5 h-3.5 text-[#0A7A74]" />
-                        <span>{slide.badge}</span>
-                      </div>
+          {/* Carousel slides layered directly on top */}
+          {HERO_BANNER_IMAGES.map((banner, idx) => (
+            <div
+              key={idx}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                idx === heroSlideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
+            >
+              <img
+                src={banner.url}
+                alt={banner.alt}
+                className="w-full h-full object-cover object-center select-none m-0 p-0"
+                loading={idx === 0 ? 'eager' : 'lazy'}
+              />
+            </div>
+          ))}
 
-                      <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#0B2545] tracking-tight leading-tight">
-                        {slide.titleLine1}{' '}
-                        <span className={`${slide.highlightColor || 'text-[#0284C7]'} block`}>
-                          {slide.titleLine2}
-                        </span>
-                      </h1>
+          {/* Navigation Arrows */}
+          <button
+            type="button"
+            aria-label="Previous Slide"
+            onClick={() => setHeroSlideIndex((prev) => (prev - 1 + HERO_BANNER_IMAGES.length) % HERO_BANNER_IMAGES.length)}
+            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/75 text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs shadow-md hover:scale-105"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next Slide"
+            onClick={() => setHeroSlideIndex((prev) => (prev + 1) % HERO_BANNER_IMAGES.length)}
+            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/75 text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs shadow-md hover:scale-105"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
 
-                      <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed font-normal max-w-lg">
-                        {slide.description}
-                      </p>
-
-                      <div className="pt-2">
-                        <Link
-                          to={slide.ctaLink}
-                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-black shadow-md hover:shadow-lg transition-all group cursor-pointer"
-                        >
-                          <span>{slide.ctaText}</span>
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                      </div>
-                    </div>
-
-                    {/* Right Column: Visual with Researcher, Microscope, and Floating Hexagon Badges (Matches Image 3) */}
-                    <div className="relative w-full lg:w-1/2 flex items-center justify-center lg:justify-end">
-                      <div className="relative w-full max-w-[480px] aspect-[4/3] sm:aspect-[16/11] rounded-3xl overflow-hidden shadow-xs border border-teal-100/90 bg-white/70 group">
-                        {/* Floating Translucent Cyan Hexagon Badges matching Image 3 */}
-                        <div className="absolute top-4 left-6 z-20 w-10 h-10 rounded-2xl bg-cyan-500/20 backdrop-blur-md border border-cyan-400/40 flex items-center justify-center text-cyan-700 shadow-sm">
-                          <svg className="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2">
-                            <path d="M2 15c6.667-6 13.333 0 20-6" />
-                            <path d="M9 22c1.8-2 2.5-4 2.8-6" />
-                            <path d="M15 2c-1.8 2-2.5 4-2.8 6" />
-                            <path d="M17 6l-2.5-2.5" />
-                            <path d="M7 18l2.5 2.5" />
-                          </svg>
-                        </div>
-
-                        <div className="absolute top-8 right-12 z-20 w-10 h-10 rounded-2xl bg-teal-500/25 backdrop-blur-md border border-teal-400/40 flex items-center justify-center text-teal-800 shadow-sm">
-                          <span className="text-xl font-black">+</span>
-                        </div>
-
-                        <div className="absolute bottom-10 left-10 z-20 w-10 h-10 rounded-2xl bg-sky-500/20 backdrop-blur-md border border-sky-400/40 flex items-center justify-center text-sky-700 shadow-sm">
-                          <FlaskConical className="w-5 h-5" />
-                        </div>
-
-                        {/* Slide Photograph */}
-                        <img
-                          src={slide.image}
-                          alt={slide.alt}
-                          className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 select-none"
-                          loading={idx === 0 ? 'eager' : 'lazy'}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-teal-950/20 via-transparent to-transparent pointer-events-none" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Dot Indicators - NO extra buttons as user requested */}
-          <div className="relative z-20 flex items-center justify-center gap-2 pb-5 pt-2">
-            {HERO_SLIDES.map((_, idx) => (
+          {/* Dot Indicators */}
+          <div className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-2.5 bg-black/35 backdrop-blur-xs px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full">
+            {HERO_BANNER_IMAGES.map((_, idx) => (
               <button
                 key={idx}
                 type="button"
@@ -1213,14 +1148,16 @@ export const HomePage = () => {
                 onClick={() => setHeroSlideIndex(idx)}
                 className={`transition-all rounded-full cursor-pointer ${
                   idx === heroSlideIndex
-                    ? 'w-7 sm:w-8 h-2 bg-[#0A7A74]'
-                    : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+                    ? 'w-6 sm:w-7 h-2 sm:h-2.5 bg-white'
+                    : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/60 hover:bg-white/90'
                 }`}
               />
             ))}
           </div>
         </div>
       </section>
+
+      <div className="space-y-6 sm:space-y-8 lg:space-y-10 pt-4 sm:pt-6">
 
       {/* 2. Our Doctor Team */}
       <section className="bg-white py-6 sm:py-8 border-b border-medical-border">
@@ -2802,6 +2739,7 @@ export const HomePage = () => {
         isOpen={internationalModalOpen}
         onClose={() => setInternationalModalOpen(false)}
       />
+      </div>
     </div>
   );
 };
