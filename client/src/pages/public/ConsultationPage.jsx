@@ -407,35 +407,44 @@ export const ConsultationPage = () => {
             </Link>
           </div>
 
-          {/* Right: Portal Links */}
-          <nav className="hidden md:flex items-center gap-5 text-xs font-semibold text-slate-700">
+          {/* Right: Portal Links (Exact match to reference image) */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-xs sm:text-sm font-bold text-slate-800">
             <Link
               to="/"
-              className="inline-flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#0A7A74] transition-colors"
             >
-              <ArrowLeft className="w-3.5 h-3.5 text-[#0A7A74]" />
-              <span>Home</span>
-            </Link>
-            <Link
-              to="/doctors"
-              className="inline-flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
-            >
-              <Stethoscope className="w-3.5 h-3.5 text-[#0A7A74]" />
-              <span>Our Doctors</span>
+              Back Home
             </Link>
             <button
               type="button"
               onClick={() => setRefundModalOpen(true)}
-              className="hover:text-[#0A7A74] transition-colors cursor-pointer"
+              className="hover:text-[#0A7A74] transition-colors cursor-pointer font-bold"
             >
-              Help &amp; Support
+              Refund Policy
             </button>
             <Link
-              to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#0A7A74]/30 bg-teal-50 hover:bg-[#0A7A74] text-[#0A7A74] hover:text-white font-bold transition-all shadow-2xs"
+              to="/privacy-policy"
+              className="hover:text-[#0A7A74] transition-colors"
             >
-              <User className="w-3.5 h-3.5" />
-              <span>{isAuthenticated ? 'Patient Portal' : 'Patient Portal'}</span>
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms-of-use"
+              className="hover:text-[#0A7A74] transition-colors"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <Link
+              to="/contact"
+              className="hover:text-[#0A7A74] transition-colors"
+            >
+              Contact Us
+            </Link>
+            <Link
+              to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
+              className="text-[#0A7A74] font-black hover:underline transition-colors"
+            >
+              Patient Portal
             </Link>
           </nav>
 
@@ -443,10 +452,9 @@ export const ConsultationPage = () => {
           <div className="md:hidden flex items-center gap-2">
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-[#0A7A74]/30 bg-teal-50 text-[#0A7A74] text-xs font-bold"
+              className="text-[#0A7A74] text-xs font-black px-2 py-1"
             >
-              <User className="w-3 h-3" />
-              <span>Portal</span>
+              Patient Portal
             </Link>
             <button
               type="button"
@@ -461,27 +469,13 @@ export const ConsultationPage = () => {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-2.5 space-y-2 text-xs font-semibold">
+          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2.5 text-xs font-bold text-slate-800">
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1.5 text-slate-700 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#0A7A74]"
             >
-              Home
-            </Link>
-            <Link
-              to="/doctors"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-1.5 text-slate-700 hover:text-[#0A7A74]"
-            >
-              Our Doctors
-            </Link>
-            <Link
-              to="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-1.5 text-slate-700 hover:text-[#0A7A74]"
-            >
-              Help &amp; Support
+              Back Home
             </Link>
             <button
               type="button"
@@ -489,10 +483,38 @@ export const ConsultationPage = () => {
                 setMobileMenuOpen(false);
                 setRefundModalOpen(true);
               }}
-              className="block w-full text-left py-1.5 text-slate-700 hover:text-[#0A7A74]"
+              className="block w-full text-left py-1 hover:text-[#0A7A74]"
             >
               Refund Policy
             </button>
+            <Link
+              to="/privacy-policy"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-1 hover:text-[#0A7A74]"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms-of-use"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-1 hover:text-[#0A7A74]"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-1 hover:text-[#0A7A74]"
+            >
+              Contact Us
+            </Link>
+            <Link
+              to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-1 text-[#0A7A74] font-black"
+            >
+              Patient Portal
+            </Link>
           </div>
         )}
       </header>
@@ -685,15 +707,25 @@ export const ConsultationPage = () => {
               <div className="lg:col-span-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-3.5 sm:p-4 space-y-3">
                 {activeDoctor ? (
                   <>
-                    {/* Doctor Portrait Image (Compact, crisp) */}
-                    <div className="relative rounded-xl overflow-hidden bg-slate-100 h-36 sm:h-44 w-full border border-slate-200/80 shadow-2xs">
+                    {/* Doctor Portrait Image - Keeps exact box size, displays proper full face of the doctor */}
+                    <div className="relative rounded-xl overflow-hidden bg-gradient-to-b from-slate-100 to-slate-200/80 h-36 sm:h-44 w-full border border-slate-200/80 shadow-2xs flex items-center justify-center">
+                      {/* Ambient blurred backdrop so background blends smoothly */}
+                      {activeDoctor.image && (
+                        <img
+                          src={activeDoctor.image}
+                          alt=""
+                          aria-hidden="true"
+                          className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-25 pointer-events-none select-none"
+                        />
+                      )}
+                      {/* Doctor face displayed fully and properly without cutting */}
                       <img
                         src={activeDoctor.image || 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600'}
                         alt={activeDoctor.name}
-                        className="w-full h-full object-cover object-top"
+                        className="relative z-10 h-full w-auto max-w-full object-contain object-center drop-shadow-xs"
                       />
                       {activeDoctor.category && (
-                        <div className="absolute top-2 right-2 bg-emerald-600/90 text-white backdrop-blur-xs text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider shadow-xs">
+                        <div className="absolute top-2 right-2 z-20 bg-emerald-600/90 text-white backdrop-blur-xs text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider shadow-xs">
                           {activeDoctor.category}
                         </div>
                       )}
