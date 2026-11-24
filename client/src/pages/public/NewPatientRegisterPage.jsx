@@ -20,10 +20,7 @@ import {
   Check,
   Menu,
   X,
-  Home,
-  Users,
-  HelpCircle,
-  Shield
+  Home
 } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
@@ -47,10 +44,10 @@ const INDIAN_STATES = [
   'Other State / UT'
 ];
 
-// Beautiful SVG illustration matching Image 2 (Clipboard, Medical Cross, Shield with Lock & Organic leaves)
-const MedicalJourneyIllustration = ({ className = 'w-full max-h-48' }) => (
+// Compact SVG illustration matching Image 2 (Clipboard, Medical Cross, Shield with Lock & Organic leaves)
+const MedicalJourneyIllustration = ({ className = 'w-auto h-24' }) => (
   <svg
-    viewBox="0 0 320 240"
+    viewBox="0 0 320 220"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -65,87 +62,77 @@ const MedicalJourneyIllustration = ({ className = 'w-full max-h-48' }) => (
         <stop offset="100%" stopColor="#5EEAD4" />
       </linearGradient>
       <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="0" dy="6" stdDeviation="6" floodColor="#0A7A74" floodOpacity="0.12" />
+        <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#0A7A74" floodOpacity="0.12" />
       </filter>
     </defs>
 
     {/* Background Soft Organic Leaves & Glow */}
-    <ellipse cx="160" cy="130" rx="100" ry="85" fill="#E6FFFA" />
-    
+    <ellipse cx="160" cy="115" rx="90" ry="75" fill="#E6FFFA" />
+
     {/* Left Leaf Accent */}
     <path
-      d="M80 120 C65 100 65 75 85 70 C105 65 110 90 95 110 C88 118 84 120 80 120 Z"
+      d="M85 105 C70 88 70 65 88 60 C106 55 110 78 96 95 C90 102 88 105 85 105 Z"
       fill="url(#leafGrad)"
       opacity="0.8"
-    />
-    <path
-      d="M60 145 C50 130 55 115 70 115 C85 115 85 135 75 145 C70 150 65 150 60 145 Z"
-      fill="url(#leafGrad)"
-      opacity="0.5"
     />
 
     {/* Right Leaf Accent */}
     <path
-      d="M240 120 C255 100 255 75 235 70 C215 65 210 90 225 110 C232 118 236 120 240 120 Z"
+      d="M235 105 C250 88 250 65 232 60 C214 55 210 78 224 95 C230 102 232 105 235 105 Z"
       fill="url(#leafGrad)"
       opacity="0.8"
-    />
-    <path
-      d="M260 145 C270 130 265 115 250 115 C235 115 235 135 245 145 C250 150 255 150 260 145 Z"
-      fill="url(#leafGrad)"
-      opacity="0.5"
     />
 
     {/* Clipboard Base Board */}
     <g filter="url(#cardShadow)">
-      <rect x="100" y="45" width="120" height="150" rx="16" fill="#0A7A74" />
+      <rect x="105" y="32" width="110" height="138" rx="14" fill="#0A7A74" />
       {/* Top Clip */}
-      <rect x="135" y="35" width="50" height="20" rx="6" fill="#08635e" />
-      <circle cx="160" cy="45" r="4.5" fill="#FFFFFF" />
+      <rect x="136" y="24" width="48" height="18" rx="5" fill="#08635e" />
+      <circle cx="160" cy="33" r="3.5" fill="#FFFFFF" />
 
       {/* Paper Surface */}
-      <rect x="108" y="55" width="104" height="132" rx="10" fill="#FFFFFF" />
+      <rect x="112" y="42" width="96" height="120" rx="8" fill="#FFFFFF" />
 
       {/* Medical Cross Emblem */}
-      <rect x="154" y="68" width="12" height="28" rx="2" fill="#0A7A74" />
-      <rect x="146" y="76" width="28" height="12" rx="2" fill="#0A7A74" />
+      <rect x="155" y="52" width="10" height="24" rx="2" fill="#0A7A74" />
+      <rect x="148" y="59" width="24" height="10" rx="2" fill="#0A7A74" />
 
       {/* Document content lines */}
-      <rect x="122" y="108" width="76" height="5" rx="2.5" fill="#E2E8F0" />
-      <rect x="122" y="122" width="60" height="5" rx="2.5" fill="#E2E8F0" />
-      <rect x="122" y="136" width="70" height="5" rx="2.5" fill="#E2E8F0" />
-      <rect x="122" y="150" width="50" height="5" rx="2.5" fill="#E2E8F0" />
+      <rect x="124" y="88" width="72" height="4.5" rx="2" fill="#E2E8F0" />
+      <rect x="124" y="100" width="56" height="4.5" rx="2" fill="#E2E8F0" />
+      <rect x="124" y="112" width="65" height="4.5" rx="2" fill="#E2E8F0" />
+      <rect x="124" y="124" width="45" height="4.5" rx="2" fill="#E2E8F0" />
     </g>
 
     {/* Secure Shield Overlay with Lock */}
-    <g transform="translate(175, 125)">
+    <g transform="translate(172, 108)">
       {/* Shield Body */}
       <path
-        d="M32 0 C48 0 64 6 64 6 C64 36 50 62 32 72 C14 62 0 36 0 6 C0 6 16 0 32 0 Z"
+        d="M28 0 C42 0 56 5 56 5 C56 31 44 54 28 63 C12 54 0 31 0 5 C0 5 14 0 28 0 Z"
         fill="url(#shieldGrad)"
         filter="url(#cardShadow)"
       />
       {/* Shield Inner Stroke */}
       <path
-        d="M32 4 C46 4 60 9 60 9 C60 34 48 58 32 67 C16 58 4 34 4 9 C4 9 18 4 32 4 Z"
+        d="M28 3.5 C40 3.5 52 8 52 8 C52 30 42 51 28 59 C14 51 4 30 4 8 C4 8 16 3.5 28 3.5 Z"
         stroke="#FFFFFF"
-        strokeWidth="1.5"
+        strokeWidth="1.2"
         strokeOpacity="0.4"
         fill="none"
       />
       {/* Lock Shackle */}
       <path
-        d="M26 31 V26 C26 22.7 28.7 20 32 20 C35.3 20 38 22.7 38 26 V31"
+        d="M23 27 V23 C23 20 25.5 17.5 28 17.5 C30.5 17.5 33 20 33 23 V27"
         stroke="#FFFFFF"
-        strokeWidth="3"
+        strokeWidth="2.5"
         strokeLinecap="round"
         fill="none"
       />
       {/* Lock Body */}
-      <rect x="23" y="30" width="18" height="15" rx="3" fill="#FFFFFF" />
+      <rect x="20" y="26" width="16" height="13" rx="2.5" fill="#FFFFFF" />
       {/* Lock Keyhole */}
-      <circle cx="32" cy="36.5" r="2" fill="#0A7A74" />
-      <rect x="31" y="37" width="2" height="4" fill="#0A7A74" />
+      <circle cx="28" cy="31.5" r="1.5" fill="#0A7A74" />
+      <rect x="27.2" y="32" width="1.6" height="3.5" fill="#0A7A74" />
     </g>
   </svg>
 );
@@ -153,7 +140,7 @@ const MedicalJourneyIllustration = ({ className = 'w-full max-h-48' }) => (
 export const NewPatientRegisterPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { setAuthSession, isAuthenticated, user } = useAuth();
+  const { setAuthSession, isAuthenticated } = useAuth();
 
   // Consultation booking parameters (if coming from /bookappointment)
   const doctorId = searchParams.get('doctor') || '';
@@ -165,6 +152,7 @@ export const NewPatientRegisterPage = () => {
   // Step 1: Personal & Address Details, Step 2: Email OTP Verification
   const [currentStep, setCurrentStep] = useState(1);
   const [consentModalOpen, setConsentModalOpen] = useState(false);
+  const [refundModalOpen, setRefundModalOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Form Fields (Demographics matching Image 2)
@@ -327,67 +315,76 @@ export const NewPatientRegisterPage = () => {
 
   return (
     <div className="min-h-screen bg-[#F0F8F9] text-slate-800 flex flex-col font-sans selection:bg-[#0A7A74] selection:text-white">
-      {/* -------------------- 1. TOP NAVBAR (MATCHING IMAGE 2) -------------------- */}
+      {/* ----------------- 1. NAVBAR (EXACT MATCH TO BOOK APPOINTMENT PAGE) ----------------- */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-          {/* Left: Hospital Logo + OPD Portal Tagline */}
-          <div className="flex items-center gap-3">
-            <Link to="/" className="flex items-center gap-3 group" title="Brahm Shakti Hospital Home">
+        <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
+          {/* Left: Hospital Brand & Portal Label */}
+          <div className="flex items-center gap-2.5">
+            <Link to="/" className="flex items-center gap-2.5 group" title="Brahm Shakti Hospital Home">
               <img
                 src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
-                className="h-10 sm:h-12 w-auto object-contain"
+                className="h-9 sm:h-10 w-auto object-contain"
               />
-              <div className="hidden sm:block border-l border-slate-200 pl-3">
-                <div className="text-xs font-black tracking-wider text-[#0B2545] uppercase leading-tight">
+              <div className="hidden sm:block border-l border-slate-200 pl-2.5">
+                <div className="text-[11px] font-black tracking-wider text-[#0B2545] uppercase leading-tight">
                   OPD APPOINTMENT PORTAL
                 </div>
-                <div className="text-[11px] font-medium text-[#0A7A74] italic leading-tight">
+                <div className="text-[10px] font-medium text-[#0A7A74] italic leading-tight">
                   Trust of Generations
                 </div>
               </div>
             </Link>
           </div>
 
-          {/* Right: Nav Links + Patient Portal Pill */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs sm:text-sm font-bold text-slate-800">
+          {/* Right: Portal Links (Identical to Book Appointment Page) */}
+          <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-xs sm:text-sm font-bold text-slate-800">
             <Link
               to="/"
-              className="flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#0A7A74] transition-colors"
             >
-              <Home className="w-4 h-4 text-[#0A7A74]" />
-              <span>Home</span>
+              Back Home
+            </Link>
+            <button
+              type="button"
+              onClick={() => setRefundModalOpen(true)}
+              className="hover:text-[#0A7A74] transition-colors cursor-pointer font-bold"
+            >
+              Refund Policy
+            </button>
+            <Link
+              to="/privacy-policy"
+              className="hover:text-[#0A7A74] transition-colors"
+            >
+              Privacy Policy
             </Link>
             <Link
-              to="/doctors"
-              className="flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
+              to="/terms-of-use"
+              className="hover:text-[#0A7A74] transition-colors"
             >
-              <Users className="w-4 h-4 text-[#0A7A74]" />
-              <span>Our Doctors</span>
+              Terms &amp; Conditions
             </Link>
             <Link
               to="/contact"
               className="hover:text-[#0A7A74] transition-colors"
             >
-              Help &amp; Support
+              Contact Us
             </Link>
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-teal-200 bg-teal-50/80 text-[#0A7A74] font-black hover:bg-teal-100/70 transition-all shadow-2xs"
+              className="text-[#0A7A74] font-black hover:underline transition-colors"
             >
-              <User className="w-4 h-4" />
-              <span>Patient Portal</span>
+              Patient Portal
             </Link>
           </nav>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-teal-50 text-[#0A7A74] text-xs font-black"
+              className="text-[#0A7A74] text-xs font-black px-2 py-1"
             >
-              <User className="w-3.5 h-3.5" />
-              <span>Portal</span>
+              Patient Portal
             </Link>
             <button
               type="button"
@@ -402,29 +399,44 @@ export const NewPatientRegisterPage = () => {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2.5 text-xs font-bold text-slate-800">
+          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2 text-xs font-bold text-slate-800">
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#0A7A74]"
             >
-              <Home className="w-4 h-4 text-[#0A7A74]" />
-              <span>Home</span>
+              Back Home
+            </Link>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setRefundModalOpen(true);
+              }}
+              className="block w-full text-left py-1 hover:text-[#0A7A74]"
+            >
+              Refund Policy
+            </button>
+            <Link
+              to="/privacy-policy"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-1 hover:text-[#0A7A74]"
+            >
+              Privacy Policy
             </Link>
             <Link
-              to="/doctors"
+              to="/terms-of-use"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#0A7A74]"
             >
-              <Users className="w-4 h-4 text-[#0A7A74]" />
-              <span>Our Doctors</span>
+              Terms &amp; Conditions
             </Link>
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="block py-1 hover:text-[#0A7A74]"
             >
-              Help &amp; Support
+              Contact Us
             </Link>
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
@@ -437,139 +449,135 @@ export const NewPatientRegisterPage = () => {
         )}
       </header>
 
-      {/* -------------------- 2. BREADCRUMB -------------------- */}
-      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
-        <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
+      {/* ----------------- 2. COMPACT HEADER & BREADCRUMB ----------------- */}
+      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
           <Link to="/" className="inline-flex items-center gap-1 hover:text-[#0A7A74] transition-colors">
-            <Home className="w-3.5 h-3.5" />
+            <Home className="w-3 h-3 text-[#0A7A74]" />
             <span>Home</span>
           </Link>
           <span>/</span>
           <span className="text-slate-800">New Patient Registration</span>
         </div>
-      </div>
 
-      {/* -------------------- 3. MAIN HEADING & STEPPER HEADER -------------------- */}
-      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-6 text-center space-y-3">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0A7A74] tracking-tight">
-          Create Your Patient Account
-        </h1>
-        <p className="text-xs sm:text-sm font-semibold text-slate-600">
-          Enter your details to register with Brahm Shakti Hospital.
-        </p>
-
-        {/* 2-Step Progress Indicator */}
-        <div className="pt-2 flex items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-          {/* Step 1 Pill */}
-          <div className={`flex items-center gap-2 font-bold ${currentStep === 1 ? 'text-[#0A7A74]' : 'text-slate-500'}`}>
-            <div
-              className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs font-black ${
+        {/* Compact Stepper (Top Right on wide screens, centered on mobile) */}
+        <div className="flex items-center gap-3 text-xs">
+          <div className={`flex items-center gap-1.5 font-bold ${currentStep === 1 ? 'text-[#0A7A74]' : 'text-slate-400'}`}>
+            <span
+              className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
                 currentStep > 1
                   ? 'bg-emerald-600 text-white'
                   : currentStep === 1
-                  ? 'bg-[#0A7A74] text-white shadow-xs'
+                  ? 'bg-[#0A7A74] text-white'
                   : 'bg-slate-200 text-slate-600'
               }`}
             >
               {currentStep > 1 ? '✓' : '1'}
-            </div>
-            <span className="whitespace-nowrap">Personal &amp; Address Details</span>
+            </span>
+            <span className="text-[11px] sm:text-xs">Personal &amp; Address</span>
           </div>
 
-          {/* Stepper Connector Line */}
-          <div className="w-12 sm:w-20 md:w-28 h-0.5 bg-slate-300"></div>
+          <div className="w-6 sm:w-10 h-0.5 bg-slate-300"></div>
 
-          {/* Step 2 Pill */}
-          <div className={`flex items-center gap-2 font-bold ${currentStep === 2 ? 'text-[#0A7A74]' : 'text-slate-400'}`}>
-            <div
-              className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs font-black ${
+          <div className={`flex items-center gap-1.5 font-bold ${currentStep === 2 ? 'text-[#0A7A74]' : 'text-slate-400'}`}>
+            <span
+              className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
                 currentStep === 2
-                  ? 'bg-[#0A7A74] text-white ring-4 ring-[#0A7A74]/20 shadow-xs'
+                  ? 'bg-[#0A7A74] text-white ring-2 ring-[#0A7A74]/20'
                   : 'bg-slate-200 text-slate-500'
               }`}
             >
               2
-            </div>
-            <span className="whitespace-nowrap">Email OTP Verification</span>
+            </span>
+            <span className="text-[11px] sm:text-xs">Email OTP</span>
           </div>
         </div>
       </div>
 
-      {/* -------------------- 4. MAIN BENTO GRID (MATCHING IMAGE 2) -------------------- */}
-      <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8 items-start">
+      {/* Title (Compact) */}
+      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-3">
+        <h1 className="text-xl sm:text-2xl font-black text-[#0A7A74] tracking-tight leading-tight">
+          Create Your Patient Account
+        </h1>
+        <p className="text-[11px] sm:text-xs font-medium text-slate-600">
+          Enter your details to register with Brahm Shakti Hospital.
+        </p>
+      </div>
+
+      {/* ----------------- 3. COMPACT MAIN BENTO GRID (LESS SCROLL) ----------------- */}
+      <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 xl:gap-6 items-start">
           {/* ================= LEFT COLUMN: REGISTRATION JOURNEY CARD ================= */}
-          <div className="lg:col-span-4 xl:col-span-4 bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-7 space-y-6">
-            {/* Top Graphic Illustration (Clipboard, Cross, Shield & Lock) */}
-            <div className="w-full flex items-center justify-center py-1">
-              <MedicalJourneyIllustration className="w-full max-h-48 drop-shadow-xs select-none" />
+          <div className="lg:col-span-4 xl:col-span-4 bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-5 space-y-4">
+            {/* Top Compact Illustration */}
+            <div className="w-full flex items-center justify-center py-0.5">
+              <MedicalJourneyIllustration className="w-auto h-24 select-none drop-shadow-xs" />
             </div>
 
-            {/* Title */}
             <div>
-              <h2 className="text-base sm:text-lg font-black text-slate-900">
+              <h2 className="text-sm font-black text-slate-900">
                 Your registration journey
               </h2>
             </div>
 
-            {/* Vertical Timeline Stepper */}
-            <div className="relative pl-2 space-y-6">
-              {/* Connecting Vertical Line */}
-              <div className="absolute left-[23px] top-6 bottom-6 w-0.5 bg-slate-200"></div>
+            {/* Vertical Timeline Stepper (Tightened spacing) */}
+            <div className="relative pl-1 space-y-3.5">
+              <div className="absolute left-[19px] top-4 bottom-4 w-0.5 bg-slate-200"></div>
 
               {/* Journey Step 1 */}
-              <div className="relative flex items-start gap-4">
+              <div className="relative flex items-start gap-3">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-xs transition-colors ${
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
                     currentStep >= 1 ? 'bg-[#0A7A74]' : 'bg-slate-300'
                   }`}
                 >
-                  <User className="w-4 h-4" />
+                  <User className="w-3.5 h-3.5" />
                 </div>
                 <div className="space-y-0.5 pt-0.5">
-                  <h3 className="text-xs sm:text-sm font-bold text-slate-900">
+                  <h3 className="text-xs font-bold text-slate-900">
                     1. Enter your details
                   </h3>
-                  <p className="text-[11px] sm:text-xs text-slate-500 leading-relaxed">
+                  <p className="text-[10px] text-slate-500 leading-snug">
                     Share your personal and address information.
                   </p>
                 </div>
               </div>
 
               {/* Journey Step 2 */}
-              <div className="relative flex items-start gap-4">
+              <div className="relative flex items-start gap-3">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-xs transition-colors ${
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
                     currentStep === 2 ? 'bg-[#0A7A74]' : 'bg-slate-300'
                   }`}
                 >
-                  <Mail className="w-4 h-4" />
+                  <Mail className="w-3.5 h-3.5" />
                 </div>
                 <div className="space-y-0.5 pt-0.5">
-                  <h3 className="text-xs sm:text-sm font-bold text-slate-900">
+                  <h3 className="text-xs font-bold text-slate-900">
                     2. Verify your email
                   </h3>
-                  <p className="text-[11px] sm:text-xs text-slate-500 leading-relaxed">
+                  <p className="text-[10px] text-slate-500 leading-snug">
                     Use the OTP sent to your email to complete registration.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Highlight Trust Card */}
-            <div className="p-4 rounded-2xl bg-teal-50/70 border border-teal-200/80 space-y-1 text-slate-800">
-              <div className="flex items-center gap-2 text-xs font-extrabold text-[#0A7A74]">
-                <ShieldCheck className="w-4 h-4 text-[#0A7A74] shrink-0" />
+            {/* Highlight Privacy Card (Compact) */}
+            <div className="p-3 rounded-xl bg-teal-50/70 border border-teal-200/80 space-y-0.5 text-slate-800">
+              <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#0A7A74]">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
                 <span>Your privacy is our priority</span>
               </div>
-              <p className="text-[11px] text-slate-600 pl-6 leading-relaxed">
+              <p className="text-[10px] text-slate-600 pl-5 leading-snug">
                 Your information is secure and protected with us.
               </p>
             </div>
 
             {/* Time Estimate */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 pt-1">
-              <Clock className="w-4 h-4 text-slate-400" />
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500">
+              <Clock className="w-3.5 h-3.5 text-slate-400" />
               <span>Usually takes a few minutes</span>
             </div>
           </div>
@@ -577,34 +585,34 @@ export const NewPatientRegisterPage = () => {
           {/* ================= RIGHT COLUMN: STEP 1 FORM OR STEP 2 OTP ================= */}
           <div className="lg:col-span-8 xl:col-span-8">
             {currentStep === 1 ? (
-              /* ---------------- STEP 1: FORM ---------------- */
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 lg:p-9 space-y-7">
-                {/* Header Row */}
-                <div className="flex items-center justify-between pb-2">
-                  <span className="text-xs font-bold text-slate-400">Step 1 of 2</span>
-                  <span className="text-xs font-bold text-rose-500">* Fields are mandatory.</span>
+              /* ---------------- STEP 1: FORM (COMPACT, LESS SCROLL) ---------------- */
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-5 lg:p-6 space-y-4">
+                {/* Header Notice */}
+                <div className="flex items-center justify-between pb-1 border-b border-slate-100">
+                  <span className="text-[11px] font-bold text-slate-500">Step 1 of 2</span>
+                  <span className="text-[11px] font-bold text-rose-500">* Fields are mandatory.</span>
                 </div>
 
-                <form onSubmit={handleStep1Submit} className="space-y-7">
+                <form onSubmit={handleStep1Submit} className="space-y-3.5">
                   {/* ================= SECTION 1: PERSONAL DETAILS ================= */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-                      <div className="w-6 h-6 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
-                        <User className="w-3.5 h-3.5" />
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
+                      <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                        <User className="w-3 h-3" />
                       </div>
-                      <h3 className="text-xs font-black tracking-wider text-[#0A7A74] uppercase">
+                      <h3 className="text-[11px] font-black tracking-wider text-[#0A7A74] uppercase">
                         PERSONAL DETAILS
                       </h3>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 sm:gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
                       {/* Title */}
                       <div className="sm:col-span-2 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">Title *</label>
+                        <label className="text-[11px] font-bold text-slate-700">Title *</label>
                         <select
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
-                          className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
                         >
                           <option value="Mr.">Mr.</option>
                           <option value="Mrs.">Mrs.</option>
@@ -616,38 +624,38 @@ export const NewPatientRegisterPage = () => {
 
                       {/* First name */}
                       <div className="sm:col-span-4 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">First name *</label>
+                        <label className="text-[11px] font-bold text-slate-700">First name *</label>
                         <input
                           type="text"
                           required
                           value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
                           placeholder="First name"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
                       {/* Last name */}
                       <div className="sm:col-span-3 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">Last name *</label>
+                        <label className="text-[11px] font-bold text-slate-700">Last name *</label>
                         <input
                           type="text"
                           required
                           value={lastName}
                           onChange={(e) => setLastName(e.target.value)}
                           placeholder="Last name"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
                       {/* Gender */}
                       <div className="sm:col-span-3 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">Gender *</label>
+                        <label className="text-[11px] font-bold text-slate-700">Gender *</label>
                         <select
                           required
                           value={gender}
                           onChange={(e) => setGender(e.target.value)}
-                          className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
                         >
                           <option value="">Select gender</option>
                           <option value="Male">Male</option>
@@ -659,48 +667,46 @@ export const NewPatientRegisterPage = () => {
                   </div>
 
                   {/* ================= SECTION 2: CONTACT DETAILS ================= */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-                      <div className="w-6 h-6 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
-                        <Phone className="w-3.5 h-3.5" />
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
+                      <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                        <Phone className="w-3 h-3" />
                       </div>
-                      <h3 className="text-xs font-black tracking-wider text-[#0A7A74] uppercase">
+                      <h3 className="text-[11px] font-black tracking-wider text-[#0A7A74] uppercase">
                         CONTACT DETAILS
                       </h3>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 sm:gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
                       {/* Date of birth */}
                       <div className="sm:col-span-4 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">Date of birth *</label>
-                        <div className="relative">
-                          <input
-                            type="date"
-                            required
-                            value={dob}
-                            onChange={(e) => setDob(e.target.value)}
-                            className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs"
-                          />
-                        </div>
+                        <label className="text-[11px] font-bold text-slate-700">Date of birth *</label>
+                        <input
+                          type="date"
+                          required
+                          value={dob}
+                          onChange={(e) => setDob(e.target.value)}
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
+                        />
                       </div>
 
                       {/* Mobile number */}
                       <div className="sm:col-span-4 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">Mobile number *</label>
+                        <label className="text-[11px] font-bold text-slate-700">Mobile number *</label>
                         <input
                           type="tel"
                           required
                           value={mobile}
                           onChange={(e) => setMobile(e.target.value)}
                           placeholder="10-digit mobile number"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
                       {/* Email address */}
                       <div className="sm:col-span-4 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">
-                          Email address (required for Email OTP) *
+                        <label className="text-[11px] font-bold text-slate-700">
+                          Email address (required for OTP) *
                         </label>
                         <input
                           type="email"
@@ -708,42 +714,42 @@ export const NewPatientRegisterPage = () => {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="patient@example.com"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
                     </div>
                   </div>
 
                   {/* ================= SECTION 3: ADDRESS DETAILS ================= */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-                      <div className="w-6 h-6 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
-                        <MapPin className="w-3.5 h-3.5" />
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
+                      <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                        <MapPin className="w-3 h-3" />
                       </div>
-                      <h3 className="text-xs font-black tracking-wider text-[#0A7A74] uppercase">
+                      <h3 className="text-[11px] font-black tracking-wider text-[#0A7A74] uppercase">
                         ADDRESS DETAILS
                       </h3>
                     </div>
 
                     {/* Row 1: Country, State, Pincode, District */}
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 sm:gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
                       <div className="sm:col-span-3 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">Country *</label>
+                        <label className="text-[11px] font-bold text-slate-700">Country *</label>
                         <select
                           value={country}
                           onChange={(e) => setCountry(e.target.value)}
-                          className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
                         >
                           <option value="India">India</option>
                         </select>
                       </div>
 
                       <div className="sm:col-span-3 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">State / UT *</label>
+                        <label className="text-[11px] font-bold text-slate-700">State / UT *</label>
                         <select
                           value={stateUt}
                           onChange={(e) => setStateUt(e.target.value)}
-                          className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
                         >
                           {INDIAN_STATES.map((s) => (
                             <option key={s} value={s}>
@@ -754,7 +760,7 @@ export const NewPatientRegisterPage = () => {
                       </div>
 
                       <div className="sm:col-span-3 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">Pincode (6 digits) *</label>
+                        <label className="text-[11px] font-bold text-slate-700">Pincode (6 digits) *</label>
                         <input
                           type="text"
                           required
@@ -762,60 +768,61 @@ export const NewPatientRegisterPage = () => {
                           value={pincode}
                           onChange={(e) => setPincode(e.target.value.replace(/\D/g, ''))}
                           placeholder="110085"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
                       <div className="sm:col-span-3 space-y-1">
-                        <label className="text-xs font-bold text-slate-700">District *</label>
+                        <label className="text-[11px] font-bold text-slate-700">District *</label>
                         <input
                           type="text"
                           required
                           value={district}
                           onChange={(e) => setDistrict(e.target.value)}
                           placeholder="North West Delhi"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
                     </div>
 
-                    {/* Row 2: Address line 1 */}
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-700">Address line 1 *</label>
-                      <input
-                        type="text"
-                        required
-                        value={addressLine1}
-                        onChange={(e) => setAddressLine1(e.target.value)}
-                        placeholder="House / Flat No., Street, Area"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
-                      />
-                    </div>
+                    {/* Row 2: Address line 1 (8 cols) + Aadhaar (4 cols) on same line to eliminate scrolling */}
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
+                      <div className="sm:col-span-8 space-y-1">
+                        <label className="text-[11px] font-bold text-slate-700">Address line 1 *</label>
+                        <input
+                          type="text"
+                          required
+                          value={addressLine1}
+                          onChange={(e) => setAddressLine1(e.target.value)}
+                          placeholder="House / Flat No., Street, Area"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                        />
+                      </div>
 
-                    {/* Row 3: Aadhaar number (Optional) */}
-                    <div className="sm:w-1/2 space-y-1">
-                      <label className="text-xs font-bold text-slate-700">
-                        Aadhaar number (12 digits) <span className="text-slate-400 font-normal">(Optional)</span>
-                      </label>
-                      <input
-                        type="text"
-                        maxLength={14}
-                        value={aadhaar}
-                        onChange={(e) => setAadhaar(e.target.value)}
-                        placeholder="1234-5678-9012"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/15 focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
-                      />
+                      <div className="sm:col-span-4 space-y-1">
+                        <label className="text-[11px] font-bold text-slate-700">
+                          Aadhaar (12 digits) <span className="text-slate-400 font-normal">(Optional)</span>
+                        </label>
+                        <input
+                          type="text"
+                          maxLength={14}
+                          value={aadhaar}
+                          onChange={(e) => setAadhaar(e.target.value)}
+                          placeholder="1234-5678-9012"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  {/* Consent Checkbox */}
-                  <div className="pt-1">
-                    <label className="flex items-start gap-2.5 text-xs sm:text-sm font-bold text-slate-800 cursor-pointer select-none">
+                  {/* Consent Checkbox (Compact 1-liner) */}
+                  <div>
+                    <label className="flex items-center gap-2 text-xs font-bold text-slate-800 cursor-pointer select-none">
                       <input
                         type="checkbox"
                         checked={consentChecked}
                         onChange={(e) => setConsentChecked(e.target.checked)}
-                        className="mt-0.5 rounded-md border-slate-300 text-[#0A7A74] focus:ring-[#0A7A74] h-4 w-4"
+                        className="rounded border-slate-300 text-[#0A7A74] focus:ring-[#0A7A74] h-3.5 w-3.5"
                       />
                       <span>
                         Please tick mark for the Patient Health Data{' '}
@@ -830,28 +837,23 @@ export const NewPatientRegisterPage = () => {
                     </label>
                   </div>
 
-                  {/* 100% Free Registration Green Container */}
-                  <div className="bg-emerald-50/80 border border-emerald-200/90 rounded-2xl p-4 space-y-2 text-xs text-slate-800">
-                    <div className="flex items-start gap-2">
-                      <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                  {/* 100% Free Registration Banner (Condensed) */}
+                  <div className="bg-emerald-50/90 border border-emerald-200/90 rounded-xl p-2.5 text-xs text-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </div>
                       <span className="font-bold">
-                        Patient Registration &amp; UHID generation is <strong className="text-emerald-700 font-black">100% FREE</strong>.
+                        Patient Registration is <strong className="text-emerald-700 font-black">100% FREE</strong> (Zero Fee).
                       </span>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-2.5 h-2.5 stroke-[3]" />
-                      </div>
-                      <span className="text-slate-600">
-                        Subsidized doctor consultation fee is payable only when visiting the hospital OPD counter.
-                      </span>
-                    </div>
+                    <span className="text-[11px] text-slate-600">
+                      Doctor consultation fee is payable only at hospital OPD counter.
+                    </span>
                   </div>
 
                   {/* Bottom Action Row (Save & continue later / Verify email & continue) */}
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="pt-1 flex flex-col sm:flex-row items-center justify-between gap-3">
                     <button
                       type="button"
                       onClick={() => navigate('/bookappointment/patient-type')}
@@ -863,7 +865,7 @@ export const NewPatientRegisterPage = () => {
 
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-7 py-3 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-black transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] order-1 sm:order-2"
+                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-black transition-all shadow-sm hover:shadow flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] order-1 sm:order-2"
                     >
                       <span>Verify email &amp; continue</span>
                       <ArrowRight className="w-4 h-4" />
@@ -873,8 +875,8 @@ export const NewPatientRegisterPage = () => {
               </div>
             ) : (
               /* ---------------- STEP 2: EMAIL OTP VERIFICATION ---------------- */
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-10 space-y-7 animate-in fade-in duration-200">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 sm:p-8 space-y-5 animate-in fade-in duration-200">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                   <button
                     type="button"
                     onClick={() => setCurrentStep(1)}
@@ -886,22 +888,22 @@ export const NewPatientRegisterPage = () => {
                   <span className="text-xs font-bold text-[#0A7A74]">Step 2 of 2</span>
                 </div>
 
-                <div className="text-center space-y-2">
-                  <div className="w-14 h-14 mx-auto rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shadow-2xs">
-                    <Mail className="w-7 h-7" />
+                <div className="text-center space-y-1.5">
+                  <div className="w-12 h-12 mx-auto rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200">
+                    <Mail className="w-6 h-6" />
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-black text-slate-900">
+                  <h2 className="text-lg sm:text-xl font-black text-slate-900">
                     Verify Your Email Address
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
+                  <p className="text-xs text-slate-600 max-w-md mx-auto">
                     We have dispatched a 6-digit OTP code to:{' '}
                     <strong className="text-[#0A7A74] font-bold">{email}</strong>
                   </p>
                 </div>
 
                 {/* Demonstration OTP Helper */}
-                <div className="p-3 bg-teal-50 border border-teal-200 rounded-xl text-xs text-teal-900 flex items-center justify-between max-w-md mx-auto">
-                  <div className="flex items-center gap-2">
+                <div className="p-2.5 bg-teal-50 border border-teal-200 rounded-xl text-xs text-teal-900 flex items-center justify-between max-w-md mx-auto">
+                  <div className="flex items-center gap-1.5">
                     <KeyRound className="w-4 h-4 text-[#0A7A74]" />
                     <span>Demo Verification Code:</span>
                   </div>
@@ -910,8 +912,8 @@ export const NewPatientRegisterPage = () => {
                   </span>
                 </div>
 
-                <form onSubmit={handleVerifyOtp} className="space-y-6 max-w-md mx-auto">
-                  <div className="space-y-2 text-center">
+                <form onSubmit={handleVerifyOtp} className="space-y-5 max-w-md mx-auto">
+                  <div className="space-y-1.5 text-center">
                     <label className="text-xs font-bold text-slate-700 block">
                       Enter 6-Digit Email OTP *
                     </label>
@@ -922,7 +924,7 @@ export const NewPatientRegisterPage = () => {
                       value={otpInput}
                       onChange={(e) => setOtpInput(e.target.value.replace(/\D/g, ''))}
                       placeholder="• • • • • •"
-                      className="w-52 mx-auto text-center font-mono text-2xl tracking-[0.35em] px-4 py-2.5 rounded-xl border-2 border-slate-300 focus:border-[#0A7A74] focus:outline-hidden shadow-2xs"
+                      className="w-48 mx-auto text-center font-mono text-2xl tracking-[0.35em] px-3 py-2 rounded-xl border-2 border-slate-300 focus:border-[#0A7A74] focus:outline-hidden shadow-2xs"
                     />
                   </div>
 
@@ -943,7 +945,7 @@ export const NewPatientRegisterPage = () => {
                   <button
                     type="submit"
                     disabled={verifyingOtp || otpInput.length < 6}
-                    className="w-full py-3.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black transition-all shadow flex items-center justify-center gap-2 cursor-pointer"
                   >
                     {verifyingOtp ? (
                       <>
@@ -964,15 +966,15 @@ export const NewPatientRegisterPage = () => {
         </div>
       </main>
 
-      {/* -------------------- 5. FOOTER (MATCHING IMAGE 2) -------------------- */}
-      <footer className="bg-white border-t border-slate-200 mt-auto py-4">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+      {/* ----------------- 4. COMPACT FOOTER ----------------- */}
+      <footer className="bg-white border-t border-slate-200 mt-auto py-3">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-2.5 text-xs text-slate-600">
           <div className="font-semibold text-slate-800">
             &copy; 2026 Brahm Shakti Hospital.
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-teal-200 bg-teal-50 text-[#0A7A74] font-bold text-xs">
-            <ShieldCheck className="w-4 h-4 text-[#0A7A74]" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-teal-200 bg-teal-50 text-[#0A7A74] font-bold text-[11px]">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#0A7A74]" />
             <span>NABH &amp; NABL Accredited</span>
           </div>
 
@@ -995,10 +997,49 @@ export const NewPatientRegisterPage = () => {
         </div>
       </footer>
 
-      {/* -------------------- 6. CONSENT & NOTICE MODAL -------------------- */}
+      {/* ----------------- 5. REFUND POLICY MODAL ----------------- */}
+      {refundModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 border border-slate-200 space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+              <div className="flex items-center gap-2 text-[#0A7A74]">
+                <AlertCircle className="w-5 h-5" />
+                <h3 className="font-black text-base text-slate-800">OPD Refund Policy</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setRefundModalOpen(false)}
+                className="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="text-xs text-slate-600 space-y-3 leading-relaxed">
+              <p>
+                <strong>1. Registration:</strong> Patient registration and UHID creation is 100% FREE. No registration fees are collected.
+              </p>
+              <p>
+                <strong>2. Doctor Availability:</strong> If the consulting doctor is called for emergency care, appointments may be rescheduled at no additional cost.
+              </p>
+              <p>
+                <strong>3. Cancellation:</strong> Appointments can be cancelled or rescheduled up to 2 hours prior to the booked slot from your Patient Portal.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setRefundModalOpen(false)}
+              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold cursor-pointer"
+            >
+              I Understand
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ----------------- 6. CONSENT & NOTICE MODAL ----------------- */}
       {consentModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 space-y-4 shadow-2xl border border-slate-100 animate-in fade-in zoom-in-95">
+          <div className="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl border border-slate-100 animate-in fade-in zoom-in-95">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-[#0A7A74]" />
