@@ -15,6 +15,8 @@ import DepartmentDetailPage from './pages/public/DepartmentDetailPage';
 import DoctorsPage from './pages/public/DoctorsPage';
 import DoctorProfilePage from './pages/public/DoctorProfilePage';
 import ConsultationPage from './pages/public/ConsultationPage';
+import PatientTypePage from './pages/public/PatientTypePage';
+import NewPatientRegisterPage from './pages/public/NewPatientRegisterPage';
 import OpdServicesPage from './pages/public/OpdServicesPage';
 import IpdServicesPage from './pages/public/IpdServicesPage';
 import BloodBankPage from './pages/public/BloodBankPage';
@@ -121,6 +123,8 @@ export default function App() {
 
         {/* Standalone Appointment Portal (isolated OPD web app, no login required) */}
         <Route path="/bookappointment" element={<ConsultationPage />} />
+        <Route path="/bookappointment/patient-type" element={<PatientTypePage />} />
+        <Route path="/bookappointment/new-patient" element={<NewPatientRegisterPage />} />
         <Route path="/book-appointment" element={<ConsultationPage />} />
         <Route path="/appointments" element={<ConsultationPage />} />
         <Route path="/consultation" element={<ConsultationPage />} />
