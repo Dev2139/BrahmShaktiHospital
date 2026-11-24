@@ -140,6 +140,15 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const setAuthSession = (userData, jwtToken = 'bsh_jwt_token_' + Date.now()) => {
+    const expiry = Date.now() + TEN_DAYS_MS;
+    setToken(jwtToken);
+    setUser(userData);
+    localStorage.setItem('bsh_token', jwtToken);
+    localStorage.setItem('bsh_user', JSON.stringify(userData));
+    localStorage.setItem('bsh_auth_expiry', expiry.toString());
+  };
+
   const updateUserData = (updatedFields) => {
     setUser((prev) => {
       const merged = { ...prev, ...updatedFields };
@@ -181,7 +190,8 @@ export const AuthProvider = ({ children }) => {
         logout,
         changePassword,
         switchDemoRole,
-        updateUserData
+        updateUserData,
+        setAuthSession
       }}
     >
       {children}

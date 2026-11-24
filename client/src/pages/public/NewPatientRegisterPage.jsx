@@ -42,7 +42,7 @@ const INDIAN_STATES = [
 export const NewPatientRegisterPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { setAuthSession } = useAuth();
 
   // Consultation booking parameters (if coming from /bookappointment)
   const doctorId = searchParams.get('doctor') || '';
@@ -51,7 +51,7 @@ export const NewPatientRegisterPage = () => {
   const slotParam = searchParams.get('slot') || '';
   const modeParam = searchParams.get('mode') || 'direct';
 
-  // Step 1: Demographics, Step 2: Email OTP, Step 3: Confirmation
+  // Step 1: Demographics, Step 2: Email OTP
   const [currentStep, setCurrentStep] = useState(1);
 
   // Form Fields (Demographics matching Image 3)
@@ -168,13 +168,10 @@ export const NewPatientRegisterPage = () => {
     try {
       const fullName = `${title} ${firstName.trim()} ${lastName.trim()}`;
       const uhidCode = `BSH-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
-      setGeneratedUhid(uhidCode);
 
-      // 1. Create Patient User Account via API or simulate
-      const regData = {
+      const patientUser = {
         name: fullName,
         email: email.trim().toLowerCase(),
-        password: `BSH@${mobile.slice(-4) || '2026'}`,
         phone: mobile.trim(),
         uhid: uhidCode,
         role: 'patient',
@@ -183,56 +180,29 @@ export const NewPatientRegisterPage = () => {
         address: `${addressLine1.trim()}, ${district}, ${stateUt} - ${pincode}`
       };
 
+      let authToken = 'bsh_jwt_' + Date.now();
       try {
-        const regRes = await api.post('/auth/register', regData);
+        const regRes = await api.post('/auth/register', {
+          ...patientUser,
+          password: `BSH@${mobile.slice(-4) || '2026'}`
+        });
         if (regRes.data?.token) {
-          localStorage.setItem('bsh_token', regRes.data.token);
-          localStorage.setItem('bsh_user', JSON.stringify(regRes.data.user || regData));
+          authToken = regRes.data.token;
         }
       } catch (err) {
-        // If account already exists or mock mode, save patient profile in local state
-        localStorage.setItem(
-          'bsh_user',
-          JSON.stringify({
-            name: fullName,
-            email: email.trim().toLowerCase(),
-            role: 'patient',
-            uhid: uhidCode,
-            phone: mobile.trim()
-          })
-        );
+        // Fallback for demo/offline
       }
 
-      // 2. If appointment slot was selected, book the appointment!
-      if (doctorInfo && dateParam) {
-        try {
-          const aptRes = await api.post('/appointments', {
-            patientName: fullName,
-            patientPhone: mobile.trim(),
-            patientEmail: email.trim(),
-            gender,
-            uhid: uhidCode,
-            doctorId: doctorInfo.id,
-            doctorName: doctorInfo.name,
-            departmentId: doctorInfo.departmentId,
-            departmentName: doctorInfo.departmentName,
-            date: dateParam,
-            timeSlot: slotParam || '09:30 AM - 10:00 AM',
-            appointmentType: modeParam === 'video' ? 'Video Consultation' : 'OPD Consultation',
-            fee: doctorInfo.consultationFee || 700,
-            registrationFee: 200,
-            paymentMethod: 'Pay at Hospital Counter'
-          });
-          if (aptRes.data?.success) {
-            setConfirmedBooking(aptRes.data.data);
-          }
-        } catch (bookingErr) {
-          console.error('Appointment booking auto-creation:', bookingErr);
-        }
-      }
+      // Establish authenticated session for this patient
+      setAuthSession(patientUser, authToken);
 
-      setCurrentStep(3);
-      toast.success('Patient Registered Successfully! UHID generated.');
+      toast.success(`Registration verified! Welcome, ${fullName}. Redirecting to book your slot...`);
+
+      // Redirect directly back to /bookappointment preserving parameters
+      const returnUrl = `/bookappointment?doctor=${encodeURIComponent(doctorId)}&department=${encodeURIComponent(departmentId)}&date=${encodeURIComponent(dateParam)}&mode=${encodeURIComponent(modeParam)}&slot=${encodeURIComponent(slotParam)}`;
+      setTimeout(() => {
+        navigate(returnUrl, { replace: true });
+      }, 700);
     } catch (err) {
       console.error('Registration error:', err);
       toast.error('Unable to finalize registration. Please try again.');
@@ -274,7 +244,7 @@ export const NewPatientRegisterPage = () => {
       <main className="flex-1 max-w-[1100px] w-full mx-auto px-4 sm:px-6 py-8">
         {/* STEPPER BAR (MATCHING IMAGE 3 REFERENCE) */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 mb-6">
-          <div className="flex items-center justify-between max-w-2xl mx-auto text-xs sm:text-sm">
+          <div className="flex items-center justify-between max-w-lg mx-auto text-xs sm:text-sm">
             {/* Step 1 */}
             <div className={`flex items-center gap-2 font-bold ${currentStep === 1 ? 'text-[#0A7A74]' : 'text-slate-500'}`}>
               <div
@@ -288,42 +258,23 @@ export const NewPatientRegisterPage = () => {
               >
                 {currentStep > 1 ? '✓' : '1'}
               </div>
-              <span className="hidden sm:inline">Demographics &amp; Address</span>
-              <span className="sm:hidden">Details</span>
+              <span>Demographics &amp; Address</span>
             </div>
 
-            <div className="flex-1 h-0.5 bg-slate-200 mx-3"></div>
+            <div className="flex-1 h-0.5 bg-slate-200 mx-4"></div>
 
             {/* Step 2 (Email OTP as requested by user) */}
             <div className={`flex items-center gap-2 font-bold ${currentStep === 2 ? 'text-[#0A7A74]' : 'text-slate-500'}`}>
               <div
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black ${
-                  currentStep > 2
-                    ? 'bg-emerald-600 text-white'
-                    : currentStep === 2
+                  currentStep === 2
                     ? 'bg-[#0A7A74] text-white ring-4 ring-[#0A7A74]/15'
                     : 'bg-slate-200 text-slate-600'
                 }`}
               >
-                {currentStep > 2 ? '✓' : '2'}
+                2
               </div>
-              <span className="hidden sm:inline">Email OTP</span>
-              <span className="sm:hidden">OTP</span>
-            </div>
-
-            <div className="flex-1 h-0.5 bg-slate-200 mx-3"></div>
-
-            {/* Step 3 */}
-            <div className={`flex items-center gap-2 font-bold ${currentStep === 3 ? 'text-[#0A7A74]' : 'text-slate-500'}`}>
-              <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black ${
-                  currentStep === 3 ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-600'
-                }`}
-              >
-                3
-              </div>
-              <span className="hidden sm:inline">Slip &amp; UHID</span>
-              <span className="sm:hidden">Slip</span>
+              <span>Email OTP Verification</span>
             </div>
           </div>
         </div>
@@ -627,115 +578,12 @@ export const NewPatientRegisterPage = () => {
                   </>
                 ) : (
                   <>
-                    <span>Confirm OTP &amp; Generate UHID</span>
+                    <span>Verify OTP &amp; Proceed to Appointment Slot</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
               </button>
             </form>
-          </div>
-        )}
-
-        {/* ================= STEP 3: REGISTRATION & APPOINTMENT CONFIRMATION SLIP ================= */}
-        {currentStep === 3 && (
-          <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-md p-6 sm:p-8 space-y-6 animate-in fade-in duration-200">
-            <div className="text-center space-y-2 border-b border-slate-200 pb-5">
-              <div className="w-14 h-14 mx-auto rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
-                <CheckCircle2 className="w-8 h-8" />
-              </div>
-              <h2 className="text-2xl font-black text-[#0B2545]">
-                Patient Registration Successful!
-              </h2>
-              <p className="text-xs text-slate-500">
-                Your permanent hospital record (UHID) has been created.
-              </p>
-            </div>
-
-            {/* Official Registration Slip Card */}
-            <div className="bg-slate-50 rounded-xl border border-slate-200 p-5 space-y-3 text-xs sm:text-sm">
-              <div className="flex items-center justify-between pb-2 border-b border-slate-200">
-                <span className="text-slate-500 font-semibold">Generated UHID</span>
-                <span className="font-mono font-black text-[#0A7A74] text-base">{generatedUhid}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-500 font-semibold">Patient Full Name</span>
-                <span className="font-bold text-slate-800">{title} {firstName} {lastName}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-500 font-semibold">Registered Email</span>
-                <span className="font-mono text-slate-800">{email}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-500 font-semibold">Mobile Number</span>
-                <span className="font-mono font-bold text-slate-800">{mobile}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-500 font-semibold">Address</span>
-                <span className="text-slate-800 text-right max-w-xs">{addressLine1}, {district}, {stateUt}</span>
-              </div>
-
-              {doctorInfo && (
-                <>
-                  <div className="pt-2 border-t border-slate-200 flex items-center justify-between">
-                    <span className="text-slate-500 font-semibold">Consulting Specialist</span>
-                    <span className="font-bold text-[#0A7A74]">{doctorInfo.name}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-500 font-semibold">Speciality / Chamber</span>
-                    <span className="font-bold text-slate-800">{doctorInfo.departmentName} ({doctorInfo.room || 'Room 102'})</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-500 font-semibold">Appointment Date &amp; Slot</span>
-                    <span className="font-bold text-emerald-800 bg-emerald-100/70 px-2 py-0.5 rounded">
-                      {dateParam} · {slotParam || '09:30 AM - 10:00 AM'}
-                    </span>
-                  </div>
-                </>
-              )}
-
-              <div className="flex items-center justify-between border-t border-slate-200 pt-3">
-                <span className="text-slate-500 font-semibold">Registration &amp; OPD Fee</span>
-                <span className="font-black text-[#0A7A74] text-base">
-                  ₹{doctorInfo ? (doctorInfo.consultationFee || 700) + 200 : 200} (Pay at Hospital Counter)
-                </span>
-              </div>
-            </div>
-
-            {/* Instruction Notice */}
-            <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 space-y-1">
-              <p className="font-bold">Next Steps for OPD Visit:</p>
-              <ul className="list-disc list-inside space-y-0.5 text-[11px] text-amber-800">
-                <li>Quote your UHID <strong className="font-mono">{generatedUhid}</strong> at the OPD registration desk.</li>
-                <li>Pay the one-time registration fee of ₹200 at the counter.</li>
-                <li>Proceed directly to Chamber {doctorInfo?.room || 'Room 102'} for your consultation.</li>
-              </ul>
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:text-[#0A7A74] hover:border-[#0A7A74] text-xs font-bold transition-all shadow-xs"
-              >
-                <Printer className="w-4 h-4" />
-                <span>Print Registration Slip</span>
-              </button>
-              <Link
-                to="/patient/dashboard"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold transition-all shadow-xs"
-              >
-                <FileText className="w-4 h-4" />
-                <span>Go to Patient Portal</span>
-              </Link>
-              <Link
-                to="/"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Return to Home</span>
-              </Link>
-            </div>
           </div>
         )}
       </main>
