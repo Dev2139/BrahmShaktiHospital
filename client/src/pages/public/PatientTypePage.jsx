@@ -18,11 +18,132 @@ import {
   CheckCircle2,
   Check,
   Menu,
-  Stethoscope,
+  Heart,
   Activity
 } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
+
+// Beautiful transparent clinical stethoscope artwork with glowing heart & ECG pulse
+const MedicalStethoscopeArtwork = ({ className = 'w-full max-h-64' }) => (
+  <svg
+    viewBox="0 0 460 330"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <defs>
+      <linearGradient id="metallicTube" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#1E293B" />
+        <stop offset="45%" stopColor="#0A7A74" />
+        <stop offset="100%" stopColor="#08635e" />
+      </linearGradient>
+      <linearGradient id="chromeMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#FFFFFF" />
+        <stop offset="30%" stopColor="#CBD5E1" />
+        <stop offset="60%" stopColor="#94A3B8" />
+        <stop offset="85%" stopColor="#E2E8F0" />
+        <stop offset="100%" stopColor="#64748B" />
+      </linearGradient>
+      <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#F43F5E" />
+        <stop offset="50%" stopColor="#E11D48" />
+        <stop offset="100%" stopColor="#0A7A74" />
+      </linearGradient>
+      <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="5" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      </filter>
+    </defs>
+
+    {/* Soft subtle radial ambient glow */}
+    <circle cx="260" cy="165" r="120" fill="#0A7A74" fillOpacity="0.05" />
+    <circle cx="260" cy="165" r="80" fill="#0A7A74" fillOpacity="0.07" />
+
+    {/* Glowing Cardiology Heart Graphic */}
+    <g transform="translate(225, 90) scale(0.95)" filter="url(#softGlow)">
+      <path
+        d="M50 88 C20 55 0 35 0 20 C0 8 9 0 22 0 C32 0 42 7 50 18 C58 7 68 0 78 0 C91 0 100 8 100 20 C100 35 80 55 50 88 Z"
+        fill="url(#heartGradient)"
+        opacity="0.85"
+      />
+      {/* Heart glossy reflection */}
+      <path
+        d="M22 6 C14 6 8 12 8 20 C8 30 20 46 45 74 C34 56 26 42 26 30 C26 16 32 10 38 8 C32 6 26 6 22 6 Z"
+        fill="#FFFFFF"
+        opacity="0.32"
+      />
+    </g>
+
+    {/* Dynamic ECG Heartbeat Pulse Wave flowing across */}
+    <path
+      d="M30 175 L160 175 L175 155 L188 205 L202 130 L218 215 L230 165 L245 182 L260 175 L430 175"
+      stroke="#0A7A74"
+      strokeWidth="3.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      opacity="0.75"
+    />
+    <circle cx="202" cy="130" r="3.5" fill="#0A7A74" />
+    <circle cx="218" cy="215" r="3" fill="#E11D48" />
+
+    {/* Stethoscope Ear Tubes (Binaural Chrome) */}
+    <path
+      d="M80 65 C75 90 85 120 110 140 L128 155"
+      stroke="url(#chromeMetal)"
+      strokeWidth="6"
+      strokeLinecap="round"
+      fill="none"
+    />
+    <path
+      d="M138 65 C143 90 133 120 110 140"
+      stroke="url(#chromeMetal)"
+      strokeWidth="6"
+      strokeLinecap="round"
+      fill="none"
+    />
+
+    {/* Soft silicone ear tips */}
+    <ellipse cx="78" cy="63" rx="5.5" ry="7.5" fill="#1E293B" />
+    <ellipse cx="140" cy="63" rx="5.5" ry="7.5" fill="#1E293B" />
+
+    {/* Binaural Spring connector */}
+    <path d="M95 108 Q109 116 123 108" stroke="url(#chromeMetal)" strokeWidth="4" fill="none" />
+
+    {/* Stethoscope Flexible Tubing looping smoothly */}
+    <path
+      d="M118 148 C118 185 85 235 100 265 C118 300 180 305 210 275 C240 245 220 195 250 185 C280 175 320 215 330 245 C338 270 320 290 295 295 C270 300 240 280 250 250"
+      stroke="url(#metallicTube)"
+      strokeWidth="8"
+      strokeLinecap="round"
+      fill="none"
+      filter="drop-shadow(0 3px 6px rgba(0,0,0,0.12))"
+    />
+
+    {/* Chrome stem connector to chest piece */}
+    <path d="M250 250 L252 240" stroke="url(#chromeMetal)" strokeWidth="6.5" strokeLinecap="round" />
+
+    {/* Stethoscope Dual-Head Chest Piece */}
+    <g transform="translate(252, 225)">
+      <circle cx="20" cy="20" r="27" fill="url(#chromeMetal)" stroke="#94A3B8" strokeWidth="2" />
+      <circle cx="20" cy="20" r="22" fill="#0B2545" />
+      <circle cx="20" cy="20" r="19" fill="url(#chromeMetal)" opacity="0.4" />
+      <circle cx="20" cy="20" r="15" fill="#0A7A74" />
+      <circle cx="20" cy="20" r="6.5" fill="url(#chromeMetal)" />
+      <ellipse cx="15" cy="14" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.45" transform="rotate(-30 15 14)" />
+    </g>
+
+    {/* Subtle floating medical crosses */}
+    <g opacity="0.3" transform="translate(45, 220)">
+      <rect x="5" y="0" width="3.5" height="14" rx="1.75" fill="#0A7A74" />
+      <rect x="0" y="5" width="14" height="3.5" rx="1.75" fill="#0A7A74" />
+    </g>
+    <g opacity="0.22" transform="translate(385, 65)">
+      <rect x="6" y="0" width="3.5" height="15" rx="1.75" fill="#0A7A74" />
+      <rect x="0" y="6" width="15" height="3.5" rx="1.75" fill="#0A7A74" />
+    </g>
+  </svg>
+);
 
 export const PatientTypePage = () => {
   const [searchParams] = useSearchParams();
@@ -119,7 +240,7 @@ export const PatientTypePage = () => {
 
   return (
     <div className="min-h-screen bg-[#F0F8F9] text-slate-800 flex flex-col font-sans selection:bg-[#0A7A74] selection:text-white">
-      {/* -------------------- 1. DEDICATED PORTAL NAVBAR -------------------- */}
+      {/* -------------------- 1. NAVBAR (IDENTICAL TO BOOK APPOINTMENT PAGE) -------------------- */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
           {/* Left: Hospital Brand & Tagline */}
@@ -141,74 +262,75 @@ export const PatientTypePage = () => {
             </Link>
           </div>
 
-          {/* Right: Desktop Navigation Links (Matching Reference UI) */}
-          <nav className="hidden md:flex items-center gap-6 text-xs sm:text-sm font-semibold text-slate-700">
+          {/* Right: Portal Links (Identical match to Book Appointment page navbar) */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-xs sm:text-sm font-bold text-slate-800">
             <Link
               to="/"
-              className="inline-flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#0A7A74] transition-colors"
             >
-              <ArrowLeft className="w-4 h-4 text-[#0A7A74]" />
-              <span>Home</span>
-            </Link>
-            <Link
-              to="/doctors"
-              className="inline-flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
-            >
-              <Stethoscope className="w-4 h-4 text-[#0A7A74]" />
-              <span>Our Doctors</span>
+              Back Home
             </Link>
             <button
               type="button"
               onClick={() => setRefundModalOpen(true)}
-              className="hover:text-[#0A7A74] transition-colors cursor-pointer"
+              className="hover:text-[#0A7A74] transition-colors cursor-pointer font-bold"
             >
-              Help &amp; Support
+              Refund Policy
             </button>
             <Link
-              to={isAuthenticated ? '/patient/dashboard' : '/login'}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-teal-300 bg-teal-50 hover:bg-[#0A7A74] text-[#0A7A74] hover:text-white font-bold transition-all shadow-2xs"
+              to="/privacy-policy"
+              className="hover:text-[#0A7A74] transition-colors"
             >
-              <User className="w-3.5 h-3.5" />
-              <span>Patient Portal</span>
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms-of-use"
+              className="hover:text-[#0A7A74] transition-colors"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <Link
+              to="/contact"
+              className="hover:text-[#0A7A74] transition-colors"
+            >
+              Contact Us
+            </Link>
+            <Link
+              to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
+              className="text-[#0A7A74] font-black hover:underline transition-colors"
+            >
+              Patient Portal
             </Link>
           </nav>
 
           {/* Mobile Navigation Toggle Button */}
           <div className="md:hidden flex items-center gap-2">
             <Link
-              to={isAuthenticated ? '/patient/dashboard' : '/login'}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-teal-300 bg-teal-50 text-[#0A7A74] text-xs font-bold"
+              to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
+              className="text-[#0A7A74] text-xs font-black px-2 py-1"
             >
-              <User className="w-3.5 h-3.5" />
-              <span>Portal</span>
+              Patient Portal
             </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-700 hover:bg-slate-100"
+              className="p-1.5 rounded-lg text-slate-700 hover:bg-slate-100"
               aria-label="Toggle navigation"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2 text-sm font-semibold">
+          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2.5 text-xs font-bold text-slate-800">
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-slate-700 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#0A7A74]"
             >
-              Home
-            </Link>
-            <Link
-              to="/doctors"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-slate-700 hover:text-[#0A7A74]"
-            >
-              Our Doctors
+              Back Home
             </Link>
             <button
               type="button"
@@ -216,14 +338,35 @@ export const PatientTypePage = () => {
                 setMobileMenuOpen(false);
                 setRefundModalOpen(true);
               }}
-              className="block w-full text-left py-2 text-slate-700 hover:text-[#0A7A74]"
+              className="block w-full text-left py-1 hover:text-[#0A7A74]"
             >
-              Help &amp; Support
+              Refund Policy
             </button>
             <Link
-              to={isAuthenticated ? '/patient/dashboard' : '/login'}
+              to="/privacy-policy"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-[#0A7A74] font-bold"
+              className="block py-1 hover:text-[#0A7A74]"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms-of-use"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-1 hover:text-[#0A7A74]"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-1 hover:text-[#0A7A74]"
+            >
+              Contact Us
+            </Link>
+            <Link
+              to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-1 text-[#0A7A74] font-black"
             >
               Patient Portal
             </Link>
@@ -249,7 +392,7 @@ export const PatientTypePage = () => {
                   </p>
                 </div>
 
-                {/* The 2 Patient Classification Cards */}
+                {/* The 2 Patient Classification Cards (Clean, Balanced, No "Recommended" Badge) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   {/* Card 1: Registered Patient */}
                   <div className="p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 bg-white group">
@@ -274,15 +417,9 @@ export const PatientTypePage = () => {
                     </button>
                   </div>
 
-                  {/* Card 2: New Patient (with Recommended Badge) */}
-                  <div className="relative p-5 sm:p-6 rounded-2xl border-2 border-[#0A7A74] bg-teal-50/20 shadow-xs hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 group">
-                    {/* Top-Right Recommended Badge */}
-                    <div className="absolute -top-3 right-4 bg-[#0A7A74] text-white text-[10px] sm:text-[11px] font-black px-3 py-0.5 rounded-full shadow-xs flex items-center gap-1">
-                      <Check className="w-3 h-3 stroke-[3]" />
-                      <span>Recommended</span>
-                    </div>
-
-                    <div className="w-14 h-14 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 group-hover:scale-105 transition-transform mt-1">
+                  {/* Card 2: New Patient (No Recommended Badge, matching clean styling) */}
+                  <div className="p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 bg-white group">
+                    <div className="w-14 h-14 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 group-hover:scale-105 transition-transform">
                       <UserPlus className="w-7 h-7" />
                     </div>
                     <div className="space-y-1.5 flex-1 flex flex-col justify-center">
@@ -344,21 +481,15 @@ export const PatientTypePage = () => {
                 </div>
               </div>
 
-              {/* RIGHT PANEL (DESKTOP VIEW): Stethoscope Artwork & Trust Checkmarks */}
-              <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 relative self-stretch bg-gradient-to-br from-sky-50/70 via-teal-50/50 to-white flex-col justify-between p-8 xl:p-10 border-l border-slate-100 overflow-hidden">
-                {/* Background Stethoscope Graphic */}
-                <div className="relative w-full flex-1 flex items-center justify-center min-h-[220px]">
-                  <img
-                    src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&q=80&w=700"
-                    alt="Brahm Shakti Clinical Stethoscope"
-                    className="w-full max-h-60 object-contain rounded-2xl drop-shadow-sm opacity-90"
-                  />
-                  {/* Soft ambient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none" />
+              {/* RIGHT PANEL (DESKTOP VIEW): Pure Transparent Stethoscope & Cardiology Heart Artwork */}
+              <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 relative self-stretch bg-gradient-to-br from-sky-50/60 via-teal-50/40 to-white flex-col justify-between p-8 xl:p-10 border-l border-slate-100 overflow-hidden">
+                {/* Transparent Stethoscope + Heart + ECG Wave Illustration (No rectangular background) */}
+                <div className="relative w-full flex-1 flex items-center justify-center min-h-[240px]">
+                  <MedicalStethoscopeArtwork className="w-full max-h-64 drop-shadow-sm select-none" />
                 </div>
 
-                {/* Desktop 3 Checkmark Items (Matching Reference Image 2) */}
-                <div className="space-y-3.5 pt-4 z-10 text-xs text-slate-800">
+                {/* Desktop 3 Checkmark Items */}
+                <div className="space-y-3 pt-3 z-10 text-xs text-slate-800">
                   <div className="flex items-center gap-2.5">
                     <div className="w-5 h-5 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 shadow-2xs">
                       <Check className="w-3 h-3 stroke-[3]" />
@@ -535,7 +666,7 @@ export const PatientTypePage = () => {
         )}
       </main>
 
-      {/* -------------------- 3. DEDICATED PORTAL FOOTER (MATCHING IMAGE 2) -------------------- */}
+      {/* -------------------- 3. DEDICATED PORTAL FOOTER -------------------- */}
       <footer className="bg-white border-t border-slate-200 mt-auto py-3.5">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-600">
           <div className="font-semibold">&copy; 2026 Brahm Shakti Hospital.</div>
@@ -576,7 +707,7 @@ export const PatientTypePage = () => {
               <button
                 type="button"
                 onClick={() => setRefundModalOpen(false)}
-                className="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600"
+                className="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -592,7 +723,7 @@ export const PatientTypePage = () => {
             <button
               type="button"
               onClick={() => setRefundModalOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold"
+              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold cursor-pointer"
             >
               I Understand
             </button>
@@ -612,7 +743,7 @@ export const PatientTypePage = () => {
               <button
                 type="button"
                 onClick={() => setSecurityModalOpen(false)}
-                className="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600"
+                className="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -631,7 +762,7 @@ export const PatientTypePage = () => {
             <button
               type="button"
               onClick={() => setSecurityModalOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold"
+              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold cursor-pointer"
             >
               Close
             </button>
