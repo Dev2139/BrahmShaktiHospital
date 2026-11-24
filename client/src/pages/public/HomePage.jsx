@@ -529,7 +529,7 @@ export const HomePage = () => {
   const { isAuthenticated, isStaff, dashboardPath } = useAuth();
   const appointmentTarget = isStaff
     ? (dashboardPath || '/admin/dashboard')
-    : (isAuthenticated ? '/appointments' : '/login?redirect=/appointments');
+    : '/appointments';
 
   const [departments, setDepartments] = useState(departmentsData || []);
   const [allDoctors, setAllDoctors] = useState(doctorsData || []);
@@ -1044,7 +1044,7 @@ export const HomePage = () => {
                     View Details
                   </Link>
                   <Link
-                    to={isStaff ? appointmentTarget : (isAuthenticated ? `/appointments?specialty=${dept.id}` : `/login?redirect=${encodeURIComponent(`/appointments?specialty=${dept.id}`)}`)}
+                    to={isStaff ? appointmentTarget : `/appointments?specialty=${dept.id}`}
                     className="flex-1 py-2 sm:py-2.5 rounded-xl bg-[#0B2545] hover:bg-[#123661] text-white text-xs font-bold text-center transition-all shadow-sm hover:shadow"
                   >
                     {isStaff ? 'My Dashboard' : 'Book Slot'}

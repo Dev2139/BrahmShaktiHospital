@@ -1,56 +1,133 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useSearchParams, Link, useNavigate, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {
-  Activity,
-  ArrowLeft,
-  ArrowRight,
   Calendar,
-  CheckCircle2,
+  Clock,
+  User,
+  Stethoscope,
+  Building,
   ChevronLeft,
   ChevronRight,
-  Clock,
-  Loader2,
-  Mail,
-  MapPin,
-  Phone,
-  PhoneCall,
   Search,
-  ShieldCheck,
-  Stethoscope,
-  User,
+  CheckCircle2,
   Printer,
-  IndianRupee,
-  GraduationCap
+  ShieldCheck,
+  PhoneCall,
+  ArrowLeft,
+  ArrowRight,
+  Lock,
+  Mail,
+  Phone,
+  Info,
+  X,
+  Video,
+  MapPin,
+  GraduationCap,
+  Award,
+  AlertCircle,
+  CalendarDays,
+  Loader2,
+  Check
 } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
 
 const todayISO = () => new Date().toISOString().split('T')[0];
 
-// The appointment portal lists Brahm Shakti Hospital's verified consultants from the official DMC register:
+// Official verified doctor roster of Brahm Shakti Hospital (DMC registered)
 const PORTAL_DOCTOR_NAMES = [
   'Dr. S.K. Goyal',
   'Dr. Vineet Mittal',
-  'Dr. Nishant Verma',
+  'Dr. Sanjeev Verma',
   'Dr. Rishabh Jain',
+  'Dr. Kapil Goyal',
+  'Dr. Dinesh Chand Sharma',
+  'Dr. Ravi Shankar Gupta',
+  'Dr. Manvi Aggarwal',
+  'Dr. Monika Kumawat',
   'Dr. Manisha Jain',
   'Dr. Renu Gupta',
+  'Dr. Swati Gupta',
+  'Dr. Avnish Goyal',
+  'Dr. Manju Bansal',
+  'Dr. Hitesh Aggarwal',
+  'Dr. Rupesh',
+  'Dr. Sunil',
+  'Dr. Nishant Verma',
   'Dr. Disha Menani',
-  'Dr. Rupesh Sharma',
-  'Dr. Satpal Yadav',
-  'Dr. Kapil Goyal',
-  'Dr. Ravi Shankar Gupta',
-  'Dr. Dinesh Chand Sharma',
-  'Dr. Nikhil Bhambri',
   'Dr. Sunil Gandhi',
   'Dr. Dharmender Chaudhary',
-  'Dr. Anish Goel',
-  'Dr. Swati Gupta',
   'Dr. Rajesh Kumar',
   'Dr. Monika Kumar',
   'Dr. Anil Solanki'
 ];
+
+// Clean vector doctor silhouette matching the reference portal illustration
+const DoctorSilhouette = ({ className = 'w-40 h-40' }) => (
+  <svg
+    viewBox="0 0 200 200"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={`${className} drop-shadow-sm`}
+  >
+    {/* Soft light-blue background circle / rounded box */}
+    <rect width="200" height="200" rx="28" fill="#E8F4F8" />
+    
+    {/* Shoulders / Body with White Lab Coat */}
+    <path
+      d="M36 200 C36 156 60 144 86 142 L114 142 C140 144 164 156 164 200 Z"
+      fill="#F8FAFC"
+      stroke="#DCE5EC"
+      strokeWidth="2"
+    />
+    
+    {/* Inner Navy Shirt & Tie */}
+    <path d="M88 142 L100 168 L112 142 Z" fill="#0B2545" />
+    <path d="M96 150 L100 188 L104 150 Z" fill="#2563EB" />
+    
+    {/* White Coat Lapels */}
+    <path d="M60 148 L88 178 L80 200 L44 200 Z" fill="#FFFFFF" />
+    <path d="M140 148 L112 178 L120 200 L156 200 Z" fill="#FFFFFF" />
+    
+    {/* Doctor Neck */}
+    <rect x="88" y="112" width="24" height="34" rx="4" fill="#E5A672" />
+    
+    {/* Doctor Head */}
+    <ellipse cx="100" cy="92" rx="32" ry="38" fill="#F0BA8B" />
+    
+    {/* Professional Doctor Hair */}
+    <path
+      d="M68 90 C66 66 82 52 100 52 C118 52 134 66 132 90 C128 72 118 64 100 64 C82 64 72 72 68 90 Z"
+      fill="#2A2F35"
+    />
+    
+    {/* Subtle facial outline */}
+    <ellipse cx="88" cy="94" rx="3" ry="4" fill="#2A2F35" />
+    <ellipse cx="112" cy="94" rx="3" ry="4" fill="#2A2F35" />
+    <path d="M96 102 C98 106 102 106 104 102" stroke="#D99B6A" strokeWidth="2" strokeLinecap="round" />
+    <path d="M92 116 C96 120 104 120 108 116" stroke="#C88456" strokeWidth="2.5" strokeLinecap="round" />
+    
+    {/* Stethoscope around neck */}
+    <path
+      d="M74 140 C70 166 78 184 88 186 C98 188 98 178 98 172"
+      stroke="#475569"
+      strokeWidth="4"
+      strokeLinecap="round"
+      fill="none"
+    />
+    <path
+      d="M126 140 C130 166 122 184 112 186 C102 188 102 178 102 172"
+      stroke="#475569"
+      strokeWidth="4"
+      strokeLinecap="round"
+      fill="none"
+    />
+    {/* Stethoscope Chest Piece */}
+    <circle cx="100" cy="184" r="8" fill="#94A3B8" stroke="#475569" strokeWidth="2.5" />
+    <circle cx="100" cy="184" r="3.5" fill="#0A7A74" />
+  </svg>
+);
 
 export const ConsultationPage = () => {
   const [searchParams] = useSearchParams();
@@ -59,65 +136,68 @@ export const ConsultationPage = () => {
 
   const { isAuthenticated, isLoading, user, isStaff, dashboardPath } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
 
-  // Search state
-  const [mode, setMode] = useState(preDoctor || !preDept ? 'doctor' : 'specialty');
+  // Mode: search by doctor or search by speciality (as shown in reference image tabs)
+  const [activeTab, setActiveTab] = useState(preDoctor || !preDept ? 'doctor' : 'specialty');
+  const [consultationMode, setConsultationMode] = useState('direct'); // 'direct' or 'video'
+
+  // Metadata
   const [departments, setDepartments] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [loadingMeta, setLoadingMeta] = useState(true);
+
+  // Filters
   const [selectedDeptId, setSelectedDeptId] = useState(preDept);
   const [selectedDoctorId, setSelectedDoctorId] = useState(preDoctor);
+  const [doctorSearchText, setDoctorSearchText] = useState('');
 
-  // Slot state
+  // Date and slot selection
   const [date, setDate] = useState(todayISO());
   const [slots, setSlots] = useState([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState('');
 
-  // Verification / booking state
-  const [detailsOpen, setDetailsOpen] = useState(false);
-  const [bookingLoading, setBookingLoading] = useState(false);
-  const [confirmed, setConfirmed] = useState(null);
+  // Patient Booking form
   const [patientName, setPatientName] = useState('');
   const [patientPhone, setPatientPhone] = useState('');
   const [patientEmail, setPatientEmail] = useState('');
   const [patientAge, setPatientAge] = useState('');
   const [gender, setGender] = useState('Male');
   const [symptoms, setSymptoms] = useState('');
+  const [uhid, setUhid] = useState('');
 
-  // If staff is logged in, redirect them immediately to their staff dashboard, not to the patient appointment booking page
+  // UI Modals & State
+  const [bookingLoading, setBookingLoading] = useState(false);
+  const [confirmed, setConfirmed] = useState(null);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [refundModalOpen, setRefundModalOpen] = useState(false);
+  const [photoViewMode, setPhotoViewMode] = useState('silhouette'); // 'silhouette' or 'real'
+
+  // If a hospital staff member enters this patient booking portal, redirect them to staff dashboard
   useEffect(() => {
     if (!isLoading && isAuthenticated && (isStaff || (user?.role && user.role !== 'patient'))) {
       navigate(dashboardPath || '/admin/dashboard', { replace: true });
     }
   }, [isLoading, isAuthenticated, isStaff, user, dashboardPath, navigate]);
 
-  // Require login before booking appointment: if unauthenticated, redirect to login with return path
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      const currentPath = location.pathname + location.search;
-      navigate(`/login?redirect=${encodeURIComponent(currentPath)}`, { replace: true });
-    }
-  }, [isLoading, isAuthenticated, location, navigate]);
-
-  // Autofill patient details from authenticated user if available
+  // Autofill patient details if user is logged in
   useEffect(() => {
     if (user) {
       if (user.name && !patientName) setPatientName(user.name);
       if (user.email && !patientEmail) setPatientEmail(user.email);
       if (user.phone && !patientPhone) setPatientPhone(user.phone);
+      if (user.uhid && !uhid) setUhid(user.uhid);
     }
   }, [user]);
 
-  const activeDoctor = doctors.find((d) => d.id === selectedDoctorId) || null;
-  const deptDoctors = selectedDeptId ? doctors.filter((d) => d.departmentId === selectedDeptId) : doctors;
-
-  // Load doctors & departments
+  // Fetch departments and doctors
   useEffect(() => {
     const fetchMeta = async () => {
       try {
-        const [deptRes, docRes] = await Promise.all([api.get('/departments'), api.get('/doctors')]);
+        const [deptRes, docRes] = await Promise.all([
+          api.get('/departments'),
+          api.get('/doctors')
+        ]);
         if (deptRes.data.success) setDepartments(deptRes.data.data);
         if (docRes.data.success) {
           const all = docRes.data.data || [];
@@ -125,39 +205,63 @@ export const ConsultationPage = () => {
             .map((name) => all.find((d) => d.name === name))
             .filter(Boolean);
           const finalDocs = ordered.length > 0
-            ? [...ordered, ...all.filter(d => !ordered.some(o => o.id === d.id))]
+            ? [...ordered, ...all.filter((d) => !ordered.some((o) => o.id === d.id))]
             : all;
           setDoctors(finalDocs);
+
           const initial = finalDocs.find((d) => d.id === preDoctor) || finalDocs[0];
           if (initial) setSelectedDoctorId(initial.id);
         }
       } catch (err) {
-        console.error('Error loading consultation metadata:', err);
-        toast.error('Unable to load doctor directory right now.');
+        console.error('Error loading consultation directory:', err);
+        toast.error('Unable to load doctors list. Please refresh.');
       } finally {
         setLoadingMeta(false);
       }
     };
     fetchMeta();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [preDoctor]);
 
-  // Keep a valid doctor when switching specialty filter
+  // Doctors filtered by selected department
+  const filteredDoctorsByDept = useMemo(() => {
+    if (!selectedDeptId) return doctors;
+    return doctors.filter((d) => d.departmentId === selectedDeptId || d.department?.toLowerCase() === selectedDeptId.toLowerCase());
+  }, [doctors, selectedDeptId]);
+
+  // Filtered doctors list for search
+  const visibleDoctorsList = useMemo(() => {
+    const base = activeTab === 'specialty' ? filteredDoctorsByDept : doctors;
+    if (!doctorSearchText.trim()) return base;
+    const q = doctorSearchText.toLowerCase();
+    return base.filter((d) =>
+      d.name?.toLowerCase().includes(q) ||
+      d.departmentName?.toLowerCase().includes(q) ||
+      d.designation?.toLowerCase().includes(q)
+    );
+  }, [activeTab, filteredDoctorsByDept, doctors, doctorSearchText]);
+
+  // Selected active doctor object
+  const activeDoctor = useMemo(() => {
+    return doctors.find((d) => d.id === selectedDoctorId) || doctors[0] || null;
+  }, [doctors, selectedDoctorId]);
+
+  // When changing department in specialty mode, ensure selected doctor matches
   useEffect(() => {
-    if (mode === 'specialty' && deptDoctors.length > 0 && !deptDoctors.some((d) => d.id === selectedDoctorId)) {
-      setSelectedDoctorId(deptDoctors[0].id);
+    if (activeTab === 'specialty' && selectedDeptId && filteredDoctorsByDept.length > 0) {
+      if (!filteredDoctorsByDept.some((d) => d.id === selectedDoctorId)) {
+        setSelectedDoctorId(filteredDoctorsByDept[0].id);
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedDeptId, mode, doctors]);
+  }, [activeTab, selectedDeptId, filteredDoctorsByDept, selectedDoctorId]);
 
-  // Load real DB-backed slots whenever doctor or date changes
+  // Load live DB slots for active doctor and date
   const loadSlots = useCallback(async () => {
     if (!selectedDoctorId || !date) return;
     setSlotsLoading(true);
     setSelectedSlot('');
     try {
       const res = await api.get('/appointments/slots', { params: { doctorId: selectedDoctorId, date } });
-      if (res.data.success) {
+      if (res.data.success && Array.isArray(res.data.data)) {
         setSlots(res.data.data);
         const firstOpen = res.data.data.find((s) => s.remaining > 0 && !s.isClosed);
         if (firstOpen) setSelectedSlot(firstOpen.timeSlot);
@@ -175,41 +279,56 @@ export const ConsultationPage = () => {
     loadSlots();
   }, [loadSlots]);
 
+  // Date stepper
   const shiftDate = (deltaDays) => {
-    const d = new Date(date + 'T00:00:00');
-    d.setDate(d.getDate() + deltaDays);
-    const next = d.toISOString().split('T')[0];
-    if (next < todayISO()) {
-      toast.error('Cannot book appointments for past dates.');
+    const current = new Date(date + 'T00:00:00');
+    current.setDate(current.getDate() + deltaDays);
+    const nextStr = current.toISOString().split('T')[0];
+    if (nextStr < todayISO()) {
+      toast.error('Cannot select past dates.');
       return;
     }
-    setDate(next);
+    setDate(nextStr);
   };
 
-  const openVerification = () => {
+  // Format date as DD/MM/YYYY for display (matching reference image)
+  const formatDisplayDate = (isoStr) => {
+    if (!isoStr) return '';
+    const [y, m, d] = isoStr.split('-');
+    return `${d}/${m}/${y}`;
+  };
+
+  // Open the patient booking verification form
+  const handleProceedToBook = () => {
     if (!activeDoctor) {
-      toast.error('Please select a doctor first.');
+      toast.error('Please select a doctor.');
       return;
     }
     if (!selectedSlot) {
-      toast.error('Please choose an available time slot.');
+      toast.error('Please select an available consultation slot.');
       return;
     }
-    setDetailsOpen(true);
+    setBookingModalOpen(true);
   };
 
+  // Handle appointment submission (Completely Public, No Login Required)
   const handleConfirmBooking = async (e) => {
     e.preventDefault();
-    if (!patientName.trim() || !patientPhone.trim()) {
-      toast.error('Patient name and mobile number are required.');
+    if (!patientName.trim()) {
+      toast.error('Please enter patient name.');
       return;
     }
+    if (!patientPhone.trim() || patientPhone.trim().replace(/\D/g, '').length < 10) {
+      toast.error('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+
     setBookingLoading(true);
     try {
-      const res = await api.post('/appointments', {
+      const payload = {
         patientName: patientName.trim(),
         patientPhone: patientPhone.trim(),
-        patientEmail: patientEmail.trim(),
+        patientEmail: patientEmail.trim() || undefined,
         patientAge: Number(patientAge) || undefined,
         gender,
         doctorId: activeDoctor.id,
@@ -218,209 +337,250 @@ export const ConsultationPage = () => {
         departmentName: activeDoctor.departmentName,
         date,
         timeSlot: selectedSlot,
-        appointmentType: 'OPD Consultation',
-        symptoms: symptoms.trim(),
-        fee: activeDoctor.consultationFee || 800,
+        appointmentType: consultationMode === 'video' ? 'Video Consultation' : 'OPD Consultation',
+        symptoms: symptoms.trim() || undefined,
+        fee: activeDoctor.consultationFee || 700,
+        registrationFee: 200,
         paymentMethod: 'Pay at Hospital Counter'
-      });
+      };
+
+      const res = await api.post('/appointments', payload);
       if (res.data.success) {
-        setDetailsOpen(false);
+        setBookingModalOpen(false);
         setConfirmed(res.data.data);
-        toast.success('Appointment confirmed!');
+        toast.success('Appointment Confirmed Successfully!');
       }
     } catch (err) {
+      console.error('Booking error:', err);
       toast.error(err.response?.data?.message || 'Booking failed. Please try again.');
     } finally {
       setBookingLoading(false);
     }
   };
 
-  const resetBooking = () => {
+  const handleResetBooking = () => {
     setConfirmed(null);
-    setPatientName('');
-    setPatientPhone('');
-    setPatientEmail('');
-    setPatientAge('');
+    setBookingModalOpen(false);
     setSymptoms('');
     loadSlots();
   };
 
-  if (isLoading || !isAuthenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-medical-coolgray">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-secondary font-medium">Redirecting to Hospital Login...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-medical-coolgray flex flex-col">
-      {/* Standalone Portal Header */}
-      <header className="bg-medical-white border-b border-medical-border sticky top-0 z-40 shadow-soft">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
-          <Link to="/" className="flex items-center gap-2.5 group min-w-0">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-primary-light flex items-center justify-center text-white shadow-md shadow-primary/20 shrink-0">
-              <Activity className="w-5 h-5 stroke-[2.2]" />
-            </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5">
-                <span className="text-base sm:text-lg font-extrabold tracking-tight text-secondary truncate">BRAHM SHAKTI</span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent text-accent-dark font-bold uppercase tracking-wider shrink-0">
-                  Appointment Portal
-                </span>
+    <div className="min-h-screen bg-[#F4F7F9] text-[#1E293B] flex flex-col font-sans selection:bg-[#0A7A74] selection:text-white">
+      {/* -------------------- DEDICATED PORTAL NAVBAR -------------------- */}
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+          {/* Left: Hospital Brand & Tagline */}
+          <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3 group" title="Brahm Shakti Hospital Home">
+              <img
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                alt="Brahm Shakti Hospital"
+                className="h-10 sm:h-12 w-auto object-contain"
+              />
+              <div className="hidden sm:block border-l border-slate-200 pl-3">
+                <div className="text-xs font-black tracking-wider text-[#0B2545] uppercase">
+                  OPD Appointment Portal
+                </div>
+                <div className="text-[11px] font-medium text-[#0A7A74] italic">
+                  Trust of Generations
+                </div>
               </div>
-              <p className="text-[10px] font-medium text-medical-muted hidden sm:block truncate">
-                Consultation &amp; OPD Confirmed Slot Booking
-              </p>
-            </div>
-          </Link>
-
-          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-            <a
-              href="tel:7840089703"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-red-50 text-status-error border border-red-200 text-xs font-bold"
-            >
-              <PhoneCall className="w-3.5 h-3.5 animate-pulse" />
-              <span className="hidden sm:inline">24x7 Emergency</span>
-              <span className="sm:hidden">Emergency</span>
-            </a>
-            <Link
-              to="/"
-              className="flex items-center gap-1.5 text-xs font-bold text-secondary hover:text-primary transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="hidden md:inline">Back to Main Website</span>
-              <span className="md:hidden">Website</span>
             </Link>
           </div>
+
+          {/* Right: Portal Links (Matching Reference UI) */}
+          <nav className="flex items-center gap-2 sm:gap-4 md:gap-6 text-xs sm:text-sm font-semibold text-slate-700">
+            <Link
+              to="/"
+              className="hidden md:inline-block hover:text-[#0A7A74] transition-colors"
+            >
+              Back Home
+            </Link>
+            <button
+              type="button"
+              onClick={() => setRefundModalOpen(true)}
+              className="hover:text-[#0A7A74] transition-colors cursor-pointer"
+            >
+              Refund Policy
+            </button>
+            <Link
+              to="/privacy-policy"
+              className="hidden lg:inline-block hover:text-[#0A7A74] transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms-of-use"
+              className="hidden lg:inline-block hover:text-[#0A7A74] transition-colors"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <Link
+              to="/contact"
+              className="hidden sm:inline-block hover:text-[#0A7A74] transition-colors"
+            >
+              Contact Us
+            </Link>
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0A7A74]/10 hover:bg-[#0A7A74] text-[#0A7A74] hover:text-white font-bold transition-all border border-[#0A7A74]/20"
+            >
+              <User className="w-3.5 h-3.5" />
+              <span>Patient Portal</span>
+            </Link>
+          </nav>
         </div>
       </header>
 
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-10">
-        {/* Page Title Strip */}
-        <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-black text-secondary tracking-tight">Book a Consultation</h1>
-            <p className="text-sm text-medical-muted mt-1">
-              Search a doctor, choose your day, pick an available OPD slot — confirmed instantly with your UHID.
-            </p>
-          </div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-primary bg-primary-50 border border-primary/20 px-3 py-2 rounded-xl">
-            <ShieldCheck className="w-4 h-4" />
-            <span>Real-time availability from hospital scheduler</span>
-          </div>
-        </div>
-
+      {/* -------------------- MAIN OPD BOOKING CANVAS -------------------- */}
+      <main className="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {loadingMeta ? (
-          <div className="py-24 flex flex-col items-center gap-3 text-medical-muted">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
-            <span className="text-sm font-semibold">Loading doctor directory...</span>
+          <div className="min-h-[500px] flex flex-col items-center justify-center gap-3 text-slate-500">
+            <Loader2 className="w-8 h-8 animate-spin text-[#0A7A74]" />
+            <p className="text-sm font-bold">Connecting to Brahm Shakti OPD Scheduler...</p>
           </div>
         ) : confirmed ? (
-          /* ---------------- Booking Success ---------------- */
-          <div className="max-w-2xl mx-auto bg-white rounded-3xl border border-medical-border shadow-elevated p-8 text-center space-y-5">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-primary-50 flex items-center justify-center">
-              <CheckCircle2 className="w-9 h-9 text-primary" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-black text-secondary">Appointment Confirmed!</h2>
-              <p className="text-sm text-medical-muted mt-1">
-                A confirmation has been recorded in the hospital OPD register. Please arrive 15 minutes early.
+          /* ---------------- OFFICIAL OPD APPOINTMENT SLIP ---------------- */
+          <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-slate-300 shadow-md p-6 sm:p-8 space-y-6 animate-in fade-in duration-200">
+            <div className="text-center space-y-2 border-b border-slate-200 pb-5">
+              <div className="w-14 h-14 mx-auto rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
+                <CheckCircle2 className="w-8 h-8" />
+              </div>
+              <h1 className="text-2xl font-black text-[#0B2545]">Appointment Confirmed!</h1>
+              <p className="text-xs text-slate-500">
+                Your consultation token is registered in the official Hospital OPD System.
               </p>
             </div>
-            <div className="text-left bg-medical-coolgray rounded-2xl border border-medical-border p-5 space-y-2.5 text-sm">
-              <div className="flex justify-between gap-4">
-                <span className="text-medical-muted font-semibold">Appointment ID</span>
-                <span className="font-black text-secondary">{confirmed.appointmentId}</span>
+
+            {/* Official Slip Details Card */}
+            <div className="bg-slate-50 rounded-xl border border-slate-200 p-5 space-y-3 text-xs sm:text-sm">
+              <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                <span className="text-slate-500 font-semibold">Appointment ID</span>
+                <span className="font-mono font-black text-[#0B2545] text-base">{confirmed.appointmentId}</span>
               </div>
-              <div className="flex justify-between gap-4">
-                <span className="text-medical-muted font-semibold">UHID (Hospital Reg. No.)</span>
-                <span className="font-black text-primary">{confirmed.uhid || '—'}</span>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500 font-semibold">Patient Name</span>
+                <span className="font-bold text-slate-800">{confirmed.patientName}</span>
               </div>
-              <div className="flex justify-between gap-4">
-                <span className="text-medical-muted font-semibold">Doctor</span>
-                <span className="font-bold text-secondary">{confirmed.doctorName}</span>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500 font-semibold">Mobile Number</span>
+                <span className="font-mono font-bold text-slate-800">{confirmed.patientPhone}</span>
               </div>
-              <div className="flex justify-between gap-4">
-                <span className="text-medical-muted font-semibold">Department</span>
-                <span className="font-bold text-secondary">{confirmed.departmentName}</span>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500 font-semibold">Consulting Doctor</span>
+                <span className="font-bold text-[#0A7A74]">{confirmed.doctorName}</span>
               </div>
-              <div className="flex justify-between gap-4">
-                <span className="text-medical-muted font-semibold">Date &amp; Slot</span>
-                <span className="font-bold text-secondary">
-                  {new Date(confirmed.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
-                  {' · '}
-                  {confirmed.timeSlot}
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500 font-semibold">Speciality / Department</span>
+                <span className="font-bold text-slate-800">{confirmed.departmentName}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500 font-semibold">Date &amp; Time Slot</span>
+                <span className="font-bold text-slate-900 bg-emerald-100/70 text-emerald-800 px-2.5 py-1 rounded-md">
+                  {formatDisplayDate(confirmed.date)} · {confirmed.timeSlot}
                 </span>
               </div>
-              <div className="flex justify-between gap-4 border-t border-medical-border pt-2.5">
-                <span className="text-medical-muted font-semibold">Consultation Fee</span>
-                <span className="font-black text-primary">₹{confirmed.fee}</span>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500 font-semibold">Consultation Mode</span>
+                <span className="font-bold text-slate-800">{confirmed.appointmentType || 'Direct OPD Visit'}</span>
+              </div>
+              <div className="flex items-center justify-between border-t border-slate-200 pt-3">
+                <span className="text-slate-500 font-semibold">Registration &amp; Doctor Fee</span>
+                <span className="font-black text-[#0A7A74] text-base">₹{confirmed.fee || 700} (Pay at Counter)</span>
               </div>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-3">
+
+            {/* Instruction Notice */}
+            <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 space-y-1">
+              <p className="font-bold">Important Instructions for Patient:</p>
+              <ul className="list-disc list-inside space-y-0.5 text-[11px] text-amber-800">
+                <li>Please report to the OPD reception counter 15 minutes prior to your time slot.</li>
+                <li>Show this digital appointment confirmation or quote Appointment ID: <strong className="font-mono">{confirmed.appointmentId}</strong>.</li>
+                <li>One-time registration fee of ₹200 is payable at the hospital registration counter.</li>
+              </ul>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
               <button
+                type="button"
                 onClick={() => window.print()}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-medical-border text-secondary text-sm font-bold hover:border-primary hover:text-primary transition-all"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:text-[#0A7A74] hover:border-[#0A7A74] text-xs font-bold transition-all shadow-xs"
               >
                 <Printer className="w-4 h-4" />
-                Print / Save Slip
+                <span>Print Appointment Slip</span>
               </button>
               <button
-                onClick={resetBooking}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-md shadow-primary/20 transition-all"
+                type="button"
+                onClick={handleResetBooking}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold transition-all shadow-xs"
               >
                 <Calendar className="w-4 h-4" />
-                Book Another Appointment
+                <span>Book Another Appointment</span>
               </button>
+              <Link
+                to="/"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Return to Hospital Home</span>
+              </Link>
             </div>
           </div>
         ) : (
-          /* ---------------- Two-Panel Booking Interface ---------------- */
-          <div className="grid lg:grid-cols-5 gap-6 items-start">
-            {/* Left Panel: Search & Doctor Profile */}
-            <div className="lg:col-span-2 bg-white rounded-3xl border border-medical-border shadow-soft overflow-hidden">
-              {/* Search By Tabs */}
-              <div className="grid grid-cols-2">
+          /* ---------------- TWO-PANEL OPD BOOKING INTERFACE ---------------- */
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* ================= LEFT COLUMN: SEARCH & DOCTOR PROFILE ================= */}
+            <div className="lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+              {/* Search By Tabs (Exactly matching Ganga Ram Reference) */}
+              <div className="grid grid-cols-2 text-xs sm:text-sm font-bold border-b border-slate-200">
                 <button
-                  onClick={() => setMode('doctor')}
-                  className={`py-4 px-3 text-sm font-bold flex items-center justify-center gap-2 transition-all border-b-2 ${
-                    mode === 'doctor'
-                      ? 'border-primary text-primary bg-primary-50'
-                      : 'border-transparent text-medical-muted hover:text-secondary bg-medical-white'
+                  type="button"
+                  onClick={() => {
+                    setActiveTab('doctor');
+                    setDoctorSearchText('');
+                  }}
+                  className={`py-3.5 px-3 flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                    activeTab === 'doctor'
+                      ? 'bg-[#0A7A74] text-white'
+                      : 'bg-[#F1F5F9] text-[#0A7A74] hover:bg-slate-200/70'
                   }`}
                 >
-                  <Search className="w-4 h-4" />
-                  Search By Doctor
+                  <User className="w-4 h-4" />
+                  <span>Search By Doctor</span>
                 </button>
                 <button
-                  onClick={() => setMode('specialty')}
-                  className={`py-4 px-3 text-sm font-bold flex items-center justify-center gap-2 transition-all border-b-2 ${
-                    mode === 'specialty'
-                      ? 'border-primary text-primary bg-primary-50'
-                      : 'border-transparent text-medical-muted hover:text-secondary bg-medical-white'
+                  type="button"
+                  onClick={() => {
+                    setActiveTab('specialty');
+                    setDoctorSearchText('');
+                  }}
+                  className={`py-3.5 px-3 flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                    activeTab === 'specialty'
+                      ? 'bg-[#0A7A74] text-white'
+                      : 'bg-[#F1F5F9] text-[#0A7A74] hover:bg-slate-200/70'
                   }`}
                 >
-                  <Stethoscope className="w-4 h-4" />
-                  Search By Speciality
+                  <Building className="w-4 h-4" />
+                  <span>Search By Speciality</span>
                 </button>
               </div>
 
-              <div className="p-6 space-y-4">
-                {mode === 'specialty' && (
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Speciality / Department</label>
+              {/* Search Filter Controls */}
+              <div className="p-4 space-y-3 bg-white">
+                {activeTab === 'specialty' && (
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                      Select Department / Speciality
+                    </label>
                     <div className="relative">
-                      <BuildingIcon />
                       <select
                         value={selectedDeptId}
                         onChange={(e) => setSelectedDeptId(e.target.value)}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-medical-border bg-medical-white text-sm font-semibold text-secondary focus:border-primary focus:outline-hidden appearance-none"
+                        className="w-full px-3 py-2.5 rounded-lg border border-slate-300 bg-white text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
                       >
-                        <option value="">All Specialities</option>
+                        <option value="">-- All Departments --</option>
                         {departments.map((dept) => (
                           <option key={dept.id} value={dept.id}>
                             {dept.name}
@@ -431,380 +591,587 @@ export const ConsultationPage = () => {
                   </div>
                 )}
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Doctor</label>
-                  <div className="relative">
-                    <User className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-primary" />
+                {/* Search Doctor Dropdown Combobox */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                    {activeTab === 'specialty' ? 'Select Doctor in Speciality' : 'Search Doctor'}
+                  </label>
+                  <div className="relative flex items-center">
                     <select
                       value={selectedDoctorId}
                       onChange={(e) => setSelectedDoctorId(e.target.value)}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border border-medical-border bg-medical-white text-sm font-semibold text-secondary focus:border-primary focus:outline-hidden appearance-none"
+                      className="w-full px-3 py-2.5 rounded-lg border border-slate-300 bg-white text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
                     >
-                      <option value="">Select Doctor</option>
-                      {(mode === 'specialty' ? deptDoctors : doctors).map((doc) => (
+                      <option value="">-- Search Doctor --</option>
+                      {visibleDoctorsList.map((doc) => (
                         <option key={doc.id} value={doc.id}>
-                          {doc.name} — {doc.designation}
+                          {doc.name} {doc.departmentName ? `(${doc.departmentName})` : ''}
                         </option>
                       ))}
                     </select>
                   </div>
                 </div>
 
-                {/* Doctor Profile Card */}
+                {/* Quick Doctor Name Filter Input */}
+                <div className="relative flex items-center">
+                  <Search className="w-3.5 h-3.5 absolute left-3 text-slate-400" />
+                  <input
+                    type="text"
+                    value={doctorSearchText}
+                    onChange={(e) => setDoctorSearchText(e.target.value)}
+                    placeholder="Type doctor or disease name to filter..."
+                    className="w-full pl-8 pr-8 py-1.5 rounded-md border border-slate-200 bg-slate-50 text-xs text-slate-700 placeholder:text-slate-400 focus:bg-white focus:border-[#0A7A74] focus:outline-hidden"
+                  />
+                  {doctorSearchText && (
+                    <button
+                      type="button"
+                      onClick={() => setDoctorSearchText('')}
+                      className="absolute right-2 text-slate-400 hover:text-slate-600"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Teal Header: Doctor Profile Card (Exact reference style) */}
+              <div className="border-t border-slate-200">
+                <div className="bg-[#0A7A74] px-4 py-2.5 flex items-center justify-between text-white">
+                  <h2 className="text-xs sm:text-sm font-bold tracking-wide">Doctor Profile</h2>
+                  {activeDoctor && (
+                    <span className="text-[10px] font-semibold bg-white/15 px-2 py-0.5 rounded">
+                      DMC Registered
+                    </span>
+                  )}
+                </div>
+
                 {activeDoctor ? (
-                  <div className="pt-2 space-y-4">
-                    {/* Centered identity (reference layout) */}
-                    <div className="flex flex-col items-center text-center gap-2.5">
-                      <img
-                        src={activeDoctor.image}
-                        alt={activeDoctor.name}
-                        className="w-28 h-28 rounded-2xl object-cover object-top border-4 border-primary-50 shadow-soft"
-                      />
-                      <h3 className="text-xl font-black text-primary leading-tight">{activeDoctor.name}</h3>
-                      <span className="px-3 py-1 rounded-lg bg-primary-50 text-primary text-[11px] font-bold border border-primary/20">
-                        {activeDoctor.departmentName}
+                  <div className="p-5 space-y-4">
+                    {/* Centered Doctor Avatar / Photo (with illustration / real toggle) */}
+                    <div className="flex flex-col items-center text-center">
+                      <div className="relative group">
+                        {photoViewMode === 'silhouette' || !activeDoctor.image ? (
+                          <DoctorSilhouette className="w-36 h-36" />
+                        ) : (
+                          <img
+                            src={activeDoctor.image}
+                            alt={activeDoctor.name}
+                            className="w-36 h-36 rounded-2xl object-cover object-top border-2 border-slate-200 shadow-sm"
+                          />
+                        )}
+                        {activeDoctor.image && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setPhotoViewMode(photoViewMode === 'silhouette' ? 'real' : 'silhouette')
+                            }
+                            className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-white border border-slate-300 text-[10px] font-bold text-slate-600 shadow-xs hover:border-[#0A7A74] hover:text-[#0A7A74] transition-colors"
+                          >
+                            {photoViewMode === 'silhouette' ? 'Show Photo' : 'Show Silhouette'}
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Carousel Indicator Dots (from reference) */}
+                      <div className="flex items-center gap-1.5 mt-4">
+                        <span className="w-4 h-1 rounded-full bg-[#0A7A74]"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                      </div>
+
+                      {/* Doctor Name & Designation */}
+                      <h3 className="text-lg font-black text-[#0B2545] mt-2 leading-snug">
+                        {activeDoctor.name}
+                      </h3>
+                      <p className="text-xs font-semibold text-[#0A7A74]">
+                        {activeDoctor.designation || 'Senior Consultant'}
+                      </p>
+                      <span className="mt-1 px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[11px] font-bold">
+                        {activeDoctor.departmentName || activeDoctor.department}
                       </span>
                     </div>
 
-                    <div className="border-t border-medical-border pt-3 space-y-1.5">
-                      <p className="text-sm font-black text-secondary">Doctor Message</p>
-                      <p className="text-xs text-medical-muted leading-relaxed">{activeDoctor.bio}</p>
+                    {/* Detailed Metadata Grid */}
+                    <div className="border-t border-slate-200 pt-3 divide-y divide-slate-100 text-xs">
+                      {activeDoctor.qualification && (
+                        <div className="py-2 flex items-start gap-2.5">
+                          <GraduationCap className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                          <div className="flex-1">
+                            <span className="text-slate-400 block text-[10px] uppercase font-bold">Qualification</span>
+                            <span className="font-bold text-slate-800">{activeDoctor.qualification}</span>
+                          </div>
+                        </div>
+                      )}
+                      {activeDoctor.dmcNo && (
+                        <div className="py-2 flex items-start gap-2.5">
+                          <Award className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                          <div className="flex-1">
+                            <span className="text-slate-400 block text-[10px] uppercase font-bold">DMC Registration</span>
+                            <span className="font-bold text-slate-800">DMC-{activeDoctor.dmcNo}</span>
+                          </div>
+                        </div>
+                      )}
+                      <div className="py-2 flex items-start gap-2.5">
+                        <MapPin className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                        <div className="flex-1">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">OPD Chamber Room</span>
+                          <span className="font-bold text-slate-800">{activeDoctor.room || 'Room 102, Ground Floor OPD'}</span>
+                        </div>
+                      </div>
+                      <div className="py-2 flex items-start gap-2.5">
+                        <Clock className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                        <div className="flex-1">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">OPD Timings</span>
+                          <span className="font-bold text-slate-800">{activeDoctor.opdSchedule || 'Mon - Sat (09:00 AM - 02:00 PM)'}</span>
+                        </div>
+                      </div>
+                      <div className="py-2 flex items-center justify-between">
+                        <span className="text-slate-500 font-bold">OPD Consultation Fee:</span>
+                        <span className="font-black text-[#0A7A74] text-sm">
+                          ₹{activeDoctor.consultationFee || 700} <span className="text-[10px] font-normal text-slate-400">(Trust Rate)</span>
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Consultation Fees box */}
-                    <div className="rounded-2xl border border-accent/50 bg-accent/10 p-4 space-y-2.5">
-                      <p className="flex items-center gap-1.5 text-xs font-black text-accent-dark uppercase tracking-wide">
-                        <IndianRupee className="w-4 h-4" />
-                        Consultation Fees
-                      </p>
-                      <div className="flex items-center justify-between bg-white rounded-xl border border-medical-border px-3 py-2">
-                        <span className="px-2 py-0.5 rounded-md bg-primary-50 text-primary text-[11px] font-bold">Direct Consultation</span>
-                        <span className="text-sm font-black text-secondary">₹{activeDoctor.consultationFee}</span>
+                    {activeDoctor.bio && (
+                      <div className="bg-slate-50 rounded-lg p-3 text-[11px] text-slate-600 leading-relaxed border border-slate-200">
+                        <span className="font-bold text-slate-800 block mb-0.5">Clinical Note:</span>
+                        {activeDoctor.bio}
                       </div>
-                      <div className="flex items-center justify-between bg-white rounded-xl border border-medical-border px-3 py-2">
-                        <span className="px-2 py-0.5 rounded-md bg-primary-50 text-primary text-[11px] font-bold">Follow-up</span>
-                        <span className="text-sm font-black text-status-success">Free</span>
-                      </div>
-                      <p className="text-[10px] text-medical-muted font-semibold">Follow-up consultation is complimentary within 10 days of the direct visit.</p>
-                    </div>
-
-                    {/* Education / OPD Timings / Room No. rows */}
-                    <div className="border-t border-medical-border divide-y divide-medical-border/70 text-xs">
-                      <div className="flex items-start gap-3 py-2.5">
-                        <GraduationCap className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        <span className="w-24 shrink-0 font-bold text-medical-slate">Education</span>
-                        <span className="font-bold text-secondary leading-snug">{activeDoctor.qualification}</span>
-                      </div>
-                      <div className="flex items-start gap-3 py-2.5">
-                        <Clock className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        <span className="w-24 shrink-0 font-bold text-medical-slate">OPD Timings</span>
-                        <span className="font-bold text-secondary leading-snug">{activeDoctor.opdSchedule}</span>
-                      </div>
-                      <div className="flex items-start gap-3 py-2.5">
-                        <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        <span className="w-24 shrink-0 font-bold text-medical-slate">Room No.</span>
-                        <span className="font-bold text-secondary leading-snug">{activeDoctor.room}</span>
-                      </div>
-                    </div>
-
-                    <Link
-                      to={`/doctors/${activeDoctor.id}`}
-                      className="flex items-center justify-center gap-1.5 text-xs font-bold text-primary hover:text-primary-hover transition-colors"
-                    >
-                      View Full Profile &amp; Expertise
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
+                    )}
                   </div>
                 ) : (
-                  <div className="py-10 text-center space-y-2 border border-dashed border-medical-border rounded-2xl">
-                    <User className="w-8 h-8 mx-auto text-medical-muted" />
-                    <p className="text-xs font-semibold text-medical-muted">Select a doctor to view their profile &amp; live slots</p>
+                  <div className="p-8 text-center text-slate-400 space-y-2">
+                    <User className="w-10 h-10 mx-auto text-slate-300" />
+                    <p className="text-xs font-semibold">Select a doctor to view their profile</p>
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Right Panel: Date & Slot Selection */}
-            <div className="lg:col-span-3 bg-white rounded-3xl border border-medical-border shadow-soft overflow-hidden">
-              <div className="px-6 py-5 bg-secondary text-white flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                    <Stethoscope className="w-5 h-5 text-primary-light" />
+            {/* ================= RIGHT COLUMN: CONSULTATION TYPE, DATE, SLOTS & NOTICE ================= */}
+            <div className="lg:col-span-7 space-y-5">
+              {/* Consultation Mode Cards (Direct Consultation vs Video Consultation) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Direct Consultation Card */}
+                <button
+                  type="button"
+                  onClick={() => setConsultationMode('direct')}
+                  className={`p-4 rounded-xl border-2 text-left flex items-center gap-3.5 transition-all cursor-pointer bg-white ${
+                    consultationMode === 'direct'
+                      ? 'border-[#0A7A74] ring-2 ring-[#0A7A74]/15 shadow-sm'
+                      : 'border-slate-200 hover:border-slate-300'
+                  }`}
+                >
+                  <div className="w-11 h-11 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0">
+                    <User className="w-5 h-5" />
                   </div>
                   <div>
-                    <h2 className="text-base font-black leading-tight">Direct Consultation</h2>
-                    <p className="text-xs text-slate-300">Visit Doctor in Person · OPD Chamber Booking</p>
+                    <div className="font-extrabold text-sm text-[#0A7A74] underline decoration-2 underline-offset-2">
+                      Direct Consultation
+                    </div>
+                    <div className="text-xs text-slate-500 font-medium">
+                      Visit Doctor in Person
+                    </div>
                   </div>
-                </div>
-                {activeDoctor && (
-                  <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-primary-light">
-                    <MapPin className="w-4 h-4" />
-                    {activeDoctor.room}
+                </button>
+
+                {/* Video Consultation Card */}
+                <button
+                  type="button"
+                  onClick={() => setConsultationMode('video')}
+                  className={`p-4 rounded-xl border-2 text-left flex items-center gap-3.5 transition-all cursor-pointer bg-white ${
+                    consultationMode === 'video'
+                      ? 'border-[#2563EB] ring-2 ring-[#2563EB]/15 shadow-sm'
+                      : 'border-slate-200 hover:border-slate-300'
+                  }`}
+                >
+                  <div className="w-11 h-11 rounded-full bg-[#2563EB] text-white flex items-center justify-center shrink-0">
+                    <Video className="w-5 h-5" />
                   </div>
-                )}
+                  <div>
+                    <div className="font-extrabold text-sm text-[#2563EB] underline decoration-2 underline-offset-2">
+                      Video Consultation
+                    </div>
+                    <div className="text-xs text-slate-500 font-medium">
+                      Consult Online
+                    </div>
+                  </div>
+                </button>
               </div>
 
-              <div className="p-6 space-y-6">
-                {/* Date Navigator */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Consultation Date</label>
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => shiftDate(-1)}
-                      className="w-11 h-11 rounded-xl border border-medical-border flex items-center justify-center text-secondary hover:border-primary hover:text-primary transition-all shrink-0"
-                      title="Previous day"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <input
-                      type="date"
-                      min={todayISO()}
-                      value={date}
-                      onChange={(e) => setDate(e.target.value || todayISO())}
-                      className="flex-1 px-4 py-3 rounded-xl border border-medical-border bg-medical-white text-sm font-bold text-secondary focus:border-primary focus:outline-hidden"
-                    />
-                    <button
-                      onClick={() => shiftDate(1)}
-                      className="w-11 h-11 rounded-xl border border-medical-border flex items-center justify-center text-secondary hover:border-primary hover:text-primary transition-all shrink-0"
-                      title="Next day"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
+              {/* Date Navigation Bar (Exact reference layout with < DD/MM/YYYY >) */}
+              <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-xs flex items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => shiftDate(-1)}
+                  className="w-10 h-10 rounded-full bg-[#0A7A74] hover:bg-[#08635e] text-white flex items-center justify-center transition-all cursor-pointer shadow-xs shrink-0"
+                  title="Previous Day"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+
+                <div className="relative flex items-center">
+                  <input
+                    type="date"
+                    min={todayISO()}
+                    value={date}
+                    onChange={(e) => setDate(e.target.value || todayISO())}
+                    className="opacity-0 absolute inset-0 w-full h-full cursor-pointer z-10"
+                    title="Click to choose date"
+                  />
+                  <div className="flex items-center gap-2.5 px-4 py-2 rounded-lg border border-slate-300 bg-slate-50 font-mono font-bold text-sm text-slate-800">
+                    <span>{formatDisplayDate(date)}</span>
+                    <CalendarDays className="w-4 h-4 text-slate-500" />
                   </div>
                 </div>
 
-                {/* Available Time Slots */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Available Time Slots</label>
-                    {activeDoctor && (
-                      <span className="text-[11px] font-bold text-primary flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {new Date(date + 'T00:00:00').toLocaleDateString('en-IN', {
-                          weekday: 'short',
-                          day: '2-digit',
-                          month: 'short',
-                          year: 'numeric'
-                        })}
-                      </span>
-                    )}
-                  </div>
+                <button
+                  type="button"
+                  onClick={() => shiftDate(1)}
+                  className="w-10 h-10 rounded-full bg-[#0A7A74] hover:bg-[#08635e] text-white flex items-center justify-center transition-all cursor-pointer shadow-xs shrink-0"
+                  title="Next Day"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
 
-                  {!activeDoctor ? (
-                    <div className="p-6 rounded-2xl bg-medical-coolgray border border-medical-border text-sm text-medical-muted font-semibold text-center">
-                      Choose a doctor on the left to see live availability.
-                    </div>
-                  ) : slotsLoading ? (
-                    <div className="py-12 flex flex-col items-center gap-2 text-medical-muted">
-                      <Loader2 className="w-7 h-7 animate-spin text-primary" />
-                      <span className="text-xs font-bold">Checking live slot availability...</span>
-                    </div>
-                  ) : slots.length === 0 ? (
-                    <div className="p-6 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-900 font-semibold text-center">
-                      Dr. {activeDoctor?.name?.replace('Dr. ', '')} does not sit on this date, or slots are fully booked.
-                      Try another day or doctor.
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                      {slots.map((slot) => {
-                        const disabled = slot.isClosed || slot.remaining <= 0;
-                        const active = selectedSlot === slot.timeSlot;
-                        return (
-                          <button
-                            key={slot.timeSlot}
-                            type="button"
-                            disabled={disabled}
-                            onClick={() => setSelectedSlot(slot.timeSlot)}
-                            className={`p-3 rounded-xl text-center border transition-all ${
-                              disabled
-                                ? 'bg-medical-coolgray border-medical-border text-medical-muted cursor-not-allowed line-through decoration-status-error/50'
-                                : active
-                                ? 'bg-primary border-primary text-white shadow-md shadow-primary/25'
-                                : 'bg-white border-medical-border text-secondary hover:border-primary hover:bg-primary-50'
+              {/* Time Slots Grid */}
+              <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs sm:text-sm font-bold text-slate-800">
+                    Select Available Consultation Slot:
+                  </div>
+                  <div className="text-xs text-[#0A7A74] font-bold">
+                    {new Date(date + 'T00:00:00').toLocaleDateString('en-IN', {
+                      weekday: 'short',
+                      day: '2-digit',
+                      month: 'short',
+                      year: 'numeric'
+                    })}
+                  </div>
+                </div>
+
+                {slotsLoading ? (
+                  <div className="py-12 flex flex-col items-center justify-center gap-2 text-slate-400">
+                    <Loader2 className="w-6 h-6 animate-spin text-[#0A7A74]" />
+                    <span className="text-xs font-semibold">Checking live doctor availability...</span>
+                  </div>
+                ) : slots.length === 0 ? (
+                  <div className="p-6 rounded-xl bg-amber-50/70 border border-amber-200 text-xs sm:text-sm text-amber-900 font-semibold text-center space-y-1">
+                    <p>No available OPD slots on {formatDisplayDate(date)} for this consultant.</p>
+                    <p className="text-[11px] text-amber-700">Please choose another date or another doctor.</p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+                    {slots.map((slot) => {
+                      const isFull = slot.isClosed || slot.remaining <= 0;
+                      const isSelected = selectedSlot === slot.timeSlot;
+                      return (
+                        <button
+                          key={slot.timeSlot}
+                          type="button"
+                          disabled={isFull}
+                          onClick={() => setSelectedSlot(slot.timeSlot)}
+                          className={`p-2.5 rounded-lg border text-center transition-all cursor-pointer ${
+                            isFull
+                              ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed line-through'
+                              : isSelected
+                              ? 'bg-[#0A7A74] border-[#0A7A74] text-white shadow-sm'
+                              : 'bg-white border-slate-300 text-slate-800 hover:border-[#0A7A74] hover:bg-[#0A7A74]/5'
+                          }`}
+                        >
+                          <div className="text-xs font-black">{slot.timeSlot}</div>
+                          <div
+                            className={`text-[10px] font-semibold mt-0.5 ${
+                              isSelected ? 'text-white/80' : isFull ? 'text-slate-400' : 'text-emerald-600'
                             }`}
                           >
-                            <span className="block text-xs font-black">{slot.timeSlot}</span>
-                            <span className={`block text-[10px] font-bold mt-0.5 ${disabled ? '' : active ? 'text-white/80' : 'text-medical-muted'}`}>
-                              {slot.isClosed ? 'Closed' : disabled ? 'Full' : `${slot.remaining} seat${slot.remaining === 1 ? '' : 's'} left`}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
+                            {isFull ? 'Full' : `${slot.remaining} left`}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
 
-                  <p className="text-[11px] font-semibold text-medical-muted text-center">
-                    (Slot can be selected after verification of details.)
+                <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                  <div className="text-xs text-slate-500">
+                    Selected Slot:{' '}
+                    <strong className="text-[#0A7A74] font-bold">
+                      {selectedSlot || 'None selected'}
+                    </strong>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleProceedToBook}
+                    disabled={!selectedSlot}
+                    className="px-5 py-2.5 rounded-lg bg-[#0A7A74] hover:bg-[#08635e] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black transition-all shadow-xs flex items-center gap-1.5"
+                  >
+                    <span>Proceed to Book</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* ================= BILINGUAL REGISTRATION WARNING BOX (EXACT COPY OF REFERENCE) ================= */}
+              <div className="bg-[#FFFDF0] border-l-4 border-[#F59E0B] rounded-r-xl p-5 shadow-xs text-xs sm:text-sm space-y-3">
+                {/* English Text */}
+                <div className="space-y-1">
+                  <p className="text-slate-800 font-bold">
+                    1. One-time registration fee: <strong className="text-rose-600 font-black">₹200/- is NON-REFUNDABLE.</strong>
+                  </p>
+                  <p className="text-slate-800 font-bold">
+                    2. Registration <strong className="text-rose-600 font-black">DOES NOT</strong> confirm your appointment.
                   </p>
                 </div>
 
-                {/* Book CTA */}
-                <button
-                  onClick={openVerification}
-                  disabled={!activeDoctor || !selectedSlot}
-                  className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-primary hover:bg-primary-hover disabled:bg-medical-slate/40 disabled:text-medical-muted disabled:cursor-not-allowed text-white text-sm font-black tracking-wide shadow-md shadow-primary/20 transition-all"
-                >
-                  <Calendar className="w-5 h-5" />
-                  <span>Book Appointment</span>
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                {/* Subtle dotted separator matching reference image */}
+                <div className="border-t border-dotted border-amber-300"></div>
 
-                <p className="text-[11px] text-medical-muted text-center leading-relaxed">
-                  No account needed. Your UHID hospital registration is auto-created and linked to your mobile number.
-                  Need help? Call <a href="tel:7840089703" className="font-bold text-primary">7840089703</a>
-                </p>
+                {/* Hindi Text */}
+                <div className="space-y-1">
+                  <p className="text-slate-800 font-bold">
+                    1. ₹200 का शुल्क केवल एक बार के पंजीकरण (Registration) के लिए है। यह शुल्क <strong className="text-rose-600 font-black">वापस नहीं किया जाएगा।</strong>
+                  </p>
+                  <p className="text-slate-800 font-bold">
+                    2. केवल पंजीकरण कराने से आपका अपॉइंटमेंट <strong className="text-rose-600 font-black">मान्य नहीं होगा।</strong>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         )}
       </main>
 
-      {/* Footer strip */}
-      <footer className="bg-secondary text-slate-300 mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-3 text-xs">
-          <span>© 2026 Brahm Shakti Hospital, Budh Vihar Phase I, New Delhi — NABH &amp; NABL Accredited</span>
-          <div className="flex items-center gap-4">
-            <a href="tel:7840089703" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Phone className="w-3.5 h-3.5 text-primary-light" /> 7840089703
+      {/* -------------------- DEDICATED PORTAL FOOTER -------------------- */}
+      <footer className="bg-white border-t border-slate-200 mt-12 py-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+          {/* Left: Copyright */}
+          <div className="font-semibold">
+            &copy; 2026 Brahm Shakti Hospital.
+          </div>
+
+          {/* Center: NABH & NABL Badge (Matching Reference) */}
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-teal-300 bg-teal-50 text-[#0A7A74] font-bold text-xs">
+            <ShieldCheck className="w-4 h-4 text-[#0A7A74]" />
+            <span>NABH &amp; NABL Accredited</span>
+          </div>
+
+          {/* Right: Contact Helpdesk */}
+          <div className="flex flex-wrap items-center gap-4 text-xs font-medium">
+            <a
+              href="mailto:helpdesk@brahmshaktihospital.com"
+              className="flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 text-[#0A7A74]" />
+              <span>helpdesk@brahmshaktihospital.com</span>
             </a>
-            <a href="mailto:info@brahmshaktihospital.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Mail className="w-3.5 h-3.5 text-primary-light" /> info@brahmshaktihospital.com
+            <a
+              href="tel:01127531683"
+              className="flex items-center gap-1.5 text-rose-600 font-bold hover:underline"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>011-27531683 / 7840089703</span>
             </a>
           </div>
         </div>
       </footer>
 
-      {/* Verification Modal */}
-      {detailsOpen && activeDoctor && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-secondary/60 backdrop-blur-sm animate-in fade-in duration-150">
-          <div className="bg-white rounded-3xl shadow-elevated w-full max-w-lg max-h-[92vh] overflow-y-auto">
-            <div className="px-6 py-5 border-b border-medical-border flex items-center justify-between">
+      {/* ================= FAST PATIENT BOOKING MODAL (NO LOGIN REQUIRED) ================= */}
+      {bookingModalOpen && activeDoctor && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[92vh] overflow-y-auto border border-slate-200">
+            {/* Modal Header */}
+            <div className="bg-[#0A7A74] text-white px-6 py-4 flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-black text-secondary">Verify Your Details</h3>
-                <p className="text-xs text-medical-muted mt-0.5">
-                  {activeDoctor.name} · {new Date(date + 'T00:00:00').toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })} · {selectedSlot}
+                <h3 className="text-base font-black">Patient Details &amp; Slot Confirmation</h3>
+                <p className="text-xs text-teal-100 mt-0.5">
+                  {activeDoctor.name} · {formatDisplayDate(date)} · {selectedSlot}
                 </p>
               </div>
               <button
-                onClick={() => setDetailsOpen(false)}
-                className="w-9 h-9 rounded-xl bg-medical-coolgray text-medical-muted hover:text-secondary font-black"
-                aria-label="Close"
+                type="button"
+                onClick={() => setBookingModalOpen(false)}
+                className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
             </div>
 
+            {/* Modal Form */}
             <form onSubmit={handleConfirmBooking} className="p-6 space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Patient Full Name *</label>
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                  Patient Full Name *
+                </label>
                 <input
                   type="text"
+                  required
                   value={patientName}
                   onChange={(e) => setPatientName(e.target.value)}
-                  placeholder="e.g. Ramesh Chand"
-                  required
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-medical-border text-sm text-secondary font-medium focus:border-primary focus:outline-hidden"
+                  placeholder="e.g. Ramesh Kumar"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Mobile Number *</label>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                    Mobile Number *
+                  </label>
                   <input
                     type="tel"
+                    required
                     value={patientPhone}
                     onChange={(e) => setPatientPhone(e.target.value)}
-                    placeholder="+91-98XXXXXXXX"
-                    required
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-medical-border text-sm text-secondary font-medium focus:border-primary focus:outline-hidden"
+                    placeholder="10-digit mobile"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
                   />
                 </div>
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Age</label>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                    Age
+                  </label>
                   <input
                     type="number"
                     min="0"
                     max="120"
                     value={patientAge}
                     onChange={(e) => setPatientAge(e.target.value)}
-                    placeholder="e.g. 42"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-medical-border text-sm text-secondary font-medium focus:border-primary focus:outline-hidden"
+                    placeholder="e.g. 45"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Gender</label>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                    Gender
+                  </label>
                   <select
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-medical-border text-sm text-secondary font-medium bg-medical-white focus:border-primary focus:outline-hidden"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm font-semibold text-slate-800 bg-white focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
                   >
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Email (optional)</label>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                    Email (optional)
+                  </label>
                   <input
                     type="email"
                     value={patientEmail}
                     onChange={(e) => setPatientEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-medical-border text-sm text-secondary font-medium focus:border-primary focus:outline-hidden"
+                    placeholder="patient@example.com"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold uppercase text-medical-muted tracking-wider">Symptoms / Chief Complaint</label>
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                  Symptoms / Reason for Consultation (optional)
+                </label>
                 <textarea
                   rows={2}
                   value={symptoms}
                   onChange={(e) => setSymptoms(e.target.value)}
-                  placeholder="Briefly describe your health concern..."
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-medical-border text-sm text-secondary font-medium focus:border-primary focus:outline-hidden resize-none"
+                  placeholder="Describe your symptoms or previous diagnosis..."
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-sm font-medium text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden resize-none"
                 />
               </div>
 
-              <div className="p-4 rounded-2xl bg-medical-coolgray border border-medical-border flex items-center justify-between">
-                <div className="text-xs">
-                  <span className="block font-bold text-secondary">Consultation Fee</span>
-                  <span className="text-medical-muted">Payable at hospital counter · {activeDoctor.room}</span>
+              {/* Fee Breakdown Card */}
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1.5">
+                <div className="flex justify-between text-slate-600">
+                  <span>Hospital Registration Fee (One-Time):</span>
+                  <span className="font-bold text-slate-800">₹200 (Non-Refundable)</span>
                 </div>
-                <span className="text-xl font-black text-primary">₹{activeDoctor.consultationFee}</span>
+                <div className="flex justify-between text-slate-600">
+                  <span>Doctor Consultation Fee:</span>
+                  <span className="font-bold text-slate-800">₹{activeDoctor.consultationFee || 700}</span>
+                </div>
+                <div className="border-t border-slate-200 pt-1.5 flex justify-between font-black text-slate-900 text-sm">
+                  <span>Total Payable at Counter:</span>
+                  <span className="text-[#0A7A74]">₹{(activeDoctor.consultationFee || 700) + 200}</span>
+                </div>
               </div>
 
+              {/* Submit CTA */}
               <button
                 type="submit"
                 disabled={bookingLoading}
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary hover:bg-primary-hover disabled:opacity-50 text-white text-sm font-black shadow-md shadow-primary/20 transition-all"
+                className="w-full py-3.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:opacity-50 text-white text-sm font-black transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
               >
                 {bookingLoading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Confirming Appointment...</span>
+                  </>
                 ) : (
-                  <ShieldCheck className="w-5 h-5" />
+                  <>
+                    <Check className="w-4 h-4" />
+                    <span>Confirm &amp; Generate OPD Slip</span>
+                  </>
                 )}
-                <span>{bookingLoading ? 'Confirming Slot...' : 'Confirm & Book Appointment'}</span>
               </button>
 
-              <p className="text-[10px] text-medical-muted text-center leading-relaxed">
-                By confirming you agree to the hospital OPD visit policy. Your mobile number becomes your appointment
-                identity — the same number links your generated UHID for future visits.
+              <p className="text-[10px] text-slate-400 text-center">
+                By confirming, you agree to Brahm Shakti Hospital's OPD visit guidelines. No prior login required.
               </p>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* ================= REFUND POLICY MODAL ================= */}
+      {refundModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 border border-slate-200 space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+              <div className="flex items-center gap-2 text-[#0A7A74]">
+                <AlertCircle className="w-5 h-5" />
+                <h3 className="font-black text-base text-slate-800">OPD Refund Policy</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setRefundModalOpen(false)}
+                className="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="text-xs text-slate-600 space-y-3 leading-relaxed">
+              <p>
+                <strong>1. Registration Fee:</strong> The one-time registration fee of ₹200/- is non-refundable once registered in the hospital management system.
+              </p>
+              <p>
+                <strong>2. Doctor Rescheduling:</strong> If the consulting doctor is called for emergency surgery or is indisposed, patient appointments will be rescheduled to the next available slot at no additional charge.
+              </p>
+              <p>
+                <strong>3. Cancellation:</strong> Cancellation requests must be made at least 2 hours before the scheduled slot by calling our OPD desk at <strong>011-27531683</strong>.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setRefundModalOpen(false)}
+              className="w-full py-2.5 rounded-lg bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold transition-colors"
+            >
+              I Understand
+            </button>
           </div>
         </div>
       )}
     </div>
   );
 };
-
-// Small inline icon used only inside the specialty select
-const BuildingIcon = () => (
-  <MapPin className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-primary" />
-);
 
 export default ConsultationPage;

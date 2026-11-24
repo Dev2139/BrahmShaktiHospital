@@ -119,9 +119,11 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
-        {/* Standalone Appointment Portal (same UI for both entry URLs, no login required) */}
+        {/* Standalone Appointment Portal (isolated OPD web app, no login required) */}
         <Route path="/consultation" element={<ConsultationPage />} />
         <Route path="/appointments" element={<ConsultationPage />} />
+        <Route path="/book-appointment" element={<ConsultationPage />} />
+        <Route path="/opd-booking" element={<ConsultationPage />} />
 
         {/* Protected Admin & Clinical Dashboards */}
         <Route

@@ -116,7 +116,7 @@ export const Navbar = () => {
 
   const appointmentTarget = isStaff
     ? (dashboardPath || '/admin/dashboard')
-    : (isAuthenticated ? '/appointments' : '/login?redirect=/appointments');
+    : '/appointments';
 
   return (
     <header ref={navRef} className="sticky top-0 z-50 w-full bg-white shadow-md transition-shadow">
