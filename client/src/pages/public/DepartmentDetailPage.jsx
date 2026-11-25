@@ -1,25 +1,101 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft,
+  Home,
   ChevronRight,
-  CheckCircle2,
+  ChevronDown,
+  ChevronLeft,
   PhoneCall,
-  Calendar,
-  Sparkles,
-  Award,
+  Check,
+  Plus,
+  Minus,
+  Users,
   Stethoscope,
-  ShieldCheck
+  Activity,
+  Heart,
+  Baby,
+  Ear,
+  Sparkles,
+  Droplet,
+  FlaskConical,
+  AlertCircle
 } from 'lucide-react';
 import api from '../../services/api';
 import { departmentsData, doctorsData } from '../../data/seedData';
 
+// Specific icons mapping for each specialty
+const getDepartmentIcon = (deptId, className = 'w-6 h-6') => {
+  const id = (deptId || '').toLowerCase();
+  if (id.includes('medicine') || id.includes('internal')) {
+    return <Stethoscope className={className} />;
+  }
+  if (id.includes('surg') || id.includes('general')) {
+    // Medical cross / hospital icon
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <path d="M12 6v12M6 12h12" />
+        <circle cx="12" cy="12" r="10" strokeWidth="1.8" />
+      </svg>
+    );
+  }
+  if (id.includes('diabet') || id.includes('metabol') || id.includes('sugar')) {
+    return <Droplet className={className} />;
+  }
+  if (id.includes('cardio') || id.includes('heart')) {
+    return <Heart className={className} />;
+  }
+  if (id.includes('ortho') || id.includes('bone') || id.includes('joint')) {
+    // Knee joint / bone skeleton icon
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <circle cx="9" cy="5" r="2.5" />
+        <circle cx="15" cy="5" r="2.5" />
+        <path d="M12 7.5v9" />
+        <circle cx="9" cy="19" r="2.5" />
+        <circle cx="15" cy="19" r="2.5" />
+      </svg>
+    );
+  }
+  if (id.includes('gynae') || id.includes('obst') || id.includes('mater')) {
+    // Mother & pregnant / womb stylized icon
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <circle cx="12" cy="5" r="3" />
+        <path d="M9 10a5 5 0 0 1 6 0v7a3 3 0 0 1-6 0z" />
+      </svg>
+    );
+  }
+  if (id.includes('ped') || id.includes('child') || id.includes('baby')) {
+    return <Baby className={className} />;
+  }
+  if (id.includes('ent') || id.includes('ear') || id.includes('throat')) {
+    return <Ear className={className} />;
+  }
+  if (id.includes('skin') || id.includes('derma')) {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <path d="M12 2C8 6 6 10 6 14a6 6 0 0 0 12 0c0-4-2-8-6-12z" />
+        <path d="M12 12v5" />
+      </svg>
+    );
+  }
+  return <Activity className={className} />;
+};
+
 export const DepartmentDetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [department, setDepartment] = useState(null);
+  const [allDepartments, setAllDepartments] = useState([]);
   const [departmentDoctors, setDepartmentDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Mobile Accordion state for "About the Department"
+  const [aboutAccordionOpen, setAboutAccordionOpen] = useState(false);
+
+  // Active doctor carousel index for mobile view
+  const [mobileDocIndex, setMobileDocIndex] = useState(0);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -27,23 +103,36 @@ export const DepartmentDetailPage = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [singleDeptRes, allDocsRes] = await Promise.all([
+        const [singleDeptRes, allDeptsRes, allDocsRes] = await Promise.all([
           api.get(`/departments/${id}`).catch(() => null),
+          api.get('/departments').catch(() => null),
           api.get('/doctors').catch(() => null)
         ]);
 
+        // 1. All Departments for the top navigation bar
+        let deptList = [];
+        if (allDeptsRes?.data?.success && Array.isArray(allDeptsRes.data.data)) {
+          deptList = allDeptsRes.data.data;
+        } else {
+          deptList = departmentsData || [];
+        }
+        setAllDepartments(deptList);
+
+        // 2. Target Department
         let currentDept = null;
         if (singleDeptRes?.data?.success && singleDeptRes.data.data) {
           currentDept = singleDeptRes.data.data;
         } else {
-          // Fallback from seed data
-          currentDept = (departmentsData || []).find(
+          currentDept = deptList.find(
             (d) => d.id === id || d.code?.toLowerCase() === id?.toLowerCase()
           );
         }
+        if (!currentDept && deptList.length > 0) {
+          currentDept = deptList[0];
+        }
         setDepartment(currentDept);
 
-        // Fetch doctors and match to this department
+        // 3. Match Doctors to this Department
         let allDocs = [];
         if (allDocsRes?.data?.success && Array.isArray(allDocsRes.data.data)) {
           allDocs = allDocsRes.data.data;
@@ -51,32 +140,29 @@ export const DepartmentDetailPage = () => {
           allDocs = doctorsData || [];
         }
 
-        const deptKey = currentDept?.id || id;
-        const deptCode = currentDept?.code?.toLowerCase() || '';
-        const deptName = currentDept?.name?.toLowerCase() || '';
+        const deptKey = (currentDept?.id || id || '').toLowerCase();
+        const deptCode = (currentDept?.code || '').toLowerCase();
+        const deptName = (currentDept?.name || '').toLowerCase();
 
         const matched = allDocs.filter((doc) => {
           const docDeptId = (doc.departmentId || '').toLowerCase();
           const docDeptName = (doc.departmentName || doc.department || '').toLowerCase();
           return (
-            docDeptId === deptKey.toLowerCase() ||
+            docDeptId === deptKey ||
             docDeptId === deptCode ||
             docDeptName.includes(deptName) ||
             deptName.includes(docDeptName)
           );
         });
 
-        // If no direct matches, show departmental doctors or first few clinical doctors
         if (matched.length > 0) {
           setDepartmentDoctors(matched);
         } else {
-          const fallbackMatches = allDocs.filter((doc) =>
-            doc.departmentId === 'medicine' || doc.departmentId === 'anesthesia'
-          );
-          setDepartmentDoctors(fallbackMatches.length > 0 ? fallbackMatches : allDocs.slice(0, 8));
+          // If no specific match, show 3 doctors as in the reference design
+          setDepartmentDoctors(allDocs.slice(0, 3));
         }
       } catch (err) {
-        console.error('Error fetching department details:', err);
+        console.error('Error loading department detail:', err);
       } finally {
         setLoading(false);
       }
@@ -87,243 +173,433 @@ export const DepartmentDetailPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-[70vh] bg-[#F4F8FA] py-16 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-center">
-          <div className="w-10 h-10 border-4 border-[#018AAE] border-t-transparent rounded-full animate-spin"></div>
-        </div>
+      <div className="min-h-[70vh] bg-[#F4FBFD] py-20 px-4 flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-[#018AAE] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   if (!department) {
     return (
-      <div className="min-h-[70vh] bg-[#F4F8FA] py-20 px-4">
-        <div className="max-w-md mx-auto bg-white p-8 rounded-3xl border border-slate-200 shadow-soft text-center space-y-4">
+      <div className="min-h-[70vh] bg-[#F4FBFD] py-20 px-4 flex items-center justify-center">
+        <div className="max-w-md mx-auto bg-white p-8 rounded-3xl border border-slate-200 text-center space-y-4 shadow-sm">
           <h2 className="text-2xl font-black text-slate-900">Department Not Found</h2>
-          <p className="text-slate-500 text-xs">The requested medical specialty could not be located.</p>
+          <p className="text-slate-500 text-xs">The requested medical specialty could not be found.</p>
           <Link
             to="/departments"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#018AAE] text-white text-xs font-bold shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold transition-all shadow-sm"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to All Departments</span>
+            Explore Departments
           </Link>
         </div>
       </div>
     );
   }
 
-  // Format facilities list
+  // Facilities list from data
   const facilitiesList = department.facilitiesOffered
     ? department.facilitiesOffered.split('\n').map((s) => s.trim()).filter(Boolean)
-    : (Array.isArray(department.features) && department.features.length > 0
-        ? department.features
-        : [
-            'Dedicated Outpatient & Inpatient Clinical Suites',
-            'Full Diagnostic and Multi-disciplinary Referral Support',
-            'Advanced Patient Monitoring & Sterile Treatment Rooms',
-            'Round-the-clock Emergency Casualty & Critical Care Backup'
-          ]);
-
-  // Format services list
-  const servicesList = Array.isArray(department.services) && department.services.length > 0
-    ? department.services
-    : (typeof department.services === 'string' && department.services.trim()
-        ? department.services.split('\n').map((s) => s.trim()).filter(Boolean)
-        : [
-            'Specialized Diagnostic Evaluation & Comprehensive Workup',
-            'Evidence-based Medical Management & Prescription Reviews',
-            'Preventive Screenings & Longitudinal Health Protocols',
-            'Inter-departmental Consultation for Complex Systemic Pathologies'
-          ]);
-
-  // Format about paragraphs
-  const aboutParagraphs = department.description
-    ? department.description.split('\n\n').filter(Boolean)
+    : Array.isArray(department.features) && department.features.length > 0
+    ? department.features
     : [
-        `The clinical and academic milieu at Brahm Shakti Hospital is nurtured and promoted by the Department of ${department.name} under the leadership of our senior faculty and Board of Medical Management. Over the years, the department has grown into a comprehensive center of clinical excellence, entrusted with delivering patient-first recovery and precision care.`,
-        `Coordinating the clinical, outpatient, and inpatient programs of the hospital, our medical consultants adhere to stringent healthcare guidelines established by national statutory bodies. Periodic clinical audits, peer reviews, and multi-disciplinary case conferences ensure that high safety and quality standards are maintained across every case.`,
-        `The consultants and clinical staff are actively engaged in patient counseling, preventive health guidance, and emergency coverage, fulfilling Brahm Shakti Hospital’s mission of clinical excellence with compassion, dignity, and integrity.`
+        'Advanced Adult Intensive Medical Care',
+        'Comprehensive Diabetology & Metabolic Clinic',
+        'Hypertension & Cardiovascular Risk Assessment',
+        'Dedicated Geriatric & Elderly Care Protocols'
       ];
 
+  // Key Services list from data
+  const keyServicesList = Array.isArray(department.services) && department.services.length > 0
+    ? department.services
+    : typeof department.services === 'string' && department.services.trim()
+    ? department.services.split('\n').map((s) => s.trim()).filter(Boolean)
+    : [
+        'General Medicine',
+        'Diabetes Care',
+        'Hypertension Management',
+        'Preventive Health Checkups',
+        'Fever & Pyrexia Clinical Workup'
+      ];
+
+  // About description
+  const aboutText =
+    department.description ||
+    `Brahm Shakti Hospital's Department of ${department.name} is the clinical backbone of outpatient and inpatient diagnostics. Led by senior physician specialists, the department specializes in adult general health, metabolic syndrome, diabetic foot clinics, and fever triage. Our team adheres to stringent statutory medical standards to ensure precision and rapid recovery.`;
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Breadcrumb Navigation */}
-      <div className="bg-[#F8FAFC] border-b border-slate-200/80 py-3.5 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-bold text-slate-500">
-          <Link to="/" className="text-[#018AAE] hover:underline flex items-center gap-1">
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Home</span>
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <Link to="/departments" className="text-slate-500 hover:text-[#018AAE]">
-            Departments
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-800 font-bold">{department.name}</span>
+    <div className="min-h-screen bg-[#F4FBFD] text-slate-800 flex flex-col font-sans selection:bg-[#018AAE] selection:text-white">
+      {/* ----------------- 1. SUB-HEADER / BREADCRUMB STRIP ----------------- */}
+      <div className="bg-white border-b border-slate-100 py-2.5 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-3 text-xs">
+          {/* Breadcrumb Left */}
+          <div className="flex items-center gap-1.5 text-slate-500 font-medium">
+            <Link to="/" className="hover:text-[#018AAE] flex items-center gap-1">
+              <Home className="w-3.5 h-3.5 text-[#018AAE]" />
+              <span className="hidden sm:inline">Home</span>
+            </Link>
+            <ChevronRight className="w-3 h-3 text-slate-300" />
+            <Link to="/departments" className="hover:text-[#018AAE]">
+              Departments
+            </Link>
+            <ChevronRight className="w-3 h-3 text-slate-300" />
+            <span className="text-slate-800 font-bold truncate max-w-[200px] sm:max-w-none">
+              {department.name}
+            </span>
+          </div>
+
+          {/* Quick Action Badges Right */}
+          <div className="flex items-center gap-2 shrink-0">
+            <Link
+              to="/lab-results"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold text-[#018AAE] hover:bg-[#F0FBFC] transition-colors"
+            >
+              <FlaskConical className="w-3 h-3 text-[#018AAE]" />
+              <span>Lab Result</span>
+            </Link>
+            <a
+              href="tel:7840089703"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold text-rose-600 hover:bg-rose-50 transition-colors"
+            >
+              <AlertCircle className="w-3 h-3 text-rose-600" />
+              <span>Emergency</span>
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Main Layout Matching Reference Images (Left: Specialists Doctors Grid ONLY | Right: Detailed Reading Content) */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
-          {/* Left Column: Specialists Doctor List ONLY (Matches Image 2 & 3) */}
-          <aside className="lg:col-span-4 xl:col-span-4 space-y-4">
-            <div className="border-b-2 border-[#018AAE] pb-2">
-              <h2 className="text-xl sm:text-2xl font-black text-[#018AAE] tracking-tight">
-                Specialists
-              </h2>
-            </div>
-
-            {departmentDoctors.length === 0 ? (
-              <p className="text-xs text-slate-500 py-4">No specialists listed for this department.</p>
-            ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-3 gap-3.5 sm:gap-4 pt-2">
-                {departmentDoctors.map((doc) => (
-                  <Link
-                    key={doc.id}
-                    to={`/doctors/${doc.id}`}
-                    className="group flex flex-col items-center text-center focus:outline-hidden"
-                    title={`View profile of ${doc.name}`}
-                  >
-                    {/* Doctor Portrait Photo */}
-                    <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-2xs group-hover:shadow-md group-hover:border-[#018AAE] transition-all">
-                      <img
-                        src={doc.image || 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600'}
-                        alt={doc.name}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          e.target.src = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600';
-                        }}
-                      />
-                    </div>
-                    {/* Doctor Name (No prices, clean layout) */}
-                    <span className="text-xs font-bold text-slate-800 group-hover:text-[#018AAE] transition-colors mt-2 line-clamp-2 px-1">
-                      {doc.name}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            )}
-
-            {/* Quick Contact Desk */}
-            <div className="mt-8 pt-4 border-t border-slate-200 space-y-1.5 text-xs">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                Hospital Helpdesk &amp; Queries
-              </span>
-              <a
-                href="tel:01127531683"
-                className="text-slate-800 font-bold hover:text-[#018AAE] flex items-center gap-1.5"
+      {/* ----------------- 2. TOP HORIZONTAL DEPARTMENTS STRIP (WITH ICONS) ----------------- */}
+      {/* Desktop & Tablet: Horizontal Grid/Scroll Bar */}
+      <div className="hidden md:block bg-white border-b border-slate-200 shadow-2xs py-3 px-4 sm:px-6 lg:px-8 overflow-x-auto no-scrollbar">
+        <div className="max-w-[1440px] mx-auto flex items-center gap-2.5 min-w-max">
+          {allDepartments.map((dept) => {
+            const isSelected = dept.id === department.id;
+            return (
+              <Link
+                key={dept.id}
+                to={`/departments/${dept.id}`}
+                className={`flex flex-col items-center justify-center px-4 py-2.5 rounded-2xl transition-all text-center min-w-[110px] max-w-[140px] group ${
+                  isSelected
+                    ? 'bg-[#018AAE] text-white shadow-md shadow-[#018AAE]/25 scale-[1.02]'
+                    : 'bg-white hover:bg-[#F0FBFC] border border-slate-200/90 text-slate-700 hover:text-[#018AAE] hover:border-[#0DAFD5]'
+                }`}
               >
-                <PhoneCall className="w-3.5 h-3.5 text-[#018AAE]" />
-                <span>011-27531683 / 7840089703</span>
-              </a>
-            </div>
-          </aside>
-
-          {/* Right Main Column: Reading Narrative (Matches Image 2 & 3) */}
-          <section className="lg:col-span-8 xl:col-span-8 space-y-6 sm:space-y-8">
-            {/* Department Title */}
-            <div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#018AAE] tracking-tight leading-tight">
-                Department of {department.name}
-              </h1>
-              {department.headOfDepartment && (
-                <div className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
-                  <span className="text-[#018AAE] font-bold">Clinical Chairperson / Head: </span>
-                  <span>{department.headOfDepartment}</span>
+                <div
+                  className={`w-8 h-8 rounded-xl flex items-center justify-center mb-1 transition-colors ${
+                    isSelected ? 'text-white' : 'text-[#018AAE] group-hover:text-[#0DAFD5]'
+                  }`}
+                >
+                  {getDepartmentIcon(dept.id, 'w-5 h-5')}
                 </div>
-              )}
-            </div>
+                <span
+                  className={`text-[11px] font-black leading-tight line-clamp-2 ${
+                    isSelected ? 'text-white' : 'text-slate-800 group-hover:text-[#018AAE]'
+                  }`}
+                >
+                  {dept.name}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
 
-            {/* Clinical Overview / Lead Paragraph */}
-            {department.shortDescription && (
-              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
-                {department.shortDescription}
-              </p>
-            )}
-
-            {/* About the Department Section */}
-            <div className="space-y-3 pt-2">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#018AAE] tracking-tight">
-                About the Department
-              </h2>
-              <div className="text-sm sm:text-base text-slate-700 leading-relaxed space-y-3.5">
-                {aboutParagraphs.map((para, idx) => (
-                  <p key={idx}>{para}</p>
-                ))}
+      {/* Mobile: Specialty Selector Dropdown (Exact match to Mobile View in uploaded image) */}
+      <div className="md:hidden bg-white px-4 py-2.5 border-b border-slate-200">
+        <div className="relative">
+          <div className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-800 shadow-2xs">
+            <div className="flex items-center gap-2">
+              <div className="text-[#018AAE]">
+                {getDepartmentIcon(department.id, 'w-4 h-4')}
               </div>
+              <span className="truncate">{department.name}</span>
             </div>
+            <ChevronDown className="w-4 h-4 text-slate-400" />
+          </div>
+          <select
+            value={department.id}
+            onChange={(e) => navigate(`/departments/${e.target.value}`)}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            aria-label="Select Hospital Department"
+          >
+            {allDepartments.map((d) => (
+              <option key={d.id} value={d.id}>
+                {d.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
 
-            {/* State-of-the-art Techniques (if present) */}
-            {department.techniques && (
-              <div className="space-y-3 pt-2">
-                <h2 className="text-xl sm:text-2xl font-bold text-[#018AAE] tracking-tight">
-                  State-of-the-art Techniques
-                </h2>
-                <div className="text-sm sm:text-base text-slate-700 leading-relaxed whitespace-pre-line">
-                  {department.techniques}
+      {/* ----------------- 3. MAIN CONTENT SECTION (MATCHING REFERENCE IMAGE) ----------------- */}
+      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+        {/* Main 2-Column Responsive Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+          
+          {/* ================= LEFT COLUMN: "OUR SPECIALISTS" CARD ================= */}
+          <div className="lg:col-span-4 xl:col-span-4 w-full">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+              {/* Card Header (Matches teal/ocean header in image) */}
+              <div className="bg-[#018AAE] px-4 sm:px-5 py-3 text-white flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4" />
+                  <h3 className="text-xs sm:text-sm font-black tracking-wide uppercase">
+                    Our Specialists
+                  </h3>
+                </div>
+
+                {/* Mobile Arrows for browsing doctors */}
+                <div className="md:hidden flex items-center gap-1 text-white/80">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setMobileDocIndex((prev) =>
+                        prev > 0 ? prev - 1 : Math.max(0, departmentDoctors.length - 1)
+                      )
+                    }
+                    className="p-1 hover:text-white"
+                    aria-label="Previous Specialist"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setMobileDocIndex((prev) =>
+                        prev < departmentDoctors.length - 1 ? prev + 1 : 0
+                      )
+                    }
+                    className="p-1 hover:text-white"
+                    aria-label="Next Specialist"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
-            )}
 
-            {/* Facilities Offered Section */}
-            <div className="space-y-3 pt-2">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#018AAE] tracking-tight">
-                Facilities Offered
-              </h2>
-              <div className="space-y-2.5">
-                {facilitiesList.map((facility, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#018AAE] mt-2 shrink-0" />
-                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                      {facility}
-                    </p>
+              {/* Specialists List / Carousel Content */}
+              <div className="p-4 sm:p-5">
+                {/* Desktop View: Grid of doctors (Matches 3 doctors in row in image) */}
+                <div className="hidden sm:grid sm:grid-cols-3 gap-3">
+                  {departmentDoctors.slice(0, 3).map((doc, idx) => {
+                    const fallbackColors = [
+                      'from-amber-100 to-rose-100',
+                      'from-sky-100 to-teal-100',
+                      'from-rose-100 to-pink-100'
+                    ];
+                    return (
+                      <Link
+                        key={doc.id || idx}
+                        to={`/doctors/${doc.id}`}
+                        className="group flex flex-col items-center text-center focus:outline-hidden"
+                      >
+                        {/* Doctor Photo Frame */}
+                        <div
+                          className={`w-full aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-b ${
+                            fallbackColors[idx % 3]
+                          } border border-slate-100 shadow-2xs group-hover:shadow group-hover:border-[#018AAE] transition-all`}
+                        >
+                          <img
+                            src={
+                              doc.image ||
+                              'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=400'
+                            }
+                            alt={doc.name}
+                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                            onError={(e) => {
+                              e.target.src =
+                                'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=400';
+                            }}
+                          />
+                        </div>
+                        {/* Doctor Name */}
+                        <span className="text-[11px] font-bold text-slate-800 group-hover:text-[#018AAE] transition-colors mt-2 line-clamp-2 px-1 leading-snug">
+                          {doc.name}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* Mobile View: 3 items flex row / slider (Matching mobile image) */}
+                <div className="sm:hidden flex items-center justify-around gap-2">
+                  {departmentDoctors.slice(0, 3).map((doc, idx) => (
+                    <Link
+                      key={doc.id || idx}
+                      to={`/doctors/${doc.id}`}
+                      className="group flex flex-col items-center text-center w-1/3"
+                    >
+                      <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
+                        <img
+                          src={
+                            doc.image ||
+                            'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300'
+                          }
+                          alt={doc.name}
+                          className="w-full h-full object-cover object-top"
+                          onError={(e) => {
+                            e.target.src =
+                              'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300';
+                          }}
+                        />
+                      </div>
+                      <span className="text-[10px] font-bold text-slate-800 mt-1.5 line-clamp-2 leading-tight">
+                        {doc.name}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Hospital Helpdesk & Queries (Direct match to reference) */}
+                <div className="mt-5 pt-4 border-t border-slate-100 text-center space-y-1">
+                  <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#018AAE]">
+                    <PhoneCall className="w-3.5 h-3.5 text-[#018AAE]" />
+                    <span>HOSPITAL HELPDESK &amp; QUERIES</span>
                   </div>
-                ))}
+                  <div>
+                    <a
+                      href="tel:01127531683"
+                      className="text-xs sm:text-sm font-black text-slate-800 hover:text-[#018AAE] transition-colors"
+                    >
+                      011-27531683 / 7840089703
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Key Services Section */}
-            <div className="space-y-3 pt-2">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#018AAE] tracking-tight">
-                Key Services
-              </h2>
-              <div className="space-y-3">
-                {servicesList.map((srv, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                    <CheckCircle2 className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
-                    <span className="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed">
-                      {srv}
-                    </span>
-                  </div>
-                ))}
+          {/* ================= RIGHT COLUMN: DEPARTMENT READING CONTENT ================= */}
+          <div className="lg:col-span-8 xl:col-span-8 w-full space-y-6">
+            
+            {/* Top Heading Section (Matches exact typography and teal bar in image) */}
+            <div className="relative bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm overflow-hidden">
+              {/* Faint Stethoscope/Medical Watermark Illustration on the right */}
+              <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-15 pointer-events-none hidden sm:block">
+                <svg viewBox="0 0 200 200" fill="none" className="w-full h-full">
+                  <path
+                    d="M30 60 C30 120 70 160 100 160 C130 160 170 120 170 60"
+                    stroke="#018AAE"
+                    strokeWidth="12"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="100" cy="160" r="14" fill="#0DAFD5" />
+                  <path d="M100 160v30" stroke="#018AAE" strokeWidth="10" />
+                  <circle cx="100" cy="190" r="22" stroke="#018AAE" strokeWidth="8" fill="white" />
+                </svg>
               </div>
-            </div>
 
-            {/* Clinical Consultation Call-to-Action (No OPD fees mentioned) */}
-            <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-[#018AAE] to-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
-              <div className="space-y-1 text-center sm:text-left">
-                <h3 className="text-lg sm:text-xl font-black">
-                  Schedule a Consultation with {department.name} Specialists
-                </h3>
-                <p className="text-xs text-slate-200">
-                  Book direct digital slots with senior hospital faculty. Zero waiting time at the OPD desk.
+              <div className="relative z-10 space-y-2">
+                <div className="text-xs font-black uppercase tracking-wider text-[#0DAFD5]">
+                  Department of
+                </div>
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#018AAE] tracking-tight leading-tight">
+                  {department.name}
+                </h1>
+
+                {department.headOfDepartment && (
+                  <div className="text-xs sm:text-sm font-semibold text-slate-700 pt-0.5">
+                    <span className="text-slate-500 font-bold">Clinical Chairperson / Head: </span>
+                    <span className="text-[#018AAE] font-extrabold">{department.headOfDepartment}</span>
+                  </div>
+                )}
+
+                <p className="text-xs sm:text-sm text-slate-600 pt-2 leading-relaxed max-w-2xl">
+                  {department.shortDescription ||
+                    'Comprehensive clinical diagnosis, outpatient consultation, emergency medical evaluation, and specialized care pathways.'}
                 </p>
               </div>
-
-              <Link
-                to={`/bookappointment?department=${department.id}`}
-                className="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs transition-all shadow-md shrink-0 cursor-pointer"
-              >
-                Book an Appointment
-              </Link>
             </div>
-          </section>
+
+            {/* Content Card with Desktop View & Mobile Collapsible Accordion */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+              
+              {/* 1. About the Department (Desktop always open; Mobile collapsible accordion with +/- icon) */}
+              <div className="space-y-2.5">
+                {/* Mobile Accordion Header */}
+                <button
+                  type="button"
+                  onClick={() => setAboutAccordionOpen(!aboutAccordionOpen)}
+                  className="sm:hidden w-full flex items-center justify-between text-left py-1"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-4 rounded-full bg-[#018AAE]" />
+                    <h2 className="text-sm font-black text-[#018AAE] tracking-tight">
+                      About the Department
+                    </h2>
+                  </div>
+                  <div className="text-[#018AAE]">
+                    {aboutAccordionOpen ? (
+                      <Minus className="w-4 h-4" />
+                    ) : (
+                      <Plus className="w-4 h-4" />
+                    )}
+                  </div>
+                </button>
+
+                {/* Desktop Section Header */}
+                <div className="hidden sm:flex items-center gap-2">
+                  <span className="w-1.5 h-4 rounded-full bg-[#018AAE]" />
+                  <h2 className="text-base sm:text-lg font-black text-[#018AAE] tracking-tight">
+                    About the Department
+                  </h2>
+                </div>
+
+                {/* About Content: On mobile controlled by accordion, on desktop always visible */}
+                <div className={`${aboutAccordionOpen ? 'block' : 'hidden'} sm:block`}>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify sm:text-left">
+                    {aboutText}
+                  </p>
+                </div>
+              </div>
+
+              {/* 2. Grid of Facilities Offered & Key Services */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                
+                {/* Facilities Offered */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-4 rounded-full bg-[#018AAE]" />
+                    <h3 className="text-sm sm:text-base font-black text-[#018AAE] tracking-tight">
+                      Facilities Offered
+                    </h3>
+                  </div>
+
+                  <ul className="space-y-2">
+                    {facilitiesList.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs sm:text-[13px] text-slate-700">
+                        <Check className="w-4 h-4 text-[#018AAE] stroke-[2.5] shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Key Services */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-4 rounded-full bg-[#018AAE]" />
+                    <h3 className="text-sm sm:text-base font-black text-[#018AAE] tracking-tight">
+                      Key Services
+                    </h3>
+                  </div>
+
+                  <ul className="space-y-2">
+                    {keyServicesList.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs sm:text-[13px] text-slate-700">
+                        <Check className="w-4 h-4 text-[#018AAE] stroke-[2.5] shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
 
         </div>
-      </main>
+      </div>
     </div>
   );
 };
