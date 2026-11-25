@@ -266,63 +266,104 @@ export const PatientTypePage = () => {
     return () => clearInterval(interval);
   }, [otpSent, otpTimer]);
 
-  const handleSendRegisteredOtp = (e) => {
+  const handleSendRegisteredOtp = async (e) => {
     e.preventDefault();
-    if (!registeredEmail.trim() || !registeredEmail.includes('@')) {
+    const cleanEmail = registeredEmail.trim().toLowerCase();
+    if (!cleanEmail || !cleanEmail.includes('@')) {
       toast.error('Please enter a valid email address.');
       return;
     }
     setSendingOtp(true);
-    setTimeout(() => {
-      const code = Math.floor(100000 + Math.random() * 900000).toString();
-      setRegisteredOtp(code);
-      setOtpSent(true);
-      setOtpTimer(60);
-      setEnteredOtp('');
+    try {
+      const res = await api.post('/auth/send-otp', {
+        email: cleanEmail,
+        type: 'registered_patient'
+      });
+
+      if (res.data?.success) {
+        if (res.data.demoOtp) {
+          setRegisteredOtp(res.data.demoOtp);
+        }
+        setOtpSent(true);
+        setOtpTimer(60);
+        setEnteredOtp('');
+        toast.success(`Verification OTP sent to ${cleanEmail}`);
+      }
+    } catch (err) {
+      console.error('Send OTP error:', err);
+      if (err.response?.status === 404 || err.response?.data?.userNotFound) {
+        toast.error(
+          err.response?.data?.message ||
+            'No registered patient account found with this email. Please register as a new patient.',
+          { duration: 5500 }
+        );
+      } else {
+        toast.error(err.response?.data?.message || 'Failed to dispatch email OTP. Please try again.');
+      }
+    } finally {
       setSendingOtp(false);
-      toast.success(`Verification OTP sent to ${registeredEmail.trim()}`);
-    }, 400);
+    }
   };
 
-  const handleResendRegisteredOtp = () => {
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
-    setRegisteredOtp(code);
-    setOtpTimer(60);
-    toast.success(`New OTP sent to ${registeredEmail.trim()}`);
+  const handleResendRegisteredOtp = async () => {
+    const cleanEmail = registeredEmail.trim().toLowerCase();
+    try {
+      const res = await api.post('/auth/send-otp', {
+        email: cleanEmail,
+        type: 'registered_patient'
+      });
+      if (res.data?.success) {
+        if (res.data.demoOtp) {
+          setRegisteredOtp(res.data.demoOtp);
+        }
+        setOtpTimer(60);
+        toast.success(`New OTP sent to ${cleanEmail}`);
+      }
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to resend OTP.');
+    }
   };
 
-  const handleVerifyRegisteredOtp = (e) => {
+  const handleVerifyRegisteredOtp = async (e) => {
     e.preventDefault();
-    if (!enteredOtp.trim() || enteredOtp.trim() !== registeredOtp) {
-      toast.error('Invalid OTP code. Please check the 6-digit code shown below.');
+    if (!enteredOtp.trim() || enteredOtp.trim().length !== 6) {
+      toast.error('Please enter the complete 6-digit OTP code.');
       return;
     }
 
     setVerifyingOtp(true);
-    setTimeout(() => {
+    try {
       const cleanEmail = registeredEmail.trim().toLowerCase();
-      const patientName =
-        cleanEmail === 'patient@brahmshaktihospital.com'
-          ? 'Ramesh Kumar (Patient)'
-          : cleanEmail.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-
-      const patientUser = {
-        name: patientName,
+      const res = await api.post('/auth/verify-otp', {
         email: cleanEmail,
-        role: 'patient',
-        phone: '9871023456',
-        uhid: `BSH-2026-${Math.floor(10000 + Math.random() * 90000)}`
-      };
+        otp: enteredOtp.trim(),
+        type: 'registered_patient'
+      });
 
-      setAuthSession(patientUser, 'bsh_jwt_' + Date.now());
+      if (res.data?.success) {
+        const patientUser = res.data.user || {
+          name: cleanEmail.split('@')[0],
+          email: cleanEmail,
+          role: 'patient',
+          uhid: 'BSH-2026-001'
+        };
+        const authToken = res.data.token || ('bsh_jwt_' + Date.now());
 
-      toast.success(`Welcome back, ${patientName}! Redirecting to appointment booking...`);
+        setAuthSession(patientUser, authToken);
 
-      const returnUrl = `/bookappointment${queryString}`;
-      setTimeout(() => {
-        navigate(returnUrl, { replace: true });
-      }, 700);
-    }, 400);
+        toast.success(`Welcome back, ${patientUser.name}! Connecting you to hospital appointment portal...`);
+
+        const returnUrl = `/bookappointment${queryString}`;
+        setTimeout(() => {
+          navigate(returnUrl, { replace: true });
+        }, 700);
+      }
+    } catch (err) {
+      console.error('Verify OTP error:', err);
+      toast.error(err.response?.data?.message || 'Invalid or expired OTP. Please try again.');
+    } finally {
+      setVerifyingOtp(false);
+    }
   };
 
   return (

@@ -209,7 +209,7 @@ export const NewPatientRegisterPage = () => {
   }, [currentStep, otpTimer]);
 
   // Handle Step 1 Submit -> Generate & Send Email OTP
-  const handleStep1Submit = (e) => {
+  const handleStep1Submit = async (e) => {
     e.preventDefault();
     if (!firstName.trim() || !lastName.trim()) {
       toast.error('First name and last name are required.');
@@ -228,7 +228,8 @@ export const NewPatientRegisterPage = () => {
       toast.error('Please enter a valid 10-digit mobile number.');
       return;
     }
-    if (!email.trim() || !email.includes('@')) {
+    const cleanEmail = email.trim().toLowerCase();
+    if (!cleanEmail || !cleanEmail.includes('@')) {
       toast.error('Please enter a valid email address for Email OTP verification.');
       return;
     }
@@ -241,39 +242,82 @@ export const NewPatientRegisterPage = () => {
       return;
     }
 
-    // Generate 6-digit OTP
-    const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
-    setGeneratedOtp(newOtp);
-    setOtpInput('');
-    setOtpTimer(60);
-    setCurrentStep(2);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    toast.success(`Verification OTP sent to ${email.trim()}`);
+    try {
+      const fullName = `${title} ${firstName.trim()} ${lastName.trim()}`;
+      const res = await api.post('/auth/send-otp', {
+        email: cleanEmail,
+        type: 'new_patient',
+        name: fullName
+      });
+
+      if (res.data?.success) {
+        if (res.data.demoOtp) {
+          setGeneratedOtp(res.data.demoOtp);
+        }
+        setOtpInput('');
+        setOtpTimer(60);
+        setCurrentStep(2);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        toast.success(`Verification OTP sent to ${cleanEmail}`);
+      }
+    } catch (err) {
+      console.error('Send OTP error:', err);
+      toast.error(err.response?.data?.message || 'Failed to send OTP to email. Please try again.');
+    }
   };
 
-  const handleResendOtp = () => {
-    const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
-    setGeneratedOtp(newOtp);
-    setOtpTimer(60);
-    toast.success(`New OTP sent to ${email.trim()}`);
+  const handleResendOtp = async () => {
+    const cleanEmail = email.trim().toLowerCase();
+    try {
+      const fullName = `${title} ${firstName.trim()} ${lastName.trim()}`;
+      const res = await api.post('/auth/send-otp', {
+        email: cleanEmail,
+        type: 'new_patient',
+        name: fullName
+      });
+      if (res.data?.success) {
+        if (res.data.demoOtp) {
+          setGeneratedOtp(res.data.demoOtp);
+        }
+        setOtpTimer(60);
+        toast.success(`New OTP sent to ${cleanEmail}`);
+      }
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to resend OTP.');
+    }
   };
 
   // Handle Step 2: Verify Email OTP & Finalize Registration
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
-    if (!otpInput.trim() || otpInput.trim() !== generatedOtp) {
-      toast.error('Invalid OTP. Please enter the 6-digit code shown below.');
+    if (!otpInput.trim() || otpInput.trim().length !== 6) {
+      toast.error('Please enter the 6-digit code received on your email.');
       return;
     }
 
     setVerifyingOtp(true);
     try {
+      const cleanEmail = email.trim().toLowerCase();
+
+      // Verify OTP with backend
+      const verifyRes = await api.post('/auth/verify-otp', {
+        email: cleanEmail,
+        otp: otpInput.trim(),
+        type: 'new_patient'
+      });
+
+      if (!verifyRes.data?.success) {
+        toast.error(verifyRes.data?.message || 'Invalid or expired OTP.');
+        setVerifyingOtp(false);
+        return;
+      }
+
       const fullName = `${title} ${firstName.trim()} ${lastName.trim()}`;
       const uhidCode = `BSH-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
 
       const patientUser = {
         name: fullName,
-        email: email.trim().toLowerCase(),
+        email: cleanEmail,
         phone: mobile.trim(),
         uhid: uhidCode,
         role: 'patient',
@@ -298,7 +342,7 @@ export const NewPatientRegisterPage = () => {
       // Establish authenticated session for this patient
       setAuthSession(patientUser, authToken);
 
-      toast.success(`Registration verified! Welcome, ${fullName}. Redirecting to book your slot...`);
+      toast.success(`Registration verified! Welcome, ${fullName}. Connecting to appointment booking...`);
 
       // Redirect directly back to /bookappointment preserving parameters
       const returnUrl = `/bookappointment?doctor=${encodeURIComponent(doctorId)}&department=${encodeURIComponent(departmentId)}&date=${encodeURIComponent(dateParam)}&mode=${encodeURIComponent(modeParam)}&slot=${encodeURIComponent(slotParam)}`;
@@ -307,7 +351,7 @@ export const NewPatientRegisterPage = () => {
       }, 700);
     } catch (err) {
       console.error('Registration error:', err);
-      toast.error('Unable to finalize registration. Please try again.');
+      toast.error(err.response?.data?.message || 'Unable to finalize registration. Please check the OTP and try again.');
     } finally {
       setVerifyingOtp(false);
     }
