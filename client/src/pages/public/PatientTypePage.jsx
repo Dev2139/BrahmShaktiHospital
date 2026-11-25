@@ -273,43 +273,51 @@ export const PatientTypePage = () => {
         )}
       </header>
 
-      {/* -------------------- 2. MAIN CONTAINER WITH EXACT BACKGROUND WAVES & REAL STETHOSCOPE IMAGE -------------------- */}
+      {/* -------------------- 2. MAIN CONTAINER WITH FULL BACKGROUND IMAGE & BRAND WAVES -------------------- */}
       <main className="relative flex-1 flex items-center justify-center py-8 sm:py-12 lg:py-16 px-4 overflow-hidden">
         
-        {/* Real photographic stethoscope image and soft medical gradient waves covering whole background */}
+        {/* Full Viewport High-Res Medical Stethoscope Background Image with Cyan/Ocean Wave Overlay */}
         <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
-          {/* Base gradient tint matching extracted palette */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#E9F8FA] via-[#D8F3F7] to-[#C8EFF5]" />
+          {/* Base tint */}
+          <div className="absolute inset-0 bg-[#EBF8FA]" />
 
-          {/* Real Clean Photographic Medical Stethoscope positioned on right side with soft blend */}
+          {/* New Photographic Medical Stethoscope Image spanning background */}
           <div
-            className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 opacity-70 mix-blend-multiply bg-right-top bg-no-repeat bg-contain pointer-events-none"
+            className="absolute inset-0 w-full h-full bg-cover bg-center sm:bg-right opacity-35 mix-blend-multiply filter contrast-105"
             style={{
-              backgroundImage: 'url(/stethoscope-clean.jpg)'
+              backgroundImage: 'url(/hospital-stethoscope-bg.jpg)'
             }}
           />
 
-          {/* Smooth fluid vector medical wave layers */}
+          {/* Smooth fluid vector medical wave layers in brand 3-color wave palette */}
           <svg
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-85"
             viewBox="0 0 1440 800"
             preserveAspectRatio="none"
             fill="none"
           >
             <defs>
+              <linearGradient id="fullBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
+                <stop offset="45%" stopColor="#E9F8FA" stopOpacity="0.65" />
+                <stop offset="100%" stopColor="#CEF5FA" stopOpacity="0.3" />
+              </linearGradient>
               <linearGradient id="ptWave1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0.75" />
-                <stop offset="100%" stopColor="#A5ECF5" stopOpacity="0.35" />
+                <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#A5ECF5" stopOpacity="0.4" />
               </linearGradient>
               <linearGradient id="ptWave2" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#0DAFD5" stopOpacity="0.22" />
-                <stop offset="100%" stopColor="#018AAE" stopOpacity="0.28" />
+                <stop offset="100%" stopColor="#018AAE" stopOpacity="0.26" />
               </linearGradient>
               <linearGradient id="ptWave3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#018AAE" stopOpacity="0.16" />
-                <stop offset="100%" stopColor="#0B2545" stopOpacity="0.22" />
+                <stop offset="0%" stopColor="#018AAE" stopOpacity="0.14" />
+                <stop offset="100%" stopColor="#0B2545" stopOpacity="0.2" />
               </linearGradient>
             </defs>
+
+            {/* Ambient soft wash so cards pop cleanly */}
+            <rect width="1440" height="800" fill="url(#fullBgGrad)" />
 
             {/* Back wave */}
             <path
