@@ -204,7 +204,7 @@ export const SpecialtiesGrid = ({ onSelectSpecialty, onExploreAllSpecialties }) 
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#006699] bg-[#E8F4FA] px-2.5 py-0.5 rounded-full">
                       {tech.category}
                     </span>
-                    <Activity className="w-4 h-4 text-teal-600" />
+                    <Activity className="w-4 h-4 text-[#018AAE]" />
                   </div>
 
                   <h3 className="font-display font-bold text-base text-[#0C2340] group-hover:text-[#006699] transition-colors mb-2">

@@ -82,25 +82,25 @@ export const LabResultsPage = () => {
     <div className="min-h-screen bg-medical-coolgray">
       {/* Page Header - Matches Original Medical Palette */}
       <div className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 sm:px-6 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0A7A74]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#018AAE]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-5xl mx-auto relative z-10">
-          <div className="flex items-center gap-2 text-[#0A7A74] text-xs font-bold uppercase tracking-widest mb-3">
+          <div className="flex items-center gap-2 text-[#018AAE] text-xs font-bold uppercase tracking-widest mb-3">
             <FlaskConical className="w-4 h-4" />
             <span>NABL Accredited Central Diagnostic Laboratory</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Lab Test Results</h1>
           <p className="mt-3 text-slate-600 text-sm sm:text-base max-w-2xl leading-relaxed">
-            Retrieve your diagnostic reports securely. Enter the <span className="text-[#0A7A74] font-bold">UHID</span> printed on
-            your hospital file along with the <span className="text-[#0A7A74] font-bold">registered mobile number</span> to
+            Retrieve your diagnostic reports securely. Enter the <span className="text-[#018AAE] font-bold">UHID</span> printed on
+            your hospital file along with the <span className="text-[#018AAE] font-bold">registered mobile number</span> to
             view and print all lab investigations ordered by your treating doctor.
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-slate-600">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-[#0A7A74]" /> Reports released only after doctor digital verification
+              <ShieldCheck className="w-4 h-4 text-[#018AAE]" /> Reports released only after doctor digital verification
             </span>
             <span className="flex items-center gap-1.5">
-              <PhoneCall className="w-4 h-4 text-[#0A7A74]" /> Lab Helpdesk:
-              <a href="tel:7840089703" className="text-[#0A7A74] font-bold hover:underline">7840089703</a>
+              <PhoneCall className="w-4 h-4 text-[#018AAE]" /> Lab Helpdesk:
+              <a href="tel:7840089703" className="text-[#018AAE] font-bold hover:underline">7840089703</a>
             </span>
           </div>
         </div>
@@ -124,7 +124,7 @@ export const LabResultsPage = () => {
             href="https://itd.oncquest.net/oncquest/design/onlinelab"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-teal-900 hover:bg-teal-50 font-bold text-xs sm:text-sm whitespace-nowrap text-center transition-all shadow-md active:scale-95"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-[#013B4A] hover:bg-[#F0FBFC] font-bold text-xs sm:text-sm whitespace-nowrap text-center transition-all shadow-md active:scale-95"
           >
             Open Oncquest Portal &rarr;
           </a>

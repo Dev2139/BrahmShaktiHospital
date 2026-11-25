@@ -37,8 +37,8 @@ const MedicalStethoscopeArtwork = ({ className = 'w-full max-h-64' }) => (
     <defs>
       <linearGradient id="metallicTube" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#1E293B" />
-        <stop offset="45%" stopColor="#0A7A74" />
-        <stop offset="100%" stopColor="#08635e" />
+        <stop offset="45%" stopColor="#018AAE" />
+        <stop offset="100%" stopColor="#007595" />
       </linearGradient>
       <linearGradient id="chromeMetal" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#FFFFFF" />
@@ -50,7 +50,7 @@ const MedicalStethoscopeArtwork = ({ className = 'w-full max-h-64' }) => (
       <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#F43F5E" />
         <stop offset="50%" stopColor="#E11D48" />
-        <stop offset="100%" stopColor="#0A7A74" />
+        <stop offset="100%" stopColor="#018AAE" />
       </linearGradient>
       <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
         <feGaussianBlur stdDeviation="5" result="blur" />
@@ -59,8 +59,8 @@ const MedicalStethoscopeArtwork = ({ className = 'w-full max-h-64' }) => (
     </defs>
 
     {/* Soft subtle radial ambient glow */}
-    <circle cx="260" cy="165" r="120" fill="#0A7A74" fillOpacity="0.05" />
-    <circle cx="260" cy="165" r="80" fill="#0A7A74" fillOpacity="0.07" />
+    <circle cx="260" cy="165" r="120" fill="#018AAE" fillOpacity="0.05" />
+    <circle cx="260" cy="165" r="80" fill="#018AAE" fillOpacity="0.07" />
 
     {/* Glowing Cardiology Heart Graphic */}
     <g transform="translate(225, 90) scale(0.95)" filter="url(#softGlow)">
@@ -80,13 +80,13 @@ const MedicalStethoscopeArtwork = ({ className = 'w-full max-h-64' }) => (
     {/* Dynamic ECG Heartbeat Pulse Wave flowing across */}
     <path
       d="M30 175 L160 175 L175 155 L188 205 L202 130 L218 215 L230 165 L245 182 L260 175 L430 175"
-      stroke="#0A7A74"
+      stroke="#018AAE"
       strokeWidth="3.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       opacity="0.75"
     />
-    <circle cx="202" cy="130" r="3.5" fill="#0A7A74" />
+    <circle cx="202" cy="130" r="3.5" fill="#018AAE" />
     <circle cx="218" cy="215" r="3" fill="#E11D48" />
 
     {/* Stethoscope Ear Tubes (Binaural Chrome) */}
@@ -130,19 +130,19 @@ const MedicalStethoscopeArtwork = ({ className = 'w-full max-h-64' }) => (
       <circle cx="20" cy="20" r="27" fill="url(#chromeMetal)" stroke="#94A3B8" strokeWidth="2" />
       <circle cx="20" cy="20" r="22" fill="#0B2545" />
       <circle cx="20" cy="20" r="19" fill="url(#chromeMetal)" opacity="0.4" />
-      <circle cx="20" cy="20" r="15" fill="#0A7A74" />
+      <circle cx="20" cy="20" r="15" fill="#018AAE" />
       <circle cx="20" cy="20" r="6.5" fill="url(#chromeMetal)" />
       <ellipse cx="15" cy="14" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.45" transform="rotate(-30 15 14)" />
     </g>
 
     {/* Subtle floating medical crosses */}
     <g opacity="0.3" transform="translate(45, 220)">
-      <rect x="5" y="0" width="3.5" height="14" rx="1.75" fill="#0A7A74" />
-      <rect x="0" y="5" width="14" height="3.5" rx="1.75" fill="#0A7A74" />
+      <rect x="5" y="0" width="3.5" height="14" rx="1.75" fill="#018AAE" />
+      <rect x="0" y="5" width="14" height="3.5" rx="1.75" fill="#018AAE" />
     </g>
     <g opacity="0.22" transform="translate(385, 65)">
-      <rect x="6" y="0" width="3.5" height="15" rx="1.75" fill="#0A7A74" />
-      <rect x="0" y="6" width="15" height="3.5" rx="1.75" fill="#0A7A74" />
+      <rect x="6" y="0" width="3.5" height="15" rx="1.75" fill="#018AAE" />
+      <rect x="0" y="6" width="15" height="3.5" rx="1.75" fill="#018AAE" />
     </g>
   </svg>
 );
@@ -157,20 +157,20 @@ const RegisteredPatientIllustration = ({ className = 'w-auto h-24' }) => (
   >
     <defs>
       <linearGradient id="regShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#0D9488" />
-        <stop offset="100%" stopColor="#0A7A74" />
+        <stop offset="0%" stopColor="#0DAFD5" />
+        <stop offset="100%" stopColor="#018AAE" />
       </linearGradient>
       <linearGradient id="regLeafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#99F6E4" />
         <stop offset="100%" stopColor="#5EEAD4" />
       </linearGradient>
       <filter id="regCardShadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#0A7A74" floodOpacity="0.12" />
+        <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#018AAE" floodOpacity="0.12" />
       </filter>
     </defs>
 
     {/* Background Soft Organic Leaves & Glow */}
-    <ellipse cx="160" cy="115" rx="90" ry="75" fill="#E6FFFA" />
+    <ellipse cx="160" cy="115" rx="90" ry="75" fill="#CEF5FA" />
 
     {/* Left Leaf Accent */}
     <path
@@ -188,16 +188,16 @@ const RegisteredPatientIllustration = ({ className = 'w-auto h-24' }) => (
 
     {/* Patient ID Card Base */}
     <g filter="url(#regCardShadow)">
-      <rect x="95" y="38" width="130" height="135" rx="16" fill="#FFFFFF" stroke="#0A7A74" strokeWidth="2" />
+      <rect x="95" y="38" width="130" height="135" rx="16" fill="#FFFFFF" stroke="#018AAE" strokeWidth="2" />
       {/* Top Header Strip */}
-      <path d="M96 54 C96 45 103 39 112 39 L208 39 C217 39 224 45 224 54 L224 68 L96 68 Z" fill="#0A7A74" />
+      <path d="M96 54 C96 45 103 39 112 39 L208 39 C217 39 224 45 224 54 L224 68 L96 68 Z" fill="#018AAE" />
       <circle cx="115" cy="53.5" r="3.5" fill="#FFFFFF" />
       <rect x="126" y="51.5" width="55" height="4" rx="2" fill="#FFFFFF" />
 
       {/* User Silhouette Avatar */}
-      <circle cx="130" cy="98" r="14" fill="#E6FFFA" stroke="#0A7A74" strokeWidth="1.5" />
-      <circle cx="130" cy="94" r="5" fill="#0A7A74" />
-      <path d="M121 106 C121 102 125 100 130 100 C135 100 139 102 139 106 Z" fill="#0A7A74" />
+      <circle cx="130" cy="98" r="14" fill="#CEF5FA" stroke="#018AAE" strokeWidth="1.5" />
+      <circle cx="130" cy="94" r="5" fill="#018AAE" />
+      <path d="M121 106 C121 102 125 100 130 100 C135 100 139 102 139 106 Z" fill="#018AAE" />
 
       {/* Profile Lines / Info Lines */}
       <rect x="154" y="90" width="56" height="4.5" rx="2" fill="#94A3B8" />
@@ -367,7 +367,7 @@ export const PatientTypePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F0F8F9] text-slate-800 flex flex-col font-sans selection:bg-[#0A7A74] selection:text-white">
+    <div className="min-h-screen bg-[#F0FBFC] text-slate-800 flex flex-col font-sans selection:bg-[#018AAE] selection:text-white">
       {/* -------------------- 1. NAVBAR (IDENTICAL TO BOOK APPOINTMENT PAGE) -------------------- */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
         <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
@@ -383,7 +383,7 @@ export const PatientTypePage = () => {
                 <div className="text-[11px] font-black tracking-wider text-[#0B2545] uppercase leading-tight">
                   OPD APPOINTMENT PORTAL
                 </div>
-                <div className="text-[10px] font-medium text-[#0A7A74] italic leading-tight">
+                <div className="text-[10px] font-medium text-[#018AAE] italic leading-tight">
                   Trust of Generations
                 </div>
               </div>
@@ -394,38 +394,38 @@ export const PatientTypePage = () => {
           <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-xs sm:text-sm font-bold text-slate-800">
             <Link
               to="/"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Back Home
             </Link>
             <button
               type="button"
               onClick={() => setRefundModalOpen(true)}
-              className="hover:text-[#0A7A74] transition-colors cursor-pointer font-bold"
+              className="hover:text-[#018AAE] transition-colors cursor-pointer font-bold"
             >
               Refund Policy
             </button>
             <Link
               to="/privacy-policy"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-of-use"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Terms &amp; Conditions
             </Link>
             <Link
               to="/contact"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Contact Us
             </Link>
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="text-[#0A7A74] font-black hover:underline transition-colors"
+              className="text-[#018AAE] font-black hover:underline transition-colors"
             >
               Patient Portal
             </Link>
@@ -435,7 +435,7 @@ export const PatientTypePage = () => {
           <div className="md:hidden flex items-center gap-2">
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="text-[#0A7A74] text-xs font-black px-2 py-1"
+              className="text-[#018AAE] text-xs font-black px-2 py-1"
             >
               Patient Portal
             </Link>
@@ -456,7 +456,7 @@ export const PatientTypePage = () => {
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Back Home
             </Link>
@@ -466,35 +466,35 @@ export const PatientTypePage = () => {
                 setMobileMenuOpen(false);
                 setRefundModalOpen(true);
               }}
-              className="block w-full text-left py-1 hover:text-[#0A7A74]"
+              className="block w-full text-left py-1 hover:text-[#018AAE]"
             >
               Refund Policy
             </button>
             <Link
               to="/privacy-policy"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-of-use"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Terms &amp; Conditions
             </Link>
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Contact Us
             </Link>
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 text-[#0A7A74] font-black"
+              className="block py-1 text-[#018AAE] font-black"
             >
               Patient Portal
             </Link>
@@ -506,12 +506,12 @@ export const PatientTypePage = () => {
       <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         {/* Breadcrumb */}
         <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
-          <Link to="/" className="inline-flex items-center gap-1 hover:text-[#0A7A74] transition-colors">
-            <Home className="w-3 h-3 text-[#0A7A74]" />
+          <Link to="/" className="inline-flex items-center gap-1 hover:text-[#018AAE] transition-colors">
+            <Home className="w-3 h-3 text-[#018AAE]" />
             <span>Home</span>
           </Link>
           <span>/</span>
-          <Link to={`/bookappointment${queryString}`} className="hover:text-[#0A7A74] transition-colors">
+          <Link to={`/bookappointment${queryString}`} className="hover:text-[#018AAE] transition-colors">
             Book Appointment
           </Link>
           <span>/</span>
@@ -523,12 +523,12 @@ export const PatientTypePage = () => {
         {/* Dynamic Stepper Bar (Active in registered OTP view) */}
         {viewMode === 'registered-otp' ? (
           <div className="flex items-center gap-3 text-xs">
-            <div className={`flex items-center gap-1.5 font-bold ${!otpSent ? 'text-[#0A7A74]' : 'text-slate-400'}`}>
+            <div className={`flex items-center gap-1.5 font-bold ${!otpSent ? 'text-[#018AAE]' : 'text-slate-400'}`}>
               <span
                 className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
                   otpSent
                     ? 'bg-emerald-600 text-white'
-                    : 'bg-[#0A7A74] text-white'
+                    : 'bg-[#018AAE] text-white'
                 }`}
               >
                 {otpSent ? '✓' : '1'}
@@ -538,11 +538,11 @@ export const PatientTypePage = () => {
 
             <div className="w-6 sm:w-10 h-0.5 bg-slate-300"></div>
 
-            <div className={`flex items-center gap-1.5 font-bold ${otpSent ? 'text-[#0A7A74]' : 'text-slate-400'}`}>
+            <div className={`flex items-center gap-1.5 font-bold ${otpSent ? 'text-[#018AAE]' : 'text-slate-400'}`}>
               <span
                 className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
                   otpSent
-                    ? 'bg-[#0A7A74] text-white ring-2 ring-[#0A7A74]/20'
+                    ? 'bg-[#018AAE] text-white ring-2 ring-[#018AAE]/20'
                     : 'bg-slate-200 text-slate-500'
                 }`}
               >
@@ -560,7 +560,7 @@ export const PatientTypePage = () => {
 
       {/* Page Title & Subtitle */}
       <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-3">
-        <h1 className="text-xl sm:text-2xl font-black text-[#0A7A74] tracking-tight leading-tight">
+        <h1 className="text-xl sm:text-2xl font-black text-[#018AAE] tracking-tight leading-tight">
           {viewMode === 'registered-otp' ? 'Sign In as Registered Patient' : 'Book an Appointment'}
         </h1>
         <p className="text-[11px] sm:text-xs font-medium text-slate-600">
@@ -590,8 +590,8 @@ export const PatientTypePage = () => {
                 {/* The 2 Patient Classification Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   {/* Card 1: Registered Patient */}
-                  <div className="p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 bg-white group">
-                    <div className="w-14 h-14 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 group-hover:scale-105 transition-transform">
+                  <div className="p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:border-[#018AAE] hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 bg-white group">
+                    <div className="w-14 h-14 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] group-hover:scale-105 transition-transform">
                       <User className="w-7 h-7" />
                     </div>
                     <div className="space-y-1.5 flex-1 flex flex-col justify-center">
@@ -610,7 +610,7 @@ export const PatientTypePage = () => {
                         setEnteredOtp('');
                         setViewMode('registered-otp');
                       }}
-                      className="w-full py-2.5 px-4 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98]"
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98]"
                     >
                       <span>Registered Patient</span>
                       <ArrowRight className="w-4 h-4" />
@@ -618,8 +618,8 @@ export const PatientTypePage = () => {
                   </div>
 
                   {/* Card 2: New Patient */}
-                  <div className="p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 bg-white group">
-                    <div className="w-14 h-14 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 group-hover:scale-105 transition-transform">
+                  <div className="p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:border-[#018AAE] hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4 bg-white group">
+                    <div className="w-14 h-14 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] group-hover:scale-105 transition-transform">
                       <UserPlus className="w-7 h-7" />
                     </div>
                     <div className="space-y-1.5 flex-1 flex flex-col justify-center">
@@ -633,7 +633,7 @@ export const PatientTypePage = () => {
                     <button
                       type="button"
                       onClick={() => navigate(`/bookappointment/new-patient${queryString}`)}
-                      className="w-full py-2.5 px-4 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98]"
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98]"
                     >
                       <span>New Patient</span>
                       <ArrowRight className="w-4 h-4" />
@@ -644,25 +644,25 @@ export const PatientTypePage = () => {
                 {/* TABLET / MOBILE VIEW ONLY: 3 Security Checkmarks rendered below cards */}
                 <div className="lg:hidden pt-4 border-t border-slate-100 space-y-2.5 text-xs text-slate-700">
                   <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center shrink-0 border border-teal-200">
+                    <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center shrink-0 border border-[#B6EEF6]">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </div>
                     <span className="font-semibold">Your information is secure and protected</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center shrink-0 border border-teal-200">
+                    <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center shrink-0 border border-[#B6EEF6]">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </div>
                     <span className="font-semibold">Quick and easy appointment booking</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center shrink-0 border border-teal-200">
+                    <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center shrink-0 border border-[#B6EEF6]">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </div>
                     <button
                       type="button"
                       onClick={() => setSecurityModalOpen(true)}
-                      className="font-bold text-[#0A7A74] hover:underline"
+                      className="font-bold text-[#018AAE] hover:underline"
                     >
                       Security &amp; Fraud Prevention Notes
                     </button>
@@ -673,7 +673,7 @@ export const PatientTypePage = () => {
                 <div className="pt-1 text-center sm:text-left">
                   <Link
                     to={`/bookappointment${queryString}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#0A7A74] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#018AAE] transition-colors"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" />
                     <span>Back to Slot &amp; Doctor Selection</span>
@@ -689,7 +689,7 @@ export const PatientTypePage = () => {
 
                 <div className="space-y-3 pt-3 z-10 text-xs text-slate-800">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-5 h-5 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 shadow-2xs">
+                    <div className="w-5 h-5 rounded-full bg-[#018AAE] text-white flex items-center justify-center shrink-0 shadow-2xs">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </div>
                     <span className="font-bold text-slate-800">
@@ -698,7 +698,7 @@ export const PatientTypePage = () => {
                   </div>
 
                   <div className="flex items-center gap-2.5">
-                    <div className="w-5 h-5 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 shadow-2xs">
+                    <div className="w-5 h-5 rounded-full bg-[#018AAE] text-white flex items-center justify-center shrink-0 shadow-2xs">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </div>
                     <span className="font-bold text-slate-800">
@@ -707,13 +707,13 @@ export const PatientTypePage = () => {
                   </div>
 
                   <div className="flex items-center gap-2.5">
-                    <div className="w-5 h-5 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 shadow-2xs">
+                    <div className="w-5 h-5 rounded-full bg-[#018AAE] text-white flex items-center justify-center shrink-0 shadow-2xs">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </div>
                     <button
                       type="button"
                       onClick={() => setSecurityModalOpen(true)}
-                      className="font-bold text-[#0A7A74] hover:underline cursor-pointer text-left"
+                      className="font-bold text-[#018AAE] hover:underline cursor-pointer text-left"
                     >
                       Security &amp; Fraud Prevention Notes
                     </button>
@@ -748,7 +748,7 @@ export const PatientTypePage = () => {
                 <div className="relative flex items-start gap-3">
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
-                      !otpSent ? 'bg-[#0A7A74]' : 'bg-emerald-600'
+                      !otpSent ? 'bg-[#018AAE]' : 'bg-emerald-600'
                     }`}
                   >
                     {otpSent ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : <Mail className="w-3.5 h-3.5" />}
@@ -767,7 +767,7 @@ export const PatientTypePage = () => {
                 <div className="relative flex items-start gap-3">
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
-                      otpSent ? 'bg-[#0A7A74]' : 'bg-slate-300'
+                      otpSent ? 'bg-[#018AAE]' : 'bg-slate-300'
                     }`}
                   >
                     <KeyRound className="w-3.5 h-3.5" />
@@ -799,9 +799,9 @@ export const PatientTypePage = () => {
               </div>
 
               {/* Highlight Privacy Card */}
-              <div className="p-3 rounded-xl bg-teal-50/70 border border-teal-200/80 space-y-0.5 text-slate-800">
-                <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#0A7A74]">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+              <div className="p-3 rounded-xl bg-[#F0FBFC]/70 border border-[#B6EEF6]/80 space-y-0.5 text-slate-800">
+                <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#018AAE]">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
                   <span>Fast, secure &amp; 100% free</span>
                 </div>
                 <p className="text-[10px] text-slate-600 pl-5 leading-snug">
@@ -827,7 +827,7 @@ export const PatientTypePage = () => {
                       <button
                         type="button"
                         onClick={() => setViewMode('choose')}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#0A7A74] transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#018AAE] transition-colors cursor-pointer"
                       >
                         <ArrowLeft className="w-3.5 h-3.5" />
                         <span>Back to Patient Category</span>
@@ -839,10 +839,10 @@ export const PatientTypePage = () => {
                       {/* Section Heading */}
                       <div className="space-y-2">
                         <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
-                          <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                          <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
                             <Mail className="w-3 h-3" />
                           </div>
-                          <h3 className="text-[11px] font-black tracking-wider text-[#0A7A74] uppercase">
+                          <h3 className="text-[11px] font-black tracking-wider text-[#018AAE] uppercase">
                             REGISTERED EMAIL IDENTIFICATION
                           </h3>
                         </div>
@@ -858,7 +858,7 @@ export const PatientTypePage = () => {
                             value={registeredEmail}
                             onChange={(e) => setRegisteredEmail(e.target.value)}
                             placeholder="e.g. patient@brahmshaktihospital.com"
-                            className="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                            className="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                           />
                           <p className="text-[10px] text-slate-500">
                             Enter the email address you used during your hospital registration or previous OPD visits.
@@ -872,7 +872,7 @@ export const PatientTypePage = () => {
                         <button
                           type="button"
                           onClick={() => setRegisteredEmail('patient@brahmshaktihospital.com')}
-                          className="text-[#0A7A74] font-bold hover:underline cursor-pointer text-left sm:text-right"
+                          className="text-[#018AAE] font-bold hover:underline cursor-pointer text-left sm:text-right"
                         >
                           Use patient@brahmshaktihospital.com
                         </button>
@@ -903,7 +903,7 @@ export const PatientTypePage = () => {
                         <button
                           type="button"
                           onClick={() => setViewMode('choose')}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#0A7A74] transition-colors order-2 sm:order-1"
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#018AAE] transition-colors order-2 sm:order-1"
                         >
                           <Clock className="w-3.5 h-3.5" />
                           <span>Back to Patient Category</span>
@@ -912,7 +912,7 @@ export const PatientTypePage = () => {
                         <button
                           type="submit"
                           disabled={sendingOtp}
-                          className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:opacity-50 text-white text-xs sm:text-sm font-black transition-all shadow-sm hover:shadow flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] order-1 sm:order-2"
+                          className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] disabled:opacity-50 text-white text-xs sm:text-sm font-black transition-all shadow-sm hover:shadow flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] order-1 sm:order-2"
                         >
                           {sendingOtp ? (
                             <>
@@ -937,7 +937,7 @@ export const PatientTypePage = () => {
                       <button
                         type="button"
                         onClick={() => setOtpSent(false)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#0A7A74] transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#018AAE] transition-colors cursor-pointer"
                       >
                         <ArrowLeft className="w-3.5 h-3.5" />
                         <span>Change Email Address</span>
@@ -946,7 +946,7 @@ export const PatientTypePage = () => {
                     </div>
 
                     <div className="text-center space-y-1.5 pt-1">
-                      <div className="w-12 h-12 mx-auto rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200">
+                      <div className="w-12 h-12 mx-auto rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6]">
                         <Mail className="w-6 h-6" />
                       </div>
                       <h3 className="text-lg sm:text-xl font-black text-slate-900">
@@ -954,17 +954,17 @@ export const PatientTypePage = () => {
                       </h3>
                       <p className="text-xs text-slate-600 max-w-md mx-auto">
                         We have dispatched a 6-digit OTP code to:{' '}
-                        <strong className="text-[#0A7A74] font-bold">{registeredEmail}</strong>
+                        <strong className="text-[#018AAE] font-bold">{registeredEmail}</strong>
                       </p>
                     </div>
 
                     {/* Demonstration OTP Helper Banner */}
-                    <div className="p-2.5 bg-teal-50 border border-teal-200 rounded-xl text-xs text-teal-900 flex items-center justify-between max-w-md mx-auto">
+                    <div className="p-2.5 bg-[#F0FBFC] border border-[#B6EEF6] rounded-xl text-xs text-[#013B4A] flex items-center justify-between max-w-md mx-auto">
                       <div className="flex items-center gap-1.5">
-                        <KeyRound className="w-4 h-4 text-[#0A7A74]" />
+                        <KeyRound className="w-4 h-4 text-[#018AAE]" />
                         <span>Demo Verification Code:</span>
                       </div>
-                      <span className="font-mono font-black text-sm text-[#0A7A74] bg-white px-2 py-0.5 rounded border border-teal-300">
+                      <span className="font-mono font-black text-sm text-[#018AAE] bg-white px-2 py-0.5 rounded border border-[#73E0EF]">
                         {registeredOtp}
                       </span>
                     </div>
@@ -981,7 +981,7 @@ export const PatientTypePage = () => {
                           value={enteredOtp}
                           onChange={(e) => setEnteredOtp(e.target.value.replace(/\D/g, ''))}
                           placeholder="• • • • • •"
-                          className="w-48 mx-auto text-center font-mono text-2xl tracking-[0.35em] px-3 py-2 rounded-xl border-2 border-slate-300 focus:border-[#0A7A74] focus:outline-hidden shadow-2xs"
+                          className="w-48 mx-auto text-center font-mono text-2xl tracking-[0.35em] px-3 py-2 rounded-xl border-2 border-slate-300 focus:border-[#018AAE] focus:outline-hidden shadow-2xs"
                         />
                       </div>
 
@@ -994,7 +994,7 @@ export const PatientTypePage = () => {
                           <button
                             type="button"
                             onClick={handleResendRegisteredOtp}
-                            className="text-[#0A7A74] font-bold hover:underline cursor-pointer"
+                            className="text-[#018AAE] font-bold hover:underline cursor-pointer"
                           >
                             Resend Email OTP
                           </button>
@@ -1004,7 +1004,7 @@ export const PatientTypePage = () => {
                       <button
                         type="submit"
                         disabled={verifyingOtp || enteredOtp.length < 6}
-                        className="w-full py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black transition-all shadow flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black transition-all shadow flex items-center justify-center gap-2 cursor-pointer"
                       >
                         {verifyingOtp ? (
                           <>
@@ -1032,17 +1032,17 @@ export const PatientTypePage = () => {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-600">
           <div className="font-semibold">&copy; 2026 Brahm Shakti Hospital.</div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-teal-300 bg-teal-50 text-[#0A7A74] font-bold text-xs">
-            <ShieldCheck className="w-4 h-4 text-[#0A7A74]" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#73E0EF] bg-[#F0FBFC] text-[#018AAE] font-bold text-xs">
+            <ShieldCheck className="w-4 h-4 text-[#018AAE]" />
             <span>NABH &amp; NABL Accredited</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-xs font-medium">
             <a
               href="mailto:helpdesk@brahmshaktihospital.com"
-              className="flex items-center gap-1.5 hover:text-[#0A7A74] transition-colors"
+              className="flex items-center gap-1.5 hover:text-[#018AAE] transition-colors"
             >
-              <Mail className="w-3.5 h-3.5 text-[#0A7A74]" />
+              <Mail className="w-3.5 h-3.5 text-[#018AAE]" />
               <span>helpdesk@brahmshaktihospital.com</span>
             </a>
             <a
@@ -1061,7 +1061,7 @@ export const PatientTypePage = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 border border-slate-200 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-              <div className="flex items-center gap-2 text-[#0A7A74]">
+              <div className="flex items-center gap-2 text-[#018AAE]">
                 <AlertCircle className="w-5 h-5" />
                 <h3 className="font-black text-base text-slate-800">OPD Refund Policy</h3>
               </div>
@@ -1084,7 +1084,7 @@ export const PatientTypePage = () => {
             <button
               type="button"
               onClick={() => setRefundModalOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold cursor-pointer"
+              className="w-full py-2.5 rounded-xl bg-[#018AAE] text-white text-xs font-bold cursor-pointer"
             >
               I Understand
             </button>
@@ -1097,7 +1097,7 @@ export const PatientTypePage = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 border border-slate-200 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-              <div className="flex items-center gap-2 text-[#0A7A74]">
+              <div className="flex items-center gap-2 text-[#018AAE]">
                 <ShieldCheck className="w-5 h-5" />
                 <h3 className="font-black text-base text-slate-800">Security &amp; Fraud Prevention</h3>
               </div>
@@ -1123,7 +1123,7 @@ export const PatientTypePage = () => {
             <button
               type="button"
               onClick={() => setSecurityModalOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold cursor-pointer"
+              className="w-full py-2.5 rounded-xl bg-[#018AAE] text-white text-xs font-bold cursor-pointer"
             >
               Close
             </button>

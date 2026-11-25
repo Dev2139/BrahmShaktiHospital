@@ -52,14 +52,14 @@ export const DepartmentsPage = () => {
       {/* 1. Hero Banner with Medical Wave & Stethoscope Visual (Matches Image 2 & 3) */}
       <section className="relative bg-gradient-to-r from-teal-50/80 via-emerald-50/40 to-cyan-50/60 border-b border-slate-200/80 pt-8 pb-10 sm:py-12 md:py-14 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Soft Ambient Glows & Medical Plus Accents */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#0A7A74]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#018AAE]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-cyan-200/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-10 relative z-10">
           {/* Left Text Column */}
           <div className="space-y-3.5 max-w-2xl flex-1 text-left">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] border border-teal-200/80 text-xs font-bold uppercase tracking-wider shadow-2xs">
-              <Building2 className="w-3.5 h-3.5 text-[#0A7A74]" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6]/80 text-xs font-bold uppercase tracking-wider shadow-2xs">
+              <Building2 className="w-3.5 h-3.5 text-[#018AAE]" />
               <span>Clinical Departments</span>
             </div>
 
@@ -110,8 +110,8 @@ export const DepartmentsPage = () => {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap cursor-pointer shrink-0 ${
                     isSelected
-                      ? 'bg-[#0A7A74] text-white shadow-2xs'
-                      : 'bg-white text-slate-700 border border-slate-200/90 hover:border-[#0A7A74] hover:text-[#0A7A74] shadow-2xs'
+                      ? 'bg-[#018AAE] text-white shadow-2xs'
+                      : 'bg-white text-slate-700 border border-slate-200/90 hover:border-[#018AAE] hover:text-[#018AAE] shadow-2xs'
                   }`}
                 >
                   {cat === 'all' ? 'All Departments' : cat}
@@ -167,16 +167,16 @@ export const DepartmentsPage = () => {
                     <div className="p-5 sm:p-6 space-y-2">
                       {/* Meta Row: Department Code & Consultation Fee */}
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-black tracking-wider text-[#0A7A74] uppercase">
+                        <span className="text-xs font-black tracking-wider text-[#018AAE] uppercase">
                           {code}
                         </span>
                         <span className="text-xs font-bold text-slate-500">
-                          Fee: <strong className="text-[#0A7A74] font-black text-sm">₹{fee}</strong>
+                          Fee: <strong className="text-[#018AAE] font-black text-sm">₹{fee}</strong>
                         </span>
                       </div>
 
                       {/* Department Name */}
-                      <h3 className="text-lg sm:text-xl font-black text-[#0B2545] tracking-tight group-hover:text-[#0A7A74] transition-colors leading-snug">
+                      <h3 className="text-lg sm:text-xl font-black text-[#0B2545] tracking-tight group-hover:text-[#018AAE] transition-colors leading-snug">
                         {dept.name}
                       </h3>
 
@@ -191,7 +191,7 @@ export const DepartmentsPage = () => {
                   <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0">
                     <Link
                       to={`/departments/${dept.id}`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-[#0A7A74] text-[#0A7A74] hover:bg-[#0A7A74] hover:text-white text-xs sm:text-sm font-bold transition-all shadow-2xs group/btn"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-[#018AAE] text-[#018AAE] hover:bg-[#018AAE] hover:text-white text-xs sm:text-sm font-bold transition-all shadow-2xs group/btn"
                     >
                       <span>View Details</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />

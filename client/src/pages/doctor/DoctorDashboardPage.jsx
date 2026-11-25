@@ -468,7 +468,7 @@ export const DoctorDashboardPage = () => {
                 to={`/doctors/${doctorProfile.id}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal-50 border border-teal-200 text-[#0A7A74] text-xs font-bold hover:bg-[#0A7A74] hover:text-white transition-all self-start sm:self-auto"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#F0FBFC] border border-[#B6EEF6] text-[#018AAE] text-xs font-bold hover:bg-[#018AAE] hover:text-white transition-all self-start sm:self-auto"
               >
                 <Eye className="w-4 h-4" />
                 <span>Preview Public Profile ↗</span>
@@ -479,13 +479,13 @@ export const DoctorDashboardPage = () => {
           <form onSubmit={handleSaveProfile} className="space-y-6">
             {/* 1. Profile Picture Editor Section */}
             <div className="p-5 rounded-2xl bg-gradient-to-r from-teal-50/60 via-slate-50 to-teal-50/30 border border-slate-200 space-y-4">
-              <span className="text-xs font-bold text-[#0A7A74] uppercase tracking-wider block">
+              <span className="text-xs font-bold text-[#018AAE] uppercase tracking-wider block">
                 Doctor Profile Picture
               </span>
 
               <div className="flex flex-col sm:flex-row items-center gap-6">
                 {/* Live Preview */}
-                <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-[#0A7A74] shadow-md bg-white shrink-0">
+                <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-[#018AAE] shadow-md bg-white shrink-0">
                   <img
                     src={form.image || 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600'}
                     alt="Doctor preview"
@@ -660,7 +660,7 @@ export const DoctorDashboardPage = () => {
                       onClick={() => toggleDay(day)}
                       className={`px-3.5 py-1.5 rounded-xl font-bold text-xs transition-all ${
                         isChecked
-                          ? 'bg-[#0A7A74] text-white shadow-xs'
+                          ? 'bg-[#018AAE] text-white shadow-xs'
                           : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                       }`}
                     >
@@ -715,7 +715,7 @@ export const DoctorDashboardPage = () => {
             {/* Submit & Publish Button */}
             <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-xs text-slate-500 flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#0A7A74]" />
+                <CheckCircle2 className="w-4 h-4 text-[#018AAE]" />
                 <span>Changes will update live across public doctors list, search, and department pages.</span>
               </div>
 
@@ -732,7 +732,7 @@ export const DoctorDashboardPage = () => {
                 <button
                   type="submit"
                   disabled={savingProfile}
-                  className="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all disabled:opacity-50 cursor-pointer"
+                  className="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all disabled:opacity-50 cursor-pointer"
                 >
                   <Save className="w-4 h-4" />
                   <span>{savingProfile ? 'Saving Changes...' : 'Save & Publish Profile'}</span>
@@ -776,7 +776,7 @@ export const DoctorDashboardPage = () => {
               {doctorNotices.map((notice) => (
                 <div
                   key={notice.id || notice._id}
-                  className="p-4 sm:p-5 rounded-2xl border border-slate-200/90 hover:border-[#0A7A74]/50 hover:bg-slate-50/60 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                  className="p-4 sm:p-5 rounded-2xl border border-slate-200/90 hover:border-[#018AAE]/50 hover:bg-slate-50/60 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
                 >
                   <div className="flex items-start gap-4 flex-1">
                     <div className="w-14 h-14 rounded-xl bg-slate-900 text-white flex flex-col items-center justify-center shrink-0 border border-slate-700 shadow-2xs">
@@ -795,7 +795,7 @@ export const DoctorDashboardPage = () => {
                             {notice.refNumber}
                           </span>
                         )}
-                        <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-teal-50 text-[#0A7A74] border border-teal-200/60">
+                        <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6]/60">
                           {notice.category}
                         </span>
                         {notice.audience === 'specific_doctors' && (
@@ -821,7 +821,7 @@ export const DoctorDashboardPage = () => {
 
                   <button
                     onClick={() => setSelectedNotice(notice)}
-                    className="px-4 py-2 rounded-xl bg-[#0A7A74] text-white text-xs font-bold hover:bg-[#08635e] transition-colors shrink-0 self-end sm:self-center cursor-pointer"
+                    className="px-4 py-2 rounded-xl bg-[#018AAE] text-white text-xs font-bold hover:bg-[#007595] transition-colors shrink-0 self-end sm:self-center cursor-pointer"
                   >
                     Read Circular
                   </button>
@@ -841,7 +841,7 @@ export const DoctorDashboardPage = () => {
                 <span className="font-mono text-xs font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
                   {selectedNotice.refNumber || 'BSH/NOTICE'}
                 </span>
-                <span className="px-2 py-0.5 rounded text-xs font-bold bg-teal-50 text-[#0A7A74]">
+                <span className="px-2 py-0.5 rounded text-xs font-bold bg-[#F0FBFC] text-[#018AAE]">
                   {selectedNotice.category}
                 </span>
               </div>

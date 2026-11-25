@@ -328,7 +328,7 @@ export const Navbar = () => {
                     type="button"
                     aria-label="Close"
                     onClick={() => setQuickSearchModalOpen(false)}
-                    className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#0A7A74] hover:bg-[#075954] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer z-20"
+                    className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#018AAE] hover:bg-[#075954] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer z-20"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -349,7 +349,7 @@ export const Navbar = () => {
                           setSearchDept(e.target.value);
                           setSearchDoctor('');
                         }}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 bg-white focus:outline-none focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] cursor-pointer"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 bg-white focus:outline-none focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] cursor-pointer"
                       >
                         <option value="">Select Department</option>
                         {departmentsData.map((d) => (
@@ -368,7 +368,7 @@ export const Navbar = () => {
                       <select
                         value={searchDoctor}
                         onChange={(e) => setSearchDoctor(e.target.value)}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 bg-white focus:outline-none focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] cursor-pointer"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 bg-white focus:outline-none focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] cursor-pointer"
                       >
                         <option value="">Select Doctor</option>
                         {filteredDoctors.map((doc) => (
@@ -427,7 +427,7 @@ export const Navbar = () => {
             {/* THE 4 PRIMARY NAVBARS (Essential Healthcare Access - 2x2 Grid) */}
             <div className="space-y-2">
               <div className="flex items-center justify-between px-1">
-                <span className="text-[10px] font-black uppercase tracking-wider text-teal-800 bg-teal-50 px-2 py-0.5 rounded-md border border-teal-200/60">
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#015B73] bg-[#F0FBFC] px-2 py-0.5 rounded-md border border-[#B6EEF6]/60">
                   Primary Healthcare Navbars
                 </span>
                 <span className="text-[10px] text-slate-400 font-bold">4 Key Portals</span>
@@ -439,13 +439,13 @@ export const Navbar = () => {
                 <Link
                   to="/doctors"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 hover:bg-teal-50/70 hover:border-teal-300 transition-all flex flex-col justify-between group active:scale-95 shadow-2xs"
+                  className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 hover:bg-[#F0FBFC]/70 hover:border-[#73E0EF] transition-all flex flex-col justify-between group active:scale-95 shadow-2xs"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-teal-100/80 text-[#0A7A74] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <Search className="w-4 h-4 text-[#0A7A74]" />
+                  <div className="w-8 h-8 rounded-xl bg-[#CEF5FA]/80 text-[#018AAE] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                    <Search className="w-4 h-4 text-[#018AAE]" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors leading-tight">
+                    <div className="text-xs font-bold text-slate-900 group-hover:text-[#018AAE] transition-colors leading-tight">
                       Find a Doctor
                     </div>
                     <div className="text-[10px] text-slate-500 mt-0.5 leading-tight">
@@ -458,13 +458,13 @@ export const Navbar = () => {
                 <Link
                   to="/departments"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 hover:bg-teal-50/70 hover:border-teal-300 transition-all flex flex-col justify-between group active:scale-95 shadow-2xs"
+                  className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 hover:bg-[#F0FBFC]/70 hover:border-[#73E0EF] transition-all flex flex-col justify-between group active:scale-95 shadow-2xs"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-teal-100/80 text-[#0A7A74] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <Building2 className="w-4 h-4 text-[#0A7A74]" />
+                  <div className="w-8 h-8 rounded-xl bg-[#CEF5FA]/80 text-[#018AAE] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                    <Building2 className="w-4 h-4 text-[#018AAE]" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors leading-tight">
+                    <div className="text-xs font-bold text-slate-900 group-hover:text-[#018AAE] transition-colors leading-tight">
                       Departments
                     </div>
                     <div className="text-[10px] text-slate-500 mt-0.5 leading-tight">
@@ -479,13 +479,13 @@ export const Navbar = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 hover:bg-teal-50/70 hover:border-teal-300 transition-all flex flex-col justify-between group active:scale-95 shadow-2xs"
+                  className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 hover:bg-[#F0FBFC]/70 hover:border-[#73E0EF] transition-all flex flex-col justify-between group active:scale-95 shadow-2xs"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-teal-100/80 text-[#0A7A74] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <FlaskConical className="w-4 h-4 text-[#0A7A74]" />
+                  <div className="w-8 h-8 rounded-xl bg-[#CEF5FA]/80 text-[#018AAE] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                    <FlaskConical className="w-4 h-4 text-[#018AAE]" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover:text-[#0A7A74] transition-colors leading-tight">
+                    <div className="text-xs font-bold text-slate-900 group-hover:text-[#018AAE] transition-colors leading-tight">
                       Lab Result
                     </div>
                     <div className="text-[10px] text-slate-500 mt-0.5 leading-tight">
@@ -561,7 +561,7 @@ export const Navbar = () => {
                   className="w-full flex items-center justify-between p-3.5 text-left text-sm font-bold text-slate-900 hover:bg-slate-100/80 transition-colors cursor-pointer"
                 >
                   <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-teal-50 text-[#0A7A74] flex items-center justify-center font-bold">
+                    <div className="w-7 h-7 rounded-lg bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold">
                       <Stethoscope className="w-4 h-4" />
                     </div>
                     <span>Speciality</span>
@@ -578,7 +578,7 @@ export const Navbar = () => {
                           key={item.path}
                           to={item.path}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-teal-50 text-slate-800 hover:text-[#0A7A74] transition-colors"
+                          className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F0FBFC] text-slate-800 hover:text-[#018AAE] transition-colors"
                         >
                           <div className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
                             <Icon className="w-3.5 h-3.5 text-primary" />
@@ -602,7 +602,7 @@ export const Navbar = () => {
                   className="w-full flex items-center justify-between p-3.5 text-left text-sm font-bold text-slate-900 hover:bg-slate-100/80 transition-colors cursor-pointer"
                 >
                   <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-teal-50 text-[#0A7A74] flex items-center justify-center font-bold">
+                    <div className="w-7 h-7 rounded-lg bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold">
                       <Hospital className="w-4 h-4" />
                     </div>
                     <span>About Us</span>
@@ -622,7 +622,7 @@ export const Navbar = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-teal-50 text-slate-800 hover:text-[#0A7A74] transition-colors"
+                            className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F0FBFC] text-slate-800 hover:text-[#018AAE] transition-colors"
                           >
                             <div className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
                               <Icon className="w-3.5 h-3.5 text-primary" />
@@ -639,7 +639,7 @@ export const Navbar = () => {
                           key={item.path}
                           to={item.path}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-teal-50 text-slate-800 hover:text-[#0A7A74] transition-colors"
+                          className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F0FBFC] text-slate-800 hover:text-[#018AAE] transition-colors"
                         >
                           <div className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
                             <Icon className="w-3.5 h-3.5 text-primary" />
@@ -663,7 +663,7 @@ export const Navbar = () => {
                   className="w-full flex items-center justify-between p-3.5 text-left text-sm font-bold text-slate-900 hover:bg-slate-100/80 transition-colors cursor-pointer"
                 >
                   <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-teal-50 text-[#0A7A74] flex items-center justify-center font-bold">
+                    <div className="w-7 h-7 rounded-lg bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold">
                       <Search className="w-4 h-4" />
                     </div>
                     <span>Quick Search</span>
@@ -683,7 +683,7 @@ export const Navbar = () => {
                           setSearchDept(e.target.value);
                           setSearchDoctor('');
                         }}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#0A7A74]"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#018AAE]"
                       >
                         <option value="">All Clinical Departments</option>
                         {departmentsData.map((d) => (
@@ -701,7 +701,7 @@ export const Navbar = () => {
                       <select
                         value={searchDoctor}
                         onChange={(e) => setSearchDoctor(e.target.value)}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#0A7A74]"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#018AAE]"
                       >
                         <option value="">All Consultant Doctors</option>
                         {filteredDoctors.map((doc) => (
@@ -733,7 +733,7 @@ export const Navbar = () => {
                 className="flex items-center justify-between p-3.5 rounded-2xl border border-slate-200/90 text-sm font-bold text-slate-900 bg-slate-50/50 hover:bg-slate-100/80 transition-colors"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-teal-50 text-[#0A7A74] flex items-center justify-center font-bold">
+                  <div className="w-7 h-7 rounded-lg bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold">
                     <PhoneCall className="w-4 h-4" />
                   </div>
                   <span>Contact Us</span>
@@ -747,7 +747,7 @@ export const Navbar = () => {
               <Link
                 to={appointmentTarget}
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-[#0A7A74] hover:bg-[#08635e] text-white font-bold text-sm shadow-md transition-all active:scale-[0.99]"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-[#018AAE] hover:bg-[#007595] text-white font-bold text-sm shadow-md transition-all active:scale-[0.99]"
               >
                 <Calendar className="w-4 h-4" />
                 <span>Book Appointment Online</span>
@@ -757,7 +757,7 @@ export const Navbar = () => {
                 <Link
                   to="/patient/dashboard"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-teal-300 bg-teal-50 text-[#0A7A74] text-xs font-bold transition-colors"
+                  className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-[#73E0EF] bg-[#F0FBFC] text-[#018AAE] text-xs font-bold transition-colors"
                 >
                   <User className="w-3.5 h-3.5" />
                   <span>My Patient Portal</span>
@@ -766,7 +766,7 @@ export const Navbar = () => {
                 <Link
                   to="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-slate-500 hover:text-[#0A7A74] transition-colors"
+                  className="w-full flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-slate-500 hover:text-[#018AAE] transition-colors"
                 >
                   <User className="w-3.5 h-3.5" />
                   <span>Staff &amp; Patient Portal Login</span>
@@ -830,7 +830,7 @@ export const Navbar = () => {
                     type="button"
                     aria-label="Close"
                     onClick={() => setEmergencyModalOpen(false)}
-                    className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#0A7A74] hover:bg-[#075954] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer z-20"
+                    className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#018AAE] hover:bg-[#075954] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer z-20"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -838,13 +838,13 @@ export const Navbar = () => {
                   <div className="space-y-6 pt-1">
                     {/* 24/7 Helpline */}
                     <div>
-                      <h4 className="text-lg font-bold text-[#0A7A74] mb-2 tracking-wide flex items-center gap-2">
+                      <h4 className="text-lg font-bold text-[#018AAE] mb-2 tracking-wide flex items-center gap-2">
                         <PhoneCall className="w-4 h-4" />
                         24/7 Helpline
                       </h4>
                       <a
                         href="tel:7840089703"
-                        className="text-base font-bold text-slate-900 hover:text-[#0A7A74] transition-colors block"
+                        className="text-base font-bold text-slate-900 hover:text-[#018AAE] transition-colors block"
                       >
                         +91 7840089703
                       </a>
@@ -852,12 +852,12 @@ export const Navbar = () => {
 
                     {/* Casualty & Reception */}
                     <div>
-                      <h4 className="text-lg font-bold text-[#0A7A74] mb-2 tracking-wide">
+                      <h4 className="text-lg font-bold text-[#018AAE] mb-2 tracking-wide">
                         Casualty &amp; Reception
                       </h4>
                       <div className="space-y-1 text-sm font-semibold text-slate-800">
-                        <a href="tel:7840089703" className="block hover:text-[#0A7A74] transition-colors">+91 7840089703 (24x7)</a>
-                        <a href="tel:01127531683" className="block hover:text-[#0A7A74] transition-colors">011-27531683 (Desk)</a>
+                        <a href="tel:7840089703" className="block hover:text-[#018AAE] transition-colors">+91 7840089703 (24x7)</a>
+                        <a href="tel:01127531683" className="block hover:text-[#018AAE] transition-colors">011-27531683 (Desk)</a>
                       </div>
                     </div>
 
@@ -892,25 +892,25 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setEmergencyModalOpen(false)}
-                className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shadow-lg"
+                className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#018AAE] text-white flex items-center justify-center shadow-lg"
               >
                 <X className="w-4 h-4" />
               </button>
 
               <div className="space-y-6 pt-1">
                 <div>
-                  <h4 className="text-lg font-bold text-[#0A7A74] mb-2">24/7 Helpline</h4>
-                  <a href="tel:7840089703" className="text-sm font-semibold text-slate-800 block hover:text-[#0A7A74] transition-colors">+91 7840089703</a>
+                  <h4 className="text-lg font-bold text-[#018AAE] mb-2">24/7 Helpline</h4>
+                  <a href="tel:7840089703" className="text-sm font-semibold text-slate-800 block hover:text-[#018AAE] transition-colors">+91 7840089703</a>
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-[#0A7A74] mb-2">Casualty &amp; Reception</h4>
+                  <h4 className="text-lg font-bold text-[#018AAE] mb-2">Casualty &amp; Reception</h4>
                   <div className="space-y-1 text-sm font-semibold text-slate-800">
-                    <a href="tel:7840089703" className="block hover:text-[#0A7A74] transition-colors">+91 7840089703 (24x7)</a>
-                    <a href="tel:01127531683" className="block hover:text-[#0A7A74] transition-colors">011-27531683 (Desk)</a>
+                    <a href="tel:7840089703" className="block hover:text-[#018AAE] transition-colors">+91 7840089703 (24x7)</a>
+                    <a href="tel:01127531683" className="block hover:text-[#018AAE] transition-colors">011-27531683 (Desk)</a>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-[#0A7A74] mb-2">Emergency Ambulance</h4>
+                  <h4 className="text-lg font-bold text-[#018AAE] mb-2">Emergency Ambulance</h4>
                   <a href="tel:7840089703" className="text-sm font-semibold text-rose-600 block hover:text-rose-700 transition-colors">+91 7840089703</a>
                 </div>
               </div>
@@ -925,7 +925,7 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setQuickSearchModalOpen(false)}
-                className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shadow-lg"
+                className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#018AAE] text-white flex items-center justify-center shadow-lg"
               >
                 <X className="w-4 h-4" />
               </button>

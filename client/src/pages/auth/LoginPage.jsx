@@ -127,8 +127,8 @@ export const LoginPage = () => {
       icon: Stethoscope,
       email: 'doctor@brahmshaktihospital.com',
       password: 'Doctor@123',
-      color: 'hover:bg-[#0A7A74] hover:text-white border-teal-200 text-[#0A7A74] bg-teal-50/70',
-      activeColor: 'bg-[#0A7A74] text-white border-[#0A7A74] shadow-sm',
+      color: 'hover:bg-[#018AAE] hover:text-white border-[#B6EEF6] text-[#018AAE] bg-[#F0FBFC]/70',
+      activeColor: 'bg-[#018AAE] text-white border-[#018AAE] shadow-sm',
       badge: 'Dr. S.K. Goyal'
     },
     {
@@ -295,7 +295,7 @@ export const LoginPage = () => {
           {/* Header Title */}
           <div className="space-y-1.5">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">
-              <Stethoscope className="w-3.5 h-3.5 text-[#0A7A74]" />
+              <Stethoscope className="w-3.5 h-3.5 text-[#018AAE]" />
               <span>Official Hospital Management Portal</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
@@ -373,7 +373,7 @@ export const LoginPage = () => {
                   }}
                   placeholder="name@brahmshaktihospital.com"
                   required
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-800 font-medium placeholder-slate-400 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/20 focus:outline-hidden transition-all bg-white"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-800 font-medium placeholder-slate-400 focus:border-[#018AAE] focus:ring-2 focus:ring-[#018AAE]/20 focus:outline-hidden transition-all bg-white"
                 />
               </div>
             </div>
@@ -397,7 +397,7 @@ export const LoginPage = () => {
                   }}
                   placeholder="••••••••••••"
                   required
-                  className="w-full pl-10 pr-11 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-800 font-medium placeholder-slate-400 focus:border-[#0A7A74] focus:ring-2 focus:ring-[#0A7A74]/20 focus:outline-hidden transition-all bg-white"
+                  className="w-full pl-10 pr-11 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-800 font-medium placeholder-slate-400 focus:border-[#018AAE] focus:ring-2 focus:ring-[#018AAE]/20 focus:outline-hidden transition-all bg-white"
                 />
                 <button
                   type="button"
@@ -416,13 +416,13 @@ export const LoginPage = () => {
                 <input
                   type="checkbox"
                   defaultChecked
-                  className="w-4 h-4 rounded border-slate-300 text-[#0A7A74] focus:ring-[#0A7A74]"
+                  className="w-4 h-4 rounded border-slate-300 text-[#018AAE] focus:ring-[#018AAE]"
                 />
                 <span className="font-medium">Remember me</span>
               </label>
               <a
                 href="tel:7840089703"
-                className="text-[#0A7A74] font-bold hover:underline"
+                className="text-[#018AAE] font-bold hover:underline"
               >
                 Help Desk?
               </a>
@@ -432,7 +432,7 @@ export const LoginPage = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#0A7A74] via-teal-700 to-[#0A7A74] hover:from-[#08635e] hover:to-teal-800 text-white text-xs sm:text-sm font-bold transition-all shadow-md shadow-teal-700/25 flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer active:scale-[0.99]"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#018AAE] via-teal-700 to-[#018AAE] hover:from-[#007595] hover:to-teal-800 text-white text-xs sm:text-sm font-bold transition-all shadow-md shadow-teal-700/25 flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer active:scale-[0.99]"
             >
               <KeyRound className="w-4 h-4" />
               <span>{submitting ? 'Verifying Credentials...' : 'Sign In to Hospital Portal'}</span>
@@ -445,7 +445,7 @@ export const LoginPage = () => {
               <span>Patient seeking doctor consultation?</span>
               <Link
                 to="/bookappointment"
-                className="text-[#0A7A74] font-bold hover:underline inline-flex items-center gap-1"
+                className="text-[#018AAE] font-bold hover:underline inline-flex items-center gap-1"
               >
                 <span>Book without Login</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -457,7 +457,7 @@ export const LoginPage = () => {
               <Link
                 to="/register"
                 state={{ from }}
-                className="text-teal-700 font-bold hover:underline"
+                className="text-[#017290] font-bold hover:underline"
               >
                 Create Patient Account ↗
               </Link>

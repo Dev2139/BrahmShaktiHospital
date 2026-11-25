@@ -77,7 +77,7 @@ export const DoctorProfilePage = () => {
   if (loading) {
     return (
       <div className="min-h-[60vh] max-w-7xl mx-auto px-4 py-20 flex flex-col items-center justify-center space-y-3">
-        <div className="w-10 h-10 border-4 border-[#0A7A74] border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-[#018AAE] border-t-transparent rounded-full animate-spin"></div>
         <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">
           Loading Specialist Medical Profile...
         </p>
@@ -88,7 +88,7 @@ export const DoctorProfilePage = () => {
   if (!doctor) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center space-y-4">
-        <div className="w-16 h-16 mx-auto rounded-2xl bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200">
+        <div className="w-16 h-16 mx-auto rounded-2xl bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6]">
           <Stethoscope className="w-8 h-8" />
         </div>
         <h2 className="text-2xl font-black text-slate-800">Specialist Profile Not Found</h2>
@@ -97,7 +97,7 @@ export const DoctorProfilePage = () => {
         </p>
         <Link
           to="/doctors"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold transition-all shadow-md"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold transition-all shadow-md"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Browse All Hospital Consultants</span>
@@ -151,32 +151,32 @@ export const DoctorProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-[#0A7A74] selection:text-white pb-16">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-[#018AAE] selection:text-white pb-16">
       {/* -------------------- 1. BREADCRUMB & UTILITY HEADER -------------------- */}
       <section className="bg-white border-b border-slate-200 py-2.5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
           {/* Breadcrumb Links */}
           <div className="flex items-center gap-1.5 flex-wrap text-slate-500 font-medium">
-            <Link to="/" className="hover:text-[#0A7A74] transition-colors">
+            <Link to="/" className="hover:text-[#018AAE] transition-colors">
               Home
             </Link>
             <span className="text-slate-400">&gt;</span>
-            <Link to="/doctors" className="hover:text-[#0A7A74] transition-colors">
+            <Link to="/doctors" className="hover:text-[#018AAE] transition-colors">
               Find a Doctor
             </Link>
             <span className="text-slate-400 hidden sm:inline">&gt;</span>
             <span className="text-slate-600 hidden sm:inline">{doctor.departmentName}</span>
             <span className="text-slate-400">&gt;</span>
-            <span className="text-[#0A7A74] font-bold">{doctor.name}</span>
+            <span className="text-[#018AAE] font-bold">{doctor.name}</span>
           </div>
 
           {/* Right Utility Badges: Lab Result & Emergency */}
           <div className="flex items-center gap-4 self-start sm:self-auto shrink-0 font-bold">
             <Link
               to="/patient/dashboard"
-              className="inline-flex items-center gap-1.5 text-[#0A7A74] hover:underline transition-colors"
+              className="inline-flex items-center gap-1.5 text-[#018AAE] hover:underline transition-colors"
             >
-              <FlaskConical className="w-3.5 h-3.5 text-[#0A7A74]" />
+              <FlaskConical className="w-3.5 h-3.5 text-[#018AAE]" />
               <span>Lab Result</span>
             </Link>
 
@@ -209,7 +209,7 @@ export const DoctorProfilePage = () => {
                   />
                 </div>
                 {/* IN HOUSE Pill Badge */}
-                <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#0A7A74] text-white text-[10px] font-black tracking-wider uppercase shadow-xs flex items-center gap-1 whitespace-nowrap">
+                <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#018AAE] text-white text-[10px] font-black tracking-wider uppercase shadow-xs flex items-center gap-1 whitespace-nowrap">
                   <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
                   <span>{doctor.category || 'IN HOUSE'}</span>
                 </div>
@@ -219,7 +219,7 @@ export const DoctorProfilePage = () => {
               <div className="space-y-1.5 pt-1">
                 {/* Badges */}
                 <div className="flex flex-wrap items-center gap-2 justify-center sm:justify-start">
-                  <span className="px-3 py-0.5 rounded-full bg-[#0A7A74] text-white text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider">
+                  <span className="px-3 py-0.5 rounded-full bg-[#018AAE] text-white text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider">
                     {doctor.departmentName}
                   </span>
                   <span className="px-3 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] sm:text-[11px] font-bold">
@@ -230,13 +230,13 @@ export const DoctorProfilePage = () => {
                 {/* Doctor Name with Verified Badge */}
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center justify-center sm:justify-start gap-2">
                   <span>{doctor.name}</span>
-                  <div className="w-5 h-5 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 shadow-2xs">
+                  <div className="w-5 h-5 rounded-full bg-[#018AAE] text-white flex items-center justify-center shrink-0 shadow-2xs">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                 </h1>
 
                 {/* Designation */}
-                <p className="text-xs sm:text-sm font-bold text-[#0A7A74]">
+                <p className="text-xs sm:text-sm font-bold text-[#018AAE]">
                   {doctor.designation}
                 </p>
 
@@ -247,7 +247,7 @@ export const DoctorProfilePage = () => {
 
                 {/* Hospital Address */}
                 <div className="flex items-center justify-center sm:justify-start gap-1.5 text-xs text-slate-500 pt-0.5">
-                  <Building2 className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+                  <Building2 className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
                   <span>Brahm Shakti Hospital, Pocket C, Budh Vihar Phase I, New Delhi</span>
                 </div>
               </div>
@@ -257,7 +257,7 @@ export const DoctorProfilePage = () => {
             <div className="w-full lg:w-auto flex flex-col gap-2.5 shrink-0 pt-2 lg:pt-0">
               <Link
                 to={`/bookappointment?doctor=${doctor.id}&department=${doctor.departmentId}`}
-                className="w-full px-6 py-3 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white font-black text-xs sm:text-sm shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-[0.99]"
+                className="w-full px-6 py-3 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white font-black text-xs sm:text-sm shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-[0.99]"
               >
                 <Calendar className="w-4 h-4" />
                 <span>Book Hospital Appointment</span>
@@ -294,7 +294,7 @@ export const DoctorProfilePage = () => {
             <div className="text-xl sm:text-2xl font-black text-slate-900">
               {doctor.experienceYears || 25}+ Years
             </div>
-            <span className="text-xs text-[#0A7A74] font-bold block">
+            <span className="text-xs text-[#018AAE] font-bold block">
               Senior Faculty
             </span>
           </div>
@@ -320,7 +320,7 @@ export const DoctorProfilePage = () => {
             <div className="text-xl sm:text-2xl font-black text-slate-900">
               15,000+
             </div>
-            <span className="text-xs text-[#0A7A74] font-bold block">
+            <span className="text-xs text-[#018AAE] font-bold block">
               Trusted Healthcare
             </span>
           </div>
@@ -364,7 +364,7 @@ export const DoctorProfilePage = () => {
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex items-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                         isActive
-                          ? 'bg-[#0A7A74] text-white shadow-xs'
+                          ? 'bg-[#018AAE] text-white shadow-xs'
                           : 'bg-white text-slate-700 hover:text-slate-900 border border-slate-200 hover:border-slate-300'
                       }`}
                     >
@@ -382,7 +382,7 @@ export const DoctorProfilePage = () => {
                 {/* Card 1: About the Doctor */}
                 <div className="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200 shadow-2xs space-y-4">
                   <h2 className="text-base sm:text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
-                    <Stethoscope className="w-5 h-5 text-[#0A7A74]" />
+                    <Stethoscope className="w-5 h-5 text-[#018AAE]" />
                     <span>About {doctor.name}</span>
                   </h2>
 
@@ -397,8 +397,8 @@ export const DoctorProfilePage = () => {
 
                   {/* 2 Compliance & Location Badges */}
                   <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="p-3.5 rounded-xl bg-teal-50/60 border border-teal-200/70 flex items-start gap-3">
-                      <ShieldCheck className="w-5 h-5 text-[#0A7A74] shrink-0 mt-0.5" />
+                    <div className="p-3.5 rounded-xl bg-[#F0FBFC]/60 border border-[#B6EEF6]/70 flex items-start gap-3">
+                      <ShieldCheck className="w-5 h-5 text-[#018AAE] shrink-0 mt-0.5" />
                       <div>
                         <div className="text-xs font-bold text-slate-800">
                           Delhi Medical Council Compliant
@@ -409,8 +409,8 @@ export const DoctorProfilePage = () => {
                       </div>
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-teal-50/60 border border-teal-200/70 flex items-start gap-3">
-                      <Building2 className="w-5 h-5 text-[#0A7A74] shrink-0 mt-0.5" />
+                    <div className="p-3.5 rounded-xl bg-[#F0FBFC]/60 border border-[#B6EEF6]/70 flex items-start gap-3">
+                      <Building2 className="w-5 h-5 text-[#018AAE] shrink-0 mt-0.5" />
                       <div>
                         <div className="text-xs font-bold text-slate-800">
                           Hospital Chamber Location
@@ -443,7 +443,7 @@ export const DoctorProfilePage = () => {
                         key={i}
                         className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50/80 border border-slate-200/80"
                       >
-                        <div className="w-4 h-4 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                        <div className="w-4 h-4 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
                           <Check className="w-2.5 h-2.5 stroke-[3]" />
                         </div>
                         <span className="text-xs font-bold text-slate-800">{spec}</span>
@@ -478,9 +478,9 @@ export const DoctorProfilePage = () => {
                   ).map((spec, idx) => (
                     <div
                       key={idx}
-                      className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-teal-300 hover:bg-teal-50/30 transition-all flex items-start gap-3"
+                      className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#73E0EF] hover:bg-[#F0FBFC]/30 transition-all flex items-start gap-3"
                     >
-                      <div className="w-6 h-6 rounded-lg bg-teal-50 text-[#0A7A74] border border-teal-200 flex items-center justify-center shrink-0 text-xs font-black">
+                      <div className="w-6 h-6 rounded-lg bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6] flex items-center justify-center shrink-0 text-xs font-black">
                         ✓
                       </div>
                       <div>
@@ -500,13 +500,13 @@ export const DoctorProfilePage = () => {
               <div className="space-y-4">
                 <div className="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200 shadow-2xs space-y-4">
                   <h3 className="text-base sm:text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
-                    <GraduationCap className="w-5 h-5 text-[#0A7A74]" />
+                    <GraduationCap className="w-5 h-5 text-[#018AAE]" />
                     <span>Education, Medical Degrees &amp; DMC Accreditations</span>
                   </h3>
 
                   <div className="space-y-3 pt-1">
                     <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-teal-50 text-[#0A7A74] border border-teal-200 flex items-center justify-center shrink-0">
+                      <div className="w-9 h-9 rounded-lg bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6] flex items-center justify-center shrink-0">
                         <GraduationCap className="w-5 h-5" />
                       </div>
                       <div>
@@ -520,27 +520,27 @@ export const DoctorProfilePage = () => {
                     </div>
 
                     {/* Official DMC Record */}
-                    <div className="p-4 rounded-xl bg-teal-50/60 border border-teal-200/80 space-y-3">
+                    <div className="p-4 rounded-xl bg-[#F0FBFC]/60 border border-[#B6EEF6]/80 space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-black text-[#0A7A74] uppercase tracking-wider flex items-center gap-1.5">
-                          <ShieldCheck className="w-4 h-4 text-[#0A7A74]" />
+                        <span className="text-xs font-black text-[#018AAE] uppercase tracking-wider flex items-center gap-1.5">
+                          <ShieldCheck className="w-4 h-4 text-[#018AAE]" />
                           <span>Delhi Medical Council (DMC) Record</span>
                         </span>
-                        <span className="px-2.5 py-0.5 rounded-full bg-[#0A7A74] text-white text-[10px] font-bold">
+                        <span className="px-2.5 py-0.5 rounded-full bg-[#018AAE] text-white text-[10px] font-bold">
                           Official Record
                         </span>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
-                        <div className="bg-white p-3 rounded-xl border border-teal-200">
+                        <div className="bg-white p-3 rounded-xl border border-[#B6EEF6]">
                           <span className="text-slate-400 block text-[10px] uppercase font-bold">DMC Number</span>
                           <strong className="text-slate-900 font-mono text-sm">{doctor.dmcNo || '11843'}</strong>
                         </div>
-                        <div className="bg-white p-3 rounded-xl border border-teal-200">
+                        <div className="bg-white p-3 rounded-xl border border-[#B6EEF6]">
                           <span className="text-slate-400 block text-[10px] uppercase font-bold">Validity Period</span>
-                          <strong className="text-[#0A7A74] text-sm">{doctor.validity || '23/05/2027'}</strong>
+                          <strong className="text-[#018AAE] text-sm">{doctor.validity || '23/05/2027'}</strong>
                         </div>
-                        <div className="bg-white p-3 rounded-xl border border-teal-200">
+                        <div className="bg-white p-3 rounded-xl border border-[#B6EEF6]">
                           <span className="text-slate-400 block text-[10px] uppercase font-bold">Category</span>
                           <strong className="text-slate-900 text-sm">{doctor.category || 'In house'}</strong>
                         </div>
@@ -567,14 +567,14 @@ export const DoctorProfilePage = () => {
                       Regular OPD chamber slots at Brahm Shakti Hospital.
                     </p>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] border border-teal-200 text-xs font-bold">
+                  <span className="px-3 py-1 rounded-full bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6] text-xs font-bold">
                     Active Timetable
                   </span>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-teal-50/70 border border-teal-200 flex items-center justify-between">
+                <div className="p-3.5 rounded-xl bg-[#F0FBFC]/70 border border-[#B6EEF6] flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-[#0A7A74] text-white flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-[#018AAE] text-white flex items-center justify-center shrink-0">
                       <Clock className="w-4 h-4" />
                     </div>
                     <div>
@@ -588,7 +588,7 @@ export const DoctorProfilePage = () => {
                   </div>
                   <Link
                     to={`/bookappointment?doctor=${doctor.id}&department=${doctor.departmentId}`}
-                    className="px-3.5 py-1.5 rounded-lg bg-[#0A7A74] text-white text-xs font-bold hover:bg-[#08635e] transition-colors cursor-pointer"
+                    className="px-3.5 py-1.5 rounded-lg bg-[#018AAE] text-white text-xs font-bold hover:bg-[#007595] transition-colors cursor-pointer"
                   >
                     Select Slot
                   </Link>
@@ -622,7 +622,7 @@ export const DoctorProfilePage = () => {
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-full bg-[#0A7A74] text-white flex items-center justify-center font-bold text-xs">
+                          <div className="w-7 h-7 rounded-full bg-[#018AAE] text-white flex items-center justify-center font-bold text-xs">
                             {rev.name[0]}
                           </div>
                           <div>
@@ -653,14 +653,14 @@ export const DoctorProfilePage = () => {
 
           {/* RIGHT 4 COLS: STICKY OUTPATIENT DESK CARD (EXACT MATCH TO REFERENCE IMAGE) */}
           <div className="lg:col-span-4 space-y-5">
-            <div className="bg-white rounded-2xl border border-teal-200/80 shadow-xs p-5 sm:p-6 space-y-4 lg:sticky lg:top-24">
+            <div className="bg-white rounded-2xl border border-[#B6EEF6]/80 shadow-xs p-5 sm:p-6 space-y-4 lg:sticky lg:top-24">
               {/* Header Badge & Status */}
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] text-[10px] font-black uppercase tracking-wider border border-teal-200/70">
+                <span className="px-3 py-1 rounded-full bg-[#F0FBFC] text-[#018AAE] text-[10px] font-black uppercase tracking-wider border border-[#B6EEF6]/70">
                   OUTPATIENT DESK
                 </span>
-                <span className="text-xs font-bold text-[#0A7A74] flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#0A7A74] animate-pulse"></span>
+                <span className="text-xs font-bold text-[#018AAE] flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#018AAE] animate-pulse"></span>
                   <span>Slots Open</span>
                 </span>
               </div>
@@ -676,25 +676,25 @@ export const DoctorProfilePage = () => {
               </div>
 
               {/* Subsidized Trust Consultation Fee Container */}
-              <div className="p-3.5 rounded-xl bg-teal-50/70 border border-teal-200/80 space-y-2">
+              <div className="p-3.5 rounded-xl bg-[#F0FBFC]/70 border border-[#B6EEF6]/80 space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-semibold text-slate-700">Trust Consultation Fee</span>
                   <span className="text-xl font-black text-slate-900">₹{doctor.consultationFee || 800}</span>
                 </div>
-                <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1.5 border-t border-teal-200/60">
+                <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1.5 border-t border-[#B6EEF6]/60">
                   <span>Follow-up within 7 days</span>
-                  <span className="font-black text-[#0A7A74] uppercase text-[10px]">FREE OF COST</span>
+                  <span className="font-black text-[#018AAE] uppercase text-[10px]">FREE OF COST</span>
                 </div>
               </div>
 
               {/* Timings & Room Info */}
               <div className="space-y-2 text-xs">
                 <div className="flex items-center gap-2 text-slate-700">
-                  <Clock className="w-4 h-4 text-[#0A7A74] shrink-0" />
+                  <Clock className="w-4 h-4 text-[#018AAE] shrink-0" />
                   <span className="font-medium">{doctor.opdSchedule || 'Mon - Sat: 09:30 AM - 02:30 PM (Room 105)'}</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-700">
-                  <MapPin className="w-4 h-4 text-[#0A7A74] shrink-0" />
+                  <MapPin className="w-4 h-4 text-[#018AAE] shrink-0" />
                   <span className="font-medium">Chamber: <strong>{doctor.room || 'Surgical OPD Block Chamber 105'}</strong></span>
                 </div>
               </div>
@@ -702,7 +702,7 @@ export const DoctorProfilePage = () => {
               {/* CTA Booking Button */}
               <Link
                 to={`/bookappointment?doctor=${doctor.id}&department=${doctor.departmentId}`}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white font-black text-xs sm:text-sm shadow-md transition-all cursor-pointer active:scale-[0.99]"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white font-black text-xs sm:text-sm shadow-md transition-all cursor-pointer active:scale-[0.99]"
               >
                 <Calendar className="w-4 h-4" />
                 <span>Reserve Consultation Slot</span>
@@ -711,13 +711,13 @@ export const DoctorProfilePage = () => {
               {/* Trust Badges */}
               <div className="space-y-2 pt-2 text-[11px] text-slate-600 border-t border-slate-100">
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                  <div className="w-4 h-4 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
                     <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
                   <span>Delhi Medical Council verified consultant</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                  <div className="w-4 h-4 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
                     <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
                   <span>Subsidized Trust tariff — zero hidden fees</span>

@@ -108,7 +108,7 @@ export default function EventDetailPage() {
           <div className="pt-2 flex justify-center gap-3">
             <Link
               to="/"
-              className="px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold transition-all shadow-md"
+              className="px-5 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold transition-all shadow-md"
             >
               Back to Home
             </Link>
@@ -127,7 +127,7 @@ export default function EventDetailPage() {
         {/* Top Breadcrumb & Actions Bar */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
-            <Link to="/" className="text-[#0A7A74] hover:underline flex items-center gap-1">
+            <Link to="/" className="text-[#018AAE] hover:underline flex items-center gap-1">
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Hospital Home</span>
             </Link>
@@ -141,7 +141,7 @@ export default function EventDetailPage() {
             onClick={handleShare}
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold shadow-xs transition-colors cursor-pointer"
           >
-            <Share2 className="w-3.5 h-3.5 text-[#0A7A74]" />
+            <Share2 className="w-3.5 h-3.5 text-[#018AAE]" />
             <span>Share Event</span>
           </button>
         </div>
@@ -163,7 +163,7 @@ export default function EventDetailPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
               
               <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 text-white">
-                <span className="px-3 py-1 rounded-full bg-[#0A7A74] text-white text-[11px] font-bold shadow-sm">
+                <span className="px-3 py-1 rounded-full bg-[#018AAE] text-white text-[11px] font-bold shadow-sm">
                   {event.category || 'Hospital Event'}
                 </span>
                 <span className="text-xs text-white/90 font-semibold drop-shadow-md">
@@ -182,22 +182,22 @@ export default function EventDetailPage() {
               {/* Metadata Strip */}
               <div className="flex flex-wrap items-center gap-y-2 gap-x-5 text-xs text-slate-500 pb-5 border-b border-slate-100">
                 <div className="flex items-center gap-1.5 text-slate-700 font-bold">
-                  <User className="w-4 h-4 text-[#0A7A74]" />
+                  <User className="w-4 h-4 text-[#018AAE]" />
                   <span>{event.author || 'Brahm Shakti Hospital'}</span>
                 </div>
                 <div className="flex items-center gap-1.5 font-medium text-slate-600">
-                  <Calendar className="w-4 h-4 text-[#0A7A74]" />
+                  <Calendar className="w-4 h-4 text-[#018AAE]" />
                   <span>{event.date}</span>
                 </div>
                 <div className="flex items-center gap-1.5 font-medium text-slate-600">
-                  <Clock className="w-4 h-4 text-[#0A7A74]" />
+                  <Clock className="w-4 h-4 text-[#018AAE]" />
                   <span>{event.readTime || '3 min read'}</span>
                 </div>
               </div>
 
               {/* Location Badge */}
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-teal-50/70 border border-teal-100 text-teal-900 text-xs">
-                <MapPin className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 p-4 rounded-2xl bg-[#F0FBFC]/70 border border-teal-100 text-[#013B4A] text-xs">
+                <MapPin className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
                 <div>
                   <strong className="block font-bold text-slate-900">Event Venue & Location:</strong>
                   <span className="text-slate-600">{event.location}</span>
@@ -206,7 +206,7 @@ export default function EventDetailPage() {
 
               {/* Lead Summary Callout */}
               {event.summary && (
-                <div className="p-5 rounded-2xl bg-slate-50 border-l-4 border-[#0A7A74] text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
+                <div className="p-5 rounded-2xl bg-slate-50 border-l-4 border-[#018AAE] text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
                   {event.summary}
                 </div>
               )}
@@ -229,14 +229,14 @@ export default function EventDetailPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
-                        <Sparkles className="w-5 h-5 text-[#0A7A74]" />
+                        <Sparkles className="w-5 h-5 text-[#018AAE]" />
                         <span>Event Highlights & Photo Gallery</span>
                       </h3>
                       <p className="text-xs text-slate-500">
                         Memorable moments captured during this clinical program and community ceremony.
                       </p>
                     </div>
-                    <span className="text-xs font-bold text-[#0A7A74] bg-[#0A7A74]/10 px-2.5 py-1 rounded-full">
+                    <span className="text-xs font-bold text-[#018AAE] bg-[#018AAE]/10 px-2.5 py-1 rounded-full">
                       {event.additionalImages.length} Photos
                     </span>
                   </div>
@@ -271,12 +271,12 @@ export default function EventDetailPage() {
               {/* Footer Note */}
               <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#0A7A74]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#018AAE]" />
                   <span>Verified Medical Archive · Brahm Shakti Hospital (Regd.)</span>
                 </div>
                 <Link
                   to="/#events-section"
-                  className="font-bold text-[#0A7A74] hover:underline flex items-center gap-1"
+                  className="font-bold text-[#018AAE] hover:underline flex items-center gap-1"
                 >
                   <span>Explore More Events</span>
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -322,12 +322,12 @@ export default function EventDetailPage() {
 
                       {/* Info */}
                       <div className="space-y-1 min-w-0 flex-1">
-                        <h3 className="text-xs font-bold text-slate-800 line-clamp-2 group-hover:text-[#0A7A74] transition-colors leading-snug">
+                        <h3 className="text-xs font-bold text-slate-800 line-clamp-2 group-hover:text-[#018AAE] transition-colors leading-snug">
                           {item.title}
                         </h3>
                         <div className="flex items-center gap-3 text-[10px] text-slate-400">
                           <span className="flex items-center gap-1 text-slate-500 font-medium">
-                            <User className="w-3 h-3 text-[#0A7A74]" />
+                            <User className="w-3 h-3 text-[#018AAE]" />
                             <span className="truncate max-w-[80px]">BSH</span>
                           </span>
                           <span className="flex items-center gap-1">
@@ -343,7 +343,7 @@ export default function EventDetailPage() {
             </div>
 
             {/* 2. Hospital Care & Appointment Assistance Box */}
-            <div className="bg-gradient-to-br from-[#0A7A74] to-[#08534f] text-white p-6 rounded-3xl shadow-lg shadow-[#0A7A74]/15 space-y-4">
+            <div className="bg-gradient-to-br from-[#018AAE] to-[#08534f] text-white p-6 rounded-3xl shadow-lg shadow-[#018AAE]/15 space-y-4">
               <span className="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider inline-block">
                 24x7 Helpdesk & OPD
               </span>
@@ -357,7 +357,7 @@ export default function EventDetailPage() {
               <div className="space-y-2.5 pt-2">
                 <a
                   href="tel:7840089703"
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white text-[#0A7A74] font-bold text-xs hover:bg-slate-100 transition-colors shadow-sm"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white text-[#018AAE] font-bold text-xs hover:bg-slate-100 transition-colors shadow-sm"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   <span>Call Emergency: 7840089703</span>

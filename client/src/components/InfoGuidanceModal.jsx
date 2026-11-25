@@ -145,7 +145,7 @@ export const InfoGuidanceModal = ({ type, isOpen, onClose, onBookAppointment }) 
               <ul className="space-y-1.5 text-gray-600 pl-3">
                 {section.items.map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-teal-600 font-bold shrink-0">&bull;</span>
+                    <span className="text-[#018AAE] font-bold shrink-0">&bull;</span>
                     <span className="leading-relaxed">{item}</span>
                   </li>
                 ))}

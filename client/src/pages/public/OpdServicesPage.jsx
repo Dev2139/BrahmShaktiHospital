@@ -41,9 +41,9 @@ export const OpdServicesPage = () => {
     <div className="space-y-14 pb-20">
       {/* Top Banner - Matches Original Medical Palette */}
       <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0A7A74]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#018AAE]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto space-y-3 relative z-10">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0A7A74]/10 border border-[#0A7A74]/20 text-[#0A7A74] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#018AAE]/10 border border-[#018AAE]/20 text-[#018AAE] text-xs font-bold uppercase tracking-wider">
             <Stethoscope className="w-3.5 h-3.5" />
             <span>Outpatient Department</span>
           </div>

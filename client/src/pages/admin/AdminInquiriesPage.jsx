@@ -279,7 +279,7 @@ export const AdminInquiriesPage = () => {
                         <button
                           type="button"
                           onClick={() => setSelectedInquiry(inq)}
-                          className="p-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-primary transition-colors cursor-pointer"
+                          className="p-1.5 rounded-lg bg-[#F0FBFC] hover:bg-[#CEF5FA] text-primary transition-colors cursor-pointer"
                           title="View Full Message"
                         >
                           <Eye className="w-4 h-4" />

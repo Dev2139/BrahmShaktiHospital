@@ -64,8 +64,8 @@ export const TechnologySection = () => {
                       {tech.category}
                     </span>
                     {isActive && (
-                      <span className="flex items-center gap-1 text-[11px] text-teal-700 font-semibold bg-teal-50 px-2 py-0.5 rounded border border-teal-200/50">
-                        <Activity className="w-3 h-3 text-teal-600" />
+                      <span className="flex items-center gap-1 text-[11px] text-[#017290] font-semibold bg-[#F0FBFC] px-2 py-0.5 rounded border border-[#B6EEF6]/50">
+                        <Activity className="w-3 h-3 text-[#018AAE]" />
                         Clinical Active
                       </span>
                     )}

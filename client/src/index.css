@@ -14,7 +14,7 @@
   }
 
   body {
-    background-color: #F4F8FA;
+    background-color: #F4FBFD;
     color: #1E293B;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: clip;
@@ -23,7 +23,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid #0F766E;
+    outline: 2px solid #018AAE;
     outline-offset: 2px;
   }
 
@@ -38,14 +38,14 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4F8FA;
+  background: #F4FBFD;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #B6EEF6;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0F766E;
+  background: #018AAE;
 }
 
 /* Glassmorphism utility */
@@ -53,7 +53,7 @@
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(206, 245, 250, 0.6);
 }
 
 .glass-nav {
@@ -62,18 +62,25 @@
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* Medical Teal gradient text */
-.teal-gradient-text {
-  background: linear-gradient(135deg, #0F766E 0%, #14B8A6 100%);
+/* Wave Brand gradient text (#018AAE to #0DAFD5) */
+.teal-gradient-text,
+.brand-gradient-text {
+  background: linear-gradient(135deg, #018AAE 0%, #0DAFD5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Navy-to-Teal gradient text */
-.navy-teal-gradient {
-  background: linear-gradient(135deg, #12304A 0%, #0F766E 100%);
+/* Navy-to-Brand gradient text */
+.navy-teal-gradient,
+.navy-brand-gradient {
+  background: linear-gradient(135deg, #0B2545 0%, #018AAE 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* 3-Color Wave Banner Background Gradient */
+.bg-wave-gradient {
+  background: linear-gradient(135deg, #CEF5FA 0%, #0DAFD5 50%, #018AAE 100%);
 }
 
 /* Infinite Auto-scrolling Marquee for Testimonials */

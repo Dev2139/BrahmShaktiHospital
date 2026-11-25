@@ -163,8 +163,8 @@ export const ContactSection = () => {
               </div>
 
               {submissionSuccess ? (
-                <div className="bg-[#F8FAFC] p-8 rounded-2xl border border-teal-200 text-center space-y-3">
-                  <div className="w-12 h-12 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center mx-auto">
+                <div className="bg-[#F8FAFC] p-8 rounded-2xl border border-[#B6EEF6] text-center space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h4 className="font-display font-bold text-lg text-[#0C2340]">

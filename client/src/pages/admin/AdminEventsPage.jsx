@@ -245,7 +245,7 @@ export const AdminEventsPage = () => {
   return (
     <div className="space-y-6 pb-12">
       {/* 1. Header Banner */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-[#0A7A74] to-slate-900 text-white shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-[#018AAE] to-slate-900 text-white shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-5">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -291,7 +291,7 @@ export const AdminEventsPage = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search events by name, location..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+            className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
           />
         </div>
 
@@ -319,7 +319,7 @@ export const AdminEventsPage = () => {
           {!searchQuery && (
             <button
               onClick={openAddModal}
-              className="mt-2 px-4 py-2 rounded-xl bg-[#0A7A74] text-white text-xs font-bold cursor-pointer"
+              className="mt-2 px-4 py-2 rounded-xl bg-[#018AAE] text-white text-xs font-bold cursor-pointer"
             >
               Add First Event
             </button>
@@ -330,7 +330,7 @@ export const AdminEventsPage = () => {
           {filteredEvents.map((evt) => (
             <div
               key={evt._id}
-              className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden flex flex-col justify-between group hover:border-[#0A7A74]/50 transition-all"
+              className="bg-white rounded-3xl border border-slate-200/90 shadow-soft overflow-hidden flex flex-col justify-between group hover:border-[#018AAE]/50 transition-all"
             >
               <div>
                 {/* Cover Image */}
@@ -351,7 +351,7 @@ export const AdminEventsPage = () => {
 
                   {Array.isArray(evt.additionalImages) && evt.additionalImages.length > 0 && (
                     <div className="absolute bottom-3 right-3">
-                      <span className="px-2.5 py-1 rounded-full bg-[#0A7A74]/90 backdrop-blur-md text-white text-[10px] font-bold shadow-xs">
+                      <span className="px-2.5 py-1 rounded-full bg-[#018AAE]/90 backdrop-blur-md text-white text-[10px] font-bold shadow-xs">
                         +{evt.additionalImages.length} Photos
                       </span>
                     </div>
@@ -360,7 +360,7 @@ export const AdminEventsPage = () => {
 
                 {/* Event Details */}
                 <div className="p-5 space-y-2.5">
-                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#0A7A74]">
+                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#018AAE]">
                     <MapPin className="w-3.5 h-3.5 shrink-0" />
                     <span className="truncate">{evt.location}</span>
                   </div>
@@ -380,7 +380,7 @@ export const AdminEventsPage = () => {
                 <Link
                   to={`/events/${evt.slug || evt._id}`}
                   target="_blank"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#0A7A74] hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-[#018AAE] hover:underline"
                 >
                   <Eye className="w-3.5 h-3.5" />
                   <span>Live Preview ↗</span>
@@ -414,7 +414,7 @@ export const AdminEventsPage = () => {
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden my-6">
             {/* Modal Header */}
-            <div className="p-6 bg-gradient-to-r from-slate-900 via-[#0A7A74] to-slate-900 text-white flex items-center justify-between shrink-0">
+            <div className="p-6 bg-gradient-to-r from-slate-900 via-[#018AAE] to-slate-900 text-white flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5">
                 <div className="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center">
                   <CalendarDays className="w-5 h-5 text-white" />
@@ -451,7 +451,7 @@ export const AdminEventsPage = () => {
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. World Hospice and Palliative Care Day 2026"
                   required
-                  className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+                  className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
                 />
               </div>
 
@@ -471,7 +471,7 @@ export const AdminEventsPage = () => {
                     onChange={(e) => setCoverImage(e.target.value)}
                     placeholder="https://res.cloudinary.com/... or web image URL"
                     required
-                    className="flex-1 p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                    className="flex-1 p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
                   />
                 </div>
 
@@ -488,7 +488,7 @@ export const AdminEventsPage = () => {
                         onClick={() => setCoverImage(preset.url)}
                         className={`text-[11px] px-2.5 py-1 rounded-lg border transition-colors cursor-pointer ${
                           coverImage === preset.url
-                            ? 'bg-[#0A7A74] text-white border-[#0A7A74]'
+                            ? 'bg-[#018AAE] text-white border-[#018AAE]'
                             : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
@@ -530,7 +530,7 @@ export const AdminEventsPage = () => {
                     onChange={(e) => setLocation(e.target.value)}
                     placeholder="e.g. Main Auditorium, Brahm Shakti Hospital, Pocket C, Budh Vihar"
                     required
-                    className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                    className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
                   />
                 </div>
 
@@ -545,7 +545,7 @@ export const AdminEventsPage = () => {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     required
-                    className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                    className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
                   />
                 </div>
               </div>
@@ -565,7 +565,7 @@ export const AdminEventsPage = () => {
                   onChange={(e) => setSummary(e.target.value)}
                   placeholder="e.g. A day of learning, clinical reflection, and compassionate healthcare at Brahm Shakti Hospital."
                   required
-                  className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                  className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
                 />
               </div>
 
@@ -584,7 +584,7 @@ export const AdminEventsPage = () => {
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Write the full event story here. Separate paragraphs with double enter (blank line) for clean reading layout..."
                   required
-                  className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                  className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
                 />
               </div>
 
@@ -602,7 +602,7 @@ export const AdminEventsPage = () => {
                   <button
                     type="button"
                     onClick={handleAddImageField}
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-[#0A7A74] text-xs font-bold transition-colors cursor-pointer"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-[#F0FBFC] hover:bg-[#CEF5FA] text-[#018AAE] text-xs font-bold transition-colors cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Add Photo</span>
@@ -617,7 +617,7 @@ export const AdminEventsPage = () => {
                         value={imgUrl}
                         onChange={(e) => handleAdditionalImageChange(index, e.target.value)}
                         placeholder="https://... photo URL"
-                        className="flex-1 p-2.5 rounded-xl border border-slate-300 text-xs text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+                        className="flex-1 p-2.5 rounded-xl border border-slate-300 text-xs text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
                       />
                       {imgUrl && (
                         <div className="w-10 h-10 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 shrink-0">
@@ -656,7 +656,7 @@ export const AdminEventsPage = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-6 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold transition-all shadow-md cursor-pointer flex items-center gap-2"
+                  className="px-6 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold transition-all shadow-md cursor-pointer flex items-center gap-2"
                 >
                   {submitting && <RefreshCw className="w-3.5 h-3.5 animate-spin" />}
                   <span>{editingEventId ? 'Update Event' : 'Publish Event'}</span>

@@ -329,7 +329,7 @@ export const RegisterPage = () => {
             </div>
             <div className="flex items-center justify-between text-slate-500">
               <span>Need consultation right now?</span>
-              <Link to="/bookappointment" className="text-teal-700 font-bold hover:underline inline-flex items-center gap-1">
+              <Link to="/bookappointment" className="text-[#017290] font-bold hover:underline inline-flex items-center gap-1">
                 <span>Book without Login</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>

@@ -59,7 +59,7 @@ export const InternationalModal = ({ isOpen, onClose }) => {
 
         {submittedData ? (
           <div className="text-center py-6 space-y-4">
-            <div className="w-14 h-14 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center mx-auto">
+            <div className="w-14 h-14 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h3 className="font-serif font-bold text-2xl text-[#123653]">

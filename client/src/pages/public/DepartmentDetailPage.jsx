@@ -89,7 +89,7 @@ export const DepartmentDetailPage = () => {
     return (
       <div className="min-h-[70vh] bg-[#F4F8FA] py-16 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-center">
-          <div className="w-10 h-10 border-4 border-[#0A7A74] border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-10 h-10 border-4 border-[#018AAE] border-t-transparent rounded-full animate-spin"></div>
         </div>
       </div>
     );
@@ -103,7 +103,7 @@ export const DepartmentDetailPage = () => {
           <p className="text-slate-500 text-xs">The requested medical specialty could not be located.</p>
           <Link
             to="/departments"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#018AAE] text-white text-xs font-bold shadow-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to All Departments</span>
@@ -151,12 +151,12 @@ export const DepartmentDetailPage = () => {
       {/* Breadcrumb Navigation */}
       <div className="bg-[#F8FAFC] border-b border-slate-200/80 py-3.5 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-bold text-slate-500">
-          <Link to="/" className="text-[#0A7A74] hover:underline flex items-center gap-1">
+          <Link to="/" className="text-[#018AAE] hover:underline flex items-center gap-1">
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Home</span>
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <Link to="/departments" className="text-slate-500 hover:text-[#0A7A74]">
+          <Link to="/departments" className="text-slate-500 hover:text-[#018AAE]">
             Departments
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
@@ -170,8 +170,8 @@ export const DepartmentDetailPage = () => {
           
           {/* Left Column: Specialists Doctor List ONLY (Matches Image 2 & 3) */}
           <aside className="lg:col-span-4 xl:col-span-4 space-y-4">
-            <div className="border-b-2 border-[#0A7A74] pb-2">
-              <h2 className="text-xl sm:text-2xl font-black text-[#0A7A74] tracking-tight">
+            <div className="border-b-2 border-[#018AAE] pb-2">
+              <h2 className="text-xl sm:text-2xl font-black text-[#018AAE] tracking-tight">
                 Specialists
               </h2>
             </div>
@@ -188,7 +188,7 @@ export const DepartmentDetailPage = () => {
                     title={`View profile of ${doc.name}`}
                   >
                     {/* Doctor Portrait Photo */}
-                    <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-2xs group-hover:shadow-md group-hover:border-[#0A7A74] transition-all">
+                    <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-2xs group-hover:shadow-md group-hover:border-[#018AAE] transition-all">
                       <img
                         src={doc.image || 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600'}
                         alt={doc.name}
@@ -199,7 +199,7 @@ export const DepartmentDetailPage = () => {
                       />
                     </div>
                     {/* Doctor Name (No prices, clean layout) */}
-                    <span className="text-xs font-bold text-slate-800 group-hover:text-[#0A7A74] transition-colors mt-2 line-clamp-2 px-1">
+                    <span className="text-xs font-bold text-slate-800 group-hover:text-[#018AAE] transition-colors mt-2 line-clamp-2 px-1">
                       {doc.name}
                     </span>
                   </Link>
@@ -214,9 +214,9 @@ export const DepartmentDetailPage = () => {
               </span>
               <a
                 href="tel:01127531683"
-                className="text-slate-800 font-bold hover:text-[#0A7A74] flex items-center gap-1.5"
+                className="text-slate-800 font-bold hover:text-[#018AAE] flex items-center gap-1.5"
               >
-                <PhoneCall className="w-3.5 h-3.5 text-[#0A7A74]" />
+                <PhoneCall className="w-3.5 h-3.5 text-[#018AAE]" />
                 <span>011-27531683 / 7840089703</span>
               </a>
             </div>
@@ -226,12 +226,12 @@ export const DepartmentDetailPage = () => {
           <section className="lg:col-span-8 xl:col-span-8 space-y-6 sm:space-y-8">
             {/* Department Title */}
             <div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0A7A74] tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#018AAE] tracking-tight leading-tight">
                 Department of {department.name}
               </h1>
               {department.headOfDepartment && (
                 <div className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
-                  <span className="text-[#0A7A74] font-bold">Clinical Chairperson / Head: </span>
+                  <span className="text-[#018AAE] font-bold">Clinical Chairperson / Head: </span>
                   <span>{department.headOfDepartment}</span>
                 </div>
               )}
@@ -246,7 +246,7 @@ export const DepartmentDetailPage = () => {
 
             {/* About the Department Section */}
             <div className="space-y-3 pt-2">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#0A7A74] tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#018AAE] tracking-tight">
                 About the Department
               </h2>
               <div className="text-sm sm:text-base text-slate-700 leading-relaxed space-y-3.5">
@@ -259,7 +259,7 @@ export const DepartmentDetailPage = () => {
             {/* State-of-the-art Techniques (if present) */}
             {department.techniques && (
               <div className="space-y-3 pt-2">
-                <h2 className="text-xl sm:text-2xl font-bold text-[#0A7A74] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#018AAE] tracking-tight">
                   State-of-the-art Techniques
                 </h2>
                 <div className="text-sm sm:text-base text-slate-700 leading-relaxed whitespace-pre-line">
@@ -270,13 +270,13 @@ export const DepartmentDetailPage = () => {
 
             {/* Facilities Offered Section */}
             <div className="space-y-3 pt-2">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#0A7A74] tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#018AAE] tracking-tight">
                 Facilities Offered
               </h2>
               <div className="space-y-2.5">
                 {facilitiesList.map((facility, idx) => (
                   <div key={idx} className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0A7A74] mt-2 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#018AAE] mt-2 shrink-0" />
                     <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                       {facility}
                     </p>
@@ -287,13 +287,13 @@ export const DepartmentDetailPage = () => {
 
             {/* Key Services Section */}
             <div className="space-y-3 pt-2">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#0A7A74] tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#018AAE] tracking-tight">
                 Key Services
               </h2>
               <div className="space-y-3">
                 {servicesList.map((srv, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                    <CheckCircle2 className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
                     <span className="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed">
                       {srv}
                     </span>
@@ -303,7 +303,7 @@ export const DepartmentDetailPage = () => {
             </div>
 
             {/* Clinical Consultation Call-to-Action (No OPD fees mentioned) */}
-            <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-[#0A7A74] to-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+            <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-[#018AAE] to-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
               <div className="space-y-1 text-center sm:text-left">
                 <h3 className="text-lg sm:text-xl font-black">
                   Schedule a Consultation with {department.name} Specialists

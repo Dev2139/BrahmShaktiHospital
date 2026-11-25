@@ -222,7 +222,7 @@ export const AdminNewsPage = () => {
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-7">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FBFC] text-[#018AAE] text-xs font-bold uppercase tracking-wider mb-2">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Institutional Governance & Notice Distribution</span>
             </div>
@@ -249,7 +249,7 @@ export const AdminNewsPage = () => {
             <button
               type="button"
               onClick={openCreateModal}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-sm font-bold shadow-sm transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-sm font-bold shadow-sm transition-all cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Issue New Circular</span>
@@ -273,7 +273,7 @@ export const AdminNewsPage = () => {
                 onClick={() => setAudienceFilter(tab.id)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                   audienceFilter === tab.id
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
@@ -290,7 +290,7 @@ export const AdminNewsPage = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search circulars, ref no..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#018AAE]/20 focus:border-[#018AAE]"
             />
           </div>
         </div>
@@ -300,7 +300,7 @@ export const AdminNewsPage = () => {
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
         {loading ? (
           <div className="py-20 text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-slate-200 border-t-[#0A7A74]" />
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-slate-200 border-t-[#018AAE]" />
             <p className="text-xs text-slate-400 mt-2">Loading official notices...</p>
           </div>
         ) : filteredNotices.length === 0 ? (
@@ -374,7 +374,7 @@ export const AdminNewsPage = () => {
                             {item.refNumber}
                           </span>
                         )}
-                        <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-teal-50 text-[#0A7A74] border border-teal-200/80">
+                        <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6]/80">
                           {item.category}
                         </span>
                         {audienceBadge}
@@ -419,7 +419,7 @@ export const AdminNewsPage = () => {
                     <button
                       type="button"
                       onClick={() => openEditModal(item)}
-                      className="p-2 rounded-lg border border-slate-200 text-[#0A7A74] hover:bg-teal-50 hover:border-teal-300 transition-colors"
+                      className="p-2 rounded-lg border border-slate-200 text-[#018AAE] hover:bg-[#F0FBFC] hover:border-[#73E0EF] transition-colors"
                       title="Edit Notice"
                     >
                       <Edit3 className="w-4 h-4" />
@@ -447,7 +447,7 @@ export const AdminNewsPage = () => {
           <div className="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-7 shadow-xl border border-slate-200 my-8">
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <div className="w-9 h-9 rounded-xl bg-teal-50 text-[#0A7A74] flex items-center justify-center font-bold">
+                <div className="w-9 h-9 rounded-xl bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold">
                   <Send className="w-5 h-5" />
                 </div>
                 <div>
@@ -480,7 +480,7 @@ export const AdminNewsPage = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Winter Seasonal Respiratory Care & Free OPD Nebulization Desk..."
-                  className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
+                  className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#018AAE]/20 focus:border-[#018AAE]"
                 />
               </div>
 
@@ -493,7 +493,7 @@ export const AdminNewsPage = () => {
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
+                    className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#018AAE]/20 focus:border-[#018AAE]"
                   >
                     {CATEGORIES.map((cat) => (
                       <option key={cat} value={cat}>
@@ -512,7 +512,7 @@ export const AdminNewsPage = () => {
                     value={refNumber}
                     onChange={(e) => setRefNumber(e.target.value)}
                     placeholder="e.g. BSH/ADM/2026/104"
-                    className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl font-mono text-xs focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
+                    className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl font-mono text-xs focus:outline-none focus:ring-2 focus:ring-[#018AAE]/20 focus:border-[#018AAE]"
                   />
                 </div>
               </div>
@@ -535,7 +535,7 @@ export const AdminNewsPage = () => {
                       onClick={() => setAudience(aud.id)}
                       className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                         audience === aud.id
-                          ? 'bg-[#0A7A74] text-white border-[#0A7A74] shadow-sm'
+                          ? 'bg-[#018AAE] text-white border-[#018AAE] shadow-sm'
                           : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
                       }`}
                     >
@@ -557,7 +557,7 @@ export const AdminNewsPage = () => {
                         onClick={() =>
                           setSelectedDoctorIds(doctorsList.map((d) => d.id || d._id))
                         }
-                        className="text-[11px] text-[#0A7A74] hover:underline"
+                        className="text-[11px] text-[#018AAE] hover:underline"
                       >
                         Select All
                       </button>
@@ -570,14 +570,14 @@ export const AdminNewsPage = () => {
                           <label
                             key={docId}
                             className={`flex items-center gap-2.5 p-2 rounded-md text-xs cursor-pointer transition-colors ${
-                              isSelected ? 'bg-teal-50/80 text-[#0A7A74] font-semibold' : 'hover:bg-slate-50 text-slate-700'
+                              isSelected ? 'bg-[#F0FBFC]/80 text-[#018AAE] font-semibold' : 'hover:bg-slate-50 text-slate-700'
                             }`}
                           >
                             <input
                               type="checkbox"
                               checked={isSelected}
                               onChange={() => toggleDoctorSelection(docId)}
-                              className="w-4 h-4 text-[#0A7A74] rounded focus:ring-0 cursor-pointer"
+                              className="w-4 h-4 text-[#018AAE] rounded focus:ring-0 cursor-pointer"
                             />
                             <div className="flex items-center justify-between flex-1">
                               <span>{doc.name}</span>
@@ -604,7 +604,7 @@ export const AdminNewsPage = () => {
                   value={summary}
                   onChange={(e) => setSummary(e.target.value)}
                   placeholder="2-3 sentence overview displayed on the notice board..."
-                  className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
+                  className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#018AAE]/20 focus:border-[#018AAE]"
                 />
               </div>
 
@@ -618,7 +618,7 @@ export const AdminNewsPage = () => {
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   placeholder="Full text of the circular, guidelines, duty orders, or patient instructions..."
-                  className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl font-mono text-xs focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
+                  className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl font-mono text-xs focus:outline-none focus:ring-2 focus:ring-[#018AAE]/20 focus:border-[#018AAE]"
                 />
               </div>
 
@@ -632,7 +632,7 @@ export const AdminNewsPage = () => {
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
+                    className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#018AAE]/20 focus:border-[#018AAE]"
                   />
                 </div>
                 <div>
@@ -644,7 +644,7 @@ export const AdminNewsPage = () => {
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                     placeholder="Medical Superintendent / Hospital Administration"
-                    className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0A7A74]/20 focus:border-[#0A7A74]"
+                    className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#018AAE]/20 focus:border-[#018AAE]"
                   />
                 </div>
               </div>
@@ -656,7 +656,7 @@ export const AdminNewsPage = () => {
                     type="checkbox"
                     checked={isPinned}
                     onChange={(e) => setIsPinned(e.target.checked)}
-                    className="w-4 h-4 text-[#0A7A74] rounded focus:ring-0"
+                    className="w-4 h-4 text-[#018AAE] rounded focus:ring-0"
                   />
                   <span>Pin Notice to Top of Board</span>
                 </label>
@@ -666,7 +666,7 @@ export const AdminNewsPage = () => {
                     type="checkbox"
                     checked={isNewBadge}
                     onChange={(e) => setIsNewBadge(e.target.checked)}
-                    className="w-4 h-4 text-[#0A7A74] rounded focus:ring-0"
+                    className="w-4 h-4 text-[#018AAE] rounded focus:ring-0"
                   />
                   <span>Show Pulsing "NEW" Tag</span>
                 </label>
@@ -684,7 +684,7 @@ export const AdminNewsPage = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-5 py-2 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold shadow-sm transition-all cursor-pointer flex items-center gap-1.5"
+                  className="px-5 py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold shadow-sm transition-all cursor-pointer flex items-center gap-1.5"
                 >
                   <CheckCircle2 className="w-4 h-4" />
                   <span>{submitting ? 'Saving...' : editingId ? 'Update Notice' : 'Publish & Distribute'}</span>
@@ -704,7 +704,7 @@ export const AdminNewsPage = () => {
                 <span className="font-mono text-xs font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
                   {previewNotice.refNumber || 'BSH/NOTICE'}
                 </span>
-                <span className="px-2 py-0.5 rounded text-xs font-bold bg-teal-50 text-[#0A7A74]">
+                <span className="px-2 py-0.5 rounded text-xs font-bold bg-[#F0FBFC] text-[#018AAE]">
                   {previewNotice.category}
                 </span>
               </div>
@@ -724,7 +724,7 @@ export const AdminNewsPage = () => {
 
               <div className="flex items-center gap-4 text-xs text-slate-500 pb-3 border-b border-slate-100">
                 <span className="flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-[#0A7A74]" />
+                  <Calendar className="w-3.5 h-3.5 text-[#018AAE]" />
                   {previewNotice.date}
                 </span>
                 <span>•</span>

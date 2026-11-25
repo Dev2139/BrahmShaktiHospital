@@ -176,7 +176,7 @@ export const PatientDashboardPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F4F7F9] text-[#1E293B] flex flex-col font-sans selection:bg-[#0A7A74] selection:text-white">
+    <div className="min-h-screen bg-[#F4F7F9] text-[#1E293B] flex flex-col font-sans selection:bg-[#018AAE] selection:text-white">
       {/* ================= DEDICATED PATIENT PORTAL HEADER (EXACT REFERENCE) ================= */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-4">
@@ -192,7 +192,7 @@ export const PatientDashboardPage = () => {
                 <div className="text-xs font-black tracking-wider text-[#0B2545] uppercase">
                   Patient Portal
                 </div>
-                <div className="text-[11px] font-medium text-[#0A7A74] italic">
+                <div className="text-[11px] font-medium text-[#018AAE] italic">
                   Trust of Generations
                 </div>
               </div>
@@ -203,7 +203,7 @@ export const PatientDashboardPage = () => {
           <div className="flex items-center gap-3">
             {/* Patient Badge Pill */}
             <div className="bg-slate-50 border border-slate-200 rounded-2xl py-1.5 px-3 flex items-center gap-2.5 shadow-2xs">
-              <div className="w-8 h-8 rounded-full bg-[#0A7A74] text-white flex items-center justify-center font-bold text-xs shrink-0">
+              <div className="w-8 h-8 rounded-full bg-[#018AAE] text-white flex items-center justify-center font-bold text-xs shrink-0">
                 {avatarLetter}
               </div>
               <div className="min-w-0 text-left">
@@ -211,7 +211,7 @@ export const PatientDashboardPage = () => {
                   {patientDisplayName}
                 </div>
                 <div className="text-[10px] font-semibold text-slate-500 truncate">
-                  Reg No: <span className="font-mono text-[#0A7A74]">{patientUhid}</span>
+                  Reg No: <span className="font-mono text-[#018AAE]">{patientUhid}</span>
                 </div>
               </div>
             </div>
@@ -241,7 +241,7 @@ export const PatientDashboardPage = () => {
                 onClick={() => setActiveTab('dashboard')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all text-left cursor-pointer ${
                   activeTab === 'dashboard'
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
@@ -255,7 +255,7 @@ export const PatientDashboardPage = () => {
                 onClick={() => setActiveTab('appointments')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all text-left cursor-pointer ${
                   activeTab === 'appointments'
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
@@ -269,7 +269,7 @@ export const PatientDashboardPage = () => {
                 onClick={() => setActiveTab('payments')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all text-left cursor-pointer ${
                   activeTab === 'payments'
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
@@ -283,7 +283,7 @@ export const PatientDashboardPage = () => {
                 onClick={() => setActiveTab('labs')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all text-left cursor-pointer ${
                   activeTab === 'labs'
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
@@ -297,7 +297,7 @@ export const PatientDashboardPage = () => {
                 onClick={() => setActiveTab('support')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all text-left cursor-pointer ${
                   activeTab === 'support'
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
@@ -307,7 +307,7 @@ export const PatientDashboardPage = () => {
             </div>
 
             {/* Bottom Teal Emergency Contact Card (Matching Screenshot) */}
-            <div className="bg-[#0A7A74] text-white rounded-2xl p-4 shadow-sm space-y-1">
+            <div className="bg-[#018AAE] text-white rounded-2xl p-4 shadow-sm space-y-1">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
                   <PhoneCall className="w-4 h-4 text-white" />
@@ -327,7 +327,7 @@ export const PatientDashboardPage = () => {
             {/* Quick Link to Book Appointment */}
             <Link
               to="/bookappointment"
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white border border-[#0A7A74] text-[#0A7A74] hover:bg-[#0A7A74] hover:text-white font-bold text-xs transition-all shadow-2xs"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white border border-[#018AAE] text-[#018AAE] hover:bg-[#018AAE] hover:text-white font-bold text-xs transition-all shadow-2xs"
             >
               <Plus className="w-4 h-4" />
               <span>Book New Appointment</span>
@@ -340,7 +340,7 @@ export const PatientDashboardPage = () => {
             <div className="space-y-1">
               <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
                 <span>Welcome,</span>
-                <span className="text-[#0A7A74]">{firstName}</span>
+                <span className="text-[#018AAE]">{firstName}</span>
                 <span className="text-2xl">👋</span>
               </h1>
               <p className="text-xs sm:text-sm font-semibold text-slate-500">
@@ -363,9 +363,9 @@ export const PatientDashboardPage = () => {
                     <button
                       type="button"
                       onClick={() => setActiveTab('appointments')}
-                      className="p-5 rounded-xl border border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col items-center text-center gap-3 bg-white cursor-pointer group"
+                      className="p-5 rounded-xl border border-slate-200 hover:border-[#018AAE] hover:shadow-md transition-all flex flex-col items-center text-center gap-3 bg-white cursor-pointer group"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-teal-50 text-[#0A7A74] group-hover:bg-[#0A7A74] group-hover:text-white flex items-center justify-center transition-colors">
+                      <div className="w-12 h-12 rounded-xl bg-[#F0FBFC] text-[#018AAE] group-hover:bg-[#018AAE] group-hover:text-white flex items-center justify-center transition-colors">
                         <Calendar className="w-6 h-6" />
                       </div>
                       <span className="font-bold text-xs sm:text-sm text-slate-800">
@@ -377,9 +377,9 @@ export const PatientDashboardPage = () => {
                     <button
                       type="button"
                       onClick={() => setActiveTab('payments')}
-                      className="p-5 rounded-xl border border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col items-center text-center gap-3 bg-white cursor-pointer group"
+                      className="p-5 rounded-xl border border-slate-200 hover:border-[#018AAE] hover:shadow-md transition-all flex flex-col items-center text-center gap-3 bg-white cursor-pointer group"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-teal-50 text-[#0A7A74] group-hover:bg-[#0A7A74] group-hover:text-white flex items-center justify-center transition-colors">
+                      <div className="w-12 h-12 rounded-xl bg-[#F0FBFC] text-[#018AAE] group-hover:bg-[#018AAE] group-hover:text-white flex items-center justify-center transition-colors">
                         <CreditCard className="w-6 h-6" />
                       </div>
                       <span className="font-bold text-xs sm:text-sm text-slate-800">
@@ -391,9 +391,9 @@ export const PatientDashboardPage = () => {
                     <button
                       type="button"
                       onClick={() => setActiveTab('labs')}
-                      className="p-5 rounded-xl border border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col items-center text-center gap-3 bg-white cursor-pointer group"
+                      className="p-5 rounded-xl border border-slate-200 hover:border-[#018AAE] hover:shadow-md transition-all flex flex-col items-center text-center gap-3 bg-white cursor-pointer group"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-teal-50 text-[#0A7A74] group-hover:bg-[#0A7A74] group-hover:text-white flex items-center justify-center transition-colors">
+                      <div className="w-12 h-12 rounded-xl bg-[#F0FBFC] text-[#018AAE] group-hover:bg-[#018AAE] group-hover:text-white flex items-center justify-center transition-colors">
                         <FlaskConical className="w-6 h-6" />
                       </div>
                       <span className="font-bold text-xs sm:text-sm text-slate-800">
@@ -405,9 +405,9 @@ export const PatientDashboardPage = () => {
                     <button
                       type="button"
                       onClick={() => setActiveTab('support')}
-                      className="p-5 rounded-xl border border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex flex-col items-center text-center gap-3 bg-white cursor-pointer group"
+                      className="p-5 rounded-xl border border-slate-200 hover:border-[#018AAE] hover:shadow-md transition-all flex flex-col items-center text-center gap-3 bg-white cursor-pointer group"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-teal-50 text-[#0A7A74] group-hover:bg-[#0A7A74] group-hover:text-white flex items-center justify-center transition-colors">
+                      <div className="w-12 h-12 rounded-xl bg-[#F0FBFC] text-[#018AAE] group-hover:bg-[#018AAE] group-hover:text-white flex items-center justify-center transition-colors">
                         <Headphones className="w-6 h-6" />
                       </div>
                       <span className="font-bold text-xs sm:text-sm text-slate-800">
@@ -422,9 +422,9 @@ export const PatientDashboardPage = () => {
                     <button
                       type="button"
                       onClick={() => setActiveTab('payments')}
-                      className="p-4 rounded-xl border border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex items-center gap-3.5 bg-white cursor-pointer text-left group"
+                      className="p-4 rounded-xl border border-slate-200 hover:border-[#018AAE] hover:shadow-md transition-all flex items-center gap-3.5 bg-white cursor-pointer text-left group"
                     >
-                      <div className="w-11 h-11 rounded-xl bg-teal-50 text-[#0A7A74] group-hover:bg-[#0A7A74] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
+                      <div className="w-11 h-11 rounded-xl bg-[#F0FBFC] text-[#018AAE] group-hover:bg-[#018AAE] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
                         <Receipt className="w-5 h-5" />
                       </div>
                       <div>
@@ -440,9 +440,9 @@ export const PatientDashboardPage = () => {
                     {/* Book Appointment Card */}
                     <Link
                       to="/bookappointment"
-                      className="p-4 rounded-xl border border-slate-200 hover:border-[#0A7A74] hover:shadow-md transition-all flex items-center gap-3.5 bg-white text-left group"
+                      className="p-4 rounded-xl border border-slate-200 hover:border-[#018AAE] hover:shadow-md transition-all flex items-center gap-3.5 bg-white text-left group"
                     >
-                      <div className="w-11 h-11 rounded-xl bg-teal-50 text-[#0A7A74] group-hover:bg-[#0A7A74] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
+                      <div className="w-11 h-11 rounded-xl bg-[#F0FBFC] text-[#018AAE] group-hover:bg-[#018AAE] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
                         <Plus className="w-5 h-5" />
                       </div>
                       <div>
@@ -465,7 +465,7 @@ export const PatientDashboardPage = () => {
                     </h3>
                     <Link
                       to="/bookappointment"
-                      className="text-xs font-bold text-[#0A7A74] hover:underline"
+                      className="text-xs font-bold text-[#018AAE] hover:underline"
                     >
                       Book Another Slot →
                     </Link>
@@ -473,7 +473,7 @@ export const PatientDashboardPage = () => {
 
                   {loading ? (
                     <div className="py-8 text-center text-slate-400">
-                      <Loader2 className="w-6 h-6 animate-spin mx-auto text-[#0A7A74]" />
+                      <Loader2 className="w-6 h-6 animate-spin mx-auto text-[#018AAE]" />
                     </div>
                   ) : appointments.filter((a) => a.status === 'Confirmed' || a.status === 'Pending').length === 0 ? (
                     <div className="py-8 text-center text-slate-500 space-y-3">
@@ -481,7 +481,7 @@ export const PatientDashboardPage = () => {
                       <p className="text-xs font-semibold">No upcoming appointments scheduled.</p>
                       <Link
                         to="/bookappointment"
-                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#0A7A74] text-white text-xs font-bold shadow-xs hover:bg-[#08635e]"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#018AAE] text-white text-xs font-bold shadow-xs hover:bg-[#007595]"
                       >
                         <Plus className="w-3.5 h-3.5" />
                         <span>Book an Appointment</span>
@@ -512,7 +512,7 @@ export const PatientDashboardPage = () => {
                               <button
                                 type="button"
                                 onClick={() => window.print()}
-                                className="px-3 py-1 rounded-lg border border-slate-300 text-slate-700 hover:text-[#0A7A74] text-xs font-semibold"
+                                className="px-3 py-1 rounded-lg border border-slate-300 text-slate-700 hover:text-[#018AAE] text-xs font-semibold"
                               >
                                 Print Slip
                               </button>
@@ -535,7 +535,7 @@ export const PatientDashboardPage = () => {
                   </div>
                   <Link
                     to="/bookappointment"
-                    className="px-4 py-2 rounded-lg bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold flex items-center gap-1.5 shadow-2xs"
+                    className="px-4 py-2 rounded-lg bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold flex items-center gap-1.5 shadow-2xs"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Book Appointment</span>
@@ -544,7 +544,7 @@ export const PatientDashboardPage = () => {
 
                 {loading ? (
                   <div className="py-12 text-center text-slate-400">
-                    <Loader2 className="w-6 h-6 animate-spin mx-auto text-[#0A7A74]" />
+                    <Loader2 className="w-6 h-6 animate-spin mx-auto text-[#018AAE]" />
                   </div>
                 ) : appointments.length === 0 ? (
                   <div className="py-12 text-center text-slate-400 space-y-2">
@@ -560,7 +560,7 @@ export const PatientDashboardPage = () => {
                       >
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono text-xs font-black text-[#0A7A74]">
+                            <span className="font-mono text-xs font-black text-[#018AAE]">
                               {apt.appointmentId}
                             </span>
                             <span
@@ -582,7 +582,7 @@ export const PatientDashboardPage = () => {
                               {apt.date} · {apt.timeSlot}
                             </span>
                           </div>
-                          <div className="text-xs font-bold text-[#0A7A74]">
+                          <div className="text-xs font-bold text-[#018AAE]">
                             Fee: ₹{apt.fee || 700} (Subsidized Trust Rate)
                           </div>
                         </div>
@@ -591,7 +591,7 @@ export const PatientDashboardPage = () => {
                           <button
                             type="button"
                             onClick={() => window.print()}
-                            className="px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:text-[#0A7A74] text-xs font-bold transition-colors bg-white shadow-2xs"
+                            className="px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:text-[#018AAE] text-xs font-bold transition-colors bg-white shadow-2xs"
                           >
                             Print Slip
                           </button>
@@ -629,7 +629,7 @@ export const PatientDashboardPage = () => {
                   {/* Sample / Real Receipts */}
                   <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm">
                     <div className="space-y-1">
-                      <div className="font-mono text-xs font-black text-[#0A7A74]">
+                      <div className="font-mono text-xs font-black text-[#018AAE]">
                         RCP-2026-OPD-7819
                       </div>
                       <div className="font-bold text-slate-900">
@@ -644,7 +644,7 @@ export const PatientDashboardPage = () => {
                       <button
                         type="button"
                         onClick={() => window.print()}
-                        className="px-3 py-1 rounded-lg border border-slate-300 text-slate-700 hover:text-[#0A7A74] text-xs font-semibold bg-white"
+                        className="px-3 py-1 rounded-lg border border-slate-300 text-slate-700 hover:text-[#018AAE] text-xs font-semibold bg-white"
                       >
                         Print Voucher
                       </button>
@@ -653,7 +653,7 @@ export const PatientDashboardPage = () => {
 
                   <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm">
                     <div className="space-y-1">
-                      <div className="font-mono text-xs font-black text-[#0A7A74]">
+                      <div className="font-mono text-xs font-black text-[#018AAE]">
                         RCP-2026-REG-0001
                       </div>
                       <div className="font-bold text-slate-900">
@@ -684,7 +684,7 @@ export const PatientDashboardPage = () => {
                     href="https://itd.oncquest.net/oncquest/design/onlinelab"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[#0A7A74] text-[#0A7A74] hover:bg-[#0A7A74] hover:text-white text-xs font-bold transition-all"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[#018AAE] text-[#018AAE] hover:bg-[#018AAE] hover:text-white text-xs font-bold transition-all"
                   >
                     <span>Oncquest Lab Portal</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -713,7 +713,7 @@ export const PatientDashboardPage = () => {
                       <button
                         type="button"
                         onClick={() => window.print()}
-                        className="px-3.5 py-2 rounded-lg bg-white border border-slate-300 text-slate-700 hover:text-[#0A7A74] hover:border-[#0A7A74] text-xs font-bold flex items-center gap-1.5 shrink-0 shadow-2xs"
+                        className="px-3.5 py-2 rounded-lg bg-white border border-slate-300 text-slate-700 hover:text-[#018AAE] hover:border-[#018AAE] text-xs font-bold flex items-center gap-1.5 shrink-0 shadow-2xs"
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>Download PDF</span>
@@ -745,11 +745,11 @@ export const PatientDashboardPage = () => {
                   </div>
 
                   <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-center space-y-2">
-                    <div className="w-10 h-10 mx-auto rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center">
+                    <div className="w-10 h-10 mx-auto rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center">
                       <Calendar className="w-5 h-5" />
                     </div>
                     <div className="font-bold text-xs text-slate-800">OPD Appointments Desk</div>
-                    <a href="tel:7840089703" className="block font-black text-sm text-[#0A7A74] hover:underline">
+                    <a href="tel:7840089703" className="block font-black text-sm text-[#018AAE] hover:underline">
                       +91-7840089703
                     </a>
                   </div>
@@ -776,13 +776,13 @@ export const PatientDashboardPage = () => {
                     value={supportMessage}
                     onChange={(e) => setSupportMessage(e.target.value)}
                     placeholder="Describe your inquiry, doctor consultation query, or report assistance needed..."
-                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-xs sm:text-sm font-medium focus:border-[#0A7A74] focus:outline-hidden resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-xs sm:text-sm font-medium focus:border-[#018AAE] focus:outline-hidden resize-none"
                   />
                   <div className="flex justify-end">
                     <button
                       type="submit"
                       disabled={supportSending}
-                      className="px-6 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+                      className="px-6 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                     >
                       {supportSending ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
                       <span>Send Inquiry</span>
@@ -799,12 +799,12 @@ export const PatientDashboardPage = () => {
       <footer className="bg-white border-t border-slate-200 mt-auto py-4">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
           <div className="font-semibold">&copy; 2026 Brahm Shakti Hospital.</div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-teal-300 bg-teal-50 text-[#0A7A74] font-bold text-xs">
-            <ShieldCheck className="w-4 h-4 text-[#0A7A74]" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#73E0EF] bg-[#F0FBFC] text-[#018AAE] font-bold text-xs">
+            <ShieldCheck className="w-4 h-4 text-[#018AAE]" />
             <span>NABH &amp; NABL Accredited</span>
           </div>
           <div className="flex items-center gap-4 text-xs font-medium">
-            <a href="mailto:helpdesk@brahmshaktihospital.com" className="hover:text-[#0A7A74] transition-colors">
+            <a href="mailto:helpdesk@brahmshaktihospital.com" className="hover:text-[#018AAE] transition-colors">
               helpdesk@brahmshaktihospital.com
             </a>
             <a href="tel:01127531683" className="text-rose-600 font-bold hover:underline">

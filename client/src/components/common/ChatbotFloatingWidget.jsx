@@ -229,7 +229,7 @@ export const ChatbotFloatingWidget = () => {
             type="button"
             aria-label="Show quick actions"
             title="Show quick actions"
-            className="w-5.5 sm:w-6 h-10 sm:h-11 rounded-l-xl bg-[#0A7A74]/90 hover:bg-[#0A7A74] text-white flex items-center justify-center shadow-md border-t border-b border-l border-white/30 hover:w-7 transition-all cursor-pointer active:scale-95 group"
+            className="w-5.5 sm:w-6 h-10 sm:h-11 rounded-l-xl bg-[#018AAE]/90 hover:bg-[#018AAE] text-white flex items-center justify-center shadow-md border-t border-b border-l border-white/30 hover:w-7 transition-all cursor-pointer active:scale-95 group"
           >
             <ChevronLeft className="w-3.5 h-3.5 text-white group-hover:-translate-x-0.5 transition-transform" />
           </button>

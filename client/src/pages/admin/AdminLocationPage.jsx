@@ -119,7 +119,7 @@ export const AdminLocationPage = () => {
   return (
     <div className="space-y-6 pb-16">
       {/* 1. Header Banner */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-[#0A7A74] to-slate-900 text-white shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-[#018AAE] to-slate-900 text-white shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-5">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -158,7 +158,7 @@ export const AdminLocationPage = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-soft space-y-6">
           <h2 className="text-lg font-black text-slate-900 tracking-tight pb-3 border-b border-slate-100 flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-[#0A7A74]" />
+            <MapPin className="w-5 h-5 text-[#018AAE]" />
             <span>Core Hospital Location &amp; Coordinates</span>
           </h2>
 
@@ -171,7 +171,7 @@ export const AdminLocationPage = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
 
@@ -183,7 +183,7 @@ export const AdminLocationPage = () => {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 required
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
 
@@ -196,7 +196,7 @@ export const AdminLocationPage = () => {
                 onChange={(e) => setCoordinates(e.target.value)}
                 placeholder="28.7199° North --- 77.0675° East"
                 required
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-mono font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-mono font-medium focus:outline-hidden focus:border-[#018AAE]"
               />
               <span className="text-[10px] text-slate-400">Format: Latitude North --- Longitude East</span>
             </div>
@@ -209,7 +209,7 @@ export const AdminLocationPage = () => {
                 value={overview}
                 onChange={(e) => setOverview(e.target.value)}
                 required
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
           </div>
@@ -218,7 +218,7 @@ export const AdminLocationPage = () => {
         {/* 3. Maps & Links */}
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-soft space-y-6">
           <h2 className="text-lg font-black text-slate-900 tracking-tight pb-3 border-b border-slate-100 flex items-center gap-2">
-            <Navigation className="w-5 h-5 text-[#0A7A74]" />
+            <Navigation className="w-5 h-5 text-[#018AAE]" />
             <span>Google Maps URLs &amp; Embed Preview</span>
           </h2>
 
@@ -230,7 +230,7 @@ export const AdminLocationPage = () => {
                 value={mapEmbedUrl}
                 onChange={(e) => setMapEmbedUrl(e.target.value)}
                 required
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs text-slate-900 font-mono focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs text-slate-900 font-mono focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
 
@@ -241,7 +241,7 @@ export const AdminLocationPage = () => {
                 value={googleMapsUrl}
                 onChange={(e) => setGoogleMapsUrl(e.target.value)}
                 required
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs text-slate-900 font-mono focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs text-slate-900 font-mono focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
           </div>
@@ -260,7 +260,7 @@ export const AdminLocationPage = () => {
         {/* 4. Localities & Institutions */}
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-soft space-y-6">
           <h2 className="text-lg font-black text-slate-900 tracking-tight pb-3 border-b border-slate-100 flex items-center gap-2">
-            <Building className="w-5 h-5 text-[#0A7A74]" />
+            <Building className="w-5 h-5 text-[#018AAE]" />
             <span>Surrounding Areas &amp; Landmarks</span>
           </h2>
 
@@ -273,7 +273,7 @@ export const AdminLocationPage = () => {
                 rows={5}
                 value={prominentLocalities}
                 onChange={(e) => setProminentLocalities(e.target.value)}
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
 
@@ -285,7 +285,7 @@ export const AdminLocationPage = () => {
                 rows={5}
                 value={prominentInstitutions}
                 onChange={(e) => setProminentInstitutions(e.target.value)}
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
           </div>
@@ -294,86 +294,86 @@ export const AdminLocationPage = () => {
         {/* 5. Transit Details */}
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-soft space-y-6">
           <h2 className="text-lg font-black text-slate-900 tracking-tight pb-3 border-b border-slate-100 flex items-center gap-2">
-            <Car className="w-5 h-5 text-[#0A7A74]" />
+            <Car className="w-5 h-5 text-[#018AAE]" />
             <span>Local &amp; Outstation Connectivity</span>
           </h2>
 
           <div className="space-y-4">
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase text-slate-700 flex items-center gap-1.5">
-                <Car className="w-3.5 h-3.5 text-[#0A7A74]" />
+                <Car className="w-3.5 h-3.5 text-[#018AAE]" />
                 <span>Can Be Reached From (Road Directions)</span>
               </label>
               <textarea
                 rows={2}
                 value={roadAccess}
                 onChange={(e) => setRoadAccess(e.target.value)}
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase text-slate-700 flex items-center gap-1.5">
-                <Train className="w-3.5 h-3.5 text-[#0A7A74]" />
+                <Train className="w-3.5 h-3.5 text-[#018AAE]" />
                 <span>Delhi Metro Connectivity</span>
               </label>
               <textarea
                 rows={3}
                 value={metroConnectivity}
                 onChange={(e) => setMetroConnectivity(e.target.value)}
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase text-slate-700 flex items-center gap-1.5">
-                <Bus className="w-3.5 h-3.5 text-[#0A7A74]" />
+                <Bus className="w-3.5 h-3.5 text-[#018AAE]" />
                 <span>DTC Bus Connectivity &amp; Routes</span>
               </label>
               <textarea
                 rows={3}
                 value={busConnectivity}
                 onChange={(e) => setBusConnectivity(e.target.value)}
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase text-slate-700 flex items-center gap-1.5">
-                <Car className="w-3.5 h-3.5 text-[#0A7A74]" />
+                <Car className="w-3.5 h-3.5 text-[#018AAE]" />
                 <span>Cabs &amp; Taxis</span>
               </label>
               <textarea
                 rows={2}
                 value={cabConnectivity}
                 onChange={(e) => setCabConnectivity(e.target.value)}
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase text-slate-700 flex items-center gap-1.5">
-                <Train className="w-3.5 h-3.5 text-[#0A7A74]" />
+                <Train className="w-3.5 h-3.5 text-[#018AAE]" />
                 <span>Travelling Outside Delhi: Railways</span>
               </label>
               <textarea
                 rows={4}
                 value={railwaysConnectivity}
                 onChange={(e) => setRailwaysConnectivity(e.target.value)}
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase text-slate-700 flex items-center gap-1.5">
-                <Plane className="w-3.5 h-3.5 text-[#0A7A74]" />
+                <Plane className="w-3.5 h-3.5 text-[#018AAE]" />
                 <span>Travelling Outside Delhi: Airport</span>
               </label>
               <textarea
                 rows={3}
                 value={airportConnectivity}
                 onChange={(e) => setAirportConnectivity(e.target.value)}
-                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#0A7A74]"
+                className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:border-[#018AAE]"
               />
             </div>
           </div>
@@ -384,7 +384,7 @@ export const AdminLocationPage = () => {
           <button
             type="submit"
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer"
+            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer"
           >
             {saving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             <span>{saving ? 'Saving Changes...' : 'Save & Update Location Guide'}</span>

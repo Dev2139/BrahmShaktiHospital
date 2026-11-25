@@ -183,7 +183,7 @@ export const DepartmentManagementPage = () => {
                         to={`/departments/${dept.id}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-[#0A7A74] hover:text-white text-[#0A7A74] font-bold transition-all text-[11px] border border-teal-200"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#F0FBFC] hover:bg-[#018AAE] hover:text-white text-[#018AAE] font-bold transition-all text-[11px] border border-[#B6EEF6]"
                         title="View Public Department Page"
                       >
                         <Eye className="w-3.5 h-3.5" />

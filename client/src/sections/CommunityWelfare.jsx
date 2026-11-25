@@ -48,7 +48,7 @@ export const CommunityWelfare = ({ onVolunteerOrInquire }) => {
             >
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-[#EBF3FA] text-[#1769AA] flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600" />
+                  <CheckCircle2 className="w-4 h-4 text-[#018AAE]" />
                 </div>
                 <h3 className="font-serif font-bold text-base text-[#123653]">
                   {item.title}

@@ -7,35 +7,53 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Official Brahm Shakti Palette Specification
+        // Official Brahm Shakti 3-Color Wave Palette Specification
+        // Color 1: #0284A5 / #018AA5 (Deep Ocean / Cerulean Blue)
+        // Color 2: #0DAFD5 (Vibrant Sky Blue / Cyan Medical Blue)
+        // Color 3: #CEF5FA (Soft Ice Blue / Ambient Light Cyan)
         primary: {
-          DEFAULT: '#0F766E', // Deep Medical Teal
-          hover: '#0D655E',
-          light: '#14B8A6',
-          dark: '#0B5953',
-          50: '#F0FDFA',
-          100: '#CCFBF1',
-          200: '#99F6E4',
-          700: '#0F766E',
-          800: '#115E59',
-          900: '#134E4A'
+          DEFAULT: '#018AAE', // Deep Ocean Blue (from image right band)
+          hover: '#007595',
+          light: '#0DAFD5',   // Vibrant Sky Blue (from image middle band)
+          dark: '#015F78',
+          50: '#F0FBFC',
+          100: '#CEF5FA',     // Soft Ice Blue (from image top band)
+          200: '#A5ECF5',
+          300: '#73E0EF',
+          400: '#3BD1E8',
+          500: '#0DAFD5',
+          600: '#018AAE',
+          700: '#017290',
+          800: '#015B73',
+          900: '#013B4A'
         },
         secondary: {
-          DEFAULT: '#12304A', // Healthcare Navy
-          dark: '#0B1F31',
-          light: '#1B466B',
-          50: '#F0F4F8',
-          100: '#D9E3EC',
-          900: '#0A1B2A'
+          DEFAULT: '#0B2545', // Deep Healthcare Midnight Navy
+          dark: '#061629',
+          light: '#133D6E',
+          50: '#F0F5FA',
+          100: '#DDE9F5',
+          900: '#040F1D'
+        },
+        skybrand: {
+          DEFAULT: '#0DAFD5',
+          hover: '#0C9DC0',
+          dark: '#018AAE',
+          light: '#CEF5FA'
+        },
+        icebrand: {
+          DEFAULT: '#CEF5FA',
+          light: '#E6FAFC',
+          border: '#B6EEF6'
         },
         accent: {
-          DEFAULT: '#D1FAE5', // Soft Mint
-          hover: '#A7F3D0',
-          dark: '#065F46'
+          DEFAULT: '#CEF5FA', // Soft Ice Blue
+          hover: '#B5EEF6',
+          dark: '#018AAE'
         },
         medical: {
           white: '#FFFFFF',
-          coolgray: '#F4F8FA',
+          coolgray: '#F0FBFC',
           slate: '#1E293B',
           muted: '#64748B',
           border: '#E2E8F0',

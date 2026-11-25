@@ -135,7 +135,7 @@ export const AdminGalleryPage = () => {
       {/* Page Header */}
       <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-xs font-semibold text-[#0A7A74] mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FBFC] border border-[#B6EEF6] text-xs font-semibold text-[#018AAE] mb-2">
             <ImageIcon className="w-3.5 h-3.5" />
             <span>LANDING PAGE MEDIA MANAGER</span>
           </div>
@@ -151,15 +151,15 @@ export const AdminGalleryPage = () => {
           <button
             type="button"
             onClick={fetchGallery}
-            className="p-3 rounded-2xl border border-slate-200 text-slate-600 hover:text-[#0A7A74] hover:bg-slate-50 transition-colors"
+            className="p-3 rounded-2xl border border-slate-200 text-slate-600 hover:text-[#018AAE] hover:bg-slate-50 transition-colors"
             title="Refresh Gallery"
           >
-            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-[#0A7A74]' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-[#018AAE]' : ''}`} />
           </button>
           <button
             type="button"
             onClick={handleOpenAddModal}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#0A7A74] hover:bg-[#08625d] text-white text-sm font-semibold shadow-md shadow-[#0A7A74]/20 transition-all hover:scale-[1.02] cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#018AAE] hover:bg-[#08625d] text-white text-sm font-semibold shadow-md shadow-[#018AAE]/20 transition-all hover:scale-[1.02] cursor-pointer"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>Add New Photo</span>
@@ -174,7 +174,7 @@ export const AdminGalleryPage = () => {
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Live Photos</div>
             <div className="text-2xl font-black text-slate-900 mt-1">{galleryItems.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-teal-50 text-[#0A7A74] flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center">
             <ImageIcon className="w-5 h-5" />
           </div>
         </div>
@@ -206,12 +206,12 @@ export const AdminGalleryPage = () => {
       {/* Photos Grid */}
       {loading ? (
         <div className="py-20 text-center space-y-3">
-          <RefreshCw className="w-8 h-8 animate-spin text-[#0A7A74] mx-auto" />
+          <RefreshCw className="w-8 h-8 animate-spin text-[#018AAE] mx-auto" />
           <p className="text-sm text-slate-500">Loading gallery photos from database...</p>
         </div>
       ) : galleryItems.length === 0 ? (
         <div className="bg-white rounded-3xl border border-dashed border-slate-300 p-12 text-center space-y-4">
-          <div className="w-16 h-16 rounded-2xl bg-teal-50 text-[#0A7A74] flex items-center justify-center mx-auto">
+          <div className="w-16 h-16 rounded-2xl bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center mx-auto">
             <ImageIcon className="w-8 h-8" />
           </div>
           <h3 className="text-lg font-bold text-slate-900">No photos in the gallery yet</h3>
@@ -221,7 +221,7 @@ export const AdminGalleryPage = () => {
           <button
             type="button"
             onClick={handleOpenAddModal}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] text-white text-sm font-semibold"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#018AAE] text-white text-sm font-semibold"
           >
             <Plus className="w-4 h-4" />
             <span>Add First Photo</span>
@@ -260,7 +260,7 @@ export const AdminGalleryPage = () => {
                   </div>
 
                   <div className="p-4 space-y-2">
-                    <div className="text-[11px] font-bold text-[#0A7A74] uppercase tracking-wider">
+                    <div className="text-[11px] font-bold text-[#018AAE] uppercase tracking-wider">
                       Slide #{idx + 1}
                     </div>
                     <h3 className="text-sm font-bold text-slate-900 line-clamp-1 leading-snug">
@@ -277,7 +277,7 @@ export const AdminGalleryPage = () => {
                     href={item.image}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-[#0A7A74] font-medium"
+                    className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-[#018AAE] font-medium"
                   >
                     <span>Open link</span>
                     <ExternalLink className="w-3 h-3" />
@@ -334,7 +334,7 @@ export const AdminGalleryPage = () => {
                   placeholder="https://res.cloudinary.com/... or web image link"
                   value={formImage}
                   onChange={(e) => setFormImage(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0A7A74] text-xs sm:text-sm"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#018AAE] text-xs sm:text-sm"
                 />
               </div>
 
@@ -365,7 +365,7 @@ export const AdminGalleryPage = () => {
                   placeholder="e.g. Annual Flag Ceremony & Leadership Gathering"
                   value={formTitle}
                   onChange={(e) => setFormTitle(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0A7A74] text-xs sm:text-sm"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#018AAE] text-xs sm:text-sm"
                 />
               </div>
 
@@ -376,7 +376,7 @@ export const AdminGalleryPage = () => {
                 <select
                   value={formCategory}
                   onChange={handleCategorySelect}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0A7A74] text-xs sm:text-sm bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#018AAE] text-xs sm:text-sm bg-white"
                 >
                   {CATEGORY_OPTIONS.map((cat) => (
                     <option key={cat.id} value={cat.id}>
@@ -395,7 +395,7 @@ export const AdminGalleryPage = () => {
                   placeholder="e.g. Senior consultants and surgical teams assembled at Brahm Shakti Hospital campus."
                   value={formCaption}
                   onChange={(e) => setFormCaption(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0A7A74] text-xs sm:text-sm resize-none"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#018AAE] text-xs sm:text-sm resize-none"
                 />
               </div>
 
@@ -410,7 +410,7 @@ export const AdminGalleryPage = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08625d] text-white text-xs sm:text-sm font-semibold transition-all shadow-md shadow-[#0A7A74]/20 disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#08625d] text-white text-xs sm:text-sm font-semibold transition-all shadow-md shadow-[#018AAE]/20 disabled:opacity-50"
                 >
                   <UploadCloud className="w-4 h-4" />
                   <span>{submitting ? 'Saving to Database...' : 'Save to Gallery'}</span>
@@ -446,7 +446,7 @@ export const AdminGalleryPage = () => {
               />
             </div>
             <div className="p-6 bg-white space-y-2">
-              <div className="inline-block px-2.5 py-0.5 rounded text-xs font-semibold bg-teal-50 text-[#0A7A74] border border-teal-200">
+              <div className="inline-block px-2.5 py-0.5 rounded text-xs font-semibold bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6]">
                 {previewPhoto.categoryLabel || previewPhoto.category || 'Hospital'}
               </div>
               <h3 className="text-lg font-bold text-slate-900">{previewPhoto.title}</h3>

@@ -65,7 +65,7 @@ export const LabPortalModal = ({ isOpen, onClose }) => {
 
         {reportResult ? (
           <div className="space-y-4">
-            <div className="p-4 rounded-xl bg-[#F0FDFA] border border-teal-200 space-y-2">
+            <div className="p-4 rounded-xl bg-[#F0FDFA] border border-[#B6EEF6] space-y-2">
               <div className="flex items-center justify-between text-xs font-semibold text-[#0C2340]">
                 <span>UHID: {reportResult.uhid}</span>
                 <span className="text-emerald-700 bg-white px-2 py-0.5 rounded border border-emerald-200 text-[10px]">

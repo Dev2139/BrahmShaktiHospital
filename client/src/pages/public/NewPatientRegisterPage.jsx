@@ -54,20 +54,20 @@ const MedicalJourneyIllustration = ({ className = 'w-auto h-24' }) => (
   >
     <defs>
       <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#0D9488" />
-        <stop offset="100%" stopColor="#0A7A74" />
+        <stop offset="0%" stopColor="#0DAFD5" />
+        <stop offset="100%" stopColor="#018AAE" />
       </linearGradient>
       <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#99F6E4" />
         <stop offset="100%" stopColor="#5EEAD4" />
       </linearGradient>
       <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#0A7A74" floodOpacity="0.12" />
+        <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#018AAE" floodOpacity="0.12" />
       </filter>
     </defs>
 
     {/* Background Soft Organic Leaves & Glow */}
-    <ellipse cx="160" cy="115" rx="90" ry="75" fill="#E6FFFA" />
+    <ellipse cx="160" cy="115" rx="90" ry="75" fill="#CEF5FA" />
 
     {/* Left Leaf Accent */}
     <path
@@ -85,17 +85,17 @@ const MedicalJourneyIllustration = ({ className = 'w-auto h-24' }) => (
 
     {/* Clipboard Base Board */}
     <g filter="url(#cardShadow)">
-      <rect x="105" y="32" width="110" height="138" rx="14" fill="#0A7A74" />
+      <rect x="105" y="32" width="110" height="138" rx="14" fill="#018AAE" />
       {/* Top Clip */}
-      <rect x="136" y="24" width="48" height="18" rx="5" fill="#08635e" />
+      <rect x="136" y="24" width="48" height="18" rx="5" fill="#007595" />
       <circle cx="160" cy="33" r="3.5" fill="#FFFFFF" />
 
       {/* Paper Surface */}
       <rect x="112" y="42" width="96" height="120" rx="8" fill="#FFFFFF" />
 
       {/* Medical Cross Emblem */}
-      <rect x="155" y="52" width="10" height="24" rx="2" fill="#0A7A74" />
-      <rect x="148" y="59" width="24" height="10" rx="2" fill="#0A7A74" />
+      <rect x="155" y="52" width="10" height="24" rx="2" fill="#018AAE" />
+      <rect x="148" y="59" width="24" height="10" rx="2" fill="#018AAE" />
 
       {/* Document content lines */}
       <rect x="124" y="88" width="72" height="4.5" rx="2" fill="#E2E8F0" />
@@ -131,8 +131,8 @@ const MedicalJourneyIllustration = ({ className = 'w-auto h-24' }) => (
       {/* Lock Body */}
       <rect x="20" y="26" width="16" height="13" rx="2.5" fill="#FFFFFF" />
       {/* Lock Keyhole */}
-      <circle cx="28" cy="31.5" r="1.5" fill="#0A7A74" />
-      <rect x="27.2" y="32" width="1.6" height="3.5" fill="#0A7A74" />
+      <circle cx="28" cy="31.5" r="1.5" fill="#018AAE" />
+      <rect x="27.2" y="32" width="1.6" height="3.5" fill="#018AAE" />
     </g>
   </svg>
 );
@@ -358,7 +358,7 @@ export const NewPatientRegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F0F8F9] text-slate-800 flex flex-col font-sans selection:bg-[#0A7A74] selection:text-white">
+    <div className="min-h-screen bg-[#F0FBFC] text-slate-800 flex flex-col font-sans selection:bg-[#018AAE] selection:text-white">
       {/* ----------------- 1. NAVBAR (EXACT MATCH TO BOOK APPOINTMENT PAGE) ----------------- */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
         <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
@@ -374,7 +374,7 @@ export const NewPatientRegisterPage = () => {
                 <div className="text-[11px] font-black tracking-wider text-[#0B2545] uppercase leading-tight">
                   OPD APPOINTMENT PORTAL
                 </div>
-                <div className="text-[10px] font-medium text-[#0A7A74] italic leading-tight">
+                <div className="text-[10px] font-medium text-[#018AAE] italic leading-tight">
                   Trust of Generations
                 </div>
               </div>
@@ -385,38 +385,38 @@ export const NewPatientRegisterPage = () => {
           <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-xs sm:text-sm font-bold text-slate-800">
             <Link
               to="/"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Back Home
             </Link>
             <button
               type="button"
               onClick={() => setRefundModalOpen(true)}
-              className="hover:text-[#0A7A74] transition-colors cursor-pointer font-bold"
+              className="hover:text-[#018AAE] transition-colors cursor-pointer font-bold"
             >
               Refund Policy
             </button>
             <Link
               to="/privacy-policy"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-of-use"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Terms &amp; Conditions
             </Link>
             <Link
               to="/contact"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Contact Us
             </Link>
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="text-[#0A7A74] font-black hover:underline transition-colors"
+              className="text-[#018AAE] font-black hover:underline transition-colors"
             >
               Patient Portal
             </Link>
@@ -426,7 +426,7 @@ export const NewPatientRegisterPage = () => {
           <div className="md:hidden flex items-center gap-2">
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="text-[#0A7A74] text-xs font-black px-2 py-1"
+              className="text-[#018AAE] text-xs font-black px-2 py-1"
             >
               Patient Portal
             </Link>
@@ -447,7 +447,7 @@ export const NewPatientRegisterPage = () => {
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Back Home
             </Link>
@@ -457,35 +457,35 @@ export const NewPatientRegisterPage = () => {
                 setMobileMenuOpen(false);
                 setRefundModalOpen(true);
               }}
-              className="block w-full text-left py-1 hover:text-[#0A7A74]"
+              className="block w-full text-left py-1 hover:text-[#018AAE]"
             >
               Refund Policy
             </button>
             <Link
               to="/privacy-policy"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-of-use"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Terms &amp; Conditions
             </Link>
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Contact Us
             </Link>
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 text-[#0A7A74] font-black"
+              className="block py-1 text-[#018AAE] font-black"
             >
               Patient Portal
             </Link>
@@ -497,8 +497,8 @@ export const NewPatientRegisterPage = () => {
       <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         {/* Breadcrumb */}
         <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
-          <Link to="/" className="inline-flex items-center gap-1 hover:text-[#0A7A74] transition-colors">
-            <Home className="w-3 h-3 text-[#0A7A74]" />
+          <Link to="/" className="inline-flex items-center gap-1 hover:text-[#018AAE] transition-colors">
+            <Home className="w-3 h-3 text-[#018AAE]" />
             <span>Home</span>
           </Link>
           <span>/</span>
@@ -507,13 +507,13 @@ export const NewPatientRegisterPage = () => {
 
         {/* Compact Stepper (Top Right on wide screens, centered on mobile) */}
         <div className="flex items-center gap-3 text-xs">
-          <div className={`flex items-center gap-1.5 font-bold ${currentStep === 1 ? 'text-[#0A7A74]' : 'text-slate-400'}`}>
+          <div className={`flex items-center gap-1.5 font-bold ${currentStep === 1 ? 'text-[#018AAE]' : 'text-slate-400'}`}>
             <span
               className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
                 currentStep > 1
                   ? 'bg-emerald-600 text-white'
                   : currentStep === 1
-                  ? 'bg-[#0A7A74] text-white'
+                  ? 'bg-[#018AAE] text-white'
                   : 'bg-slate-200 text-slate-600'
               }`}
             >
@@ -524,11 +524,11 @@ export const NewPatientRegisterPage = () => {
 
           <div className="w-6 sm:w-10 h-0.5 bg-slate-300"></div>
 
-          <div className={`flex items-center gap-1.5 font-bold ${currentStep === 2 ? 'text-[#0A7A74]' : 'text-slate-400'}`}>
+          <div className={`flex items-center gap-1.5 font-bold ${currentStep === 2 ? 'text-[#018AAE]' : 'text-slate-400'}`}>
             <span
               className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
                 currentStep === 2
-                  ? 'bg-[#0A7A74] text-white ring-2 ring-[#0A7A74]/20'
+                  ? 'bg-[#018AAE] text-white ring-2 ring-[#018AAE]/20'
                   : 'bg-slate-200 text-slate-500'
               }`}
             >
@@ -541,7 +541,7 @@ export const NewPatientRegisterPage = () => {
 
       {/* Title (Compact) */}
       <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-3">
-        <h1 className="text-xl sm:text-2xl font-black text-[#0A7A74] tracking-tight leading-tight">
+        <h1 className="text-xl sm:text-2xl font-black text-[#018AAE] tracking-tight leading-tight">
           Create Your Patient Account
         </h1>
         <p className="text-[11px] sm:text-xs font-medium text-slate-600">
@@ -573,7 +573,7 @@ export const NewPatientRegisterPage = () => {
               <div className="relative flex items-start gap-3">
                 <div
                   className={`w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
-                    currentStep >= 1 ? 'bg-[#0A7A74]' : 'bg-slate-300'
+                    currentStep >= 1 ? 'bg-[#018AAE]' : 'bg-slate-300'
                   }`}
                 >
                   <User className="w-3.5 h-3.5" />
@@ -592,7 +592,7 @@ export const NewPatientRegisterPage = () => {
               <div className="relative flex items-start gap-3">
                 <div
                   className={`w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
-                    currentStep === 2 ? 'bg-[#0A7A74]' : 'bg-slate-300'
+                    currentStep === 2 ? 'bg-[#018AAE]' : 'bg-slate-300'
                   }`}
                 >
                   <Mail className="w-3.5 h-3.5" />
@@ -609,9 +609,9 @@ export const NewPatientRegisterPage = () => {
             </div>
 
             {/* Highlight Privacy Card (Compact) */}
-            <div className="p-3 rounded-xl bg-teal-50/70 border border-teal-200/80 space-y-0.5 text-slate-800">
-              <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#0A7A74]">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+            <div className="p-3 rounded-xl bg-[#F0FBFC]/70 border border-[#B6EEF6]/80 space-y-0.5 text-slate-800">
+              <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#018AAE]">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
                 <span>Your privacy is our priority</span>
               </div>
               <p className="text-[10px] text-slate-600 pl-5 leading-snug">
@@ -641,10 +641,10 @@ export const NewPatientRegisterPage = () => {
                   {/* ================= SECTION 1: PERSONAL DETAILS ================= */}
                   <div className="space-y-2">
                     <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
-                      <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                      <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
                         <User className="w-3 h-3" />
                       </div>
-                      <h3 className="text-[11px] font-black tracking-wider text-[#0A7A74] uppercase">
+                      <h3 className="text-[11px] font-black tracking-wider text-[#018AAE] uppercase">
                         PERSONAL DETAILS
                       </h3>
                     </div>
@@ -656,7 +656,7 @@ export const NewPatientRegisterPage = () => {
                         <select
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         >
                           <option value="Mr.">Mr.</option>
                           <option value="Mrs.">Mrs.</option>
@@ -675,7 +675,7 @@ export const NewPatientRegisterPage = () => {
                           value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
                           placeholder="First name"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
@@ -688,7 +688,7 @@ export const NewPatientRegisterPage = () => {
                           value={lastName}
                           onChange={(e) => setLastName(e.target.value)}
                           placeholder="Last name"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
@@ -699,7 +699,7 @@ export const NewPatientRegisterPage = () => {
                           required
                           value={gender}
                           onChange={(e) => setGender(e.target.value)}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         >
                           <option value="">Select gender</option>
                           <option value="Male">Male</option>
@@ -713,10 +713,10 @@ export const NewPatientRegisterPage = () => {
                   {/* ================= SECTION 2: CONTACT DETAILS ================= */}
                   <div className="space-y-2">
                     <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
-                      <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                      <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
                         <Phone className="w-3 h-3" />
                       </div>
-                      <h3 className="text-[11px] font-black tracking-wider text-[#0A7A74] uppercase">
+                      <h3 className="text-[11px] font-black tracking-wider text-[#018AAE] uppercase">
                         CONTACT DETAILS
                       </h3>
                     </div>
@@ -730,7 +730,7 @@ export const NewPatientRegisterPage = () => {
                           required
                           value={dob}
                           onChange={(e) => setDob(e.target.value)}
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         />
                       </div>
 
@@ -743,7 +743,7 @@ export const NewPatientRegisterPage = () => {
                           value={mobile}
                           onChange={(e) => setMobile(e.target.value)}
                           placeholder="10-digit mobile number"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
@@ -758,7 +758,7 @@ export const NewPatientRegisterPage = () => {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="patient@example.com"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
                     </div>
@@ -767,10 +767,10 @@ export const NewPatientRegisterPage = () => {
                   {/* ================= SECTION 3: ADDRESS DETAILS ================= */}
                   <div className="space-y-2">
                     <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
-                      <div className="w-5 h-5 rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200 shrink-0">
+                      <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
                         <MapPin className="w-3 h-3" />
                       </div>
-                      <h3 className="text-[11px] font-black tracking-wider text-[#0A7A74] uppercase">
+                      <h3 className="text-[11px] font-black tracking-wider text-[#018AAE] uppercase">
                         ADDRESS DETAILS
                       </h3>
                     </div>
@@ -782,7 +782,7 @@ export const NewPatientRegisterPage = () => {
                         <select
                           value={country}
                           onChange={(e) => setCountry(e.target.value)}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         >
                           <option value="India">India</option>
                         </select>
@@ -793,7 +793,7 @@ export const NewPatientRegisterPage = () => {
                         <select
                           value={stateUt}
                           onChange={(e) => setStateUt(e.target.value)}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         >
                           {INDIAN_STATES.map((s) => (
                             <option key={s} value={s}>
@@ -812,7 +812,7 @@ export const NewPatientRegisterPage = () => {
                           value={pincode}
                           onChange={(e) => setPincode(e.target.value.replace(/\D/g, ''))}
                           placeholder="110085"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
@@ -824,7 +824,7 @@ export const NewPatientRegisterPage = () => {
                           value={district}
                           onChange={(e) => setDistrict(e.target.value)}
                           placeholder="North West Delhi"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
                     </div>
@@ -839,7 +839,7 @@ export const NewPatientRegisterPage = () => {
                           value={addressLine1}
                           onChange={(e) => setAddressLine1(e.target.value)}
                           placeholder="House / Flat No., Street, Area"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
@@ -853,7 +853,7 @@ export const NewPatientRegisterPage = () => {
                           value={aadhaar}
                           onChange={(e) => setAadhaar(e.target.value)}
                           placeholder="1234-5678-9012"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#0A7A74] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
                     </div>
@@ -866,14 +866,14 @@ export const NewPatientRegisterPage = () => {
                         type="checkbox"
                         checked={consentChecked}
                         onChange={(e) => setConsentChecked(e.target.checked)}
-                        className="rounded border-slate-300 text-[#0A7A74] focus:ring-[#0A7A74] h-3.5 w-3.5"
+                        className="rounded border-slate-300 text-[#018AAE] focus:ring-[#018AAE] h-3.5 w-3.5"
                       />
                       <span>
                         Please tick mark for the Patient Health Data{' '}
                         <button
                           type="button"
                           onClick={() => setConsentModalOpen(true)}
-                          className="text-[#0A7A74] underline hover:text-[#08635e] cursor-pointer"
+                          className="text-[#018AAE] underline hover:text-[#007595] cursor-pointer"
                         >
                           Consent &amp; Notice Form.!
                         </button>
@@ -901,7 +901,7 @@ export const NewPatientRegisterPage = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/bookappointment/patient-type')}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#0A7A74] transition-colors order-2 sm:order-1"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#018AAE] transition-colors order-2 sm:order-1"
                     >
                       <Clock className="w-3.5 h-3.5" />
                       <span>Save and continue later</span>
@@ -909,7 +909,7 @@ export const NewPatientRegisterPage = () => {
 
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-black transition-all shadow-sm hover:shadow flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] order-1 sm:order-2"
+                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs sm:text-sm font-black transition-all shadow-sm hover:shadow flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] order-1 sm:order-2"
                     >
                       <span>Verify email &amp; continue</span>
                       <ArrowRight className="w-4 h-4" />
@@ -924,16 +924,16 @@ export const NewPatientRegisterPage = () => {
                   <button
                     type="button"
                     onClick={() => setCurrentStep(1)}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#0A7A74] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#018AAE] transition-colors"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     <span>Back to Personal &amp; Address Details</span>
                   </button>
-                  <span className="text-xs font-bold text-[#0A7A74]">Step 2 of 2</span>
+                  <span className="text-xs font-bold text-[#018AAE]">Step 2 of 2</span>
                 </div>
 
                 <div className="text-center space-y-1.5">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200">
+                  <div className="w-12 h-12 mx-auto rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6]">
                     <Mail className="w-6 h-6" />
                   </div>
                   <h2 className="text-lg sm:text-xl font-black text-slate-900">
@@ -941,17 +941,17 @@ export const NewPatientRegisterPage = () => {
                   </h2>
                   <p className="text-xs text-slate-600 max-w-md mx-auto">
                     We have dispatched a 6-digit OTP code to:{' '}
-                    <strong className="text-[#0A7A74] font-bold">{email}</strong>
+                    <strong className="text-[#018AAE] font-bold">{email}</strong>
                   </p>
                 </div>
 
                 {/* Demonstration OTP Helper */}
-                <div className="p-2.5 bg-teal-50 border border-teal-200 rounded-xl text-xs text-teal-900 flex items-center justify-between max-w-md mx-auto">
+                <div className="p-2.5 bg-[#F0FBFC] border border-[#B6EEF6] rounded-xl text-xs text-[#013B4A] flex items-center justify-between max-w-md mx-auto">
                   <div className="flex items-center gap-1.5">
-                    <KeyRound className="w-4 h-4 text-[#0A7A74]" />
+                    <KeyRound className="w-4 h-4 text-[#018AAE]" />
                     <span>Demo Verification Code:</span>
                   </div>
-                  <span className="font-mono font-black text-sm text-[#0A7A74] bg-white px-2 py-0.5 rounded border border-teal-300">
+                  <span className="font-mono font-black text-sm text-[#018AAE] bg-white px-2 py-0.5 rounded border border-[#73E0EF]">
                     {generatedOtp}
                   </span>
                 </div>
@@ -968,7 +968,7 @@ export const NewPatientRegisterPage = () => {
                       value={otpInput}
                       onChange={(e) => setOtpInput(e.target.value.replace(/\D/g, ''))}
                       placeholder="• • • • • •"
-                      className="w-48 mx-auto text-center font-mono text-2xl tracking-[0.35em] px-3 py-2 rounded-xl border-2 border-slate-300 focus:border-[#0A7A74] focus:outline-hidden shadow-2xs"
+                      className="w-48 mx-auto text-center font-mono text-2xl tracking-[0.35em] px-3 py-2 rounded-xl border-2 border-slate-300 focus:border-[#018AAE] focus:outline-hidden shadow-2xs"
                     />
                   </div>
 
@@ -979,7 +979,7 @@ export const NewPatientRegisterPage = () => {
                       <button
                         type="button"
                         onClick={handleResendOtp}
-                        className="text-[#0A7A74] font-bold hover:underline cursor-pointer"
+                        className="text-[#018AAE] font-bold hover:underline cursor-pointer"
                       >
                         Resend Email OTP
                       </button>
@@ -989,7 +989,7 @@ export const NewPatientRegisterPage = () => {
                   <button
                     type="submit"
                     disabled={verifyingOtp || otpInput.length < 6}
-                    className="w-full py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black transition-all shadow flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black transition-all shadow flex items-center justify-center gap-2 cursor-pointer"
                   >
                     {verifyingOtp ? (
                       <>
@@ -1017,15 +1017,15 @@ export const NewPatientRegisterPage = () => {
             &copy; 2026 Brahm Shakti Hospital.
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-teal-200 bg-teal-50 text-[#0A7A74] font-bold text-[11px]">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#0A7A74]" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-[#B6EEF6] bg-[#F0FBFC] text-[#018AAE] font-bold text-[11px]">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#018AAE]" />
             <span>NABH &amp; NABL Accredited</span>
           </div>
 
           <div className="flex items-center gap-4 text-xs font-medium">
             <a
               href="mailto:helpdesk@brahmshaktihospital.com"
-              className="inline-flex items-center gap-1 hover:text-[#0A7A74] transition-colors"
+              className="inline-flex items-center gap-1 hover:text-[#018AAE] transition-colors"
             >
               <Mail className="w-3.5 h-3.5 text-slate-400" />
               <span>helpdesk@brahmshaktihospital.com</span>
@@ -1046,7 +1046,7 @@ export const NewPatientRegisterPage = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 border border-slate-200 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-              <div className="flex items-center gap-2 text-[#0A7A74]">
+              <div className="flex items-center gap-2 text-[#018AAE]">
                 <AlertCircle className="w-5 h-5" />
                 <h3 className="font-black text-base text-slate-800">OPD Refund Policy</h3>
               </div>
@@ -1072,7 +1072,7 @@ export const NewPatientRegisterPage = () => {
             <button
               type="button"
               onClick={() => setRefundModalOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-[#0A7A74] text-white text-xs font-bold cursor-pointer"
+              className="w-full py-2.5 rounded-xl bg-[#018AAE] text-white text-xs font-bold cursor-pointer"
             >
               I Understand
             </button>
@@ -1086,7 +1086,7 @@ export const NewPatientRegisterPage = () => {
           <div className="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl border border-slate-100 animate-in fade-in zoom-in-95">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-[#0A7A74]" />
+                <ShieldCheck className="w-5 h-5 text-[#018AAE]" />
                 <h3 className="font-black text-slate-900 text-base">
                   Patient Health Data Consent &amp; Notice Form
                 </h3>
@@ -1119,7 +1119,7 @@ export const NewPatientRegisterPage = () => {
               <button
                 type="button"
                 onClick={() => setConsentModalOpen(false)}
-                className="px-5 py-2 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold transition-all"
+                className="px-5 py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold transition-all"
               >
                 I Understand &amp; Agree
               </button>

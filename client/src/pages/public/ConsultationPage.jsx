@@ -384,7 +384,7 @@ export const ConsultationPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F8FA] text-slate-800 flex flex-col font-sans selection:bg-[#0A7A74] selection:text-white">
+    <div className="min-h-screen bg-[#F4F8FA] text-slate-800 flex flex-col font-sans selection:bg-[#018AAE] selection:text-white">
       {/* ----------------- 1. COMPACT PORTAL NAVBAR ----------------- */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
         <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
@@ -400,7 +400,7 @@ export const ConsultationPage = () => {
                 <div className="text-[11px] font-black tracking-wider text-[#0B2545] uppercase leading-tight">
                   OPD APPOINTMENT PORTAL
                 </div>
-                <div className="text-[10px] font-medium text-[#0A7A74] italic leading-tight">
+                <div className="text-[10px] font-medium text-[#018AAE] italic leading-tight">
                   Trust of Generations
                 </div>
               </div>
@@ -411,38 +411,38 @@ export const ConsultationPage = () => {
           <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-xs sm:text-sm font-bold text-slate-800">
             <Link
               to="/"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Back Home
             </Link>
             <button
               type="button"
               onClick={() => setRefundModalOpen(true)}
-              className="hover:text-[#0A7A74] transition-colors cursor-pointer font-bold"
+              className="hover:text-[#018AAE] transition-colors cursor-pointer font-bold"
             >
               Refund Policy
             </button>
             <Link
               to="/privacy-policy"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-of-use"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Terms &amp; Conditions
             </Link>
             <Link
               to="/contact"
-              className="hover:text-[#0A7A74] transition-colors"
+              className="hover:text-[#018AAE] transition-colors"
             >
               Contact Us
             </Link>
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="text-[#0A7A74] font-black hover:underline transition-colors"
+              className="text-[#018AAE] font-black hover:underline transition-colors"
             >
               Patient Portal
             </Link>
@@ -452,7 +452,7 @@ export const ConsultationPage = () => {
           <div className="md:hidden flex items-center gap-2">
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="text-[#0A7A74] text-xs font-black px-2 py-1"
+              className="text-[#018AAE] text-xs font-black px-2 py-1"
             >
               Patient Portal
             </Link>
@@ -473,7 +473,7 @@ export const ConsultationPage = () => {
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Back Home
             </Link>
@@ -483,35 +483,35 @@ export const ConsultationPage = () => {
                 setMobileMenuOpen(false);
                 setRefundModalOpen(true);
               }}
-              className="block w-full text-left py-1 hover:text-[#0A7A74]"
+              className="block w-full text-left py-1 hover:text-[#018AAE]"
             >
               Refund Policy
             </button>
             <Link
               to="/privacy-policy"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-of-use"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Terms &amp; Conditions
             </Link>
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 hover:text-[#0A7A74]"
+              className="block py-1 hover:text-[#018AAE]"
             >
               Contact Us
             </Link>
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-1 text-[#0A7A74] font-black"
+              className="block py-1 text-[#018AAE] font-black"
             >
               Patient Portal
             </Link>
@@ -523,7 +523,7 @@ export const ConsultationPage = () => {
       <main className="flex-1 max-w-[1440px] w-full mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
         {loadingMeta ? (
           <div className="min-h-[400px] flex flex-col items-center justify-center gap-3 text-slate-500">
-            <Loader2 className="w-7 h-7 animate-spin text-[#0A7A74]" />
+            <Loader2 className="w-7 h-7 animate-spin text-[#018AAE]" />
             <p className="text-xs sm:text-sm font-bold">Connecting to Brahm Shakti OPD Scheduler...</p>
           </div>
         ) : confirmed ? (
@@ -559,7 +559,7 @@ export const ConsultationPage = () => {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-500 font-semibold">Consulting Doctor</span>
-                <span className="font-bold text-[#0A7A74]">{confirmed.doctorName}</span>
+                <span className="font-bold text-[#018AAE]">{confirmed.doctorName}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-500 font-semibold">Speciality / Department</span>
@@ -579,7 +579,7 @@ export const ConsultationPage = () => {
               </div>
               <div className="flex items-center justify-between border-t border-slate-200 pt-2.5">
                 <span className="text-slate-500 font-semibold">OPD Consultation Fee</span>
-                <span className="font-black text-[#0A7A74] text-base">
+                <span className="font-black text-[#018AAE] text-base">
                   ₹{confirmed.fee || activeDoctor?.consultationFee || 700}{' '}
                   <span className="text-xs font-normal text-slate-400">(Pay at Hospital Counter)</span>
                 </span>
@@ -587,12 +587,12 @@ export const ConsultationPage = () => {
             </div>
 
             {/* Instruction Notice */}
-            <div className="p-3.5 bg-teal-50/70 border border-teal-200 rounded-xl text-xs text-teal-900 space-y-1">
-              <p className="font-bold flex items-center gap-1.5 text-teal-900">
-                <Info className="w-4 h-4 text-[#0A7A74]" />
+            <div className="p-3.5 bg-[#F0FBFC]/70 border border-[#B6EEF6] rounded-xl text-xs text-[#013B4A] space-y-1">
+              <p className="font-bold flex items-center gap-1.5 text-[#013B4A]">
+                <Info className="w-4 h-4 text-[#018AAE]" />
                 <span>Patient Check-in Instructions:</span>
               </p>
-              <ul className="list-disc list-inside space-y-0.5 text-[11px] text-teal-800 pl-1">
+              <ul className="list-disc list-inside space-y-0.5 text-[11px] text-[#015B73] pl-1">
                 <li>Please report to the OPD Reception Counter 15 minutes prior to your time slot.</li>
                 <li>
                   Show this digital slip or quote Appointment ID:{' '}
@@ -607,7 +607,7 @@ export const ConsultationPage = () => {
               <button
                 type="button"
                 onClick={() => window.print()}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-300 text-slate-700 hover:text-[#0A7A74] hover:border-[#0A7A74] text-xs font-bold transition-all shadow-xs cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-300 text-slate-700 hover:text-[#018AAE] hover:border-[#018AAE] text-xs font-bold transition-all shadow-xs cursor-pointer"
               >
                 <Printer className="w-3.5 h-3.5" />
                 <span>Print Appointment Slip</span>
@@ -615,7 +615,7 @@ export const ConsultationPage = () => {
               <button
                 type="button"
                 onClick={handleResetBooking}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
               >
                 <Calendar className="w-3.5 h-3.5" />
                 <span>Book Another Appointment</span>
@@ -638,11 +638,11 @@ export const ConsultationPage = () => {
                 {/* Title & Onsite Tag */}
                 <div className="space-y-0.5">
                   <div className="flex items-center gap-1.5 text-[11px] text-slate-500 font-semibold">
-                    <Link to="/" className="hover:text-[#0A7A74] transition-colors">
+                    <Link to="/" className="hover:text-[#018AAE] transition-colors">
                       Home
                     </Link>
                     <span>&gt;</span>
-                    <span className="text-[#0A7A74] font-bold">Book Appointment</span>
+                    <span className="text-[#018AAE] font-bold">Book Appointment</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <h1 className="text-lg sm:text-xl font-black text-[#0B2545] tracking-tight">
@@ -662,13 +662,13 @@ export const ConsultationPage = () => {
                   {/* Dropdown 1: Department / Speciality */}
                   <div className="space-y-1">
                     <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 flex items-center gap-1">
-                      <Building className="w-3 h-3 text-[#0A7A74]" />
+                      <Building className="w-3 h-3 text-[#018AAE]" />
                       <span>1. Select Department</span>
                     </label>
                     <select
                       value={selectedDeptId}
                       onChange={(e) => handleDepartmentChange(e.target.value)}
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-slate-50/70 hover:bg-white text-xs font-bold text-slate-800 focus:bg-white focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden cursor-pointer transition-all shadow-2xs"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-slate-50/70 hover:bg-white text-xs font-bold text-slate-800 focus:bg-white focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] focus:outline-hidden cursor-pointer transition-all shadow-2xs"
                     >
                       <option value="">All 9 Departments</option>
                       {departments.map((dept) => (
@@ -682,13 +682,13 @@ export const ConsultationPage = () => {
                   {/* Dropdown 2: Consulting Doctor */}
                   <div className="space-y-1">
                     <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 flex items-center gap-1">
-                      <User className="w-3 h-3 text-[#0A7A74]" />
+                      <User className="w-3 h-3 text-[#018AAE]" />
                       <span>2. Select Doctor</span>
                     </label>
                     <select
                       value={selectedDoctorId}
                       onChange={(e) => handleDoctorChange(e.target.value)}
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-slate-50/70 hover:bg-white text-xs font-bold text-slate-800 focus:bg-white focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden cursor-pointer transition-all shadow-2xs"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-slate-50/70 hover:bg-white text-xs font-bold text-slate-800 focus:bg-white focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] focus:outline-hidden cursor-pointer transition-all shadow-2xs"
                     >
                       {doctorsInDepartment.map((doc) => (
                         <option key={doc.id} value={doc.id}>
@@ -736,7 +736,7 @@ export const ConsultationPage = () => {
                       <h2 className="text-base sm:text-lg font-black text-[#0B2545] tracking-tight leading-snug">
                         {activeDoctor.name}
                       </h2>
-                      <p className="text-xs font-bold text-[#0A7A74]">
+                      <p className="text-xs font-bold text-[#018AAE]">
                         {activeDoctor.departmentName || activeDoctor.department}
                       </p>
                       {/* Rating Badge */}
@@ -753,14 +753,14 @@ export const ConsultationPage = () => {
                     <div className="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-700">
                       {activeDoctor.qualification && (
                         <div className="flex items-center gap-2">
-                          <GraduationCap className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+                          <GraduationCap className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
                           <span className="font-semibold text-slate-800 truncate">
                             {activeDoctor.qualification}
                           </span>
                         </div>
                       )}
                       <div className="flex items-center gap-2">
-                        <Award className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+                        <Award className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
                         <span className="font-semibold text-slate-800">
                           {activeDoctor.experienceYears
                             ? `${activeDoctor.experienceYears}+ years experience`
@@ -768,7 +768,7 @@ export const ConsultationPage = () => {
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <MapPin className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+                        <MapPin className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
                         <span className="font-semibold text-slate-800 truncate">
                           {activeDoctor.room || 'OPD Chamber 101, Block A'}
                         </span>
@@ -780,7 +780,7 @@ export const ConsultationPage = () => {
                       <button
                         type="button"
                         onClick={() => setProfileModalOpen(true)}
-                        className="w-full py-2 rounded-xl border border-teal-200 bg-teal-50/60 hover:bg-[#0A7A74] text-[#0A7A74] hover:text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+                        className="w-full py-2 rounded-xl border border-[#B6EEF6] bg-[#F0FBFC]/60 hover:bg-[#018AAE] text-[#018AAE] hover:text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
                       >
                         <span>View Full Profile</span>
                         <ArrowRight className="w-3 h-3" />
@@ -800,12 +800,12 @@ export const ConsultationPage = () => {
                 {/* 1. Header with Onsite OPD Badge (Video Consultation removed completely) */}
                 <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                   <div className="flex items-center gap-2">
-                    <CalendarDays className="w-4 h-4 text-[#0A7A74]" />
+                    <CalendarDays className="w-4 h-4 text-[#018AAE]" />
                     <span className="text-xs sm:text-sm font-black text-slate-900">
                       Select Appointment Date
                     </span>
                   </div>
-                  <span className="text-xs font-bold text-[#0A7A74]">
+                  <span className="text-xs font-bold text-[#018AAE]">
                     {formattedDisplayDate}
                   </span>
                 </div>
@@ -835,7 +835,7 @@ export const ConsultationPage = () => {
                           onClick={() => setDate(d.iso)}
                           className={`py-1.5 px-0.5 rounded-xl text-center flex flex-col items-center justify-between transition-all cursor-pointer ${
                             isSelected
-                              ? 'bg-[#0A7A74] text-white shadow-xs font-bold'
+                              ? 'bg-[#018AAE] text-white shadow-xs font-bold'
                               : 'bg-slate-50/80 hover:bg-slate-100 text-slate-700 border border-slate-200/60'
                           }`}
                         >
@@ -881,7 +881,7 @@ export const ConsultationPage = () => {
                 <div className="space-y-2 pt-1 border-t border-slate-100">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5 text-xs sm:text-sm font-black text-slate-900">
-                      <Clock className="w-4 h-4 text-[#0A7A74]" />
+                      <Clock className="w-4 h-4 text-[#018AAE]" />
                       <span>Select Time Slot</span>
                     </div>
                     {!isAuthenticated && (
@@ -893,7 +893,7 @@ export const ConsultationPage = () => {
 
                   {slotsLoading ? (
                     <div className="py-6 flex flex-col items-center justify-center gap-2 text-slate-400">
-                      <Loader2 className="w-5 h-5 animate-spin text-[#0A7A74]" />
+                      <Loader2 className="w-5 h-5 animate-spin text-[#018AAE]" />
                       <span className="text-xs font-semibold">Loading available slots...</span>
                     </div>
                   ) : slots.length === 0 ? (
@@ -918,8 +918,8 @@ export const ConsultationPage = () => {
                               isFull
                                 ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed line-through'
                                 : isSelected
-                                ? 'bg-[#0A7A74] border-[#0A7A74] text-white shadow-xs font-bold'
-                                : 'bg-white border-slate-200 text-slate-700 hover:border-[#0A7A74] hover:bg-teal-50/30 font-semibold'
+                                ? 'bg-[#018AAE] border-[#018AAE] text-white shadow-xs font-bold'
+                                : 'bg-white border-slate-200 text-slate-700 hover:border-[#018AAE] hover:bg-[#F0FBFC]/30 font-semibold'
                             }`}
                           >
                             <div className="text-[11px] font-bold leading-tight">
@@ -939,7 +939,7 @@ export const ConsultationPage = () => {
                       <span>Available</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0A7A74]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#018AAE]" />
                       <span>Selected</span>
                     </div>
                     <div className="flex items-center gap-1">
@@ -954,7 +954,7 @@ export const ConsultationPage = () => {
               <div className="lg:col-span-3 bg-white rounded-2xl border border-slate-200/90 shadow-2xs overflow-hidden flex flex-col justify-between">
                 <div>
                   {/* Teal Top Header Bar */}
-                  <div className="bg-[#0A7A74] px-4 py-2.5 text-white">
+                  <div className="bg-[#018AAE] px-4 py-2.5 text-white">
                     <h3 className="font-extrabold text-xs sm:text-sm tracking-wide flex items-center gap-1.5">
                       <FileText className="w-3.5 h-3.5 text-teal-200" />
                       <span>Booking Summary</span>
@@ -974,7 +974,7 @@ export const ConsultationPage = () => {
                           <h4 className="text-xs font-black text-slate-900 leading-tight truncate">
                             {activeDoctor.name}
                           </h4>
-                          <p className="text-[10px] font-semibold text-[#0A7A74] truncate">
+                          <p className="text-[10px] font-semibold text-[#018AAE] truncate">
                             {activeDoctor.departmentName || activeDoctor.designation}
                           </p>
                         </div>
@@ -985,7 +985,7 @@ export const ConsultationPage = () => {
                     <div className="space-y-2 text-xs">
                       {/* Date */}
                       <div className="flex items-start gap-2">
-                        <Calendar className="w-3.5 h-3.5 text-[#0A7A74] shrink-0 mt-0.5" />
+                        <Calendar className="w-3.5 h-3.5 text-[#018AAE] shrink-0 mt-0.5" />
                         <div>
                           <span className="text-[9px] uppercase font-bold text-slate-400 block leading-tight">
                             Date
@@ -998,7 +998,7 @@ export const ConsultationPage = () => {
 
                       {/* Time */}
                       <div className="flex items-start gap-2">
-                        <Clock className="w-3.5 h-3.5 text-[#0A7A74] shrink-0 mt-0.5" />
+                        <Clock className="w-3.5 h-3.5 text-[#018AAE] shrink-0 mt-0.5" />
                         <div>
                           <span className="text-[9px] uppercase font-bold text-slate-400 block leading-tight">
                             Time Slot
@@ -1011,7 +1011,7 @@ export const ConsultationPage = () => {
 
                       {/* Consultation Type (Onsite Only) */}
                       <div className="flex items-start gap-2">
-                        <User className="w-3.5 h-3.5 text-[#0A7A74] shrink-0 mt-0.5" />
+                        <User className="w-3.5 h-3.5 text-[#018AAE] shrink-0 mt-0.5" />
                         <div>
                           <span className="text-[9px] uppercase font-bold text-slate-400 block leading-tight">
                             Consultation Mode
@@ -1038,7 +1038,7 @@ export const ConsultationPage = () => {
                         </div>
                         <div className="flex items-center justify-between font-black text-slate-900 pt-1 border-t border-dashed border-slate-200 text-xs sm:text-sm">
                           <span>Pay at OPD Counter:</span>
-                          <span className="text-[#0A7A74]">
+                          <span className="text-[#018AAE]">
                             ₹{activeDoctor?.consultationFee || 700}
                           </span>
                         </div>
@@ -1053,7 +1053,7 @@ export const ConsultationPage = () => {
                     type="button"
                     onClick={handleProceedOrConfirm}
                     disabled={!activeDoctor || !selectedSlot}
-                    className="w-full py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-extrabold shadow-xs transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-1.5 cursor-pointer"
+                    className="w-full py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-extrabold shadow-xs transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <span>Confirm Appointment</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -1065,7 +1065,7 @@ export const ConsultationPage = () => {
             {/* ----------------- 4. COMPACT NOTICE & TRUST STRIP ----------------- */}
             <div className="bg-white rounded-xl border border-slate-200 px-3.5 py-2.5 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-600">
               <div className="flex items-center gap-2">
-                <Info className="w-4 h-4 text-[#0A7A74] shrink-0" />
+                <Info className="w-4 h-4 text-[#018AAE] shrink-0" />
                 <span>
                   <strong>100% Free Registration:</strong> Subsidized OPD Consultation Fee of ₹{activeDoctor?.consultationFee || 700} is payable only at the hospital counter.
                 </span>
@@ -1077,7 +1077,7 @@ export const ConsultationPage = () => {
                 <button
                   type="button"
                   onClick={() => setRefundModalOpen(true)}
-                  className="text-[#0A7A74] font-bold hover:underline cursor-pointer"
+                  className="text-[#018AAE] font-bold hover:underline cursor-pointer"
                 >
                   Refund Policy →
                 </button>
@@ -1109,7 +1109,7 @@ export const ConsultationPage = () => {
             type="button"
             onClick={handleProceedOrConfirm}
             disabled={!selectedSlot}
-            className="px-3.5 py-2 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] disabled:bg-slate-200 disabled:text-slate-400 text-white text-xs font-bold shrink-0 transition-all shadow-xs"
+            className="px-3.5 py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] disabled:bg-slate-200 disabled:text-slate-400 text-white text-xs font-bold shrink-0 transition-all shadow-xs"
           >
             Confirm →
           </button>
@@ -1122,15 +1122,15 @@ export const ConsultationPage = () => {
           <div className="font-semibold">
             &copy; 2026 Brahm Shakti Hospital &amp; Research Centre. All Rights Reserved.
           </div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-teal-300 bg-teal-50 text-[#0A7A74] font-bold text-[10px]">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#0A7A74]" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-[#73E0EF] bg-[#F0FBFC] text-[#018AAE] font-bold text-[10px]">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#018AAE]" />
             <span>NABH &amp; NABL Accredited Healthcare</span>
           </div>
           <div className="flex items-center gap-3 text-[11px] font-medium">
-            <Link to="/privacy-policy" className="hover:text-[#0A7A74] transition-colors">
+            <Link to="/privacy-policy" className="hover:text-[#018AAE] transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms-of-use" className="hover:text-[#0A7A74] transition-colors">
+            <Link to="/terms-of-use" className="hover:text-[#018AAE] transition-colors">
               Terms &amp; Conditions
             </Link>
           </div>
@@ -1141,7 +1141,7 @@ export const ConsultationPage = () => {
       {profileModalOpen && activeDoctor && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
           <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[88vh] overflow-y-auto border border-slate-200">
-            <div className="bg-[#0A7A74] text-white px-5 py-3.5 flex items-center justify-between sticky top-0 z-10">
+            <div className="bg-[#018AAE] text-white px-5 py-3.5 flex items-center justify-between sticky top-0 z-10">
               <div className="flex items-center gap-2">
                 <Stethoscope className="w-4 h-4 text-teal-200" />
                 <h3 className="text-sm font-black">Doctor Profile</h3>
@@ -1160,20 +1160,20 @@ export const ConsultationPage = () => {
                 <img
                   src={activeDoctor.image || 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=400'}
                   alt={activeDoctor.name}
-                  className="w-20 h-20 rounded-2xl object-cover object-top border border-[#0A7A74]/30 shadow-xs shrink-0"
+                  className="w-20 h-20 rounded-2xl object-cover object-top border border-[#018AAE]/30 shadow-xs shrink-0"
                 />
                 <div className="space-y-0.5 min-w-0">
                   <h4 className="text-base sm:text-lg font-black text-[#0B2545] leading-tight truncate">
                     {activeDoctor.name}
                   </h4>
-                  <p className="text-xs font-bold text-[#0A7A74]">
+                  <p className="text-xs font-bold text-[#018AAE]">
                     {activeDoctor.designation || 'Senior Consultant'}
                   </p>
                   <p className="text-xs text-slate-600 font-semibold truncate">
                     {activeDoctor.departmentName}
                   </p>
                   {activeDoctor.dmcNo && (
-                    <span className="inline-block mt-0.5 px-2 py-0.2 rounded-full bg-teal-50 border border-teal-200 text-[10px] font-bold text-[#0A7A74]">
+                    <span className="inline-block mt-0.5 px-2 py-0.2 rounded-full bg-[#F0FBFC] border border-[#B6EEF6] text-[10px] font-bold text-[#018AAE]">
                       DMC: {activeDoctor.dmcNo}
                     </span>
                   )}
@@ -1202,7 +1202,7 @@ export const ConsultationPage = () => {
                     {activeDoctor.specializations.map((spec, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-0.5 rounded-md bg-teal-50 text-[#0A7A74] text-[11px] font-semibold border border-teal-100"
+                        className="px-2 py-0.5 rounded-md bg-[#F0FBFC] text-[#018AAE] text-[11px] font-semibold border border-teal-100"
                       >
                         ✓ {spec}
                       </span>
@@ -1234,7 +1234,7 @@ export const ConsultationPage = () => {
               <button
                 type="button"
                 onClick={() => setProfileModalOpen(false)}
-                className="w-full py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold shadow-xs transition-colors cursor-pointer"
+                className="w-full py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold shadow-xs transition-colors cursor-pointer"
               >
                 Select &amp; Continue with {activeDoctor.name}
               </button>
@@ -1247,7 +1247,7 @@ export const ConsultationPage = () => {
       {bookingModalOpen && activeDoctor && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
           <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto border border-slate-200">
-            <div className="bg-[#0A7A74] text-white px-5 py-3.5 flex items-center justify-between sticky top-0 z-10">
+            <div className="bg-[#018AAE] text-white px-5 py-3.5 flex items-center justify-between sticky top-0 z-10">
               <div>
                 <h3 className="text-sm font-black">Confirm OPD Patient Details</h3>
                 <p className="text-[11px] text-teal-100 mt-0.5">
@@ -1274,7 +1274,7 @@ export const ConsultationPage = () => {
                   value={patientName}
                   onChange={(e) => setPatientName(e.target.value)}
                   placeholder="e.g. Ramesh Kumar"
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] focus:outline-hidden"
                 />
               </div>
 
@@ -1289,7 +1289,7 @@ export const ConsultationPage = () => {
                     value={patientPhone}
                     onChange={(e) => setPatientPhone(e.target.value)}
                     placeholder="10-digit mobile"
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] focus:outline-hidden"
                   />
                 </div>
                 <div className="space-y-1">
@@ -1303,7 +1303,7 @@ export const ConsultationPage = () => {
                     value={patientAge}
                     onChange={(e) => setPatientAge(e.target.value)}
                     placeholder="e.g. 45"
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] focus:outline-hidden"
                   />
                 </div>
               </div>
@@ -1316,7 +1316,7 @@ export const ConsultationPage = () => {
                   <select
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] focus:outline-hidden"
                   >
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -1332,7 +1332,7 @@ export const ConsultationPage = () => {
                     value={uhid}
                     onChange={(e) => setUhid(e.target.value)}
                     placeholder="e.g. BSH-10294"
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] focus:outline-hidden"
                   />
                 </div>
               </div>
@@ -1346,7 +1346,7 @@ export const ConsultationPage = () => {
                   value={patientEmail}
                   onChange={(e) => setPatientEmail(e.target.value)}
                   placeholder="patient@example.com"
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold text-slate-800 focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] focus:outline-hidden"
                 />
               </div>
 
@@ -1359,7 +1359,7 @@ export const ConsultationPage = () => {
                   value={symptoms}
                   onChange={(e) => setSymptoms(e.target.value)}
                   placeholder="Describe health concerns (e.g. fever, joint pain, cough)..."
-                  className="w-full px-3 py-1.5 rounded-xl border border-slate-300 text-xs text-slate-800 focus:border-[#0A7A74] focus:ring-1 focus:ring-[#0A7A74] focus:outline-hidden"
+                  className="w-full px-3 py-1.5 rounded-xl border border-slate-300 text-xs text-slate-800 focus:border-[#018AAE] focus:ring-1 focus:ring-[#018AAE] focus:outline-hidden"
                 />
               </div>
 
@@ -1375,7 +1375,7 @@ export const ConsultationPage = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>Consultation Fee:</span>
-                  <span className="font-bold text-[#0A7A74]">
+                  <span className="font-bold text-[#018AAE]">
                     ₹{activeDoctor.consultationFee || 700} (Pay at Hospital Counter)
                   </span>
                 </div>
@@ -1392,7 +1392,7 @@ export const ConsultationPage = () => {
                 <button
                   type="submit"
                   disabled={bookingLoading}
-                  className="px-5 py-2 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-black shadow-xs flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  className="px-5 py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-black shadow-xs flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                 >
                   {bookingLoading ? (
                     <>
@@ -1413,7 +1413,7 @@ export const ConsultationPage = () => {
       {refundModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
           <div className="bg-white rounded-3xl shadow-xl w-full max-w-md border border-slate-200 overflow-hidden">
-            <div className="bg-[#0A7A74] text-white px-5 py-3 flex items-center justify-between">
+            <div className="bg-[#018AAE] text-white px-5 py-3 flex items-center justify-between">
               <h3 className="text-xs sm:text-sm font-bold flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Hospital Refund &amp; Cancellation Policy</span>
@@ -1448,7 +1448,7 @@ export const ConsultationPage = () => {
                 <button
                   type="button"
                   onClick={() => setRefundModalOpen(false)}
-                  className="w-full py-2 rounded-xl bg-[#0A7A74] text-white font-bold text-xs hover:bg-[#08635e] transition-colors cursor-pointer"
+                  className="w-full py-2 rounded-xl bg-[#018AAE] text-white font-bold text-xs hover:bg-[#007595] transition-colors cursor-pointer"
                 >
                   I Understand
                 </button>

@@ -100,10 +100,10 @@ export default function LocationGuidePage() {
     <div className="min-h-screen bg-[#F4F8FA] pb-16">
       {/* Top Banner with Medical Palette */}
       <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0A7A74]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#018AAE]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto space-y-3 relative z-10">
           <div className="flex items-center gap-2 text-xs font-bold text-slate-500 mb-1">
-            <Link to="/" className="text-[#0A7A74] hover:underline flex items-center gap-1">
+            <Link to="/" className="text-[#018AAE] hover:underline flex items-center gap-1">
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Hospital Home</span>
             </Link>
@@ -113,7 +113,7 @@ export default function LocationGuidePage() {
             <span className="text-slate-700">Location &amp; Directions</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A7A74]/10 border border-[#0A7A74]/20 text-[#0A7A74] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#018AAE]/10 border border-[#018AAE]/20 text-[#018AAE] text-xs font-bold uppercase tracking-wider">
             <MapPin className="w-3.5 h-3.5" />
             <span>Campus Transit &amp; Navigation</span>
           </div>
@@ -126,7 +126,7 @@ export default function LocationGuidePage() {
             <span className="font-bold text-slate-700">{g.author}</span>
             <span>·</span>
             <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-[#0A7A74]" />
+              <Calendar className="w-3.5 h-3.5 text-[#018AAE]" />
               <span>{g.date}</span>
             </span>
           </div>
@@ -158,7 +158,7 @@ export default function LocationGuidePage() {
               <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                 Co-ordinates :
               </h2>
-              <p className="text-sm sm:text-base font-mono font-bold text-[#0A7A74]">
+              <p className="text-sm sm:text-base font-mono font-bold text-[#018AAE]">
                 {g.coordinates}
               </p>
             </div>
@@ -167,7 +167,7 @@ export default function LocationGuidePage() {
             <div className="rounded-3xl border border-slate-200/90 overflow-hidden shadow-soft bg-slate-100">
               <div className="p-4 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-[#0A7A74] text-white flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-[#018AAE] text-white flex items-center justify-center">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
@@ -180,7 +180,7 @@ export default function LocationGuidePage() {
                   href={g.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-bold transition-all shadow-sm"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold transition-all shadow-sm"
                 >
                   <Navigation className="w-3.5 h-3.5" />
                   <span>Open in Maps</span>
@@ -209,9 +209,9 @@ export default function LocationGuidePage() {
                   (loc, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-2 p-3 rounded-xl bg-teal-50/50 border border-teal-100 text-xs sm:text-sm font-semibold text-slate-800"
+                      className="flex items-center gap-2 p-3 rounded-xl bg-[#F0FBFC]/50 border border-teal-100 text-xs sm:text-sm font-semibold text-slate-800"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-[#0A7A74] shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-[#018AAE] shrink-0" />
                       <span>{loc}</span>
                     </div>
                   )
@@ -231,7 +231,7 @@ export default function LocationGuidePage() {
                       key={i}
                       className="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-semibold text-slate-800"
                     >
-                      <Building className="w-4 h-4 text-[#0A7A74] shrink-0" />
+                      <Building className="w-4 h-4 text-[#018AAE] shrink-0" />
                       <span>{inst}</span>
                     </div>
                   )
@@ -256,9 +256,9 @@ export default function LocationGuidePage() {
               </h2>
 
               {/* Delhi Metro */}
-              <div className="space-y-2 p-5 rounded-2xl bg-teal-50/40 border border-teal-100">
+              <div className="space-y-2 p-5 rounded-2xl bg-[#F0FBFC]/40 border border-teal-100">
                 <h3 className="font-bold text-slate-900 text-base flex items-center gap-2">
-                  <Train className="w-5 h-5 text-[#0A7A74]" />
+                  <Train className="w-5 h-5 text-[#018AAE]" />
                   <span>Delhi Metro</span>
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
@@ -269,7 +269,7 @@ export default function LocationGuidePage() {
               {/* DTC Buses */}
               <div className="space-y-2 p-5 rounded-2xl bg-slate-50 border border-slate-200">
                 <h3 className="font-bold text-slate-900 text-base flex items-center gap-2">
-                  <Bus className="w-5 h-5 text-[#0A7A74]" />
+                  <Bus className="w-5 h-5 text-[#018AAE]" />
                   <span>Delhi Transport Corporation Buses</span>
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
@@ -280,7 +280,7 @@ export default function LocationGuidePage() {
               {/* Cabs / Taxis */}
               <div className="space-y-2 p-5 rounded-2xl bg-slate-50 border border-slate-200">
                 <h3 className="font-bold text-slate-900 text-base flex items-center gap-2">
-                  <Car className="w-5 h-5 text-[#0A7A74]" />
+                  <Car className="w-5 h-5 text-[#018AAE]" />
                   <span>Cabs / Taxis</span>
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
@@ -298,7 +298,7 @@ export default function LocationGuidePage() {
               {/* By Rail */}
               <div className="space-y-2">
                 <h3 className="font-black text-slate-900 text-base flex items-center gap-2">
-                  <Train className="w-4 h-4 text-[#0A7A74]" />
+                  <Train className="w-4 h-4 text-[#018AAE]" />
                   <span>By Rail</span>
                 </h3>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
@@ -309,7 +309,7 @@ export default function LocationGuidePage() {
               {/* By Air */}
               <div className="space-y-2">
                 <h3 className="font-black text-slate-900 text-base flex items-center gap-2">
-                  <Plane className="w-4 h-4 text-[#0A7A74]" />
+                  <Plane className="w-4 h-4 text-[#018AAE]" />
                   <span>By Air</span>
                 </h3>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
@@ -322,7 +322,7 @@ export default function LocationGuidePage() {
           {/* Right Sidebar Assistance & Hospital Contacts */}
           <aside className="lg:col-span-4 space-y-6">
             {/* Quick Emergency Assistance Box */}
-            <div className="bg-gradient-to-br from-[#0A7A74] to-[#08534f] text-white p-6 sm:p-7 rounded-3xl shadow-lg space-y-4">
+            <div className="bg-gradient-to-br from-[#018AAE] to-[#08534f] text-white p-6 sm:p-7 rounded-3xl shadow-lg space-y-4">
               <span className="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider inline-block">
                 Emergency &amp; Casualty
               </span>
@@ -336,7 +336,7 @@ export default function LocationGuidePage() {
               <div className="space-y-2.5 pt-2">
                 <a
                   href="tel:7840089703"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-[#0A7A74] font-bold text-xs hover:bg-slate-100 transition-colors shadow-sm"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-[#018AAE] font-bold text-xs hover:bg-slate-100 transition-colors shadow-sm"
                 >
                   <Phone className="w-4 h-4" />
                   <span>Casualty Helpline: 7840089703</span>
@@ -358,21 +358,21 @@ export default function LocationGuidePage() {
               </h3>
               <div className="space-y-3 text-xs text-slate-600">
                 <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-slate-800 block">Pocket C, Budh Vihar Phase I</strong>
                     <span>North-West Delhi - 110085</span>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <Clock className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                  <Clock className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-slate-800 block">24 Hours / 7 Days Casualty</strong>
                     <span>OPD: Mon - Sat (09:00 AM - 05:00 PM)</span>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <Building className="w-4 h-4 text-[#0A7A74] shrink-0 mt-0.5" />
+                  <Building className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-slate-800 block">Brahm Shakti Trust Healthcare</strong>
                     <span>250-Bed Tertiary Care Medical Center</span>

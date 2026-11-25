@@ -643,17 +643,17 @@ const LungsStethoscopeArtwork = ({ className = 'w-36 h-36' }) => (
     <defs>
       <linearGradient id="lungLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#5EEAD4" />
-        <stop offset="60%" stopColor="#0D9488" />
-        <stop offset="100%" stopColor="#0A7A74" />
+        <stop offset="60%" stopColor="#0DAFD5" />
+        <stop offset="100%" stopColor="#018AAE" />
       </linearGradient>
       <linearGradient id="lungRightGrad" x1="100%" y1="0%" x2="0%" y2="100%">
         <stop offset="0%" stopColor="#5EEAD4" />
-        <stop offset="60%" stopColor="#0D9488" />
-        <stop offset="100%" stopColor="#0A7A74" />
+        <stop offset="60%" stopColor="#0DAFD5" />
+        <stop offset="100%" stopColor="#018AAE" />
       </linearGradient>
       <linearGradient id="stethTube" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#0F172A" />
-        <stop offset="50%" stopColor="#0A7A74" />
+        <stop offset="50%" stopColor="#018AAE" />
         <stop offset="100%" stopColor="#042F2E" />
       </linearGradient>
       <linearGradient id="stethChrome" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -664,12 +664,12 @@ const LungsStethoscopeArtwork = ({ className = 'w-36 h-36' }) => (
     </defs>
 
     {/* Background Soft Glow */}
-    <circle cx="100" cy="100" r="75" fill="#E6FFFA" fillOpacity="0.75" />
+    <circle cx="100" cy="100" r="75" fill="#CEF5FA" fillOpacity="0.75" />
 
     {/* Trachea (Windpipe) */}
     <path
       d="M100 35 L100 68"
-      stroke="#0A7A74"
+      stroke="#018AAE"
       strokeWidth="5"
       strokeLinecap="round"
     />
@@ -730,13 +730,13 @@ const LungsStethoscopeArtwork = ({ className = 'w-36 h-36' }) => (
 
     {/* Stethoscope Chest Piece */}
     <circle cx="152" cy="118" r="9" fill="url(#stethChrome)" stroke="#0F172A" strokeWidth="1.5" />
-    <circle cx="152" cy="118" r="5" fill="#0A7A74" />
+    <circle cx="152" cy="118" r="5" fill="#018AAE" />
     <circle cx="152" cy="118" r="2" fill="#FFFFFF" />
 
     {/* Medical Cross Accent */}
     <g opacity="0.35" transform="translate(160, 48)">
-      <rect x="4" y="0" width="3" height="11" rx="1.5" fill="#0A7A74" />
-      <rect x="0" y="4" width="11" height="3" rx="1.5" fill="#0A7A74" />
+      <rect x="4" y="0" width="3" height="11" rx="1.5" fill="#018AAE" />
+      <rect x="0" y="4" width="11" height="3" rx="1.5" fill="#018AAE" />
     </g>
   </svg>
 );
@@ -1164,7 +1164,7 @@ export const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200/60 text-[#0A7A74] text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F0FBFC] border border-[#B6EEF6]/60 text-[#018AAE] text-xs font-bold uppercase tracking-wider mb-2">
                 <Stethoscope className="w-3.5 h-3.5" />
                 <span>Expert Healthcare Professionals</span>
               </div>
@@ -1176,7 +1176,7 @@ export const HomePage = () => {
               </p>
             </div>
             <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
-              <span className="sm:hidden text-xs text-[#0A7A74] font-bold">Swipe to view →</span>
+              <span className="sm:hidden text-xs text-[#018AAE] font-bold">Swipe to view →</span>
               <Link
                 to="/doctors"
                 className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover font-bold text-xs sm:text-sm"
@@ -1254,7 +1254,7 @@ export const HomePage = () => {
             </p>
           </div>
           <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
-            <span className="sm:hidden text-xs text-[#0A7A74] font-bold">Swipe to view →</span>
+            <span className="sm:hidden text-xs text-[#018AAE] font-bold">Swipe to view →</span>
             <Link
               to="/departments"
               className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover font-bold text-xs sm:text-sm shrink-0"
@@ -1478,7 +1478,7 @@ export const HomePage = () => {
           {/* Header & Segmented Switcher Controls */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4 sm:mb-6">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FBFC] text-[#018AAE] text-xs font-bold uppercase tracking-wider mb-2">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Hospital Highlights &amp; Visitor Guide</span>
               </div>
@@ -1497,7 +1497,7 @@ export const HomePage = () => {
                 onClick={() => setActiveShowcaseTab('events')}
                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   activeShowcaseTab === 'events'
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
@@ -1515,7 +1515,7 @@ export const HomePage = () => {
                 onClick={() => setActiveShowcaseTab('location')}
                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   activeShowcaseTab === 'location'
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
@@ -1528,7 +1528,7 @@ export const HomePage = () => {
                 onClick={() => setActiveShowcaseTab('facilities')}
                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   activeShowcaseTab === 'facilities'
-                    ? 'bg-[#0A7A74] text-white shadow-sm'
+                    ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
@@ -1592,25 +1592,25 @@ export const HomePage = () => {
                 <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-5 bg-white">
                   <div className="space-y-3">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-2.5 py-0.5 rounded-md bg-teal-50 text-[#0A7A74] text-xs font-bold border border-teal-200/60">
+                      <span className="px-2.5 py-0.5 rounded-md bg-[#F0FBFC] text-[#018AAE] text-xs font-bold border border-[#B6EEF6]/60">
                         Hospital Outreach
                       </span>
                       <div className="flex items-center gap-1 text-xs text-slate-500 font-medium">
-                        <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <Clock className="w-3.5 h-3.5 text-[#018AAE]" />
                         <span>{currentEvent?.date || '2026-10-09'}</span>
                       </div>
                     </div>
 
                     <Link
                       to={`/events/${currentEvent?.slug || currentEvent?._id}`}
-                      className="block text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug hover:text-[#0A7A74] transition-colors"
+                      className="block text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug hover:text-[#018AAE] transition-colors"
                     >
                       {currentEvent?.title}
                     </Link>
 
                     {currentEvent?.location && (
                       <div className="flex items-start gap-1.5 text-xs text-slate-500">
-                        <MapPin className="w-3.5 h-3.5 text-[#0A7A74] shrink-0 mt-0.5" />
+                        <MapPin className="w-3.5 h-3.5 text-[#018AAE] shrink-0 mt-0.5" />
                         <span>{currentEvent.location}</span>
                       </div>
                     )}
@@ -1625,7 +1625,7 @@ export const HomePage = () => {
                   <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
                     <Link
                       to={`/events/${currentEvent?.slug || currentEvent?._id}`}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-sm group/btn"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs sm:text-sm font-bold transition-all shadow-sm group/btn"
                     >
                       <span>Read Event Details</span>
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -1639,7 +1639,7 @@ export const HomePage = () => {
                           type="button"
                           onClick={() => setEventSlideIndex(idx)}
                           className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                            idx === eventSlideIndex ? 'w-6 bg-[#0A7A74]' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
+                            idx === eventSlideIndex ? 'w-6 bg-[#018AAE]' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
                           }`}
                           aria-label={`Slide ${idx + 1}`}
                         />
@@ -1675,7 +1675,7 @@ export const HomePage = () => {
                 <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-5 bg-white">
                   <div className="space-y-3">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                      <Clock className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <Clock className="w-3.5 h-3.5 text-[#018AAE]" />
                       <span>Open 24 Hours / 7 Days a Week (Emergency Casualty)</span>
                     </div>
 
@@ -1689,13 +1689,13 @@ export const HomePage = () => {
 
                     <div className="space-y-2 pt-2 border-t border-slate-100 text-xs text-slate-700">
                       <div className="flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-md bg-teal-50 text-[#0A7A74] flex items-center justify-center font-bold text-[11px] shrink-0">
+                        <span className="w-6 h-6 rounded-md bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold text-[11px] shrink-0">
                           🚇
                         </span>
                         <span><strong>Nearest Metro:</strong> Rithala Metro (Red Line) &amp; Udyog Nagar (Green Line)</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-md bg-teal-50 text-[#0A7A74] flex items-center justify-center font-bold text-[11px] shrink-0">
+                        <span className="w-6 h-6 rounded-md bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold text-[11px] shrink-0">
                           🚌
                         </span>
                         <span><strong>Road Access:</strong> Outer Ring Road &amp; Mangolpuri Flyover Corridor</span>
@@ -1712,7 +1712,7 @@ export const HomePage = () => {
                   <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
                     <Link
                       to="/location-and-directions"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-sm group/btn"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs sm:text-sm font-bold transition-all shadow-sm group/btn"
                     >
                       <span>Full Transit &amp; Route Guide</span>
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -1722,7 +1722,7 @@ export const HomePage = () => {
                       href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0A7A74] hover:underline"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#018AAE] hover:underline"
                     >
                       <span>Open in Google Maps</span>
                       <ExternalLink className="w-3.5 h-3.5" />
@@ -1775,7 +1775,7 @@ export const HomePage = () => {
                 {/* Facility Details Content */}
                 <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-5 bg-white">
                   <div className="space-y-3">
-                    <span className="px-2.5 py-0.5 rounded-md bg-teal-50 text-[#0A7A74] text-xs font-bold border border-teal-200/60">
+                    <span className="px-2.5 py-0.5 rounded-md bg-[#F0FBFC] text-[#018AAE] text-xs font-bold border border-[#B6EEF6]/60">
                       {currentFacility.badge}
                     </span>
 
@@ -1791,7 +1791,7 @@ export const HomePage = () => {
                     <div className="pt-2 border-t border-slate-100 grid grid-cols-1 gap-2">
                       {currentFacility.features.map((feat, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-xs text-slate-700">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
                           <span>{feat}</span>
                         </div>
                       ))}
@@ -1801,7 +1801,7 @@ export const HomePage = () => {
                   <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
                     <Link
                       to={appointmentTarget}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs sm:text-sm font-bold transition-all shadow-sm group/btn"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs sm:text-sm font-bold transition-all shadow-sm group/btn"
                     >
                       <span>Book OPD Consultation</span>
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -1815,7 +1815,7 @@ export const HomePage = () => {
                           type="button"
                           onClick={() => setFacilitySlideIndex(idx)}
                           className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                            idx === facilitySlideIndex ? 'w-6 bg-[#0A7A74]' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
+                            idx === facilitySlideIndex ? 'w-6 bg-[#018AAE]' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
                           }`}
                           aria-label={`Facility ${idx + 1}`}
                         />
@@ -1832,8 +1832,8 @@ export const HomePage = () => {
       {/* 6. Patient Testimonials & Trust - Auto-scrolling Continuous Marquee (Matches Landing Page BG) */}
       <section className="py-6 sm:py-10 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 mb-4 sm:mb-6 text-center">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#0A7A74] mb-2">
-            <Star className="w-4 h-4 fill-[#0A7A74]" />
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#018AAE] mb-2">
+            <Star className="w-4 h-4 fill-[#018AAE]" />
             <span>Real Patient Feedback & Stories</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
@@ -1867,8 +1867,8 @@ export const HomePage = () => {
                 treatment: 'Emergency Cath Angioplasty',
                 location: 'Budh Vihar Phase I',
                 initials: 'KM',
-                avatarBg: 'bg-teal-100',
-                avatarText: 'text-teal-800',
+                avatarBg: 'bg-[#CEF5FA]',
+                avatarText: 'text-[#015B73]',
                 text: 'When my husband suffered severe chest angina at midnight, Brahm Shakti casualty team stabilized him in minutes. The 24x7 Cath Lab angioplasty saved his life. Eternally grateful.'
               },
               {
@@ -1904,8 +1904,8 @@ export const HomePage = () => {
                 treatment: 'Emergency Cath Angioplasty',
                 location: 'Budh Vihar Phase I',
                 initials: 'KM',
-                avatarBg: 'bg-teal-100',
-                avatarText: 'text-teal-800',
+                avatarBg: 'bg-[#CEF5FA]',
+                avatarText: 'text-[#015B73]',
                 text: 'When my husband suffered severe chest angina at midnight, Brahm Shakti casualty team stabilized him in minutes. The 24x7 Cath Lab angioplasty saved his life. Eternally grateful.'
               },
               {
@@ -2069,8 +2069,8 @@ export const HomePage = () => {
         {/* Section Header */}
         <div className="mb-6 space-y-1.5">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-teal-50 text-[#0A7A74] flex items-center justify-center border border-teal-200/80 shrink-0">
-              <Megaphone className="w-4 h-4 text-[#0A7A74]" />
+            <div className="w-8 h-8 rounded-xl bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6]/80 shrink-0">
+              <Megaphone className="w-4 h-4 text-[#018AAE]" />
             </div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
               Hospital Announcements &amp; Public Circulars
@@ -2118,13 +2118,13 @@ export const HomePage = () => {
                 <div className="space-y-3.5">
                   {/* Top Badges Row */}
                   <div className="flex items-center justify-between gap-2 flex-wrap">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-[#0A7A74] border border-teal-200/80 text-xs font-bold shadow-2xs">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6]/80 text-xs font-bold shadow-2xs">
                       <Megaphone className="w-3.5 h-3.5" />
                       <span>Selected Announcement</span>
                     </div>
 
                     <div className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500">
-                      <Calendar className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <Calendar className="w-3.5 h-3.5 text-[#018AAE]" />
                       <span>Date: {formattedDate}</span>
                     </div>
                   </div>
@@ -2140,18 +2140,18 @@ export const HomePage = () => {
                   </p>
 
                   {/* Key Highlights Container with Medical Lungs & Stethoscope Vector */}
-                  <div className="bg-teal-50/60 border border-teal-200/80 rounded-2xl p-4 sm:p-5 relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="bg-[#F0FBFC]/60 border border-[#B6EEF6]/80 rounded-2xl p-4 sm:p-5 relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     {/* Bullets List */}
                     <div className="space-y-2.5 z-10 flex-1">
-                      <div className="flex items-center gap-1.5 text-xs font-black text-[#0A7A74] uppercase tracking-wider pb-0.5">
-                        <Info className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <div className="flex items-center gap-1.5 text-xs font-black text-[#018AAE] uppercase tracking-wider pb-0.5">
+                        <Info className="w-3.5 h-3.5 text-[#018AAE]" />
                         <span>Key Highlights</span>
                       </div>
 
                       <div className="space-y-2">
                         {highlights.map((hl, idx) => (
                           <div key={idx} className="flex items-start gap-2">
-                            <div className="w-4 h-4 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                            <div className="w-4 h-4 rounded-full bg-[#018AAE] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
                               <Check className="w-2.5 h-2.5 stroke-[3]" />
                             </div>
                             <span className="text-xs font-bold text-slate-800 leading-snug">
@@ -2172,7 +2172,7 @@ export const HomePage = () => {
                 {/* Bottom Row */}
                 <div className="pt-2 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                   <div className="flex items-center gap-1.5 text-slate-600 font-medium">
-                    <Building2 className="w-4 h-4 text-[#0A7A74] shrink-0" />
+                    <Building2 className="w-4 h-4 text-[#018AAE] shrink-0" />
                     <span>
                       Issued by: <strong>{selectedNotice.author || 'Medical Superintendent Office'}</strong>
                     </span>
@@ -2181,7 +2181,7 @@ export const HomePage = () => {
                   <button
                     type="button"
                     onClick={() => setSelectedNoticeModal(selectedNotice)}
-                    className="inline-flex items-center gap-1 font-bold text-[#0A7A74] hover:underline cursor-pointer self-start sm:self-auto"
+                    className="inline-flex items-center gap-1 font-bold text-[#018AAE] hover:underline cursor-pointer self-start sm:self-auto"
                   >
                     <span>Read Full Circular</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -2194,7 +2194,7 @@ export const HomePage = () => {
                 {/* Header Row */}
                 <div className="flex items-center justify-between pb-1 border-b border-slate-100">
                   <div className="flex items-center gap-2">
-                    <ListFilter className="w-4 h-4 text-[#0A7A74]" />
+                    <ListFilter className="w-4 h-4 text-[#018AAE]" />
                     <h3 className="text-sm sm:text-base font-black text-slate-900">
                       All Announcements
                     </h3>
@@ -2241,19 +2241,19 @@ export const HomePage = () => {
                         onClick={() => setSelectedNoticeId(item.id || item._id)}
                         className={`rounded-2xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-teal-50/80 border-2 border-[#0A7A74] shadow-2xs'
-                            : 'bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-teal-300'
+                            ? 'bg-[#F0FBFC]/80 border-2 border-[#018AAE] shadow-2xs'
+                            : 'bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#73E0EF]'
                         }`}
                       >
                         {/* Date Badge */}
                         <div
                           className={`w-12 h-12 rounded-xl flex flex-col items-center justify-center shrink-0 border transition-colors ${
                             isSelected
-                              ? 'bg-white border-teal-200 text-[#0A7A74]'
+                              ? 'bg-white border-[#B6EEF6] text-[#018AAE]'
                               : 'bg-slate-50 border-slate-200 text-slate-600'
                           }`}
                         >
-                          <span className={`text-[10px] font-black uppercase tracking-wider leading-tight ${isSelected ? 'text-[#0A7A74]' : 'text-slate-400'}`}>
+                          <span className={`text-[10px] font-black uppercase tracking-wider leading-tight ${isSelected ? 'text-[#018AAE]' : 'text-slate-400'}`}>
                             {monthStr}
                           </span>
                           <span className="text-base font-black leading-none mt-0.5">
@@ -2279,7 +2279,7 @@ export const HomePage = () => {
                         {/* Action Status Pill */}
                         <div className="shrink-0">
                           {isSelected ? (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#0A7A74] text-white text-[10px] font-black shadow-2xs">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#018AAE] text-white text-[10px] font-black shadow-2xs">
                               <Check className="w-3 h-3 stroke-[3]" />
                               <span>Selected</span>
                             </span>
@@ -2290,7 +2290,7 @@ export const HomePage = () => {
                                 e.stopPropagation();
                                 setSelectedNoticeId(item.id || item._id);
                               }}
-                              className="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-bold text-[#0A7A74] hover:bg-teal-50 transition-colors"
+                              className="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-bold text-[#018AAE] hover:bg-[#F0FBFC] transition-colors"
                             >
                               <span>Read Circular</span>
                               <ArrowRight className="w-3 h-3" />
@@ -2334,7 +2334,7 @@ export const HomePage = () => {
             onClick={() => setGalleryActiveIndex((prev) => (prev - 1 + displayedGallery.length) % displayedGallery.length)}
             className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110 active:scale-95"
           >
-            <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-[#0A7A74]" />
+            <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-[#018AAE]" />
           </button>
           <button
             type="button"
@@ -2342,7 +2342,7 @@ export const HomePage = () => {
             onClick={() => setGalleryActiveIndex((prev) => (prev + 1) % displayedGallery.length)}
             className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center transition-all cursor-pointer hover:scale-110 active:scale-95"
           >
-            <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-[#0A7A74]" />
+            <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-[#018AAE]" />
           </button>
 
           {/* Cards 3D Stage */}
@@ -2404,7 +2404,7 @@ export const HomePage = () => {
                   }}
                   className={`absolute w-[86%] xs:w-[80%] sm:w-[56%] md:w-[46%] lg:w-[40%] max-w-lg h-[240px] xs:h-[270px] sm:h-[340px] md:h-[390px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl select-none group ${
                     isMiddle
-                      ? 'shadow-2xl ring-4 ring-[#0A7A74]/25 cursor-pointer pointer-events-auto'
+                      ? 'shadow-2xl ring-4 ring-[#018AAE]/25 cursor-pointer pointer-events-auto'
                       : isVisible
                       ? 'shadow-lg border border-slate-200/80 cursor-pointer hover:opacity-90 pointer-events-auto'
                       : 'pointer-events-none'
@@ -2430,7 +2430,7 @@ export const HomePage = () => {
                 onClick={() => setGalleryActiveIndex(idx)}
                 className={`transition-all rounded-full cursor-pointer ${
                   idx === galleryActiveIndex
-                    ? 'w-7 h-2.5 bg-[#0A7A74]'
+                    ? 'w-7 h-2.5 bg-[#018AAE]'
                     : 'w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400'
                 }`}
               />
@@ -2496,7 +2496,7 @@ export const HomePage = () => {
                 <div className="p-4 sm:p-5 md:p-6 bg-slate-50/90 border-b border-slate-200/80 shrink-0">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#0A7A74] text-white flex items-center justify-center shadow-xs shrink-0">
+                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#018AAE] text-white flex items-center justify-center shadow-xs shrink-0">
                         <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
                       <div className="min-w-0">
@@ -2529,21 +2529,21 @@ export const HomePage = () => {
                 {/* 2. Scrollable Notice Body */}
                 <div className="overflow-y-auto p-4 sm:p-6 md:p-7 space-y-5 text-slate-700">
                   {/* Metadata Banner: Ref ID, Category, Date */}
-                  <div className="flex flex-wrap items-center justify-between gap-2.5 py-2.5 px-3.5 sm:px-4 rounded-2xl bg-teal-50/70 border border-teal-200/70">
+                  <div className="flex flex-wrap items-center justify-between gap-2.5 py-2.5 px-3.5 sm:px-4 rounded-2xl bg-[#F0FBFC]/70 border border-[#B6EEF6]/70">
                     <div className="flex flex-wrap items-center gap-2">
                       {selectedNoticeModal.refNumber && (
-                        <span className="font-mono text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-teal-200/70 shadow-2xs">
+                        <span className="font-mono text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-[#B6EEF6]/70 shadow-2xs">
                           Ref: {selectedNoticeModal.refNumber}
                         </span>
                       )}
-                      <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[#0A7A74] text-white shadow-2xs">
+                      <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[#018AAE] text-white shadow-2xs">
                         {selectedNoticeModal.category || 'Patient Advisory'}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
                       <span className="inline-flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <Calendar className="w-3.5 h-3.5 text-[#018AAE]" />
                         <span>Date: {modalFormattedDate}</span>
                       </span>
                     </div>
@@ -2555,7 +2555,7 @@ export const HomePage = () => {
                       {selectedNoticeModal.title}
                     </h3>
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium pt-0.5">
-                      <Award className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <Award className="w-3.5 h-3.5 text-[#018AAE]" />
                       <span>
                         Issued by: <strong className="text-slate-700">{selectedNoticeModal.author || 'Office of Medical Superintendent'}</strong>
                       </span>
@@ -2571,15 +2571,15 @@ export const HomePage = () => {
 
                   {/* Key Highlights Card (Identical in styling to the home page announcement panel) */}
                   {highlightsList.length > 0 && (
-                    <div className="bg-teal-50/60 border border-teal-200/80 rounded-2xl p-4 sm:p-5 space-y-3">
-                      <div className="flex items-center gap-2 text-xs font-black text-[#0A7A74] uppercase tracking-wider">
-                        <Info className="w-3.5 h-3.5 text-[#0A7A74]" />
+                    <div className="bg-[#F0FBFC]/60 border border-[#B6EEF6]/80 rounded-2xl p-4 sm:p-5 space-y-3">
+                      <div className="flex items-center gap-2 text-xs font-black text-[#018AAE] uppercase tracking-wider">
+                        <Info className="w-3.5 h-3.5 text-[#018AAE]" />
                         <span>Key Directives &amp; Advisory Highlights</span>
                       </div>
                       <div className="space-y-2">
                         {highlightsList.map((hl, idx) => (
                           <div key={idx} className="flex items-start gap-2.5">
-                            <div className="w-4 h-4 rounded-full bg-[#0A7A74] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                            <div className="w-4 h-4 rounded-full bg-[#018AAE] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
                               <Check className="w-2.5 h-2.5 stroke-[3]" />
                             </div>
                             <span className="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
@@ -2595,17 +2595,17 @@ export const HomePage = () => {
                   {parsed.items.length > 0 && (
                     <div className="space-y-3">
                       <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                        <FileText className="w-3.5 h-3.5 text-[#0A7A74]" />
+                        <FileText className="w-3.5 h-3.5 text-[#018AAE]" />
                         <span>Operational Facilities &amp; Beneficiary Guidelines</span>
                       </h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {parsed.items.map((item, idx) => (
                           <div
                             key={idx}
-                            className="p-3.5 rounded-2xl bg-slate-50/90 hover:bg-teal-50/40 border border-slate-200/80 hover:border-teal-300 transition-all space-y-1.5"
+                            className="p-3.5 rounded-2xl bg-slate-50/90 hover:bg-[#F0FBFC]/40 border border-slate-200/80 hover:border-[#73E0EF] transition-all space-y-1.5"
                           >
                             <div className="flex items-center gap-2">
-                              <span className="w-5 h-5 rounded-full bg-[#0A7A74]/10 text-[#0A7A74] text-xs font-black flex items-center justify-center shrink-0">
+                              <span className="w-5 h-5 rounded-full bg-[#018AAE]/10 text-[#018AAE] text-xs font-black flex items-center justify-center shrink-0">
                                 {idx + 1}
                               </span>
                               <span className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
@@ -2631,9 +2631,9 @@ export const HomePage = () => {
                   )}
 
                   {/* Official Hospital Seal & Authentication Card */}
-                  <div className="p-4 rounded-2xl bg-linear-to-r from-teal-50/40 via-white to-slate-50 border border-teal-200/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+                  <div className="p-4 rounded-2xl bg-linear-to-r from-teal-50/40 via-white to-slate-50 border border-[#B6EEF6]/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-teal-50 border border-teal-200 text-[#0A7A74] flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-[#F0FBFC] border border-[#B6EEF6] text-[#018AAE] flex items-center justify-center shrink-0">
                         <FileCheck2 className="w-5 h-5" />
                       </div>
                       <div>
@@ -2646,8 +2646,8 @@ export const HomePage = () => {
                       </div>
                     </div>
 
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-teal-200/90 text-[#0A7A74] text-[11px] font-bold shadow-2xs self-end sm:self-auto">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0A7A74]" />
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-[#B6EEF6]/90 text-[#018AAE] text-[11px] font-bold shadow-2xs self-end sm:self-auto">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#018AAE]" />
                       <span>Authorized Circular</span>
                     </div>
                   </div>
@@ -2655,7 +2655,7 @@ export const HomePage = () => {
                   {/* Helpdesk & Emergency Support Line */}
                   <div className="p-3 sm:p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <PhoneCall className="w-3.5 h-3.5 text-[#0A7A74] shrink-0" />
+                      <PhoneCall className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
                       <span>Patient Assistance &amp; 24x7 Emergency Casualty:</span>
                     </div>
                     <div className="font-bold text-[#0B2545] flex items-center gap-2 text-xs">
@@ -2674,7 +2674,7 @@ export const HomePage = () => {
                       onClick={() => window.print()}
                       className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold transition-colors cursor-pointer shadow-2xs"
                     >
-                      <Printer className="w-3.5 h-3.5 text-[#0A7A74]" />
+                      <Printer className="w-3.5 h-3.5 text-[#018AAE]" />
                       <span>Print Circular</span>
                     </button>
                     <span className="text-[11px] text-slate-400 hidden sm:inline">
@@ -2685,7 +2685,7 @@ export const HomePage = () => {
                   <button
                     type="button"
                     onClick={() => setSelectedNoticeModal(null)}
-                    className="w-full sm:w-auto px-6 py-2 rounded-xl bg-[#0A7A74] hover:bg-[#08635e] text-white text-xs font-black transition-all shadow-xs hover:shadow-sm cursor-pointer"
+                    className="w-full sm:w-auto px-6 py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-black transition-all shadow-xs hover:shadow-sm cursor-pointer"
                   >
                     Close Circular
                   </button>
@@ -2698,7 +2698,7 @@ export const HomePage = () => {
 
       {/* 9. Frequently Asked Questions Section */}
       <section className="max-w-7xl mx-auto px-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#0A7A74] text-center mb-8 tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#018AAE] text-center mb-8 tracking-tight">
           Frequently Asked Questions
         </h2>
 
@@ -2718,7 +2718,7 @@ export const HomePage = () => {
                   <span className="text-sm sm:text-base font-bold text-[#0B2545]">
                     {faq.question}
                   </span>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-[#0A7A74]/10 text-[#0A7A74]' : 'text-slate-400'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-[#018AAE]/10 text-[#018AAE]' : 'text-slate-400'}`}>
                     <ChevronDown className="w-5 h-5" />
                   </div>
                 </button>

@@ -596,7 +596,7 @@ export const AdminDashboardPage = () => {
                 <div className="space-y-2.5">
                   <Link
                     to="/admin/inquiries"
-                    className="flex items-center gap-3 p-3.5 rounded-2xl bg-teal-50 hover:bg-teal-600 hover:text-white text-teal-900 text-xs font-bold transition-all"
+                    className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#F0FBFC] hover:bg-teal-600 hover:text-white text-[#013B4A] text-xs font-bold transition-all"
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>Patient Inquiries &amp; Helpdesk Form</span>
@@ -620,7 +620,7 @@ export const AdminDashboardPage = () => {
 
                   <Link
                     to="/admin/news"
-                    className="flex items-center gap-3 p-3.5 rounded-2xl bg-teal-50 hover:bg-teal-600 hover:text-white text-teal-900 text-xs font-bold transition-all"
+                    className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#F0FBFC] hover:bg-teal-600 hover:text-white text-[#013B4A] text-xs font-bold transition-all"
                   >
                     <FileText className="w-4 h-4" />
                     <span>News &amp; Official Circulars</span>

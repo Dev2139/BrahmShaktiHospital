@@ -103,22 +103,22 @@ export const sendOtpEmail = async ({ to, otp, patientName = 'Valued Patient', ty
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${emailSubject}</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #F0F8F9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F0F8F9; padding: 24px 0;">
+<body style="margin: 0; padding: 0; background-color: #F0FBFC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F0FBFC; padding: 24px 0;">
     <tr>
       <td align="center">
-        <table role="presentation" width="100%" style="max-width: 580px; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(10, 122, 116, 0.08); border: 1px solid #e2e8f0;" cellspacing="0" cellpadding="0">
+        <table role="presentation" width="100%" style="max-width: 580px; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(1, 138, 174, 0.08); border: 1px solid #e2e8f0;" cellspacing="0" cellpadding="0">
           
-          <!-- Hospital Header -->
+          <!-- Hospital Header with 3-Color Wave Palette -->
           <tr>
-            <td style="background: linear-gradient(135deg, #0A7A74 0%, #08635e 100%); padding: 26px 30px; text-align: center;">
+            <td style="background: linear-gradient(135deg, #018AAE 0%, #0DAFD5 100%); padding: 26px 30px; text-align: center;">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                   <td align="center">
                     <div style="font-size: 22px; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; text-transform: uppercase;">
                       BRAHM SHAKTI HOSPITAL
                     </div>
-                    <div style="font-size: 11px; font-weight: 600; color: #99F6E4; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;">
+                    <div style="font-size: 11px; font-weight: 600; color: #CEF5FA; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;">
                       OPD APPOINTMENT &amp; PATIENT PORTAL &bull; TRUST OF GENERATIONS
                     </div>
                   </td>
@@ -145,11 +145,11 @@ export const sendOtpEmail = async ({ to, otp, patientName = 'Valued Patient', ty
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin: 24px 0;">
                 <tr>
                   <td align="center">
-                    <div style="background-color: #F0FDF4; border: 2px dashed #0A7A74; border-radius: 12px; padding: 20px 30px; text-align: center; display: inline-block; min-width: 240px;">
-                      <div style="font-size: 11px; font-weight: 800; color: #0A7A74; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;">
+                    <div style="background-color: #F0FBFC; border: 2px dashed #018AAE; border-radius: 12px; padding: 20px 30px; text-align: center; display: inline-block; min-width: 240px;">
+                      <div style="font-size: 11px; font-weight: 800; color: #018AAE; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;">
                         YOUR 6-DIGIT VERIFICATION CODE
                       </div>
-                      <div style="font-size: 34px; font-weight: 900; letter-spacing: 10px; color: #0A7A74; font-family: 'Courier New', Courier, monospace; margin: 4px 0;">
+                      <div style="font-size: 34px; font-weight: 900; letter-spacing: 10px; color: #018AAE; font-family: 'Courier New', Courier, monospace; margin: 4px 0;">
                         ${otp}
                       </div>
                       <div style="font-size: 12px; font-weight: 600; color: #64748b; margin-top: 6px;">
@@ -161,7 +161,7 @@ export const sendOtpEmail = async ({ to, otp, patientName = 'Valued Patient', ty
               </table>
 
               <!-- Security Advisory -->
-              <div style="background-color: #F8FAFC; border-left: 4px solid #0A7A74; border-radius: 6px; padding: 12px 16px; margin: 24px 0 16px 0;">
+              <div style="background-color: #F8FAFC; border-left: 4px solid #018AAE; border-radius: 6px; padding: 12px 16px; margin: 24px 0 16px 0;">
                 <div style="font-size: 12px; font-weight: 700; color: #0A7A74; margin-bottom: 3px;">
                   Security Note:
                 </div>
