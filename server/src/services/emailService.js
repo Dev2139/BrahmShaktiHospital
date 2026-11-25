@@ -15,7 +15,8 @@ const createTransporter = async () => {
   const host = process.env.SMTP_HOST;
   const port = Number(process.env.SMTP_PORT) || 587;
   const user = process.env.SMTP_USER || process.env.EMAIL_USER || 'dev.patel.codinggita@gmail.com';
-  const pass = process.env.SMTP_PASS || process.env.EMAIL_PASS;
+  const rawPass = process.env.SMTP_PASS || process.env.EMAIL_PASS || '';
+  const pass = rawPass.replace(/\s+/g, '');
   const secure = process.env.SMTP_SECURE === 'true' || port === 465;
 
   // 1. If using Gmail service
