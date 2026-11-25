@@ -1087,14 +1087,14 @@ export const HomePage = () => {
 
   return (
     <div className="pb-8 sm:pb-12">
-      {/* 1. Hero Section - Full-Width Hospital Banner Carousel (Zero space above/below image) */}
+      {/* 1. Hero Section - Curvy Hospital Banner Carousel */}
       <section
-        className="relative w-full overflow-hidden p-0 m-0 leading-none select-none touch-pan-y"
+        className="relative w-full overflow-hidden p-0 m-0 leading-none select-none touch-pan-y bg-[#F8FAFC]"
         onTouchStart={handleHeroTouchStart}
         onTouchMove={handleHeroTouchMove}
         onTouchEnd={handleHeroTouchEnd}
       >
-        <div className="relative w-full overflow-hidden p-0 m-0 leading-none">
+        <div className="relative w-full overflow-hidden p-0 m-0 leading-none rounded-b-[2rem] sm:rounded-b-[3.5rem] lg:rounded-b-[4.5rem] shadow-md shadow-[#018AAE]/10">
           {/* Spacer image establishes the exact responsive aspect ratio and height with 0px gap */}
           <img
             src={HERO_BANNER_IMAGES[0].url}
@@ -1103,7 +1103,7 @@ export const HomePage = () => {
             className="w-full h-auto block opacity-0 pointer-events-none select-none m-0 p-0"
           />
 
-          {/* Carousel slides layered directly on top */}
+          {/* Carousel slides layered directly on top with smooth curvy bottom clipping */}
           {HERO_BANNER_IMAGES.map((banner, idx) => (
             <div
               key={idx}
@@ -1138,8 +1138,19 @@ export const HomePage = () => {
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
+          {/* Elegant Curvy Wave Transition at the bottom edge */}
+          <div className="absolute -bottom-0.5 inset-x-0 w-full overflow-hidden leading-none pointer-events-none z-20">
+            <svg
+              viewBox="0 0 1440 60"
+              className="w-full h-6 sm:h-10 lg:h-14 text-white fill-current"
+              preserveAspectRatio="none"
+            >
+              <path d="M0,18 C320,52 680,55 1040,32 C1200,22 1340,30 1440,42 L1440,60 L0,60 Z" />
+            </svg>
+          </div>
+
           {/* Dot Indicators */}
-          <div className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-2.5 bg-black/35 backdrop-blur-xs px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full">
+          <div className="absolute bottom-4 sm:bottom-7 lg:bottom-9 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-2.5 bg-black/40 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 shadow-md">
             {HERO_BANNER_IMAGES.map((_, idx) => (
               <button
                 key={idx}
@@ -1148,7 +1159,7 @@ export const HomePage = () => {
                 onClick={() => setHeroSlideIndex(idx)}
                 className={`transition-all rounded-full cursor-pointer ${
                   idx === heroSlideIndex
-                    ? 'w-6 sm:w-7 h-2 sm:h-2.5 bg-white'
+                    ? 'w-6 sm:w-7 h-2 sm:h-2.5 bg-white shadow-xs'
                     : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/60 hover:bg-white/90'
                 }`}
               />

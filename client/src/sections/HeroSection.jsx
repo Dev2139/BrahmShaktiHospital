@@ -86,7 +86,7 @@ export const HeroSection = ({
         
         {/* Main Auto-Scrolling Banner Container */}
         <div
-          className="relative w-full overflow-hidden rounded-none sm:rounded-2xl shadow-elevated border-y sm:border border-slate-200/90 bg-slate-900 group select-none"
+          className="relative w-full overflow-hidden rounded-b-[2rem] sm:rounded-b-[3.5rem] lg:rounded-b-[4.5rem] shadow-elevated border-b sm:border border-slate-200/90 bg-slate-900 group select-none"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onTouchStart={handleTouchStart}
