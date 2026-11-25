@@ -1642,36 +1642,70 @@ export const HomePage = () => {
                   </div>
                 </div>
 
-                {/* Bottom Stats Badges */}
-                <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-1">
-                  {/* 250+ Beds */}
-                  <div className="relative overflow-hidden rounded-2xl bg-white border border-slate-200/90 p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#EBF8FA] text-[#018AAE] flex items-center justify-center shrink-0">
+                {/* 4 Compact Metric Badges (250+ Beds, 20+ Consultants, 24/7 Emergency, Subsidized Trust Care) */}
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 pt-1">
+                  {/* 1. 250+ Beds */}
+                  <div className="relative overflow-hidden rounded-2xl bg-white border border-slate-200/90 p-3 sm:p-3.5 shadow-2xs hover:shadow-xs transition-all flex items-center gap-2.5 sm:gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-[#EBF8FA] text-[#018AAE] flex items-center justify-center shrink-0">
                       <Bed className="w-5 h-5" />
                     </div>
-                    <div>
-                      <div className="text-lg sm:text-2xl font-black text-[#0B2545] leading-tight">250+</div>
-                      <div className="text-[11px] sm:text-xs font-semibold text-slate-500">Beds</div>
+                    <div className="min-w-0">
+                      <div className="text-lg sm:text-xl font-black text-[#0B2545] leading-tight">250+</div>
+                      <div className="text-[11px] font-semibold text-slate-500 truncate">Beds</div>
                     </div>
                     {/* Wavy bottom right accent */}
-                    <div className="absolute -bottom-2 -right-2 w-20 h-8 pointer-events-none opacity-30 select-none">
+                    <div className="absolute -bottom-2 -right-2 w-16 h-7 pointer-events-none opacity-30 select-none">
                       <svg viewBox="0 0 100 50" className="w-full h-full" preserveAspectRatio="none">
                         <path d="M0,50 Q40,10 100,20 L100,50 Z" fill="#0DAFD5" />
                       </svg>
                     </div>
                   </div>
 
-                  {/* 20+ Consultants */}
-                  <div className="relative overflow-hidden rounded-2xl bg-white border border-slate-200/90 p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#EBF8FA] text-[#018AAE] flex items-center justify-center shrink-0">
+                  {/* 2. 20+ Consultants */}
+                  <div className="relative overflow-hidden rounded-2xl bg-white border border-slate-200/90 p-3 sm:p-3.5 shadow-2xs hover:shadow-xs transition-all flex items-center gap-2.5 sm:gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-[#EBF8FA] text-[#018AAE] flex items-center justify-center shrink-0">
                       <Users className="w-5 h-5" />
                     </div>
-                    <div>
-                      <div className="text-lg sm:text-2xl font-black text-[#0B2545] leading-tight">20+</div>
-                      <div className="text-[11px] sm:text-xs font-semibold text-slate-500">Consultants</div>
+                    <div className="min-w-0">
+                      <div className="text-lg sm:text-xl font-black text-[#0B2545] leading-tight">20+</div>
+                      <div className="text-[11px] font-semibold text-slate-500 truncate">Consultants</div>
                     </div>
                     {/* Wavy bottom right accent */}
-                    <div className="absolute -bottom-2 -right-2 w-20 h-8 pointer-events-none opacity-30 select-none">
+                    <div className="absolute -bottom-2 -right-2 w-16 h-7 pointer-events-none opacity-30 select-none">
+                      <svg viewBox="0 0 100 50" className="w-full h-full" preserveAspectRatio="none">
+                        <path d="M0,50 Q40,10 100,20 L100,50 Z" fill="#0DAFD5" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* 3. 24/7 Emergency */}
+                  <div className="relative overflow-hidden rounded-2xl bg-white border border-slate-200/90 p-3 sm:p-3.5 shadow-2xs hover:shadow-xs transition-all flex items-center gap-2.5 sm:gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-[#EBF8FA] text-[#018AAE] flex items-center justify-center shrink-0">
+                      <Clock className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-lg sm:text-xl font-black text-[#0B2545] leading-tight">24/7</div>
+                      <div className="text-[11px] font-semibold text-slate-500 truncate">Emergency</div>
+                    </div>
+                    {/* Wavy bottom right accent */}
+                    <div className="absolute -bottom-2 -right-2 w-16 h-7 pointer-events-none opacity-30 select-none">
+                      <svg viewBox="0 0 100 50" className="w-full h-full" preserveAspectRatio="none">
+                        <path d="M0,50 Q40,10 100,20 L100,50 Z" fill="#0DAFD5" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* 4. Subsidized Care */}
+                  <div className="relative overflow-hidden rounded-2xl bg-white border border-slate-200/90 p-3 sm:p-3.5 shadow-2xs hover:shadow-xs transition-all flex items-center gap-2.5 sm:gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-[#EBF8FA] text-[#018AAE] flex items-center justify-center shrink-0">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-lg sm:text-xl font-black text-[#0B2545] leading-tight">Subsidized</div>
+                      <div className="text-[11px] font-semibold text-slate-500 truncate">Trust Care</div>
+                    </div>
+                    {/* Wavy bottom right accent */}
+                    <div className="absolute -bottom-2 -right-2 w-16 h-7 pointer-events-none opacity-30 select-none">
                       <svg viewBox="0 0 100 50" className="w-full h-full" preserveAspectRatio="none">
                         <path d="M0,50 Q40,10 100,20 L100,50 Z" fill="#0DAFD5" />
                       </svg>
@@ -1685,32 +1719,6 @@ export const HomePage = () => {
           );
         })()}
 
-      </section>
-
-      {/* Hospital Metrics & Bed Census Statistics */}
-      <section className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-          {[
-            { number: '250+', suffix: 'Beds', title: 'Inpatient Capacity', desc: 'ICU, Level-III NICU & modern private rooms' },
-            { number: '20+', suffix: 'Consultants', title: 'DMC Certified Faculty', desc: 'Medicine, Surgery, Ortho, Gynae, Peds, Eye' },
-            { number: '24x7', suffix: 'Active', title: 'Casualty & Blood Bank', desc: 'Round-the-clock emergency trauma desk' },
-            { number: 'Subsidized', suffix: 'Trust Care', title: 'Philanthropic Ethos', desc: 'Brahm Shakti Trust charitable tariff' }
-          ].map((stat, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl p-4 sm:p-6 border border-medical-border shadow-soft hover:shadow-card-hover hover:-translate-y-1 transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-baseline gap-1 flex-wrap">
-                  <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-primary tracking-tight">{stat.number}</span>
-                  <span className="text-xs sm:text-sm font-bold text-secondary">{stat.suffix}</span>
-                </div>
-                <h3 className="text-sm sm:text-base font-bold text-secondary mt-1">{stat.title}</h3>
-                <p className="text-[11px] sm:text-xs text-medical-muted mt-1 leading-relaxed">{stat.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
 
