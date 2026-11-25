@@ -345,20 +345,20 @@ export const ConsultationPage = () => {
         
         {/* Real Photographic Medical Stethoscope & Cyan Wave Wallpaper perfectly blended into the whole background */}
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none select-none"
+          className="absolute inset-0 w-full h-full bg-cover bg-right-top bg-no-repeat pointer-events-none select-none"
           style={{
             backgroundImage: 'url(/hospital-waves-stethoscope-bg.jpg)'
           }}
         />
 
-        {/* Soft frosted ambient wash layer so the content cards pop with crisp readability */}
-        <div className="absolute inset-0 bg-white/40 pointer-events-none" />
+        {/* Ambient luminous gradient wash for clinical radiance and natural depth */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/30 to-transparent pointer-events-none" />
 
-        {/* Compact, Single-Viewport Content Card Container (No Scrolling Needed on standard screens) */}
-        <div className="relative z-10 max-w-[1380px] w-full mx-auto bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-white/80 shadow-xl shadow-[#018AAE]/10 p-3.5 sm:p-5 lg:p-6 flex flex-col justify-between space-y-3 sm:space-y-4">
+        {/* Compact, Single-Viewport Content Card Container smoothly blended with the background */}
+        <div className="relative z-10 max-w-[1380px] w-full mx-auto bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/90 shadow-2xl shadow-[#018AAE]/10 p-3.5 sm:p-5 lg:p-6 flex flex-col justify-between space-y-3 sm:space-y-4">
           
-          {/* Top Bar: Breadcrumb + Heading + Selector Dropdowns */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5 pb-2 border-b border-slate-100">
+          {/* Top Bar: Breadcrumb + Heading + Selector Dropdowns with soft luminous tint */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5 pb-2.5 border-b border-slate-200/60 bg-gradient-to-r from-white/70 via-white/50 to-[#CEF5FA]/35 rounded-2xl p-2.5 sm:p-3 backdrop-blur-xs">
             <div>
               <div className="flex items-center gap-1 text-[11px] text-slate-500 font-medium">
                 <Link to="/" className="hover:text-[#018AAE] flex items-center gap-1">
@@ -428,7 +428,7 @@ export const ConsultationPage = () => {
             
             {/* ================= COLUMN 1: DOCTOR PROFILE CARD (IMAGE & DETAILS SIDE BY SIDE) ================= */}
             {/* Equal height to column 2 */}
-            <div className="lg:col-span-4 w-full bg-slate-50/80 rounded-2xl border border-slate-200/90 p-3.5 sm:p-4 flex flex-col justify-between space-y-3">
+            <div className="lg:col-span-4 w-full bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-xs p-3.5 sm:p-4 flex flex-col justify-between space-y-3">
               
               {/* Top: Photo on Left & Details on Right SIDE-BY-SIDE */}
               <div className="flex items-start gap-3.5">
@@ -491,7 +491,7 @@ export const ConsultationPage = () => {
             </div>
 
             {/* ================= COLUMN 2: DATE PICKER & TIME SLOTS (NO VIDEO CONSULTATION) ================= */}
-            <div className="lg:col-span-5 w-full bg-slate-50/80 rounded-2xl border border-slate-200/90 p-3.5 sm:p-4 flex flex-col justify-between space-y-3">
+            <div className="lg:col-span-5 w-full bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-xs p-3.5 sm:p-4 flex flex-col justify-between space-y-3">
               
               {/* Select Appointment Date Section */}
               <div className="space-y-2">
@@ -623,7 +623,7 @@ export const ConsultationPage = () => {
             </div>
 
             {/* ================= COLUMN 3: BOOKING SUMMARY CARD ================= */}
-            <div className="lg:col-span-3 w-full bg-slate-50/80 rounded-2xl border border-slate-200/90 overflow-hidden flex flex-col justify-between">
+            <div className="lg:col-span-3 w-full bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden flex flex-col justify-between">
               
               <div>
                 {/* Header Strip */}
