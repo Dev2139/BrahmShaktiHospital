@@ -36,12 +36,52 @@ import {
   Info,
   ListFilter,
   Check,
-  Printer
+  Printer,
+  Bed,
+  Scissors,
+  Eye,
+  Baby
 } from 'lucide-react';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { InternationalModal } from '../../components/InternationalModal';
 import { departmentsData, doctorsData } from '../../data/seedData';
+
+const DEPT_ICON_MAP = {
+  medicine: Stethoscope,
+  'general-surgery': Scissors,
+  surgery: Scissors,
+  orthopaedics: Activity,
+  orthopedics: Activity,
+  eye: Eye,
+  ophthalmology: Eye,
+  'gynae-obst': Baby,
+  gynecology: Baby,
+  pediatrics: Baby,
+  cardiology: HeartPulse,
+  ent: Activity,
+  skin: Droplets,
+  dermatology: Droplets,
+  anesthesia: Activity
+};
+
+const DEPT_SHORT_NAME_MAP = {
+  medicine: 'Medicine',
+  'general-surgery': 'Surgery',
+  surgery: 'Surgery',
+  orthopaedics: 'Ortho',
+  orthopedics: 'Ortho',
+  eye: 'Eye',
+  ophthalmology: 'Eye',
+  'gynae-obst': 'Gynae',
+  gynecology: 'Gynae',
+  pediatrics: 'Pediatrics',
+  cardiology: 'Cardiology',
+  ent: 'ENT',
+  skin: 'Dermatology',
+  dermatology: 'Dermatology',
+  anesthesia: 'Anesthesia'
+};
 
 const DEPARTMENT_CLINICAL_HIGHLIGHTS = {
   medicine: {
@@ -842,6 +882,7 @@ export const HomePage = () => {
   const [selectedDoctor, setSelectedDoctor] = useState('');
   const [internationalModalOpen, setInternationalModalOpen] = useState(false);
   const [selectedDisciplineTab, setSelectedDisciplineTab] = useState('all');
+  const [activeDeptId, setActiveDeptId] = useState('medicine');
 
   // Hero banner slider state & auto-play
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
@@ -1411,146 +1452,238 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 3. Our Departments Section */}
-      <section className="max-w-7xl mx-auto px-4">
+      {/* 3. Our Departments Section (Redesigned per Reference) */}
+      <section className="relative max-w-7xl mx-auto px-4 py-6 sm:py-10 overflow-hidden">
+        
+        {/* Ambient Medical Cyan Waves in Background (No hospital building image as requested) */}
+        <div className="absolute top-0 right-0 w-[550px] h-[350px] pointer-events-none select-none opacity-25 z-0">
+          <svg viewBox="0 0 550 350" className="w-full h-full" preserveAspectRatio="none">
+            <path
+              d="M0,0 C180,110 340,60 550,200 L550,0 Z"
+              fill="url(#dept-wave-cyan)"
+            />
+            <defs>
+              <linearGradient id="dept-wave-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#0DAFD5" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#018AAE" stopOpacity="0.2" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
-          <div>
-            <h2 className="text-2xl sm:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
-              Our Departments
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl leading-relaxed">
-              Comprehensive clinical care across all 9 hospital departments led by experienced consultants and specialists.
-            </p>
+        <div className="relative z-10 mb-4 sm:mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EBF8FA] border border-[#73E0EF]/60 text-[#018AAE] text-xs font-black uppercase tracking-wider mb-2 shadow-2xs">
+            <Stethoscope className="w-3.5 h-3.5 text-[#018AAE]" />
+            <span>SPECIALISED CARE</span>
           </div>
-          <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
-            <span className="sm:hidden text-xs text-[#018AAE] font-bold">Swipe to view →</span>
-            <Link
-              to="/departments"
-              className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover font-bold text-xs sm:text-sm shrink-0"
-            >
-              <span>View All Departments</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
+          <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#0B2545] tracking-tight">
+            Our Departments
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
+            Comprehensive clinical care across all 9 hospital departments.
+          </p>
+          <Link
+            to="/departments"
+            className="inline-flex items-center gap-1.5 text-[#018AAE] font-bold text-xs sm:text-sm mt-1.5 hover:underline"
+          >
+            <span>Explore all {departments.length || 9}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
-        {/* 9 Clinical Department Switcher Tabs */}
-        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2.5 mb-4 sm:mb-6 scrollbar-none flex-nowrap -mx-4 px-4 sm:mx-0 sm:px-0">
-          {CLINICAL_DISCIPLINES.map((tab) => {
-            const isActive = selectedDisciplineTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setSelectedDisciplineTab(tab.id)}
-                className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                  isActive
-                    ? 'bg-[#0B2545] text-white shadow-sm'
-                    : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-                }`}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
+        {/* Main Content: Responsive layout */}
+        {(() => {
+          const activeDept = departments.find((d) => d.id === activeDeptId) || departments[0] || {};
+          const activeDeptHighlights = DEPARTMENT_CLINICAL_HIGHLIGHTS[activeDept.id] || {
+            faculty: activeDept.headOfDepartment || 'Senior Medical Faculty',
+            location: activeDept.floorLocation || 'Block A, 1st Floor',
+            procedures: activeDept.services ? activeDept.services.slice(0, 3) : ['Comprehensive Specialist Evaluation', 'Diagnostic Workup', 'Outpatient Consultation']
+          };
+          const activeDeptIndex = departments.findIndex((d) => d.id === activeDept.id);
+          const displayIndex = activeDeptIndex >= 0 ? activeDeptIndex + 1 : 1;
 
-        {/* Clinical Department Cards: Mobile Swipe Carousel, Desktop Grid */}
-        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible pb-4 sm:pb-0 scrollbar-none snap-x -mx-4 px-4 sm:mx-0 sm:px-0">
-          {displayedDepartments.map((dept) => {
-            const highlights = DEPARTMENT_CLINICAL_HIGHLIGHTS[dept.id] || {
-              faculty: dept.headOfDepartment || 'Senior Medical Faculty',
-              location: dept.floorLocation || 'Main Hospital Wing',
-              procedures: dept.services ? dept.services.slice(0, 3) : ['Comprehensive Specialist Evaluation', 'Diagnostic Workup', 'Outpatient Consultation']
-            };
+          return (
+            <div className="relative z-10 space-y-6 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-8 lg:items-start">
+              
+              {/* Left Column on Desktop / Top on Mobile: Featured Department */}
+              <div className="lg:col-span-7 space-y-3">
+                {/* Featured Department Subheading + Counter */}
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg sm:text-xl font-serif font-bold text-[#0B2545]">
+                    Featured department
+                  </h3>
+                  <div className="text-xs font-bold text-[#018AAE]">
+                    {displayIndex} of {departments.length || 9} &mdash;
+                  </div>
+                </div>
 
-            return (
-              <div
-                key={dept.id}
-                className="w-[82vw] xs:w-[76vw] sm:w-auto shrink-0 snap-start bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group"
-              >
-                <div>
-                  {/* Department Photo with Location Badge */}
-                  <div className="relative h-40 sm:h-48 overflow-hidden bg-slate-100">
+                {/* Featured Department Card */}
+                <div className="bg-white rounded-3xl border border-slate-200/90 shadow-md overflow-hidden flex flex-col justify-between transition-all">
+                  {/* Image with Badges */}
+                  <div className="relative h-44 sm:h-52 w-full overflow-hidden bg-slate-100">
                     <img
-                      src={dept.image || 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800'}
-                      alt={dept.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      src={activeDept.image || 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=800'}
+                      alt={activeDept.name}
+                      className="w-full h-full object-cover object-center"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
-                    
+
                     {/* Location Badge */}
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#0B2545]/90 text-white backdrop-blur-xs text-[10px] font-bold tracking-wide uppercase">
-                      {highlights.location}
+                    <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#0B2545]/95 text-white backdrop-blur-xs text-[10px] sm:text-xs font-black uppercase tracking-wider shadow-sm flex items-center gap-1.5">
+                      <MapPin className="w-3 h-3 text-[#0DAFD5]" />
+                      <span>{activeDeptHighlights.location || activeDept.floorLocation || 'BLOCK A, 1ST FLOOR'}</span>
                     </div>
 
                     {/* Subsidized Fee Badge */}
-                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-white/95 text-slate-800 backdrop-blur-xs text-[11px] font-bold shadow-xs">
-                      ₹{dept.consultationCharges || 700} OPD
-                    </div>
-
-                    {/* Department Title Overlay */}
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <h3 className="text-base sm:text-lg font-bold text-white leading-tight">
-                        {dept.name}
-                      </h3>
+                    <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/95 text-slate-800 backdrop-blur-xs text-xs font-black shadow-xs">
+                      ₹{activeDept.consultationCharges || 700} OPD
                     </div>
                   </div>
 
-                  {/* Card Content */}
-                  <div className="p-4 sm:p-5 space-y-3">
-                    {/* Lead Faculty */}
-                    <div className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-                      <Stethoscope className="w-3.5 h-3.5 text-primary shrink-0" />
-                      <span className="truncate">{highlights.faculty}</span>
+                  {/* Card Body */}
+                  <div className="p-4 sm:p-6 space-y-3">
+                    <h3 className="text-xl sm:text-2xl font-serif font-black text-[#0B2545] leading-tight">
+                      {activeDept.name}
+                    </h3>
+
+                    {/* Faculty */}
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-[#018AAE] font-bold">
+                      <Stethoscope className="w-4 h-4 text-[#018AAE] shrink-0" />
+                      <span>{activeDeptHighlights.faculty || activeDept.headOfDepartment || 'Senior Medical Faculty'}</span>
                     </div>
 
-                    {/* Procedures List */}
+                    {/* Key Procedures */}
                     <div className="space-y-1.5 pt-1">
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                        Key Procedures Performed
+                      <div className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                        KEY PROCEDURES
                       </div>
-                      {highlights.procedures.map((proc, pIdx) => (
-                        <div key={pIdx} className="flex items-start gap-2 text-xs text-slate-700">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                      {(activeDeptHighlights.procedures || activeDept.services?.slice(0, 3) || []).map((proc, pIdx) => (
+                        <div key={pIdx} className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                           <span className="leading-snug">{proc}</span>
                         </div>
                       ))}
                     </div>
 
-                    {/* OPD Timings */}
-                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    {/* OPD Timings & Available Today */}
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                       <div className="flex items-center gap-1.5">
                         <Clock className="w-3.5 h-3.5 text-slate-400" />
-                        <span>{dept.opdTimings || 'Mon - Sat: 09:00 AM - 05:00 PM'}</span>
+                        <span>{activeDept.opdTimings || 'Mon - Sat: 09:00 AM - 05:00 PM'}</span>
                       </div>
-                      <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-2.5 py-0.5 rounded-full">
                         Available Today
                       </span>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex items-center gap-2.5 sm:gap-3 pt-2">
+                      <Link
+                        to={`/departments/${activeDept.id}`}
+                        className="flex-1 py-2.5 sm:py-3 rounded-full border border-slate-300 hover:border-[#0B2545] text-[#0B2545] text-xs sm:text-sm font-bold text-center transition-all bg-white hover:bg-slate-50"
+                      >
+                        View Details
+                      </Link>
+                      <Link
+                        to={`/bookappointment?specialty=${activeDept.id}`}
+                        className="flex-1 py-2.5 sm:py-3 rounded-full bg-[#0B2545] hover:bg-[#018AAE] text-white text-xs sm:text-sm font-bold text-center transition-all shadow-sm"
+                      >
+                        Book Slot
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column on Desktop / Bottom on Mobile: Browse All Departments & Stats */}
+              <div className="lg:col-span-5 space-y-5">
+                {/* Browse all departments */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-lg sm:text-xl font-serif font-black text-[#0B2545] shrink-0">
+                      Browse all departments
+                    </h3>
+                    <div className="flex-1 h-0.5 bg-gradient-to-r from-slate-200 to-transparent rounded-full" />
+                  </div>
+
+                  {/* 3-column pill grid */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5">
+                    {departments.slice(0, 9).map((dept) => {
+                      const isSelected = dept.id === activeDeptId;
+                      const IconComp = DEPT_ICON_MAP[dept.id] || Stethoscope;
+                      const shortName = DEPT_SHORT_NAME_MAP[dept.id] || dept.name;
+
+                      return (
+                        <button
+                          key={dept.id}
+                          type="button"
+                          onClick={() => setActiveDeptId(dept.id)}
+                          className={`p-2.5 sm:p-3 rounded-2xl border transition-all flex items-center gap-2 sm:gap-2.5 text-left cursor-pointer ${
+                            isSelected
+                              ? 'bg-[#F0FBFC] border-[#018AAE] shadow-sm text-[#018AAE] ring-2 ring-[#018AAE]/25'
+                              : 'bg-white border-slate-200/90 hover:border-[#0DAFD5] hover:bg-slate-50 text-slate-700 shadow-2xs'
+                          }`}
+                        >
+                          <div
+                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center shrink-0 ${
+                              isSelected ? 'bg-[#018AAE] text-white' : 'bg-[#EBF8FA] text-[#018AAE]'
+                            }`}
+                          >
+                            <IconComp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                          </div>
+                          <span className="text-xs sm:text-sm font-bold truncate">
+                            {shortName}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Bottom Stats Badges */}
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-1">
+                  {/* 250+ Beds */}
+                  <div className="relative overflow-hidden rounded-2xl bg-white border border-slate-200/90 p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#EBF8FA] text-[#018AAE] flex items-center justify-center shrink-0">
+                      <Bed className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-lg sm:text-2xl font-black text-[#0B2545] leading-tight">250+</div>
+                      <div className="text-[11px] sm:text-xs font-semibold text-slate-500">Beds</div>
+                    </div>
+                    {/* Wavy bottom right accent */}
+                    <div className="absolute -bottom-2 -right-2 w-20 h-8 pointer-events-none opacity-30 select-none">
+                      <svg viewBox="0 0 100 50" className="w-full h-full" preserveAspectRatio="none">
+                        <path d="M0,50 Q40,10 100,20 L100,50 Z" fill="#0DAFD5" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* 20+ Consultants */}
+                  <div className="relative overflow-hidden rounded-2xl bg-white border border-slate-200/90 p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#EBF8FA] text-[#018AAE] flex items-center justify-center shrink-0">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-lg sm:text-2xl font-black text-[#0B2545] leading-tight">20+</div>
+                      <div className="text-[11px] sm:text-xs font-semibold text-slate-500">Consultants</div>
+                    </div>
+                    {/* Wavy bottom right accent */}
+                    <div className="absolute -bottom-2 -right-2 w-20 h-8 pointer-events-none opacity-30 select-none">
+                      <svg viewBox="0 0 100 50" className="w-full h-full" preserveAspectRatio="none">
+                        <path d="M0,50 Q40,10 100,20 L100,50 Z" fill="#0DAFD5" />
+                      </svg>
                     </div>
                   </div>
                 </div>
 
-                {/* Card Action Buttons */}
-                <div className="p-4 sm:p-5 pt-0 flex items-center gap-2">
-                  <Link
-                    to={`/departments/${dept.id}`}
-                    className="flex-1 py-2 sm:py-2.5 rounded-xl border border-slate-300 hover:border-[#0B2545] text-[#0B2545] text-xs font-bold text-center transition-all"
-                  >
-                    View Details
-                  </Link>
-                  <Link
-                    to={`/bookappointment?specialty=${dept.id}`}
-                    className="flex-1 py-2 sm:py-2.5 rounded-xl bg-[#0B2545] hover:bg-[#123661] text-white text-xs font-bold text-center transition-all shadow-sm hover:shadow"
-                  >
-                    Book Slot
-                  </Link>
-                </div>
               </div>
-            );
-          })}
-        </div>
 
+            </div>
+          );
+        })()}
 
       </section>
 
