@@ -1171,11 +1171,11 @@ export const HomePage = () => {
       <div className="space-y-6 sm:space-y-8 lg:space-y-10 pt-4 sm:pt-6">
 
       {/* 2. Our Doctor Team */}
-      <section className="bg-white py-6 sm:py-8 border-b border-medical-border">
+      <section className="bg-[#F0FBFC] py-8 sm:py-12 border-y border-[#B6EEF6]/60">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F0FBFC] border border-[#B6EEF6]/60 text-[#018AAE] text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#B6EEF6] text-[#018AAE] text-xs font-bold uppercase tracking-wider mb-2">
                 <Stethoscope className="w-3.5 h-3.5" />
                 <span>Expert Healthcare Professionals</span>
               </div>
@@ -1203,7 +1203,7 @@ export const HomePage = () => {
             {doctors.map((doctor) => (
               <div
                 key={doctor.id}
-                className="w-[74vw] xs:w-[68vw] sm:w-auto shrink-0 snap-start bg-medical-coolgray rounded-2xl overflow-hidden border border-medical-border shadow-soft hover:shadow-card-hover transition-all flex flex-col justify-between"
+                className="w-[74vw] xs:w-[68vw] sm:w-auto shrink-0 snap-start bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-[#0DAFD5] transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="h-44 sm:h-56 overflow-hidden bg-slate-200 relative">
