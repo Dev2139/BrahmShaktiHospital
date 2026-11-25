@@ -354,6 +354,69 @@ export const ConsultationPage = () => {
         {/* Ambient luminous gradient wash for clinical radiance and natural depth */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/30 to-transparent pointer-events-none" />
 
+        {/* ---------------- ELEGANT TRANSLUCENT MEDICAL WAVES IN BACKGROUND ---------------- */}
+        {/* Bottom Multi-layered Healthcare Waves */}
+        <div className="absolute bottom-0 left-0 right-0 pointer-events-none select-none overflow-hidden h-36 sm:h-48 lg:h-64 z-0">
+          <svg
+            className="absolute bottom-0 w-full h-full"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+          >
+            {/* Wave Layer 1: Soft Ice Cyan Wave */}
+            <path
+              fill="#CEF5FA"
+              fillOpacity="0.45"
+              d="M0,192L48,181.3C96,171,192,149,288,160C384,171,480,213,576,218.7C672,224,768,192,864,176C960,160,1056,160,1152,176C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            />
+            {/* Wave Layer 2: Vibrant Sky Blue Wave */}
+            <path
+              fill="#0DAFD5"
+              fillOpacity="0.25"
+              d="M0,224L60,208C120,192,240,160,360,165.3C480,171,600,213,720,218.7C840,224,960,192,1080,181.3C1200,171,1320,181,1380,186.7L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+            />
+            {/* Wave Layer 3: Deep Ocean Blue Gradient Wave Accent */}
+            <path
+              fill="#018AAE"
+              fillOpacity="0.2"
+              d="M0,256L48,250.7C96,245,192,235,288,240C384,245,480,267,576,261.3C672,256,768,224,864,224C960,224,1056,256,1152,261.3C1248,267,1344,245,1392,234.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            />
+          </svg>
+        </div>
+
+        {/* Top-Left Ambient Curved Medical Ribbon Wave */}
+        <div className="absolute -top-12 -left-12 w-96 h-96 pointer-events-none select-none opacity-40 z-0">
+          <svg viewBox="0 0 400 400" className="w-full h-full">
+            <path
+              d="M0,0 Q180,80 240,200 T360,380 L0,400 Z"
+              fill="url(#ambient-top-wave)"
+            />
+            <defs>
+              <linearGradient id="ambient-top-wave" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#0DAFD5" stopOpacity="0.3" />
+                <stop offset="60%" stopColor="#CEF5FA" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        {/* Right-Side Organic Wave Flow accentuating the Stethoscope */}
+        <div className="absolute top-0 right-0 w-[550px] h-[400px] pointer-events-none select-none opacity-30 z-0">
+          <svg viewBox="0 0 550 400" className="w-full h-full">
+            <path
+              d="M100,0 C220,120 320,80 550,220 L550,0 Z"
+              fill="url(#ambient-steth-wave)"
+            />
+            <defs>
+              <linearGradient id="ambient-steth-wave" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0" />
+                <stop offset="40%" stopColor="#0DAFD5" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#018AAE" stopOpacity="0.25" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
         {/* Compact, Single-Viewport Content Card Container smoothly blended with the background */}
         <div className="relative z-10 max-w-[1380px] w-full mx-auto bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/90 shadow-2xl shadow-[#018AAE]/10 p-3.5 sm:p-5 lg:p-6 flex flex-col justify-between space-y-3 sm:space-y-4">
           
