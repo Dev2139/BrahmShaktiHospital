@@ -1579,18 +1579,12 @@ export const HomePage = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex items-center gap-2.5 sm:gap-3 pt-2">
+                    <div className="pt-2">
                       <Link
                         to={`/departments/${activeDept.id}`}
-                        className="flex-1 py-2.5 sm:py-3 rounded-full border border-slate-300 hover:border-[#0B2545] text-[#0B2545] text-xs sm:text-sm font-bold text-center transition-all bg-white hover:bg-slate-50"
+                        className="w-full block py-2.5 sm:py-3 rounded-full border border-slate-300 hover:border-[#0B2545] text-[#0B2545] text-xs sm:text-sm font-bold text-center transition-all bg-white hover:bg-slate-50 shadow-2xs"
                       >
                         View Details
-                      </Link>
-                      <Link
-                        to={`/bookappointment?specialty=${activeDept.id}`}
-                        className="flex-1 py-2.5 sm:py-3 rounded-full bg-[#0B2545] hover:bg-[#018AAE] text-white text-xs sm:text-sm font-bold text-center transition-all shadow-sm"
-                      >
-                        Book Slot
                       </Link>
                     </div>
                   </div>
