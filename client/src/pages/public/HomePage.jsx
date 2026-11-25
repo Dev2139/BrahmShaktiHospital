@@ -846,6 +846,36 @@ export const HomePage = () => {
   // Hero banner slider state & auto-play
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
 
+  // Mobile doctor carousel state & touch handlers
+  const [mobileDoctorIndex, setMobileDoctorIndex] = useState(0);
+  const docTouchStartX = React.useRef(0);
+  const docTouchEndX = React.useRef(0);
+
+  const handleDocTouchStart = (e) => {
+    docTouchStartX.current = e.targetTouches[0].clientX;
+  };
+  const handleDocTouchMove = (e) => {
+    docTouchEndX.current = e.targetTouches[0].clientX;
+  };
+  const handleDocTouchEnd = () => {
+    const diff = docTouchStartX.current - docTouchEndX.current;
+    const docCount = doctors.length || 1;
+    if (diff > 40) {
+      setMobileDoctorIndex((prev) => (prev + 1) % docCount);
+    } else if (diff < -40) {
+      setMobileDoctorIndex((prev) => (prev - 1 + docCount) % docCount);
+    }
+  };
+
+  const handlePrevMobileDoc = () => {
+    const docCount = doctors.length || 1;
+    setMobileDoctorIndex((prev) => (prev - 1 + docCount) % docCount);
+  };
+  const handleNextMobileDoc = () => {
+    const docCount = doctors.length || 1;
+    setMobileDoctorIndex((prev) => (prev + 1) % docCount);
+  };
+
   // Touch swipe support for mobile/tablet users
   const heroTouchStartX = React.useRef(0);
   const heroTouchEndX = React.useRef(0);
@@ -1173,24 +1203,41 @@ export const HomePage = () => {
       {/* 2. Our Doctor Team */}
       <section className="bg-[#F0FBFC] py-8 sm:py-12 border-y border-[#B6EEF6]/60">
         <div className="max-w-7xl mx-auto px-4">
+          
+          {/* Section Header: Centered on Mobile, Row on Desktop */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#B6EEF6] text-[#018AAE] text-xs font-bold uppercase tracking-wider mb-2">
-                <Stethoscope className="w-3.5 h-3.5" />
-                <span>Expert Healthcare Professionals</span>
+            <div className="text-center sm:text-left">
+              <div className="flex justify-center sm:justify-start">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EBF8FA] border border-[#73E0EF]/60 text-[#018AAE] text-[10px] sm:text-xs font-black uppercase tracking-wider mb-2 shadow-2xs">
+                  <Stethoscope className="w-3.5 h-3.5 text-[#018AAE]" />
+                  <span>EXPERT HEALTHCARE PROFESSIONALS</span>
+                </div>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-serif font-bold text-[#0B2545] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#0B2545] tracking-tight">
                 Our Doctor Team
               </h2>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+              <div className="w-14 h-1 bg-[#018AAE] rounded-full mx-auto sm:hidden mt-2 mb-2" />
+              <p className="text-xs sm:text-sm text-slate-600 max-w-sm sm:max-w-2xl mx-auto sm:mx-0 leading-relaxed mt-1">
                 Experienced, caring doctors and specialists dedicated to the health and well-being of you and your family.
               </p>
+              
+              {/* Centered Mobile "View All Doctors" Button */}
+              <div className="mt-3.5 flex justify-center sm:hidden">
+                <Link
+                  to="/doctors"
+                  className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-[#018AAE] bg-white text-[#018AAE] font-bold text-xs hover:bg-[#EBF8FA] transition-colors shadow-2xs"
+                >
+                  <span>View All Doctors</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-            <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
-              <span className="sm:hidden text-xs text-[#018AAE] font-bold">Swipe to view →</span>
+
+            {/* Desktop "View All Doctors" Link */}
+            <div className="hidden sm:flex items-center justify-end shrink-0">
               <Link
                 to="/doctors"
-                className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover font-bold text-xs sm:text-sm"
+                className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover font-bold text-sm"
               >
                 <span>View All Doctors</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -1198,22 +1245,133 @@ export const HomePage = () => {
             </div>
           </div>
 
-          {/* Doctor Cards: Mobile Horizontal Swipe Carousel, Desktop Grid */}
-          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible pb-4 sm:pb-0 scrollbar-none snap-x -mx-4 px-4 sm:mx-0 sm:px-0">
+          {/* ================= MOBILE VIEW: SINGLE-CARD CAROUSEL (AS SHOWN IN IMAGE) ================= */}
+          <div className="sm:hidden mt-5">
+            {doctors.length > 0 && (() => {
+              const activeDoc = doctors[mobileDoctorIndex] || doctors[0];
+              return (
+                <div>
+                  {/* Doctor Card */}
+                  <div
+                    className="w-full max-w-[340px] xs:max-w-[360px] mx-auto bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md flex flex-col justify-between"
+                    onTouchStart={handleDocTouchStart}
+                    onTouchMove={handleDocTouchMove}
+                    onTouchEnd={handleDocTouchEnd}
+                  >
+                    {/* Photo with In-House & Rating Badges */}
+                    <div className="h-64 xs:h-72 w-full overflow-hidden bg-slate-100 relative">
+                      <img
+                        src={activeDoc.image}
+                        alt={activeDoc.name}
+                        className="w-full h-full object-cover object-top"
+                      />
+                      {/* Top-Right: IN HOUSE Pill Badge */}
+                      <div className="absolute top-3 right-3 bg-[#018AAE] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+                        {activeDoc.category || 'IN HOUSE'}
+                      </div>
+                      {/* Bottom-Left: Rating Badge */}
+                      <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs text-slate-800 text-xs font-bold px-2.5 py-1 rounded-xl shadow-xs flex items-center gap-1">
+                        <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                        <span>{activeDoc.rating || 4.9}</span>
+                      </div>
+                    </div>
+
+                    {/* Doctor Details */}
+                    <div className="p-4 xs:p-5 space-y-2">
+                      <h3 className="text-base xs:text-lg font-black text-slate-900 leading-tight">
+                        {activeDoc.name}
+                      </h3>
+                      <p className="text-xs font-bold text-[#018AAE] leading-snug line-clamp-2">
+                        {activeDoc.designation || activeDoc.speciality || 'Senior Consultant'}
+                      </p>
+                      <p className="text-[11px] text-slate-500 font-medium line-clamp-1">
+                        {activeDoc.qualification || 'MBBS, MD'}
+                      </p>
+
+                      {/* Inline Info: Experience & Fee */}
+                      <div className="flex items-center gap-4 text-xs font-semibold text-slate-700 pt-2 border-t border-slate-100">
+                        <div className="flex items-center gap-1.5 text-slate-600">
+                          <Calendar className="w-3.5 h-3.5 text-[#018AAE]" />
+                          <span>{activeDoc.experienceYears || 15}+ Years</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-slate-700">
+                          <span className="font-bold text-[#018AAE]">₹</span>
+                          <span className="font-bold">₹{activeDoc.consultationFee || 700}</span>
+                          <span className="text-slate-400 text-[11px] font-normal">(Subsidized)</span>
+                        </div>
+                      </div>
+
+                      {/* Book Appointment Pill Button */}
+                      <div className="pt-2">
+                        <Link
+                          to={`/bookappointment?doctor=${activeDoc.id}&department=${activeDoc.departmentId || 'general'}`}
+                          className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-[#018AAE] hover:bg-[#007595] active:scale-[0.99] text-white text-xs font-bold transition-all shadow-sm shadow-[#018AAE]/25"
+                        >
+                          <Calendar className="w-4 h-4" />
+                          <span>Book Appointment</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Controls: < Dots > */}
+                  <div className="flex items-center justify-center gap-4 mt-4">
+                    <button
+                      type="button"
+                      onClick={handlePrevMobileDoc}
+                      className="w-8 h-8 rounded-full border border-[#018AAE]/30 bg-white text-[#018AAE] hover:bg-[#F0FBFC] flex items-center justify-center shadow-2xs cursor-pointer active:scale-95"
+                      aria-label="Previous Doctor"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+
+                    {/* Dots */}
+                    <div className="flex items-center gap-1.5">
+                      {doctors.map((_, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setMobileDoctorIndex(idx)}
+                          className={`transition-all rounded-full cursor-pointer ${
+                            idx === mobileDoctorIndex
+                              ? 'w-5 h-2 bg-[#018AAE]'
+                              : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+                          }`}
+                          aria-label={`Doctor ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleNextMobileDoc}
+                      className="w-8 h-8 rounded-full border border-[#018AAE]/30 bg-white text-[#018AAE] hover:bg-[#F0FBFC] flex items-center justify-center shadow-2xs cursor-pointer active:scale-95"
+                      aria-label="Next Doctor"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* ================= DESKTOP / TABLET GRID (hidden on mobile) ================= */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-6">
             {doctors.map((doctor) => (
               <div
                 key={doctor.id}
-                className="w-[74vw] xs:w-[68vw] sm:w-auto shrink-0 snap-start bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-[#0DAFD5] transition-all flex flex-col justify-between"
+                className="w-auto bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-[#0DAFD5] transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="h-44 sm:h-56 overflow-hidden bg-slate-200 relative">
+                  <div className="h-48 sm:h-56 overflow-hidden bg-slate-200 relative">
                     <img
                       src={doctor.image}
                       alt={doctor.name}
                       className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-2 right-2 bg-emerald-600/90 text-white backdrop-blur-xs px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">
-                      {doctor.category || 'In house'}
+                    <div className="absolute top-2 right-2 bg-[#018AAE] text-white backdrop-blur-xs px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">
+                      {doctor.category || 'IN HOUSE'}
                     </div>
                     <div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-xs px-2 py-0.5 rounded-md text-[11px] font-bold text-secondary">
                       ★ {doctor.rating || 4.9}
@@ -1222,7 +1380,7 @@ export const HomePage = () => {
 
                   <div className="p-4 sm:p-5">
                     <h3 className="text-base sm:text-lg font-bold text-secondary leading-tight">{doctor.name}</h3>
-                    <p className="text-xs font-semibold text-primary mt-1">{doctor.designation}</p>
+                    <p className="text-xs font-semibold text-[#018AAE] mt-1">{doctor.designation}</p>
                     <p className="text-[11px] text-medical-muted mt-0.5">{doctor.qualification}</p>
                     {doctor.dmcNo && (
                       <p className="text-[10px] font-bold text-slate-500 mt-1 font-mono">
@@ -1239,7 +1397,7 @@ export const HomePage = () => {
 
                 <div className="p-4 sm:p-5 pt-0">
                   <Link
-                    to={`/doctors/${doctor.id}`}
+                    to={`/bookappointment?doctor=${doctor.id}&department=${doctor.departmentId || 'general'}`}
                     className="w-full flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-sm"
                   >
                     <Calendar className="w-3.5 h-3.5" />
@@ -1249,6 +1407,7 @@ export const HomePage = () => {
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
