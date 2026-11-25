@@ -273,89 +273,16 @@ export const PatientTypePage = () => {
         )}
       </header>
 
-      {/* -------------------- 2. MAIN CONTAINER WITH FULL BACKGROUND IMAGE & BRAND WAVES -------------------- */}
+      {/* -------------------- 2. MAIN CONTAINER WITH UNIFIED HIGH-RES MEDICAL WALLPAPER -------------------- */}
       <main className="relative flex-1 flex items-center justify-center py-8 sm:py-12 lg:py-16 px-4 overflow-hidden">
         
-        {/* Full Viewport High-Res Medical Stethoscope Background Image with Cyan/Ocean Wave Overlay */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
-          {/* Base tint */}
-          <div className="absolute inset-0 bg-[#EBF8FA]" />
-
-          {/* New Photographic Medical Stethoscope Image spanning background */}
-          <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center sm:bg-right opacity-35 mix-blend-multiply filter contrast-105"
-            style={{
-              backgroundImage: 'url(/hospital-stethoscope-bg.jpg)'
-            }}
-          />
-
-          {/* Smooth fluid vector medical wave layers in brand 3-color wave palette */}
-          <svg
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-85"
-            viewBox="0 0 1440 800"
-            preserveAspectRatio="none"
-            fill="none"
-          >
-            <defs>
-              <linearGradient id="fullBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
-                <stop offset="45%" stopColor="#E9F8FA" stopOpacity="0.65" />
-                <stop offset="100%" stopColor="#CEF5FA" stopOpacity="0.3" />
-              </linearGradient>
-              <linearGradient id="ptWave1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#A5ECF5" stopOpacity="0.4" />
-              </linearGradient>
-              <linearGradient id="ptWave2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#0DAFD5" stopOpacity="0.22" />
-                <stop offset="100%" stopColor="#018AAE" stopOpacity="0.26" />
-              </linearGradient>
-              <linearGradient id="ptWave3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#018AAE" stopOpacity="0.14" />
-                <stop offset="100%" stopColor="#0B2545" stopOpacity="0.2" />
-              </linearGradient>
-            </defs>
-
-            {/* Ambient soft wash so cards pop cleanly */}
-            <rect width="1440" height="800" fill="url(#fullBgGrad)" />
-
-            {/* Back wave */}
-            <path
-              d="M-40 220 C 260 140, 520 290, 820 210 C 1120 130, 1340 260, 1480 200 L 1480 850 L -40 850 Z"
-              fill="url(#ptWave1)"
-            />
-
-            {/* Middle wave */}
-            <path
-              d="M-40 380 C 290 300, 640 480, 940 340 C 1210 230, 1370 420, 1480 340 L 1480 850 L -40 850 Z"
-              fill="url(#ptWave2)"
-            />
-
-            {/* Deep wave */}
-            <path
-              d="M-40 530 C 270 450, 610 610, 910 510 C 1210 410, 1370 590, 1480 500 L 1480 850 L -40 850 Z"
-              fill="url(#ptWave3)"
-            />
-
-            {/* Floating Soft Medical Crosses */}
-            <g opacity="0.4">
-              <rect x="80" y="140" width="8" height="30" rx="4" fill="#0DAFD5" />
-              <rect x="69" y="151" width="30" height="8" rx="4" fill="#0DAFD5" />
-              <rect x="1350" y="240" width="8" height="30" rx="4" fill="#018AAE" />
-              <rect x="1339" y="251" width="30" height="8" rx="4" fill="#018AAE" />
-            </g>
-
-            {/* Right ECG pulse line */}
-            <path
-              d="M 980 480 L 1080 480 L 1100 450 L 1115 515 L 1130 435 L 1145 500 L 1160 480 L 1440 480"
-              stroke="#018AAE"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              opacity="0.35"
-            />
-          </svg>
-        </div>
+        {/* Unified 2560x1440 Generated Medical Stethoscope & Cyan Wave Wallpaper */}
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none select-none"
+          style={{
+            backgroundImage: 'url(/hospital-waves-stethoscope-bg.jpg)'
+          }}
+        />
 
         {/* ========================================================================= */}
         {/* SCREEN 1: "BOOK AN APPOINTMENT - ARE YOU A NEW OR REGISTERED PATIENT?"   */}
