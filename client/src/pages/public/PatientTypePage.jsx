@@ -277,34 +277,74 @@ export const PatientTypePage = () => {
       <main className="relative flex-1 flex items-center justify-center py-8 sm:py-12 lg:py-16 px-4 overflow-hidden">
         
         {/* Real photographic stethoscope image and soft medical gradient waves covering whole background */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none select-none">
+        <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
           {/* Base gradient tint matching extracted palette */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#E9F8FA] via-[#D8F3F7] to-[#C8EFF5]" />
 
-          {/* Real Photographic Medical Stethoscope & ECG artwork positioned on right side */}
+          {/* Real Clean Photographic Medical Stethoscope positioned on right side with soft blend */}
           <div
-            className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 opacity-75 mix-blend-multiply bg-right-top bg-no-repeat bg-contain"
+            className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 opacity-70 mix-blend-multiply bg-right-top bg-no-repeat bg-contain pointer-events-none"
             style={{
-              backgroundImage: 'url(/appointment-bg.jpg)'
+              backgroundImage: 'url(/stethoscope-clean.jpg)'
             }}
           />
 
-          {/* Smooth overlay waves ensuring text contrast */}
+          {/* Smooth fluid vector medical wave layers */}
           <svg
-            className="absolute inset-0 w-full h-full object-cover opacity-60"
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             viewBox="0 0 1440 800"
             preserveAspectRatio="none"
             fill="none"
           >
+            <defs>
+              <linearGradient id="ptWave1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0.75" />
+                <stop offset="100%" stopColor="#A5ECF5" stopOpacity="0.35" />
+              </linearGradient>
+              <linearGradient id="ptWave2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#0DAFD5" stopOpacity="0.22" />
+                <stop offset="100%" stopColor="#018AAE" stopOpacity="0.28" />
+              </linearGradient>
+              <linearGradient id="ptWave3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#018AAE" stopOpacity="0.16" />
+                <stop offset="100%" stopColor="#0B2545" stopOpacity="0.22" />
+              </linearGradient>
+            </defs>
+
+            {/* Back wave */}
             <path
-              d="M-50 280 C 250 180, 500 320, 800 240 C 1100 160, 1350 280, 1500 220 L 1500 850 L -50 850 Z"
-              fill="#CEF5FA"
-              fillOpacity="0.4"
+              d="M-40 220 C 260 140, 520 290, 820 210 C 1120 130, 1340 260, 1480 200 L 1480 850 L -40 850 Z"
+              fill="url(#ptWave1)"
             />
+
+            {/* Middle wave */}
             <path
-              d="M-50 460 C 300 360, 650 540, 950 400 C 1200 290, 1380 460, 1500 380 L 1500 850 L -50 850 Z"
-              fill="#0DAFD5"
-              fillOpacity="0.15"
+              d="M-40 380 C 290 300, 640 480, 940 340 C 1210 230, 1370 420, 1480 340 L 1480 850 L -40 850 Z"
+              fill="url(#ptWave2)"
+            />
+
+            {/* Deep wave */}
+            <path
+              d="M-40 530 C 270 450, 610 610, 910 510 C 1210 410, 1370 590, 1480 500 L 1480 850 L -40 850 Z"
+              fill="url(#ptWave3)"
+            />
+
+            {/* Floating Soft Medical Crosses */}
+            <g opacity="0.4">
+              <rect x="80" y="140" width="8" height="30" rx="4" fill="#0DAFD5" />
+              <rect x="69" y="151" width="30" height="8" rx="4" fill="#0DAFD5" />
+              <rect x="1350" y="240" width="8" height="30" rx="4" fill="#018AAE" />
+              <rect x="1339" y="251" width="30" height="8" rx="4" fill="#018AAE" />
+            </g>
+
+            {/* Right ECG pulse line */}
+            <path
+              d="M 980 480 L 1080 480 L 1100 450 L 1115 515 L 1130 435 L 1145 500 L 1160 480 L 1440 480"
+              stroke="#018AAE"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              opacity="0.35"
             />
           </svg>
         </div>
@@ -365,12 +405,6 @@ export const PatientTypePage = () => {
 
                 {/* 2. NEW PATIENT CARD */}
                 <div className="relative bg-white rounded-2xl border-2 border-slate-200/90 hover:border-[#018AAE] p-6 sm:p-7 flex flex-col items-center text-center space-y-4 transition-all shadow-xs hover:shadow-md group">
-                  {/* Recommended Badge on Top Right */}
-                  <div className="absolute -top-3.5 right-4 px-3 py-1 rounded-full bg-[#018AAE] text-white text-[10px] font-black uppercase tracking-wider flex items-center gap-1 shadow-xs">
-                    <CheckCircle2 className="w-3 h-3 stroke-[2.5]" />
-                    <span>Recommended</span>
-                  </div>
-
                   {/* Icon Circle */}
                   <div className="w-16 h-16 rounded-full bg-[#E9F8FA] border border-[#B6EEF6] flex items-center justify-center text-[#018AAE] shadow-2xs group-hover:scale-105 transition-transform">
                     <UserPlus className="w-7 h-7" />
