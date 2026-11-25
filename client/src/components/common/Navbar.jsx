@@ -53,6 +53,14 @@ export const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Automatically close any open dropdown menu and mobile drawer whenever the route changes
+  useEffect(() => {
+    setOpenMenu(null);
+    setMobileMenuOpen(false);
+    setQuickSearchModalOpen(false);
+    setEmergencyModalOpen(false);
+  }, [location.pathname]);
+
   // Filter doctors by selected department in Quick Search
   const filteredDoctors = React.useMemo(() => {
     if (!searchDept) return doctorsData;
@@ -83,14 +91,19 @@ export const Navbar = () => {
       ]
     },
     'About Us': {
-      match: ['/about', '/facilities', '/services', '/search'],
+      match: ['/about'],
       items: [
-        { label: 'About the Hospital', sub: 'Heritage, mission & leadership', path: '/about', icon: Hospital },
-        { label: 'Facilities & Diagnostics', sub: 'Labs, CT Scan & infrastructure', path: '/facilities', icon: FlaskConical },
-        { label: 'Lab Test Results', sub: 'Online Oncquest Diagnostic Portal', path: 'https://itd.oncquest.net/oncquest/design/onlinelab', isExternal: true, icon: FileText },
-        { label: 'Quick Search', sub: 'Search doctors, departments & services', path: '/search', icon: Search },
-        { label: 'OPD Clinical Services', sub: 'Outpatient clinics & schedules', path: '/services/opd', icon: Stethoscope },
-        { label: 'IPD Inpatient Care', sub: 'Rooms, ICU & admissions', path: '/services/ipd', icon: Building2 }
+        { label: 'About Us', path: '/about' },
+        { label: 'About Brahm Shakti Hospital', path: '/about/hospital' },
+        { label: 'About Brahm Shakti Trust', path: '/about/trust' },
+        { label: 'History of the Hospital', path: '/about/history' },
+        { label: 'Vision and Mission', path: '/about/vision-mission' },
+        { label: 'Awards and Accolades', path: '/about/awards' },
+        { label: 'Leadership', path: '/about/leadership' },
+        { label: 'Charity and Welfare activities', path: '/about/charity' },
+        { label: 'Facilities and Technologies', path: '/about/facilities' },
+        { label: 'Quality and Accreditations', path: '/about/accreditations' },
+        { label: 'Patient Rights and Responsibilities', path: '/about/patient-rights' }
       ]
     }
   };
@@ -101,11 +114,11 @@ export const Navbar = () => {
 
   const isActive = (path) => {
     if (path === '/' && location.pathname === '/') return true;
-    if (path !== '/' && location.pathname.startsWith(path)) return true;
+    if (path !== '/' && (location.pathname === path || (path !== '/' && location.pathname.startsWith(path + '/')))) return true;
     return false;
   };
 
-  const isMenuActive = (menu) => menu.match.some((m) => location.pathname.startsWith(m));
+  const isMenuActive = (menu) => menu.match.some((m) => location.pathname === m || location.pathname.startsWith(m + '/'));
 
   const navLinkClass = (active) =>
     `flex items-center gap-1.5 px-4 py-2 rounded-xl text-[15px] font-bold transition-all select-none ${
@@ -232,47 +245,30 @@ export const Navbar = () => {
                   {isOpen && (
                     <div
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white rounded-2xl shadow-elevated border border-medical-border py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 sm:w-80 bg-white rounded-2xl shadow-2xl border border-slate-200/90 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                     >
-                      {menu.items.map((item) => {
-                        const Icon = item.icon;
-                        if (item.isExternal || item.path?.startsWith('http')) {
+                      {/* Top Centered Arrow Pointer (Matching Reference) */}
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-slate-200/90" />
+
+                      <div className="divide-y divide-slate-100/90 relative z-10">
+                        {menu.items.map((item) => {
+                          const isItemActive = location.pathname === item.path;
                           return (
-                            <a
+                            <Link
                               key={item.label + item.path}
-                              href={item.path}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                              to={item.path}
                               onClick={() => setOpenMenu(null)}
-                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-secondary hover:bg-primary-50 hover:text-primary transition-colors"
+                              className={`block px-5 py-3 text-[13.5px] font-semibold transition-colors duration-150 ${
+                                isItemActive
+                                  ? 'text-[#018AAE] bg-[#F0FBFC] font-bold'
+                                  : 'text-slate-800 hover:text-[#018AAE] hover:bg-[#F0FBFC]'
+                              }`}
                             >
-                              <div className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
-                                <Icon className="w-4 h-4 text-primary" />
-                              </div>
-                              <div className="min-w-0">
-                                <div className="font-bold leading-tight truncate">{item.label}</div>
-                                <div className="text-[11px] text-medical-muted truncate">{item.sub}</div>
-                              </div>
-                            </a>
+                              {item.label}
+                            </Link>
                           );
-                        }
-                        return (
-                          <Link
-                            key={item.label + item.path}
-                            to={item.path}
-                            onClick={() => setOpenMenu(null)}
-                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-secondary hover:bg-primary-50 hover:text-primary transition-colors"
-                          >
-                            <div className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
-                              <Icon className="w-4 h-4 text-primary" />
-                            </div>
-                            <div className="min-w-0">
-                              <div className="font-bold leading-tight truncate">{item.label}</div>
-                              <div className="text-[11px] text-medical-muted truncate">{item.sub}</div>
-                            </div>
-                          </Link>
-                        );
-                      })}
+                        })}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -611,43 +607,21 @@ export const Navbar = () => {
                 </button>
 
                 {mobileOpenDropdown === 'about' && (
-                  <div className="p-2 space-y-1 bg-white border-t border-slate-200/80 animate-in fade-in duration-150">
+                  <div className="p-1 space-y-0.5 bg-white border-t border-slate-200/80 animate-in fade-in duration-150 divide-y divide-slate-100">
                     {menus['About Us'].items.map((item) => {
-                      const Icon = item.icon;
-                      if (item.isExternal || item.path?.startsWith('http')) {
-                        return (
-                          <a
-                            key={item.path}
-                            href={item.path}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F0FBFC] text-slate-800 hover:text-[#018AAE] transition-colors"
-                          >
-                            <div className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
-                              <Icon className="w-3.5 h-3.5 text-primary" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-bold leading-tight">{item.label}</div>
-                              <div className="text-[10px] text-slate-500 leading-tight">{item.sub}</div>
-                            </div>
-                          </a>
-                        );
-                      }
+                      const isItemActive = location.pathname === item.path;
                       return (
                         <Link
                           key={item.path}
                           to={item.path}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F0FBFC] text-slate-800 hover:text-[#018AAE] transition-colors"
+                          className={`block px-3.5 py-2.5 text-xs font-semibold rounded-lg transition-colors ${
+                            isItemActive
+                              ? 'bg-[#F0FBFC] text-[#018AAE] font-bold'
+                              : 'text-slate-700 hover:bg-[#F0FBFC] hover:text-[#018AAE]'
+                          }`}
                         >
-                          <div className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
-                            <Icon className="w-3.5 h-3.5 text-primary" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold leading-tight">{item.label}</div>
-                            <div className="text-[10px] text-slate-500 leading-tight">{item.sub}</div>
-                          </div>
+                          {item.label}
                         </Link>
                       );
                     })}
