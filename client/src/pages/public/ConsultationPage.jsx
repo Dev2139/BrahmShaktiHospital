@@ -354,66 +354,72 @@ export const ConsultationPage = () => {
         {/* Ambient luminous gradient wash for clinical radiance and natural depth */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/30 to-transparent pointer-events-none" />
 
-        {/* ---------------- ELEGANT TRANSLUCENT MEDICAL WAVES IN BACKGROUND ---------------- */}
-        {/* Bottom Multi-layered Healthcare Waves */}
-        <div className="absolute bottom-0 left-0 right-0 pointer-events-none select-none overflow-hidden h-36 sm:h-48 lg:h-64 z-0">
-          <svg
-            className="absolute bottom-0 w-full h-full"
-            viewBox="0 0 1440 320"
-            preserveAspectRatio="none"
-          >
-            {/* Wave Layer 1: Soft Ice Cyan Wave */}
+        {/* ---------------- ELEGANT TRANSLUCENT MEDICAL WAVES IN BACKGROUND (MATCHING REFERENCE) ---------------- */}
+        {/* 1. Prominent Bottom-Left Sweeping Cyan Wave (Curves under the card corner as shown in image) */}
+        <div className="absolute -bottom-8 -left-8 w-[600px] h-[360px] pointer-events-none select-none z-0">
+          <svg viewBox="0 0 600 360" className="w-full h-full" preserveAspectRatio="none">
+            {/* Soft Ice Blue Under-Wave */}
             <path
+              d="M0,80 C180,140 280,260 420,320 C480,345 540,360 600,360 L0,360 Z"
+              fill="#CEF5FA"
+              fillOpacity="0.8"
+            />
+            {/* Vibrant Sky Blue Accent Wave */}
+            <path
+              d="M0,130 C150,180 240,280 370,330 C430,350 500,360 560,360 L0,360 Z"
+              fill="#0DAFD5"
+              fillOpacity="0.4"
+            />
+            {/* Deep Ocean Blue Core Wave */}
+            <path
+              d="M0,190 C120,230 190,300 310,345 C360,355 420,360 480,360 L0,360 Z"
+              fill="#018AAE"
+              fillOpacity="0.25"
+            />
+          </svg>
+        </div>
+
+        {/* 2. Bottom-Right & Center Flowing Medical Wave Ribbon */}
+        <div className="absolute bottom-0 right-0 w-[800px] h-[220px] pointer-events-none select-none z-0">
+          <svg viewBox="0 0 800 220" className="w-full h-full" preserveAspectRatio="none">
+            <path
+              d="M0,220 C180,180 320,120 520,140 C650,155 740,190 800,220 Z"
+              fill="#CEF5FA"
+              fillOpacity="0.55"
+            />
+            <path
+              d="M100,220 C260,195 380,145 560,165 C670,180 750,205 800,220 Z"
+              fill="#0DAFD5"
+              fillOpacity="0.3"
+            />
+          </svg>
+        </div>
+
+        {/* 3. Top-Right Soft Wave Framing the Stethoscope */}
+        <div className="absolute top-0 right-0 w-[650px] h-[380px] pointer-events-none select-none z-0">
+          <svg viewBox="0 0 650 380" className="w-full h-full" preserveAspectRatio="none">
+            <path
+              d="M120,0 C260,110 380,90 650,220 L650,0 Z"
+              fill="url(#top-steth-wave-grad)"
+            />
+            <defs>
+              <linearGradient id="top-steth-wave-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0" />
+                <stop offset="40%" stopColor="#0DAFD5" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#018AAE" stopOpacity="0.3" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        {/* 4. Left-Edge Flowing Wave Curve */}
+        <div className="absolute top-24 -left-10 w-[240px] h-[450px] pointer-events-none select-none z-0">
+          <svg viewBox="0 0 240 450" className="w-full h-full" preserveAspectRatio="none">
+            <path
+              d="M0,0 C80,120 90,280 0,420 Z"
               fill="#CEF5FA"
               fillOpacity="0.45"
-              d="M0,192L48,181.3C96,171,192,149,288,160C384,171,480,213,576,218.7C672,224,768,192,864,176C960,160,1056,160,1152,176C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
             />
-            {/* Wave Layer 2: Vibrant Sky Blue Wave */}
-            <path
-              fill="#0DAFD5"
-              fillOpacity="0.25"
-              d="M0,224L60,208C120,192,240,160,360,165.3C480,171,600,213,720,218.7C840,224,960,192,1080,181.3C1200,171,1320,181,1380,186.7L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-            />
-            {/* Wave Layer 3: Deep Ocean Blue Gradient Wave Accent */}
-            <path
-              fill="#018AAE"
-              fillOpacity="0.2"
-              d="M0,256L48,250.7C96,245,192,235,288,240C384,245,480,267,576,261.3C672,256,768,224,864,224C960,224,1056,256,1152,261.3C1248,267,1344,245,1392,234.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            />
-          </svg>
-        </div>
-
-        {/* Top-Left Ambient Curved Medical Ribbon Wave */}
-        <div className="absolute -top-12 -left-12 w-96 h-96 pointer-events-none select-none opacity-40 z-0">
-          <svg viewBox="0 0 400 400" className="w-full h-full">
-            <path
-              d="M0,0 Q180,80 240,200 T360,380 L0,400 Z"
-              fill="url(#ambient-top-wave)"
-            />
-            <defs>
-              <linearGradient id="ambient-top-wave" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#0DAFD5" stopOpacity="0.3" />
-                <stop offset="60%" stopColor="#CEF5FA" stopOpacity="0.5" />
-                <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
-        {/* Right-Side Organic Wave Flow accentuating the Stethoscope */}
-        <div className="absolute top-0 right-0 w-[550px] h-[400px] pointer-events-none select-none opacity-30 z-0">
-          <svg viewBox="0 0 550 400" className="w-full h-full">
-            <path
-              d="M100,0 C220,120 320,80 550,220 L550,0 Z"
-              fill="url(#ambient-steth-wave)"
-            />
-            <defs>
-              <linearGradient id="ambient-steth-wave" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0" />
-                <stop offset="40%" stopColor="#0DAFD5" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#018AAE" stopOpacity="0.25" />
-              </linearGradient>
-            </defs>
           </svg>
         </div>
 
@@ -765,17 +771,8 @@ export const ConsultationPage = () => {
 
           </div>
 
-          {/* Bottom Policy & Fee Banner */}
-          <div className="p-2.5 bg-[#F0FBFC] border border-[#B6EEF6] rounded-xl flex flex-col sm:flex-row items-center justify-center gap-2 text-[11px] text-slate-700 text-center">
-            <span className="font-bold text-[#018AAE]">Registration Fee: ₹200/-</span>
-            <span className="hidden sm:inline text-slate-300">|</span>
-            <span className="text-slate-600">
-              Refund Policy: Refund available as per hospital policy.
-            </span>
-          </div>
-
-          {/* Three Trust Footers across the bottom */}
-          <div className="pt-2 border-t border-slate-100 grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] text-slate-600">
+          {/* Three Trust Footers across the bottom (as shown in reference image) */}
+          <div className="pt-2.5 border-t border-slate-200/60 grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] text-slate-600">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[#018AAE] shrink-0" />
               <div>
