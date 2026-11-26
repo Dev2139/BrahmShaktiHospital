@@ -779,7 +779,8 @@ export const Navbar = () => {
         )}
       </nav>
 
-      {/* Connected Right Corner Tab: Lab Result & Emergency */}
+      {/* Connected Right Corner Tab: Lab Result & Emergency (Only on Home where there is no sub-header) */}
+      {location.pathname === '/' && (
       <div className="hidden lg:block absolute top-full left-0 right-0 pointer-events-none -mt-px z-40">
         <div className="max-w-[1440px] mx-auto px-3 sm:px-6 flex justify-end">
           <div className="inline-flex items-center pointer-events-auto bg-white/95 backdrop-blur-md border-b border-x border-slate-200/90 shadow-md rounded-b-2xl divide-x divide-slate-100">
@@ -882,6 +883,7 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
+      )}
 
       {/* Mobile Backdrop & Centered Popups when open on Mobile */}
       {(emergencyModalOpen || quickSearchModalOpen) && (

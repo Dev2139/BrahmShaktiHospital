@@ -151,9 +151,14 @@ export const DoctorProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F0FBFC] text-slate-800 font-sans selection:bg-[#018AAE] selection:text-white pb-16">
+    <div
+      className="min-h-screen bg-[#F0FBFC] text-slate-800 font-sans selection:bg-[#018AAE] selection:text-white pb-16 bg-cover bg-top bg-fixed bg-no-repeat"
+      style={{
+        backgroundImage: "url('/assets/images/doctor_profile_bg.png')"
+      }}
+    >
       {/* -------------------- 1. BREADCRUMB & UTILITY HEADER -------------------- */}
-      <section className="bg-white border-b border-slate-200 py-2.5 px-4 sm:px-6 lg:px-8">
+      <section className="bg-white/90 backdrop-blur-md border-b border-slate-200/80 py-2.5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
           {/* Breadcrumb Links */}
           <div className="flex items-center gap-1.5 flex-wrap text-slate-500 font-medium">
@@ -170,22 +175,29 @@ export const DoctorProfilePage = () => {
             <span className="text-[#018AAE] font-bold">{doctor.name}</span>
           </div>
 
-          {/* Right Utility Badges: Lab Result & Emergency */}
-          <div className="flex items-center gap-4 self-start sm:self-auto shrink-0 font-bold">
-            <Link
-              to="/patient/dashboard"
-              className="inline-flex items-center gap-1.5 text-[#018AAE] hover:underline transition-colors"
+          {/* Merged Right Utility Pill: Lab Result & Emergency (Inline, No Overlap) */}
+          <div className="inline-flex items-center bg-white border border-slate-200/90 shadow-2xs rounded-xl divide-x divide-slate-100 overflow-hidden shrink-0 self-start sm:self-auto">
+            {/* 1. Lab Result (Redirects to Oncquest Online Lab Portal) */}
+            <a
+              href="https://itd.oncquest.net/oncquest/design/onlinelab"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#018AAE] hover:bg-slate-50 transition-colors cursor-pointer"
             >
-              <FlaskConical className="w-3.5 h-3.5 text-[#018AAE]" />
+              <FlaskConical className="w-3.5 h-3.5 text-[#018AAE] transition-transform group-hover:scale-110" />
               <span>Lab Result</span>
-            </Link>
+            </a>
 
+            {/* 2. Emergency Trigger */}
             <a
               href="tel:7840089703"
-              className="inline-flex items-center gap-1.5 text-rose-600 hover:underline transition-colors"
+              className="group flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-rose-600 hover:text-rose-700 hover:bg-rose-50/60 transition-colors cursor-pointer"
             >
-              <span className="w-2 h-2 rounded-full bg-rose-600 animate-pulse"></span>
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600"></span>
+              </span>
+              <AlertTriangle className="w-3.5 h-3.5 text-rose-600 transition-transform group-hover:scale-110" />
               <span>Emergency</span>
             </a>
           </div>
@@ -304,7 +316,7 @@ export const DoctorProfilePage = () => {
             <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
               DMC REGISTRATION
             </span>
-            <div className="text-lg sm:text-xl md:text-2xl font-black text-slate-900 font-mono">
+            <div className="text-lg sm:text-xl md:text-2xl font-black text-slate-900">
               {doctor.dmcNo || '11843'}
             </div>
             <span className="text-xs text-slate-500 font-medium block">
