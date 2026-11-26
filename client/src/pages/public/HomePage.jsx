@@ -1048,6 +1048,397 @@ export const HomePage = () => {
     };
   }, [selectedNoticeModal]);
 
+  // Dedicated Print Function for Single Official Circular (Prints ONLY this circular on official hospital letterhead)
+  const handlePrintCircular = (notice) => {
+    if (!notice) return;
+    const parsed = parseCircularContent(notice.content || notice.summary);
+    const formattedDate = notice.date
+      ? new Date(notice.date).toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric'
+        })
+      : '01 Nov 2026';
+
+    const highlights = notice.highlights && notice.highlights.length > 0 ? notice.highlights : [];
+
+    let iframe = document.getElementById('bsh-circular-print-frame');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = 'bsh-circular-print-frame';
+      iframe.style.position = 'fixed';
+      iframe.style.right = '0';
+      iframe.style.bottom = '0';
+      iframe.style.width = '0';
+      iframe.style.height = '0';
+      iframe.style.border = '0';
+      iframe.style.visibility = 'hidden';
+      document.body.appendChild(iframe);
+    }
+
+    const doc = iframe.contentWindow || iframe.contentDocument;
+    const docObj = doc.document || doc;
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8" />
+        <title>${notice.refNumber || 'Circular'} - Brahm Shakti Hospital</title>
+        <style>
+          @page {
+            size: A4 portrait;
+            margin: 14mm 14mm 14mm 14mm;
+          }
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #0f172a;
+            background: #ffffff;
+            font-size: 12.5px;
+            line-height: 1.5;
+            padding: 0;
+          }
+          .letterhead-container {
+            border-bottom: 2.5px solid #018AAE;
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .hosp-logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+          }
+          .hosp-logo {
+            height: 52px;
+            width: auto;
+            object-fit: contain;
+          }
+          .hosp-name {
+            font-size: 17px;
+            font-weight: 800;
+            color: #0B2545;
+            letter-spacing: -0.2px;
+            text-transform: uppercase;
+          }
+          .hosp-tag {
+            font-size: 10px;
+            font-weight: 700;
+            color: #018AAE;
+            letter-spacing: 0.3px;
+          }
+          .hosp-campus {
+            font-size: 9.5px;
+            color: #64748b;
+            margin-top: 2px;
+          }
+          .accred-box {
+            text-align: right;
+            border: 1px solid #73E0EF;
+            background: #F0FBFC;
+            padding: 6px 12px;
+            border-radius: 6px;
+          }
+          .accred-badge {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #015B73;
+          }
+          .accred-sub {
+            font-size: 8.5px;
+            color: #64748b;
+            font-weight: 600;
+          }
+          .bulletin-bar {
+            background: #018AAE;
+            color: #ffffff;
+            text-align: center;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin-bottom: 14px;
+          }
+          .meta-grid {
+            display: table;
+            width: 100%;
+            margin-bottom: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            border-collapse: collapse;
+          }
+          .meta-row {
+            display: table-row;
+          }
+          .meta-cell {
+            display: table-cell;
+            padding: 6px 10px;
+            font-size: 11.5px;
+            border: 1px solid #e2e8f0;
+          }
+          .meta-label {
+            font-weight: 700;
+            color: #475569;
+            background: #f8fafc;
+            width: 18%;
+          }
+          .meta-val {
+            font-weight: 600;
+            color: #0f172a;
+          }
+          .target-banner {
+            background: #f8fafc;
+            border-left: 3px solid #018AAE;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #334155;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 14px;
+            border-radius: 0 4px 4px 0;
+          }
+          .circular-subject {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0B2545;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+          }
+          .content-intro {
+            font-size: 12px;
+            color: #334155;
+            line-height: 1.6;
+            margin-bottom: 14px;
+            text-align: justify;
+          }
+          .section-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #018AAE;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 14px 0 8px 0;
+          }
+          .highlights-box {
+            background: #F0FBFC;
+            border: 1px solid #B6EEF6;
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+          }
+          .highlight-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: #0f172a;
+          }
+          .highlight-row:last-child {
+            margin-bottom: 0;
+          }
+          .check-mark {
+            color: #018AAE;
+            font-weight: 800;
+          }
+          .item-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            background: #fbfcfd;
+          }
+          .item-title {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 11.5px;
+            margin-bottom: 2px;
+          }
+          .item-desc {
+            font-size: 11px;
+            color: #475569;
+            line-height: 1.45;
+          }
+          .content-outro {
+            font-size: 11.5px;
+            color: #475569;
+            line-height: 1.5;
+            margin-bottom: 14px;
+          }
+          .auth-box {
+            margin-top: 20px;
+            padding-top: 12px;
+            border-top: 1.5px dashed #cbd5e1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+          }
+          .helpline-info {
+            font-size: 10.5px;
+            color: #64748b;
+          }
+          .helpline-info strong {
+            color: #018AAE;
+            font-size: 11.5px;
+            display: block;
+            margin-top: 2px;
+          }
+          .signoff-seal-wrap {
+            text-align: right;
+          }
+          .seal-stamp {
+            display: inline-block;
+            border: 1.5px solid #018AAE;
+            color: #018AAE;
+            font-weight: 800;
+            font-size: 9px;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+          }
+          .auth-name {
+            font-size: 11px;
+            font-weight: 800;
+            color: #0B2545;
+          }
+          .auth-dept {
+            font-size: 9.5px;
+            color: #64748b;
+          }
+          .doc-foot {
+            margin-top: 16px;
+            font-size: 8.5px;
+            color: #94a3b8;
+            text-align: center;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 6px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="letterhead-container">
+          <div class="hosp-logo-wrap">
+            <img src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png" class="hosp-logo" alt="Brahm Shakti Hospital" />
+            <div>
+              <div class="hosp-name">Brahm Shakti Hospital &amp; Research Centre</div>
+              <div class="hosp-tag">NABH &amp; NABL ACCREDITED TERTIARY HEALTHCARE INSTITUTION</div>
+              <div class="hosp-campus">Pocket C, B-Block, NIT-3 Phase-1, Budh Vihar, Rohini, New Delhi - 110085 · Tel: 011-27531683, 7840089703</div>
+            </div>
+          </div>
+          <div class="accred-box">
+            <div class="accred-badge">NABH &amp; NABL</div>
+            <div class="accred-sub">Quality Certified</div>
+          </div>
+        </div>
+
+        <div class="bulletin-bar">Official Administrative Circular &amp; Public Health Bulletin</div>
+
+        <div class="meta-grid">
+          <div class="meta-row">
+            <div class="meta-cell meta-label">Ref. Number:</div>
+            <div class="meta-cell meta-val">${notice.refNumber || 'BSH/SAF/2026/001'}</div>
+            <div class="meta-cell meta-label">Date of Issue:</div>
+            <div class="meta-cell meta-val">${formattedDate}</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-cell meta-label">Classification:</div>
+            <div class="meta-cell meta-val">${notice.category || 'Statutory Notice'}</div>
+            <div class="meta-cell meta-label">Issued By:</div>
+            <div class="meta-cell meta-val">${notice.author || 'Hospital Quality Directorate'}</div>
+          </div>
+        </div>
+
+        <div class="target-banner">Target Audience: All Staff, Patients, Medical Officers and Visitors</div>
+
+        <div class="circular-subject">${notice.title}</div>
+
+        ${parsed.intro ? `<div class="content-intro">${parsed.intro}</div>` : ''}
+
+        ${
+          highlights.length > 0
+            ? `
+              <div class="section-title">Key Directives &amp; Advisory Highlights</div>
+              <div class="highlights-box">
+                ${highlights.map(hl => `
+                  <div class="highlight-row">
+                    <span class="check-mark">✓</span>
+                    <span>${hl}</span>
+                  </div>
+                `).join('')}
+              </div>
+            `
+            : ''
+        }
+
+        ${
+          parsed.items && parsed.items.length > 0
+            ? `
+              <div class="section-title">Operational Guidelines &amp; Directives</div>
+              <div>
+                ${parsed.items.map((it, idx) => `
+                  <div class="item-card">
+                    <div class="item-title">${idx + 1}. ${it.title}</div>
+                    ${it.desc ? `<div class="item-desc">${it.desc}</div>` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            `
+            : ''
+        }
+
+        ${parsed.outro ? `<div class="content-outro">${parsed.outro}</div>` : ''}
+
+        <div class="auth-box">
+          <div class="helpline-info">
+            <div>Patient Assistance &amp; 24x7 Emergency Casualty:</div>
+            <strong>011-27531683 · 7840089703</strong>
+            <div>Budh Vihar Main Campus, Delhi</div>
+          </div>
+          <div class="signoff-seal-wrap">
+            <div class="seal-stamp">Verified Administrative Record</div>
+            <div class="auth-name">${notice.author || 'Directorate of Clinical Governance'}</div>
+            <div class="auth-dept">Brahm Shakti Hospital &amp; Research Centre</div>
+          </div>
+        </div>
+
+        <div class="doc-foot">
+          Official Institutional Bulletin · Computer generated verified administrative circular · Brahm Shakti Hospital
+        </div>
+      </body>
+      </html>
+    `;
+
+    docObj.open();
+    docObj.write(htmlContent);
+    docObj.close();
+
+    setTimeout(() => {
+      try {
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+      } catch (e) {
+        console.error('Print iframe error:', e);
+      }
+    }, 400);
+  };
+
   const currentFacility = HOSPITAL_FACILITIES[facilitySlideIndex] || HOSPITAL_FACILITIES[0];
 
   const handlePrevFacility = (e) => {
@@ -2811,7 +3202,7 @@ export const HomePage = () => {
                   <div className="flex flex-wrap items-center justify-between gap-2.5 py-2.5 px-3.5 sm:px-4 rounded-2xl bg-[#F0FBFC]/70 border border-[#B6EEF6]/70">
                     <div className="flex flex-wrap items-center gap-2">
                       {selectedNoticeModal.refNumber && (
-                        <span className="font-mono text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-[#B6EEF6]/70 shadow-2xs">
+                        <span className="text-xs font-bold text-slate-800 bg-white px-3 py-1 rounded-lg border border-[#B6EEF6] shadow-2xs">
                           Ref: {selectedNoticeModal.refNumber}
                         </span>
                       )}
@@ -2836,9 +3227,15 @@ export const HomePage = () => {
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium pt-0.5">
                       <Award className="w-3.5 h-3.5 text-[#018AAE]" />
                       <span>
-                        Issued by: <strong className="text-slate-700">{selectedNoticeModal.author || 'Office of Medical Superintendent'}</strong>
+                        Issued by: <strong className="text-slate-700">{selectedNoticeModal.author || 'Hospital Quality Directorate'}</strong>
                       </span>
                     </div>
+                  </div>
+
+                  {/* Target Audience Banner */}
+                  <div className="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-700 tracking-wide">
+                    <span className="text-slate-500 font-bold uppercase tracking-wider">TARGET AUDIENCE:</span>{' '}
+                    <span>All Staff, Patients, Medical Officers and Visitors</span>
                   </div>
 
                   {/* Executive Overview Paragraph */}
@@ -2950,7 +3347,7 @@ export const HomePage = () => {
                   <div className="flex items-center gap-2 text-xs text-slate-500">
                     <button
                       type="button"
-                      onClick={() => window.print()}
+                      onClick={() => handlePrintCircular(selectedNoticeModal)}
                       className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold transition-colors cursor-pointer shadow-2xs"
                     >
                       <Printer className="w-3.5 h-3.5 text-[#018AAE]" />
