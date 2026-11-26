@@ -1158,14 +1158,14 @@ export const HomePage = () => {
 
   return (
     <div className="pb-8 sm:pb-12">
-      {/* 1. Hero Section - Curvy Hospital Banner Carousel */}
+      {/* 1. Hero Section - Seamless Full Hospital Banner Carousel */}
       <section
-        className="relative w-full overflow-hidden p-0 m-0 leading-none select-none touch-pan-y bg-[#F8FAFC]"
+        className="relative w-full overflow-hidden p-0 m-0 select-none touch-pan-y bg-[#F0FBFC]"
         onTouchStart={handleHeroTouchStart}
         onTouchMove={handleHeroTouchMove}
         onTouchEnd={handleHeroTouchEnd}
       >
-        <div className="relative w-full overflow-hidden p-0 m-0 leading-none rounded-b-[2rem] sm:rounded-b-[3.5rem] lg:rounded-b-[4.5rem] shadow-md shadow-[#018AAE]/10">
+        <div className="relative w-full overflow-hidden p-0 m-0 leading-none">
           {/* Spacer image establishes the exact responsive aspect ratio and height with 0px gap */}
           <img
             src={HERO_BANNER_IMAGES[0].url}
@@ -1174,7 +1174,7 @@ export const HomePage = () => {
             className="w-full h-auto block opacity-0 pointer-events-none select-none m-0 p-0"
           />
 
-          {/* Carousel slides layered directly on top with smooth curvy bottom clipping */}
+          {/* Carousel slides layered directly on top with object-contain to never clip any text */}
           {HERO_BANNER_IMAGES.map((banner, idx) => (
             <div
               key={idx}
@@ -1185,7 +1185,7 @@ export const HomePage = () => {
               <img
                 src={banner.url}
                 alt={banner.alt}
-                className="w-full h-full object-cover object-center select-none m-0 p-0"
+                className="w-full h-full object-contain sm:object-cover object-top sm:object-center select-none m-0 p-0"
                 loading={idx === 0 ? 'eager' : 'lazy'}
               />
             </div>
@@ -1209,19 +1209,19 @@ export const HomePage = () => {
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
-          {/* Elegant Curvy Wave Transition at the bottom edge */}
+          {/* Seamless Bottom Gradient Wave that Blends Directly into the Doctor Section */}
           <div className="absolute -bottom-0.5 inset-x-0 w-full overflow-hidden leading-none pointer-events-none z-20">
             <svg
-              viewBox="0 0 1440 60"
-              className="w-full h-6 sm:h-10 lg:h-14 text-white fill-current"
+              viewBox="0 0 1440 70"
+              className="w-full h-8 sm:h-12 lg:h-16 text-[#F0FBFC] fill-current"
               preserveAspectRatio="none"
             >
-              <path d="M0,18 C320,52 680,55 1040,32 C1200,22 1340,30 1440,42 L1440,60 L0,60 Z" />
+              <path d="M0,24 C320,58 680,62 1040,36 C1200,24 1340,32 1440,48 L1440,70 L0,70 Z" />
             </svg>
           </div>
 
           {/* Dot Indicators */}
-          <div className="absolute bottom-4 sm:bottom-7 lg:bottom-9 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-2.5 bg-black/40 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 shadow-md">
+          <div className="absolute bottom-5 sm:bottom-8 lg:bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-2.5 bg-black/40 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 shadow-md">
             {HERO_BANNER_IMAGES.map((_, idx) => (
               <button
                 key={idx}
@@ -1239,10 +1239,10 @@ export const HomePage = () => {
         </div>
       </section>
 
-      <div className="space-y-6 sm:space-y-8 lg:space-y-10 pt-4 sm:pt-6">
+      <div className="space-y-6 sm:space-y-8 lg:space-y-10">
 
-      {/* 2. Our Doctor Team */}
-      <section className="bg-[#F0FBFC] py-8 sm:py-12 border-y border-[#B6EEF6]/60">
+      {/* 2. Our Doctor Team - Seamlessly Blended with #F0FBFC Background */}
+      <section className="bg-[#F0FBFC] pt-2 pb-10 sm:pb-14 border-b-0">
         <div className="max-w-7xl mx-auto px-4">
           
           {/* Section Header: Centered on Mobile, Row on Desktop */}
