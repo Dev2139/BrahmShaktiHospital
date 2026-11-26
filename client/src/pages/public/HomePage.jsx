@@ -1667,8 +1667,11 @@ export const HomePage = () => {
                     {/* Photo with In-House & Rating Badges */}
                     <div className="h-64 xs:h-72 w-full overflow-hidden bg-slate-100 relative">
                       <img
-                        src={activeDoc.image}
+                        src={activeDoc.image || '/assets/images/doctor_placeholder.svg'}
                         alt={activeDoc.name}
+                        onError={(e) => {
+                          e.target.src = '/assets/images/doctor_placeholder.svg';
+                        }}
                         className="w-full h-full object-cover object-top"
                       />
                       {/* Top-Right: IN HOUSE Pill Badge */}
@@ -1772,8 +1775,11 @@ export const HomePage = () => {
                 <div>
                   <div className="h-48 sm:h-56 overflow-hidden bg-slate-200 relative">
                     <img
-                      src={doctor.image}
+                      src={doctor.image || '/assets/images/doctor_placeholder.svg'}
                       alt={doctor.name}
+                      onError={(e) => {
+                        e.target.src = '/assets/images/doctor_placeholder.svg';
+                      }}
                       className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-2 right-2 bg-[#018AAE] text-white backdrop-blur-xs px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">

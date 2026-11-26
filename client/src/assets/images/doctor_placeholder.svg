@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8F8FA"/>
+      <stop offset="100%" stop-color="#D1F2F7"/>
+    </linearGradient>
+    <linearGradient id="coatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="480" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Medical Cross pattern in background -->
+  <g opacity="0.12" fill="#018AAE">
+    <path d="M40 50 h12 v-12 h8 v12 h12 v8 h-12 v12 h-8 v-12 h-12 z"/>
+    <path d="M340 70 h12 v-12 h8 v12 h12 v8 h-12 v12 h-8 v-12 h-12 z"/>
+    <path d="M50 380 h12 v-12 h8 v12 h12 v8 h-12 v12 h-8 v-12 h-12 z"/>
+    <path d="M330 390 h12 v-12 h8 v12 h12 v8 h-12 v12 h-8 v-12 h-12 z"/>
+  </g>
+
+  <!-- Head / Face Silhouette -->
+  <circle cx="200" cy="155" r="58" fill="url(#skinGrad)" opacity="0.9"/>
+  
+  <!-- Shoulders & Doctor White Coat -->
+  <path d="M70 480 C70 330 130 250 200 250 C270 250 330 330 330 480 Z" fill="url(#coatGrad)"/>
+  
+  <!-- Inner Scrub V-Neck -->
+  <path d="M172 250 L200 310 L228 250 Z" fill="#018AAE" opacity="0.85"/>
+  <path d="M185 250 L200 285 L215 250 Z" fill="#CEF5FA"/>
+
+  <!-- Coat Collar & Lapels -->
+  <path d="M150 250 L185 380 L140 480 L70 480 C70 330 130 250 150 250 Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <path d="M250 250 L215 380 L260 480 L330 480 C330 330 270 250 250 250 Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Stethoscope around neck -->
+  <!-- Tubing Left -->
+  <path d="M165 240 C165 330 185 365 200 375 C215 365 235 330 235 240" fill="none" stroke="#0B2545" stroke-width="6.5" stroke-linecap="round"/>
+  <!-- Stethoscope bell / chest piece -->
+  <circle cx="200" cy="385" r="14" fill="#018AAE" stroke="#0B2545" stroke-width="3"/>
+  <circle cx="200" cy="385" r="8" fill="#CEF5FA"/>
+  <circle cx="200" cy="385" r="4" fill="#018AAE"/>
+
+  <!-- Hospital Brand Badge / Placeholder Tag at Bottom -->
+  <g transform="translate(200, 435)">
+    <rect x="-115" y="-18" width="230" height="34" rx="17" fill="#018AAE" opacity="0.95"/>
+    <text text-anchor="middle" y="4" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11.5" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">
+      BRAHM SHAKTI HOSPITAL
+    </text>
+  </g>
+</svg>

@@ -247,20 +247,29 @@ export const DepartmentDetailPage = () => {
             </span>
           </div>
 
-          {/* Quick Action Badges Right */}
-          <div className="flex items-center gap-2 shrink-0">
-            <Link
-              to="/lab-results"
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold text-[#018AAE] hover:bg-[#F0FBFC] transition-colors"
+          {/* Merged Right Utility Pill: Lab Result & Emergency (Inline, No Overlap) */}
+          <div className="inline-flex items-center bg-white border border-slate-200/90 shadow-2xs rounded-xl divide-x divide-slate-100 overflow-hidden shrink-0">
+            {/* 1. Lab Result (Redirects to Oncquest Online Lab Portal) */}
+            <a
+              href="https://itd.oncquest.net/oncquest/design/onlinelab"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#018AAE] hover:bg-slate-50 transition-colors cursor-pointer"
             >
-              <FlaskConical className="w-3 h-3 text-[#018AAE]" />
+              <FlaskConical className="w-3.5 h-3.5 text-[#018AAE] transition-transform group-hover:scale-110" />
               <span>Lab Result</span>
-            </Link>
+            </a>
+
+            {/* 2. Emergency Trigger */}
             <a
               href="tel:7840089703"
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold text-rose-600 hover:bg-rose-50 transition-colors"
+              className="group flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-rose-600 hover:text-rose-700 hover:bg-rose-50/60 transition-colors cursor-pointer"
             >
-              <AlertCircle className="w-3 h-3 text-rose-600" />
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600"></span>
+              </span>
+              <AlertCircle className="w-3.5 h-3.5 text-rose-600 transition-transform group-hover:scale-110" />
               <span>Emergency</span>
             </a>
           </div>
@@ -399,15 +408,11 @@ export const DepartmentDetailPage = () => {
                           } border border-slate-100 shadow-2xs group-hover:shadow group-hover:border-[#018AAE] transition-all`}
                         >
                           <img
-                            src={
-                              doc.image ||
-                              'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=400'
-                            }
+                            src={doc.image || '/assets/images/doctor_placeholder.svg'}
                             alt={doc.name}
                             className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                             onError={(e) => {
-                              e.target.src =
-                                'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=400';
+                              e.target.src = '/assets/images/doctor_placeholder.svg';
                             }}
                           />
                         </div>
@@ -430,15 +435,11 @@ export const DepartmentDetailPage = () => {
                     >
                       <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
                         <img
-                          src={
-                            doc.image ||
-                            'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300'
-                          }
+                          src={doc.image || '/assets/images/doctor_placeholder.svg'}
                           alt={doc.name}
                           className="w-full h-full object-cover object-top"
                           onError={(e) => {
-                            e.target.src =
-                              'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300';
+                            e.target.src = '/assets/images/doctor_placeholder.svg';
                           }}
                         />
                       </div>

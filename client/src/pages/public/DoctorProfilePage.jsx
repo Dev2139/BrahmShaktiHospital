@@ -215,8 +215,11 @@ export const DoctorProfilePage = () => {
               <div className="relative shrink-0">
                 <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-2xl overflow-hidden border-2 border-slate-100 shadow-sm bg-slate-50 flex items-center justify-center">
                   <img
-                    src={doctor.image}
+                    src={doctor.image || '/assets/images/doctor_placeholder.svg'}
                     alt={doctor.name}
+                    onError={(e) => {
+                      e.target.src = '/assets/images/doctor_placeholder.svg';
+                    }}
                     className="w-full h-full object-cover object-[center_20%]"
                   />
                 </div>

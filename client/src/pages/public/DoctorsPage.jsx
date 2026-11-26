@@ -547,8 +547,11 @@ export const DoctorsPage = () => {
                         {/* Doctor Photo & View Profile Link */}
                         <div className="shrink-0 flex flex-col items-center">
                           <img
-                            src={doc.image}
+                            src={doc.image || '/assets/images/doctor_placeholder.svg'}
                             alt={doc.name}
+                            onError={(e) => {
+                              e.target.src = '/assets/images/doctor_placeholder.svg';
+                            }}
                             className="w-28 h-32 sm:w-32 sm:h-36 rounded-xl object-cover object-top border border-slate-200 bg-slate-100 shadow-2xs"
                           />
                           <Link

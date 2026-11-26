@@ -830,7 +830,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    "image": "/assets/images/doctor_placeholder.svg",
     "bio": "Dr. Vineet Mittal is a DNB-certified specialist physician focusing on acute inpatient care, infectious diseases, rational antibiotic therapy, and multi-morbidity patient management.",
     "isActive": true,
     "rating": 4.8
@@ -1021,7 +1021,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "image": "/assets/images/doctor_placeholder.svg",
     "bio": "Dr. Disha Menani is a skilled visiting specialist focusing on reproductive medicine, colposcopy, laparoscopic cyst removal, and patient-tailored fertility protocols.",
     "isActive": true,
     "rating": 4.8
@@ -1100,7 +1100,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    "image": "/assets/images/doctor_placeholder.svg",
     "bio": "Dr. Satpal Yadav is a caring visiting pediatrician known for detailed growth assessments, immunization guidance, and preventive pediatric healthcare.",
     "isActive": true,
     "rating": 4.8
@@ -1216,7 +1216,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    "image": "/assets/images/doctor_placeholder.svg",
     "bio": "Dr. Dinesh Chand Sharma brings robust expertise in complex trauma fractures, bone density optimization, regenerative joint therapies, and hand surgery.",
     "isActive": true,
     "rating": 4.7
@@ -1257,7 +1257,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+    "image": "/assets/images/doctor_placeholder.svg",
     "bio": "Directing anaesthesiology and critical care at Brahm Shakti Hospital, Dr. Nikhil Bhambri leads pre-operative optimization, operative patient safety, and intensive life-support systems.",
     "isActive": true,
     "rating": 4.9
@@ -1295,7 +1295,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    "image": "/assets/images/doctor_placeholder.svg",
     "bio": "With over two decades of anaesthetic vigilance, Dr. Sunil Gandhi provides surgical anaesthesia for complex oncology, neurosurgical, and cardiac patients.",
     "isActive": true,
     "rating": 4.8
@@ -1333,7 +1333,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    "image": "/assets/images/doctor_placeholder.svg",
     "bio": "Dr. Dharmender Chaudhary is skilled in acute trauma anaesthesia, painless labour analgesia, and procedural sedation for endoscopic interventions.",
     "isActive": true,
     "rating": 4.8
@@ -1455,7 +1455,7 @@ export const doctorsData = [
   {
     "id": "doc-eye-03",
     "name": "Dr. Manvi Aggarwal",
-    "image": "https://images.unsplash.com/photo-1594824813583-e18e806114d3?auto=format&fit=crop&q=80&w=600",
+    "image": "/assets/images/doctor_placeholder.svg",
     "departmentId": "eye",
     "departmentName": "Ophthalmology & Eye Care",
     "designation": "Consultant Ophthalmologist & Eye Surgeon",
@@ -1554,7 +1554,7 @@ export const doctorsData = [
       "English",
       "Hindi"
     ],
-    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    "image": "/assets/images/doctor_placeholder.svg",
     "bio": "Fellowship-trained visiting eye specialist Dr. Anil Solanki specializes in advanced phacoemulsification with premium multifocal lens implantation and delicate oculoplastic procedures.",
     "isActive": true,
     "rating": 4.9
