@@ -374,12 +374,12 @@ export const ConsultationPage = () => {
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-right-top bg-no-repeat pointer-events-none select-none"
           style={{
-            backgroundImage: 'url(/hospital-waves-stethoscope-bg.jpg)'
+            backgroundImage: 'url(/images/banners/medical-bg-doctor-shield.jpg)'
           }}
         />
 
         {/* Ambient luminous gradient wash for clinical radiance and natural depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/30 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent pointer-events-none" />
 
         {/* ---------------- ELEGANT TRANSLUCENT MEDICAL WAVES IN BACKGROUND (MATCHING REFERENCE) ---------------- */}
         {/* 1. Prominent Bottom-Left Sweeping Cyan Wave (Curves under the card corner as shown in image) */}
@@ -576,14 +576,15 @@ export const ConsultationPage = () => {
                 </div>
               </div>
 
-              {/* Bottom: Profile Action Button */}
-              <button
-                type="button"
-                onClick={() => setDoctorProfileModalOpen(true)}
-                className="w-full py-1.5 rounded-xl border border-slate-200 bg-white text-xs font-bold text-[#018AAE] hover:bg-[#F0FBFC] transition-colors"
+              {/* Bottom: Profile Action Link (Directly navigates to specific doctor's profile page) */}
+              <Link
+                to={`/doctors/${activeDoctor?.id || ''}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full block text-center py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold text-[#018AAE] hover:bg-[#F0FBFC] hover:border-[#018AAE]/40 transition-all shadow-2xs"
               >
                 View Full Profile &rarr;
-              </button>
+              </Link>
             </div>
 
             {/* ================= COLUMN 2: DATE PICKER & TIME SLOTS (NO VIDEO CONSULTATION) ================= */}

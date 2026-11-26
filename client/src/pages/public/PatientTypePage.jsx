@@ -277,12 +277,14 @@ export const PatientTypePage = () => {
       <main className="relative flex-1 flex items-center justify-center py-8 sm:py-12 lg:py-16 px-4 overflow-hidden">
         
         {/* Unified 2560x1440 Generated Medical Stethoscope & Cyan Wave Wallpaper */}
+        {/* Real Photographic Medical Background with Cyan Curves */}
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none select-none"
+          className="absolute inset-0 w-full h-full bg-cover bg-center sm:bg-right-top bg-no-repeat pointer-events-none select-none opacity-90"
           style={{
-            backgroundImage: 'url(/hospital-waves-stethoscope-bg.jpg)'
+            backgroundImage: 'url(/images/banners/medical-bg-doctor-shield.jpg)'
           }}
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/40 to-transparent pointer-events-none" />
 
         {/* ========================================================================= */}
         {/* SCREEN 1: "BOOK AN APPOINTMENT - ARE YOU A NEW OR REGISTERED PATIENT?"   */}
