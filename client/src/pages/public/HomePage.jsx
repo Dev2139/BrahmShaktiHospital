@@ -1157,7 +1157,7 @@ export const HomePage = () => {
   }, [departments, activeTabObj]);
 
   return (
-    <div className="pb-8 sm:pb-12">
+    <div className="min-h-screen bg-[#F0FBFC] pb-8 sm:pb-12">
       {/* 1. Hero Section - Seamless Full Hospital Banner Carousel */}
       <section
         className="relative w-full overflow-hidden p-0 m-0 select-none touch-pan-y bg-[#F0FBFC]"
@@ -1193,17 +1193,6 @@ export const HomePage = () => {
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
-
-          {/* Seamless Bottom Gradient Wave that Blends Directly into the Doctor Section */}
-          <div className="absolute -bottom-0.5 inset-x-0 w-full overflow-hidden leading-none pointer-events-none z-20">
-            <svg
-              viewBox="0 0 1440 70"
-              className="w-full h-8 sm:h-12 lg:h-16 text-[#F0FBFC] fill-current"
-              preserveAspectRatio="none"
-            >
-              <path d="M0,24 C320,58 680,62 1040,36 C1200,24 1340,32 1440,48 L1440,70 L0,70 Z" />
-            </svg>
-          </div>
 
           {/* Dot Indicators */}
           <div className="absolute bottom-5 sm:bottom-8 lg:bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-2.5 bg-black/40 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 shadow-md">
@@ -1763,7 +1752,7 @@ export const HomePage = () => {
       </section>
 
       {/* 5.5 Unified Hospital Showcase (Events / Location & Directions / Facilities) */}
-      <section id="showcase-section" className="py-8 sm:py-10 bg-[#F4F8FA]/70">
+      <section id="showcase-section" className="py-8 sm:py-10 bg-[#F0FBFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Header & Segmented Switcher Controls */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4 sm:mb-6">
