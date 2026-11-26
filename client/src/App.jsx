@@ -88,12 +88,9 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage section="overview" />} />
           <Route path="/about/hospital" element={<AboutPage section="hospital" />} />
-          <Route path="/about/trust" element={<AboutPage section="trust" />} />
           <Route path="/about/history" element={<AboutPage section="history" />} />
           <Route path="/about/vision-mission" element={<AboutPage section="vision-mission" />} />
-          <Route path="/about/awards" element={<AboutPage section="awards" />} />
           <Route path="/about/leadership" element={<AboutPage section="leadership" />} />
-          <Route path="/about/charity" element={<AboutPage section="charity" />} />
           <Route path="/about/facilities" element={<AboutPage section="facilities" />} />
           <Route path="/about/accreditations" element={<AboutPage section="accreditations" />} />
           <Route path="/about/patient-rights" element={<AboutPage section="patient-rights" />} />

@@ -113,12 +113,9 @@ export const Navbar = () => {
       items: [
         { label: 'About Us', path: '/about' },
         { label: 'About Brahm Shakti Hospital', path: '/about/hospital' },
-        { label: 'About Brahm Shakti Trust', path: '/about/trust' },
         { label: 'History of the Hospital', path: '/about/history' },
         { label: 'Vision and Mission', path: '/about/vision-mission' },
-        { label: 'Awards and Accolades', path: '/about/awards' },
-        { label: 'Leadership', path: '/about/leadership' },
-        { label: 'Charity and Welfare activities', path: '/about/charity' },
+        { label: 'Leadership & Governance', path: '/about/leadership' },
         { label: 'Facilities and Technologies', path: '/about/facilities' },
         { label: 'Quality and Accreditations', path: '/about/accreditations' },
         { label: 'Patient Rights and Responsibilities', path: '/about/patient-rights' }

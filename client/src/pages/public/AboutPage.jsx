@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import {
   ShieldCheck,
-  Award,
   Building2,
-  Heart,
   Users,
   Target,
   Compass,
   CheckCircle2,
-  Calendar,
-  ArrowRight,
-  Sparkles,
   Clock,
   MapPin,
   PhoneCall,
@@ -22,36 +17,37 @@ import {
   FileCheck2,
   ScrollText,
   BadgeCheck,
-  HelpCircle,
-  Eye,
-  ChevronRight
+  ChevronRight,
+  Sparkles,
+  Calendar,
+  Mail,
+  UserCheck
 } from 'lucide-react';
+import { departmentsData, doctorsData } from '../../data/seedData';
 
-// Topics mapping and metadata
+// Filtered and Updated Topics List
 export const ABOUT_TOPICS = [
   { id: 'overview', path: '/about', label: 'About Us Overview', shortLabel: 'Overview' },
   { id: 'hospital', path: '/about/hospital', label: 'About Brahm Shakti Hospital', shortLabel: 'Hospital Profile' },
-  { id: 'trust', path: '/about/trust', label: 'About Brahm Shakti Trust', shortLabel: 'The Trust' },
   { id: 'history', path: '/about/history', label: 'History of the Hospital', shortLabel: 'History' },
   { id: 'vision-mission', path: '/about/vision-mission', label: 'Vision and Mission', shortLabel: 'Vision & Mission' },
-  { id: 'awards', path: '/about/awards', label: 'Awards and Accolades', shortLabel: 'Awards & Accolades' },
-  { id: 'leadership', path: '/about/leadership', label: 'Leadership & Governance', shortLabel: 'Leadership' },
-  { id: 'charity', path: '/about/charity', label: 'Charity and Welfare Activities', shortLabel: 'Charity & Welfare' },
+  { id: 'leadership', path: '/about/leadership', label: 'Leadership & Governance', shortLabel: 'Leadership & Staff' },
   { id: 'facilities', path: '/about/facilities', label: 'Facilities and Technologies', shortLabel: 'Facilities & Tech' },
   { id: 'accreditations', path: '/about/accreditations', label: 'Quality and Accreditations', shortLabel: 'Quality & Accreditations' },
-  { id: 'patient-rights', path: '/about/patient-rights', label: 'Patient Rights and Responsibilities', shortLabel: 'Patient Rights & Duties' }
+  { id: 'patient-rights', path: '/about/patient-rights', label: 'Patient Rights and Responsibilities', shortLabel: 'Patient Charter' }
 ];
 
 export const AboutPage = ({ section }) => {
   const params = useParams();
-  const navigate = useNavigate();
 
-  // Active section can come from prop or url parameter, default to overview
+  // Determine active section cleanly
   const activeSectionId = section || params.section || 'overview';
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeSectionId]);
+
+  const currentTopic = ABOUT_TOPICS.find((t) => t.id === activeSectionId) || ABOUT_TOPICS[0];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
@@ -70,7 +66,7 @@ export const AboutPage = ({ section }) => {
               <>
                 <ChevronRight className="w-3.5 h-3.5" />
                 <span className="text-[#018AAE] font-bold">
-                  {ABOUT_TOPICS.find((t) => t.id === activeSectionId)?.label || 'Details'}
+                  {currentTopic.label}
                 </span>
               </>
             )}
@@ -82,10 +78,10 @@ export const AboutPage = ({ section }) => {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
-            {ABOUT_TOPICS.find((t) => t.id === activeSectionId)?.label || 'About Brahm Shakti Hospital'}
+            {currentTopic.label}
           </h1>
           <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
-            A 250-bedded multi-disciplinary tertiary healthcare institution managed by Brahm Shakti Trust (Regd.), dedicated to affordable clinical excellence, patient dignity, and charitable healthcare in Delhi NCR.
+            A 250-bedded multi-disciplinary tertiary healthcare institution located in Budh Vihar, Rohini, New Delhi, dedicated to clinical excellence, ethical medical practice, and round-the-clock emergency support.
           </p>
 
           {/* Quick Stats Badges */}
@@ -96,14 +92,14 @@ export const AboutPage = ({ section }) => {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 shadow-2xs">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              NABH &amp; NABL Accredited
+              NABH &amp; NABL Standards
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 shadow-2xs">
-              <HeartHandshake className="w-4 h-4 text-[#E06D2D]" />
-              Non-Profit Philanthropic Trust
+              <UserCheck className="w-4 h-4 text-[#018AAE]" />
+              20+ DMC Specialist Consultants
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 shadow-2xs">
-              <Clock className="w-4 h-4 text-[#018AAE]" />
+              <Clock className="w-4 h-4 text-[#E06D2D]" />
               24x7 Emergency &amp; Trauma Care
             </span>
           </div>
@@ -169,15 +165,11 @@ export const AboutPage = ({ section }) => {
 
           {/* Right Main Content Pane */}
           <div className="lg:col-span-8 xl:col-span-9 bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-10 space-y-8">
-            {/* Dynamic Rendering Based on activeSectionId */}
             {activeSectionId === 'overview' && <OverviewSection />}
             {activeSectionId === 'hospital' && <HospitalSection />}
-            {activeSectionId === 'trust' && <TrustSection />}
             {activeSectionId === 'history' && <HistorySection />}
             {activeSectionId === 'vision-mission' && <VisionMissionSection />}
-            {activeSectionId === 'awards' && <AwardsSection />}
             {activeSectionId === 'leadership' && <LeadershipSection />}
-            {activeSectionId === 'charity' && <CharitySection />}
             {activeSectionId === 'facilities' && <FacilitiesSection />}
             {activeSectionId === 'accreditations' && <AccreditationsSection />}
             {activeSectionId === 'patient-rights' && <PatientRightsSection />}
@@ -188,8 +180,7 @@ export const AboutPage = ({ section }) => {
   );
 };
 
-/* --- INDIVIDUAL DETAILED SUB-COMPONENTS --- */
-
+/* --- SECTION 1: OVERVIEW --- */
 const OverviewSection = () => (
   <div className="space-y-8 animate-in fade-in duration-200">
     <div>
@@ -201,7 +192,7 @@ const OverviewSection = () => (
         Excellence in Healthcare, Compassion in Service
       </h2>
       <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        Brahm Shakti Hospital is a premier 250-bedded super-specialty hospital situated in Budh Vihar, North-West Delhi. Governed by Brahm Shakti Trust (Regd.), the institution provides state-of-the-art medical and surgical intervention while upholding its deep-rooted ethos that quality healthcare must remain accessible and affordable to all.
+        Brahm Shakti Hospital is a premier 250-bedded super-specialty hospital situated at Pocket C, Budh Vihar, North-West Delhi. The hospital provides state-of-the-art diagnostic, surgical, and therapeutic medical interventions across all major clinical disciplines.
       </p>
     </div>
 
@@ -213,13 +204,13 @@ const OverviewSection = () => (
       </div>
       <div className="p-4 rounded-2xl bg-[#F0FBFC] border border-[#B6EEF6]/60">
         <div className="text-3xl font-black text-[#018AAE]">20+</div>
-        <div className="text-xs font-bold text-slate-800 mt-1">Specialist Doctors</div>
-        <div className="text-[11px] text-slate-500 mt-0.5">DMC Certified Senior Consultants</div>
+        <div className="text-xs font-bold text-slate-800 mt-1">Consultant Specialists</div>
+        <div className="text-[11px] text-slate-500 mt-0.5">DMC Certified Senior Clinicians</div>
       </div>
       <div className="p-4 rounded-2xl bg-[#F0FBFC] border border-[#B6EEF6]/60">
-        <div className="text-3xl font-black text-[#018AAE]">100%</div>
-        <div className="text-xs font-bold text-slate-800 mt-1">Subsidized Trust Care</div>
-        <div className="text-[11px] text-slate-500 mt-0.5">Charitable pricing structure</div>
+        <div className="text-3xl font-black text-[#018AAE]">24x7</div>
+        <div className="text-xs font-bold text-slate-800 mt-1">Active Casualty &amp; Blood Bank</div>
+        <div className="text-[11px] text-slate-500 mt-0.5">Emergency Trauma Desk</div>
       </div>
     </div>
 
@@ -235,10 +226,10 @@ const OverviewSection = () => (
       <h3 className="text-lg font-bold text-slate-900">Key Institutional Highlights</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
-          { title: 'NABH & NABL Standards', desc: 'Compliant with national safety protocols, zero-tolerance hospital infection controls, and verified diagnostic benchmarks.' },
+          { title: 'NABH & NABL Standards', desc: 'Compliant with national safety protocols, sterile infection controls, and verified diagnostic benchmarks.' },
           { title: 'Full-Spectrum Critical Care', desc: 'Advanced 30-bed ICU and CCU equipped with mechanical ventilators, invasive haemodynamic monitoring, and 24x7 intensivist presence.' },
-          { title: 'Comprehensive Dialysis Wing', desc: 'Dedicated 20-bed haemodialysis unit supported by reverse osmosis water purification for high-flux renal care.' },
-          { title: '24x7 Emergency & Trauma', desc: 'Always-ready casualty triage with rapid-response cardiac and neurological emergency support.' }
+          { title: '20-Bed Dialysis Center', desc: 'Dedicated haemodialysis unit supported by dual-stage reverse osmosis water purification for high-flux renal care.' },
+          { title: '24x7 Emergency & Trauma', desc: 'Always-ready casualty triage with rapid-response cardiac and surgical emergency support.' }
         ].map((item, idx) => (
           <div key={idx} className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex gap-3">
             <CheckCircle2 className="w-5 h-5 text-[#018AAE] shrink-0 mt-0.5" />
@@ -253,125 +244,95 @@ const OverviewSection = () => (
   </div>
 );
 
+/* --- SECTION 2: ABOUT BRAHM SHAKTI HOSPITAL (Rich Institutional Profile) --- */
 const HospitalSection = () => (
   <div className="space-y-8 animate-in fade-in duration-200">
     <div>
       <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#018AAE] mb-2">
-        <Hospital className="w-4 h-4" />
+        <Building2 className="w-4 h-4" />
         <span>Institution Profile</span>
       </div>
       <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
         About Brahm Shakti Hospital &amp; Research Centre
       </h2>
       <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        Established to deliver high-quality tertiary clinical services to the community, Brahm Shakti Hospital stands as an integrated health ecosystem offering preventive, diagnostic, therapeutic, and rehabilitative care under one roof.
+        Brahm Shakti Hospital &amp; Research Centre is a multi-specialty tertiary care hospital situated at Pocket C, Budh Vihar Phase I, Rohini, New Delhi. Established to bring accessible, affordable, and high-tech tertiary healthcare to North-West Delhi, the hospital serves as an integrated medical hub offering preventive, curative, and emergency medical services under one roof.
       </p>
     </div>
 
-    <div className="space-y-4">
-      <h3 className="text-lg font-bold text-slate-900">Hospital Infrastructure &amp; Bed Capacity</h3>
-      <p className="text-sm text-slate-600 leading-relaxed">
-        The campus in Budh Vihar Phase I is architected to optimize patient recovery and hygienic sterility. It houses 250 operational inpatient beds segregated into intensive care units, coronary care units, neonatal ICU (Level III), high dependency units (HDU), semi-private rooms, and deluxe single suites.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
-        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-          <div className="text-2xl font-black text-[#018AAE]">250</div>
-          <div className="text-xs font-bold text-slate-700 mt-1">Total Inpatient Beds</div>
-        </div>
-        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-          <div className="text-2xl font-black text-[#018AAE]">30+</div>
-          <div className="text-xs font-bold text-slate-700 mt-1">ICU &amp; Critical Beds</div>
-        </div>
-        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-          <div className="text-2xl font-black text-[#018AAE]">20</div>
-          <div className="text-xs font-bold text-slate-700 mt-1">Dialysis Stations</div>
-        </div>
-        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-          <div className="text-2xl font-black text-[#018AAE]">4</div>
-          <div className="text-xs font-bold text-slate-700 mt-1">Modular OT Suites</div>
-        </div>
+    {/* Key Hospital Statistics */}
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
+        <div className="text-2xl sm:text-3xl font-black text-[#018AAE]">250</div>
+        <div className="text-xs font-bold text-slate-700 mt-1">Inpatient Beds</div>
+        <div className="text-[11px] text-slate-500">Total Capacity</div>
+      </div>
+      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
+        <div className="text-2xl sm:text-3xl font-black text-[#018AAE]">30+</div>
+        <div className="text-xs font-bold text-slate-700 mt-1">ICU &amp; Critical Beds</div>
+        <div className="text-[11px] text-slate-500">Ventilator Supported</div>
+      </div>
+      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
+        <div className="text-2xl sm:text-3xl font-black text-[#018AAE]">20</div>
+        <div className="text-xs font-bold text-slate-700 mt-1">Dialysis Stations</div>
+        <div className="text-[11px] text-slate-500">24x7 Renal Wing</div>
+      </div>
+      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
+        <div className="text-2xl sm:text-3xl font-black text-[#018AAE]">4</div>
+        <div className="text-xs font-bold text-slate-700 mt-1">Modular OT Suites</div>
+        <div className="text-[11px] text-slate-500">HEPA Filtered</div>
       </div>
     </div>
 
-    <div className="space-y-4 pt-2">
-      <h3 className="text-lg font-bold text-slate-900">Super-Specialty Departments</h3>
-      <p className="text-sm text-slate-600 leading-relaxed">
-        We host over 9 full clinical departments with cross-functional consultant teams:
+    {/* Location & Infrastructure Description */}
+    <div className="p-6 rounded-2xl bg-[#F0FBFC] border border-[#B6EEF6] space-y-3">
+      <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+        <MapPin className="w-4 h-4 text-[#018AAE]" />
+        <span>Location &amp; Campus Layout</span>
+      </h3>
+      <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+        Located conveniently along the main arterial corridor of Budh Vihar Phase I (near Rohini Sector 20/22), the hospital building features a ground-level zero-wait casualty ambulance bay, multi-tier inpatient wards, modular surgical theatres, and isolated critical care wings designed with positive air pressure to eliminate cross-infections.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        {[
-          'Internal & Critical Care Medicine',
-          'Cardiology & Interventional Cath Lab',
-          'General & Advanced Laparoscopic Surgery',
-          'Orthopaedics & Joint Replacement',
-          'Obstetrics, Gynaecology & Infertility',
-          'Paediatrics & Neonatology (NICU)',
-          'Nephrology & Dialysis Unit',
-          'Ophthalmology & Micro-Surgery',
-          'ENT, Head & Neck Surgery'
-        ].map((dept, idx) => (
-          <div key={idx} className="p-3 rounded-xl bg-[#F0FBFC]/80 border border-[#CEF5FA] text-xs font-bold text-slate-800 flex items-center gap-2">
-            <BadgeCheck className="w-4 h-4 text-[#018AAE] shrink-0" />
-            <span>{dept}</span>
-          </div>
+      <div className="flex flex-wrap items-center gap-2 pt-2">
+        <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700">
+          📍 Address: Pocket C, B-Block, NIT-3 Phase-1, Rohini, New Delhi - 110085
+        </span>
+        <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700">
+          📞 24x7 Emergency: +91-7840089703
+        </span>
+      </div>
+    </div>
+
+    {/* Clinical Departments Overview */}
+    <div className="space-y-4">
+      <h3 className="text-lg font-bold text-slate-900">Clinical Departments &amp; Specialities</h3>
+      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        Brahm Shakti Hospital operates 9 active clinical departments staffed by dedicated medical consultants:
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+        {departmentsData.map((dept) => (
+          <Link
+            key={dept.id}
+            to={`/departments/${dept.id}`}
+            className="p-3.5 rounded-xl border border-slate-200 bg-white hover:border-[#018AAE] hover:bg-[#F0FBFC] transition-colors group"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-900 group-hover:text-[#018AAE] transition-colors">
+                {dept.name}
+              </span>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#018AAE] group-hover:translate-x-0.5 transition-transform" />
+            </div>
+            <div className="text-[11px] text-slate-500 mt-1">
+              Lead: {dept.headOfDepartment}
+            </div>
+          </Link>
         ))}
       </div>
     </div>
   </div>
 );
 
-const TrustSection = () => (
-  <div className="space-y-8 animate-in fade-in duration-200">
-    <div>
-      <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#018AAE] mb-2">
-        <HeartHandshake className="w-4 h-4" />
-        <span>Governing Trust</span>
-      </div>
-      <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-        About Brahm Shakti Trust (Regd.)
-      </h2>
-      <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        Brahm Shakti Trust is a registered non-profit charitable body established under the Indian Trusts Act. Founded with the sacred motto of serving humanity, the Trust finances and governs healthcare and educational welfare activities without distinction of caste, religion, or economic standing.
-      </p>
-    </div>
-
-    <div className="p-6 rounded-2xl bg-gradient-to-br from-[#F0FBFC] to-white border border-[#B6EEF6] space-y-4">
-      <h3 className="text-base font-bold text-slate-900">Foundational Charter of the Trust</h3>
-      <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-        The Trust operates on a self-sustaining non-profit model. All revenues generated through hospital services are re-invested into updating medical technologies, subsidizing inpatient and outpatient charges for economically weaker sections (EWS), and conducting free village outreach camps.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200">
-          <div className="font-bold text-xs text-[#018AAE]">Charitable OPD Programs</div>
-          <p className="text-[11px] text-slate-600 mt-1">Concessionary consultations and zero-margin generic medicine distribution.</p>
-        </div>
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200">
-          <div className="font-bold text-xs text-[#018AAE]">Emergency Welfare Bed Quota</div>
-          <p className="text-[11px] text-slate-600 mt-1">Reserved subsidized beds in General Ward and ICU for BPL / Ayushman patients.</p>
-        </div>
-      </div>
-    </div>
-
-    <div className="space-y-4">
-      <h3 className="text-lg font-bold text-slate-900">Trustees &amp; Governance Objectives</h3>
-      <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600">
-        <li className="flex items-start gap-2.5">
-          <CheckCircle2 className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
-          <span>Maintain modern infrastructure and bring advanced quaternary care techniques to North-West Delhi.</span>
-        </li>
-        <li className="flex items-start gap-2.5">
-          <CheckCircle2 className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
-          <span>Ensure ethical medical practices where patient welfare takes strict precedence over commercial targets.</span>
-        </li>
-        <li className="flex items-start gap-2.5">
-          <CheckCircle2 className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
-          <span>Provide ongoing medical education, nursing development, and technical health training to local youth.</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-);
-
+/* --- SECTION 3: HISTORY --- */
 const HistorySection = () => (
   <div className="space-y-8 animate-in fade-in duration-200">
     <div>
@@ -383,7 +344,7 @@ const HistorySection = () => (
         History of Brahm Shakti Hospital
       </h2>
       <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        From humble beginnings as a charitable dispensary to a 250-bedded multi-specialty institution, our journey reflects an unwavering commitment to patient healing and community health.
+        Established with a visionary goal to bring modern healthcare infrastructure to North-West Delhi, Brahm Shakti Hospital has grown steadily into a trusted tertiary institution.
       </p>
     </div>
 
@@ -391,29 +352,29 @@ const HistorySection = () => (
     <div className="relative border-l-2 border-[#018AAE]/30 ml-4 space-y-8 py-2">
       {[
         {
-          year: 'Inception & Vision',
-          title: 'Founding of Brahm Shakti Trust',
-          desc: 'The Trust was constituted by benevolent visionaries and medical professionals who recognized the absence of affordable multi-specialty healthcare in North-West Delhi.'
+          year: 'Foundational Vision',
+          title: 'Establishment of Hospital Services in Budh Vihar',
+          desc: 'Commenced primary outpatient clinics, maternal care, and emergency first aid to serve the semi-urban localities of Rohini and Budh Vihar.'
         },
         {
-          year: 'Phase I Expansion',
-          title: 'Establishment of 100-Bed Hospital in Budh Vihar',
-          desc: 'Commenced full round-the-clock emergency, general surgery, maternity, and pediatric inpatient services with an emphasis on low-cost tariffs.'
+          year: 'Inpatient Expansion',
+          title: 'Launch of 100-Bed Multi-Specialty Facility',
+          desc: 'Expanded inpatient surgical theatres, round-the-clock emergency casualty desk, and intensive pediatric and gynecological wards.'
         },
         {
           year: 'Critical Care Era',
-          title: 'Launch of 30-Bed ICU & Dialysis Center',
-          desc: 'Installed advanced mechanical ventilators, multipara cardiac monitors, and a 20-bed hemodialysis wing with reverse-osmosis water generation.'
+          title: 'Commissioning of 30-Bed Critical Care ICU & Dialysis Wing',
+          desc: 'Added high-end Dräger and Maquet mechanical ventilators, multi-channel central monitoring, and 20-bed hemodialysis services.'
         },
         {
-          year: 'Scale & Upgradation',
-          title: 'Expansion to 250 Beds & Modern Cath Lab',
-          desc: 'Added modular laminar-airflow surgical suites, digital angiography catheterization lab, and comprehensive emergency trauma triage.'
+          year: 'Advanced Surgical Era',
+          title: 'Modular HEPA Operating Theatres & 250 Beds',
+          desc: 'Constructed 4 ultra-clean laminar airflow modular operating theatres for complex laparoscopic and orthopedic joint surgeries.'
         },
         {
-          year: 'Present & Beyond',
-          title: 'NABH Accreditation & Digital Healthcare',
-          desc: 'Achieved full national healthcare accreditation standards, paperless electronic records, and modern teleconsultation connectivity.'
+          year: 'Modern Era',
+          title: 'Digital Healthcare & Quality Standards',
+          desc: 'Integrated paperless hospital management, automated central diagnostic laboratory, and enhanced round-the-clock ambulance trauma fleet.'
         }
       ].map((milestone, idx) => (
         <div key={idx} className="relative pl-6">
@@ -427,6 +388,7 @@ const HistorySection = () => (
   </div>
 );
 
+/* --- SECTION 4: VISION AND MISSION --- */
 const VisionMissionSection = () => (
   <div className="space-y-8 animate-in fade-in duration-200">
     <div>
@@ -435,26 +397,24 @@ const VisionMissionSection = () => (
         <span>Core Values</span>
       </div>
       <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-        Vision, Mission and Core Values
+        Vision, Mission and Guiding Principles
       </h2>
       <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        Our principles guide every diagnostic decision, surgical procedure, and patient interaction across Brahm Shakti Hospital.
+        Our core clinical philosophy guides each medical decision, surgical procedure, and patient interaction at Brahm Shakti Hospital.
       </p>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {/* Vision Card */}
       <div className="p-6 rounded-2xl bg-[#F0FBFC] border border-[#B6EEF6] space-y-3">
         <div className="w-10 h-10 rounded-xl bg-[#018AAE] text-white flex items-center justify-center">
           <Target className="w-5 h-5" />
         </div>
         <h3 className="text-lg font-bold text-slate-900">Our Vision</h3>
         <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-          To be recognized as the most trusted healthcare landmark in Northern India, distinguished by ethical medical practices, innovative surgical excellence, and unwavering compassion for all socio-economic strata.
+          To be recognized as the premier trusted healthcare landmark in Northern India, distinguished by ethical medical practices, innovative surgical excellence, and compassionate clinical care for patients from all walks of life.
         </p>
       </div>
 
-      {/* Mission Card */}
       <div className="p-6 rounded-2xl bg-[#F0FBFC] border border-[#B6EEF6] space-y-3">
         <div className="w-10 h-10 rounded-xl bg-[#0DAFD5] text-white flex items-center justify-center">
           <Compass className="w-5 h-5" />
@@ -466,15 +426,14 @@ const VisionMissionSection = () => (
       </div>
     </div>
 
-    {/* Core Values */}
     <div className="space-y-4 pt-4">
       <h3 className="text-lg font-bold text-slate-900">Our Pillars of Excellence</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { title: 'Compassion', desc: 'Treating each patient with dignity, warmth, and genuine human care.' },
-          { title: 'Integrity', desc: 'Transparent billing and honest, evidence-backed clinical opinions.' },
-          { title: 'Affordability', desc: 'Ensuring financial hardship never denies a family life-saving treatment.' },
-          { title: 'Excellence', desc: 'Adopting verified global clinical protocols and modern surgical technology.' }
+          { title: 'Compassion', desc: 'Treating each patient and family with warmth, dignity, and empathy.' },
+          { title: 'Integrity', desc: 'Honest clinical advice, zero hidden fees, and evidence-backed therapy.' },
+          { title: 'Affordability', desc: 'Ensuring advanced medical care remains within reach of the community.' },
+          { title: 'Clinical Safety', desc: 'Adhering to strict hygiene, infection prevention, and surgical checklists.' }
         ].map((v, i) => (
           <div key={i} className="p-4 rounded-xl border border-slate-200 bg-white shadow-2xs">
             <h4 className="font-bold text-sm text-[#018AAE]">{v.title}</h4>
@@ -486,186 +445,178 @@ const VisionMissionSection = () => (
   </div>
 );
 
-const AwardsSection = () => (
-  <div className="space-y-8 animate-in fade-in duration-200">
-    <div>
-      <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#018AAE] mb-2">
-        <Award className="w-4 h-4" />
-        <span>Recognitions</span>
-      </div>
-      <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-        Awards, Recognitions &amp; Accolades
-      </h2>
-      <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        Over the decades, Brahm Shakti Hospital has been recognized by national healthcare forums, civic councils, and medical societies for clinical excellence, community welfare, and outstanding patient satisfaction.
-      </p>
-    </div>
+/* --- SECTION 5: LEADERSHIP & GOVERNANCE (DEPARTMENT-WISE DOCTORS & STAFF DIRECTORY) --- */
+const LeadershipSection = () => {
+  const [selectedDeptFilter, setSelectedDeptFilter] = useState('all');
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {[
-        {
-          title: 'Excellence in Affordable Healthcare Award',
-          issuedBy: 'Regional Healthcare Forum & North Delhi Medical Council',
-          desc: 'Honored for delivering subsidized super-specialty surgery, ICU care, and 24x7 dialysis to semi-urban communities.'
-        },
-        {
-          title: 'Outstanding Community Welfare & Free OPD Outreach',
-          issuedBy: 'Delhi Social Welfare & Philanthropic Society',
-          desc: 'Commended for conducting over 500+ free health screening camps and distributing free medicines across rural Delhi and Haryana.'
-        },
-        {
-          title: 'Infection Prevention & Patient Safety Benchmark',
-          issuedBy: 'Healthcare Quality Standards Council',
-          desc: 'Awarded for maintaining rigorous HEPA laminar-airflow operating theater standards and zero-tolerance hospital acquired infection (HAI) rates.'
-        },
-        {
-          title: 'Best Maternal & Child Care Unit (North-West Region)',
-          issuedBy: 'Mother & Child Healthcare Association',
-          desc: 'Recognized for 24x7 emergency cesarean support, high-risk pregnancy management, and Level-III NICU survival outcomes.'
-        }
-      ].map((award, i) => (
-        <div key={i} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-start gap-4">
-          <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center shrink-0">
-            <Award className="w-6 h-6" />
-          </div>
+  // Executive Administration Leaders
+  const hospitalLeadership = [
+    {
+      name: 'Dr. B.R. Sharma',
+      role: 'Medical Superintendent & Director of Medical Services',
+      qual: 'MBBS, MD (Hospital Administration)',
+      experience: '28+ Years',
+      bio: 'Directs statutory clinical governance, quality protocols, and hospital operations.'
+    },
+    {
+      name: 'Dr. Gaurav Kaushik',
+      role: 'Head of Critical Care, Anaesthesiology & ICU',
+      qual: 'MBBS, MD (Anaesthesiology), IDCCM',
+      experience: '18+ Years',
+      bio: 'Heads the 30-bed ICU and emergency resuscitation team with 24x7 intensivist presence.'
+    },
+    {
+      name: 'Dr. Sanjeev Verma',
+      role: 'Head of Surgical Services & OT Complex',
+      qual: 'MBBS, MS (General Surgery), FIAGES',
+      experience: '25+ Years',
+      bio: 'Oversees 4 modular surgical theatres, minimally invasive laparoscopy, and emergency surgical triage.'
+    },
+    {
+      name: 'Dr. S.K. Goyal',
+      role: 'Chief of Medical Operations & Internal Medicine',
+      qual: 'MBBS, MD (Internal Medicine)',
+      experience: '32+ Years',
+      bio: 'Senior physician leading adult multi-system illness management and diabetic clinics.'
+    }
+  ];
+
+  // Group Doctors and Staff by Department
+  const filteredDoctors = selectedDeptFilter === 'all'
+    ? doctorsData
+    : doctorsData.filter((d) => d.departmentId === selectedDeptFilter);
+
+  return (
+    <div className="space-y-8 animate-in fade-in duration-200">
+      <div>
+        <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#018AAE] mb-2">
+          <Users className="w-4 h-4" />
+          <span>Staff Directory</span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          Leadership, Medical Faculty &amp; Staff Directory
+        </h2>
+        <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
+          Explore the clinical and administrative leadership team along with the comprehensive department-wise roster of specialist doctors and healthcare professionals serving at Brahm Shakti Hospital.
+        </p>
+      </div>
+
+      {/* Hospital Executive Board */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+          <BadgeCheck className="w-5 h-5 text-[#018AAE]" />
+          <span>Hospital Medical Administration</span>
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {hospitalLeadership.map((leader, i) => (
+            <div key={i} className="p-4 rounded-2xl bg-gradient-to-br from-[#F0FBFC] to-white border border-[#B6EEF6] shadow-2xs">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base text-slate-900">{leader.name}</h4>
+                  <div className="text-xs font-bold text-[#018AAE] mt-0.5">{leader.role}</div>
+                  <div className="text-[11px] text-slate-500 font-medium">{leader.qual} · {leader.experience}</div>
+                </div>
+                <div className="w-9 h-9 rounded-xl bg-[#018AAE] text-white flex items-center justify-center font-bold text-xs shrink-0">
+                  {leader.name.split(' ')[1]?.[0] || 'D'}
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 mt-2.5 leading-relaxed border-t border-slate-200/60 pt-2">
+                {leader.bio}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Department-wise Filter Buttons */}
+      <div className="space-y-4 pt-4 border-t border-slate-200">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h4 className="font-bold text-sm sm:text-base text-slate-900">{award.title}</h4>
-            <div className="text-xs font-semibold text-[#018AAE] mt-0.5">{award.issuedBy}</div>
-            <p className="text-xs text-slate-600 mt-2 leading-relaxed">{award.desc}</p>
+            <h3 className="text-lg font-bold text-slate-900">
+              Department-Wise Doctor &amp; Clinical Staff Directory
+            </h3>
+            <p className="text-xs text-slate-500">
+              Showing {filteredDoctors.length} verified clinical professionals
+            </p>
+          </div>
+
+          {/* Department Filter Pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
+            <button
+              type="button"
+              onClick={() => setSelectedDeptFilter('all')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                selectedDeptFilter === 'all'
+                  ? 'bg-[#018AAE] text-white shadow-xs'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              All Departments
+            </button>
+            {departmentsData.map((d) => (
+              <button
+                key={d.id}
+                type="button"
+                onClick={() => setSelectedDeptFilter(d.id)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                  selectedDeptFilter === liquidDeptId(d.id) || selectedDeptFilter === d.id
+                    ? 'bg-[#018AAE] text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}
+              >
+                {d.name.split('&')[0].trim()}
+              </button>
+            ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-);
 
-const LeadershipSection = () => (
-  <div className="space-y-8 animate-in fade-in duration-200">
-    <div>
-      <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#018AAE] mb-2">
-        <Users className="w-4 h-4" />
-        <span>Executive Team</span>
-      </div>
-      <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-        Leadership &amp; Governance
-      </h2>
-      <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        Brahm Shakti Hospital is steered by an experienced board of medical administrators, senior clinician heads, and philanthropic trustees dedicated to medical ethics, quality improvement, and accessible healthcare.
-      </p>
-    </div>
+        {/* Doctor and Staff Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {filteredDoctors.map((doc) => (
+            <div
+              key={doc.id}
+              className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-[#018AAE]/60 transition-all shadow-2xs flex flex-col justify-between"
+            >
+              <div className="flex items-start gap-3.5">
+                <img
+                  src={doc.image || 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300'}
+                  alt={doc.name}
+                  className="w-16 h-16 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100"
+                />
+                <div className="min-w-0 flex-1">
+                  <div className="inline-block px-2 py-0.5 rounded-md bg-[#CEF5FA]/80 text-[#018AAE] text-[10px] font-bold mb-1">
+                    {doc.departmentName || doc.department}
+                  </div>
+                  <h4 className="font-bold text-sm text-slate-900 truncate">{doc.name}</h4>
+                  <div className="text-xs text-slate-600 font-medium truncate">{doc.designation}</div>
+                  <div className="text-[11px] text-slate-500 mt-0.5">{doc.qualification}</div>
+                </div>
+              </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {[
-        {
-          name: 'Medical Superintendent',
-          role: 'Chief Medical Administrator',
-          qual: 'MBBS, MD (Hospital Administration)',
-          bio: 'Oversees daily clinical governance, clinical safety guidelines, and statutory healthcare accreditations.'
-        },
-        {
-          name: 'Head of Critical Care & ICU',
-          role: 'Director of Intensive Care',
-          qual: 'MBBS, MD, IDCCM, FCCP',
-          bio: 'Directs the 30-bed intensive care complex, ECMO support, and round-the-clock emergency casualty desk.'
-        },
-        {
-          name: 'Head of Surgical Services',
-          role: 'Senior Consultant Laparoscopic Surgeon',
-          qual: 'MBBS, MS, FIAGES, FALS',
-          bio: 'Leads modular surgical theatres, minimally invasive procedures, and surgical safety checklists.'
-        },
-        {
-          name: 'Chief of Nursing & Patient Care',
-          role: 'Director of Nursing Services',
-          qual: 'M.Sc. Nursing, NABH Assessor',
-          bio: 'Directs 200+ trained nursing staff, bedside care protocols, and infection-control audits.'
-        },
-        {
-          name: 'Chief Financial & Trust Officer',
-          role: 'Director of Trust Administration',
-          qual: 'FCA, Trust Advisory Council',
-          bio: 'Ensures zero-leakage transparent billing, charitable subsidies, and community welfare fund allocations.'
-        },
-        {
-          name: 'Head of Diagnostics & Pathology',
-          role: 'Senior Pathologist & Lab Director',
-          qual: 'MBBS, MD (Pathology)',
-          bio: 'Heads automated biochemistry, haematology, microbiology, and NABL compliant diagnostic quality assurance.'
-        }
-      ].map((leader, i) => (
-        <div key={i} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-[#018AAE]/40 transition-colors">
-          <div className="w-12 h-12 rounded-full bg-[#CEF5FA] text-[#018AAE] flex items-center justify-center font-black text-base mb-3">
-            {leader.name.charAt(0)}
-          </div>
-          <h4 className="font-bold text-sm text-slate-900">{leader.name}</h4>
-          <div className="text-xs font-bold text-[#018AAE] mt-0.5">{leader.role}</div>
-          <div className="text-[11px] text-slate-500 font-medium mt-0.5">{leader.qual}</div>
-          <p className="text-xs text-slate-600 mt-3 leading-relaxed border-t border-slate-100 pt-2.5">{leader.bio}</p>
+              <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <div className="text-[11px] text-slate-500 font-medium">
+                  {doc.experienceYears ? `${doc.experienceYears}+ Yrs Exp` : 'Consultant'} · DMC: {doc.dmcNo || 'Regd'}
+                </div>
+                <Link
+                  to={`/doctors/${doc.id}`}
+                  className="inline-flex items-center gap-1 font-bold text-[#018AAE] hover:underline"
+                >
+                  <span>Profile</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </div>
-);
-
-const CharitySection = () => (
-  <div className="space-y-8 animate-in fade-in duration-200">
-    <div>
-      <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#018AAE] mb-2">
-        <Heart className="w-4 h-4" />
-        <span>Philanthropy</span>
-      </div>
-      <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-        Charity and Welfare Activities
-      </h2>
-      <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        Guided by the foundational ethos of Brahm Shakti Trust (Regd.), our mission goes beyond the hospital walls. We actively run community welfare programs, free mobile clinics, and subsidized surgical drives.
-      </p>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-        <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-          <CheckCircle2 className="w-5 h-5" />
-        </div>
-        <h3 className="text-base font-bold text-slate-900">Free Village Medical &amp; Eye Camps</h3>
-        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-          Regular weekend health camps organized across semi-urban clusters of Delhi and Haryana, providing free blood sugar checks, ECG screenings, cataract diagnoses, and complimentary consultations.
-        </p>
-      </div>
-
-      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-        <div className="w-10 h-10 rounded-xl bg-[#CEF5FA] text-[#018AAE] flex items-center justify-center">
-          <HeartHandshake className="w-5 h-5" />
-        </div>
-        <h3 className="text-base font-bold text-slate-900">Subsidized Dialysis &amp; Renal Support</h3>
-        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-          Through Trust endowment funding, chronic kidney failure patients receive life-sustaining hemodialysis sessions at deeply discounted and charitable rates, ensuring no patient discontinues treatment.
-        </p>
-      </div>
-
-      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-        <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
-          <FileCheck2 className="w-5 h-5" />
-        </div>
-        <h3 className="text-base font-bold text-slate-900">BPL &amp; EWS Inpatient Quota</h3>
-        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-          Dedicated ward beds reserved for Below Poverty Line (BPL) families, providing completely free room rent, nursing care, and subsidized surgical consumables during emergencies.
-        </p>
-      </div>
-
-      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-        <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
-          <Activity className="w-5 h-5" />
-        </div>
-        <h3 className="text-base font-bold text-slate-900">Voluntary Blood Donation Drives</h3>
-        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-          In coordination with our licensed in-house blood center, community blood donation camps are organized regularly to ensure adequate voluntary component availability for thalassemia and trauma patients.
-        </p>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
+// Helper for department filtering
+const liquidDeptId = (id) => id;
+
+/* --- SECTION 6: FACILITIES AND TECHNOLOGIES --- */
 const FacilitiesSection = () => (
   <div className="space-y-8 animate-in fade-in duration-200">
     <div>
@@ -684,16 +635,12 @@ const FacilitiesSection = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
       {[
         {
-          title: 'Flat-Panel Digital Cath Lab',
-          desc: 'High-resolution digital coronary angiography, primary angioplasty (PAMI), pacemaker implantations, and peripheral vascular stenting.'
-        },
-        {
           title: 'Modular Laminar-Flow Operation Theatres',
-          desc: 'Ultra-clean HEPA air filtration with positive pressure systems, eliminating airborne microbial counts during complex joint replacements and neurosurgeries.'
+          desc: 'Ultra-clean HEPA air filtration with positive pressure systems, eliminating airborne microbial counts during complex joint replacements and laparoscopic procedures.'
         },
         {
           title: '30-Bed Adult ICU & CCU Complex',
-          desc: 'Equipped with high-end Maquet / Dräger ventilators, continuous arterial line monitoring, central nursing telemetry, and dedicated blood gas analyzers.'
+          desc: 'Equipped with high-end Maquet / Dräger mechanical ventilators, continuous arterial line monitoring, central nursing telemetry, and blood gas analysis.'
         },
         {
           title: '20-Bed Advanced Hemodialysis Wing',
@@ -706,6 +653,10 @@ const FacilitiesSection = () => (
         {
           title: 'Automated 24x7 Diagnostic Pathology',
           desc: 'Partnership with Oncquest Diagnostics for comprehensive automated biochemistry, immunology, blood gases, and molecular testing.'
+        },
+        {
+          title: 'High-Frequency Digital Radiology (DR)',
+          desc: 'Low-radiation digital radiography, portable bedside X-ray units, and Color Doppler 3D/4D ultrasonography for rapid reporting.'
         }
       ].map((fac, i) => (
         <div key={i} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
@@ -718,6 +669,7 @@ const FacilitiesSection = () => (
   </div>
 );
 
+/* --- SECTION 7: QUALITY AND ACCREDITATIONS --- */
 const AccreditationsSection = () => (
   <div className="space-y-8 animate-in fade-in duration-200">
     <div>
@@ -756,7 +708,7 @@ const AccreditationsSection = () => (
     </div>
 
     <div className="space-y-3 pt-2">
-      <h3 className="text-base font-bold text-slate-900">Hospital Infection Control (HICC)</h3>
+      <h3 className="text-base font-bold text-slate-900">Hospital Infection Control Committee (HICC)</h3>
       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
         Our dedicated Hospital Infection Control Committee continuously monitors sterilization cycles, hand hygiene compliance among clinical staff, microbiological air sampling of OT suites, and biomedical waste disposal in compliance with DPCC regulations.
       </p>
@@ -764,6 +716,7 @@ const AccreditationsSection = () => (
   </div>
 );
 
+/* --- SECTION 8: PATIENT RIGHTS & RESPONSIBILITIES --- */
 const PatientRightsSection = () => (
   <div className="space-y-8 animate-in fade-in duration-200">
     <div>
@@ -835,7 +788,7 @@ const PatientRightsSection = () => (
           </li>
           <li className="flex items-start gap-2">
             <span className="text-[#018AAE] font-bold">•</span>
-            <span><strong>Timely Settlement of Bills:</strong> Settle verified financial obligations promptly or liaise with the Trust welfare desk if subsidized assistance is required.</span>
+            <span><strong>Timely Settlement of Bills:</strong> Settle verified financial obligations promptly upon discharge.</span>
           </li>
         </ul>
       </div>
