@@ -358,31 +358,40 @@ export const NewPatientRegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F0FBFC] text-slate-800 flex flex-col font-sans selection:bg-[#018AAE] selection:text-white">
-      {/* ----------------- 1. NAVBAR (EXACT MATCH TO BOOK APPOINTMENT PAGE) ----------------- */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
-        <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
+    <div className="min-h-screen lg:h-screen lg:max-h-screen bg-[#F0FBFC] text-slate-800 flex flex-col justify-between font-sans selection:bg-[#018AAE] selection:text-white relative overflow-y-auto lg:overflow-hidden">
+      {/* Background Medical Wallpaper with gentle clinical wash */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-right-top bg-no-repeat pointer-events-none select-none opacity-20"
+        style={{
+          backgroundImage: 'url(/images/banners/medical-bg-doctor-shield.jpg)'
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-white/80 pointer-events-none" />
+
+      {/* ----------------- 1. NAVBAR (COMPACT & CLEAN MATCH TO APPOINTMENT FLOW) ----------------- */}
+      <header className="relative z-30 bg-white border-b border-slate-200 shrink-0 shadow-2xs">
+        <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 py-1.5 sm:py-2 flex items-center justify-between gap-3">
           {/* Left: Hospital Brand & Portal Label */}
           <div className="flex items-center gap-2.5">
             <Link to="/" className="flex items-center gap-2.5 group" title="Brahm Shakti Hospital Home">
               <img
                 src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
-                className="h-9 sm:h-10 w-auto object-contain"
+                className="h-8 sm:h-9 w-auto object-contain"
               />
               <div className="hidden sm:block border-l border-slate-200 pl-2.5">
-                <div className="text-[11px] font-black tracking-wider text-[#0B2545] uppercase leading-tight">
+                <div className="text-[10px] font-black tracking-wider text-[#0B2545] uppercase leading-tight">
                   OPD APPOINTMENT PORTAL
                 </div>
-                <div className="text-[10px] font-medium text-[#018AAE] italic leading-tight">
+                <div className="text-[9.5px] font-medium text-[#018AAE] italic leading-tight">
                   Trust of Generations
                 </div>
               </div>
             </Link>
           </div>
 
-          {/* Right: Portal Links (Identical to Book Appointment Page) */}
-          <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-xs sm:text-sm font-bold text-slate-800">
+          {/* Right: Portal Links */}
+          <nav className="hidden md:flex items-center gap-5 lg:gap-6 text-xs font-bold text-slate-800">
             <Link
               to="/"
               className="hover:text-[#018AAE] transition-colors"
@@ -443,7 +452,7 @@ export const NewPatientRegisterPage = () => {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2 text-xs font-bold text-slate-800">
+          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-2 space-y-1.5 text-xs font-bold text-slate-800">
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
@@ -493,170 +502,160 @@ export const NewPatientRegisterPage = () => {
         )}
       </header>
 
-      {/* ----------------- 2. COMPACT HEADER & BREADCRUMB ----------------- */}
-      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
-          <Link to="/" className="inline-flex items-center gap-1 hover:text-[#018AAE] transition-colors">
-            <Home className="w-3 h-3 text-[#018AAE]" />
-            <span>Home</span>
-          </Link>
-          <span>/</span>
-          <span className="text-slate-800">New Patient Registration</span>
-        </div>
+      {/* ----------------- 2. CENTERED HEADER & STEPPER (EXACTLY AS ANNOTATED) ----------------- */}
+      <div className="relative z-20 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-1.5 pb-1 text-center flex flex-col items-center justify-center shrink-0">
+        <h1 className="text-lg sm:text-xl font-black text-[#018AAE] tracking-tight leading-tight">
+          Create Your Patient Account
+        </h1>
+        <p className="text-[11px] font-medium text-slate-500 mt-0.5">
+          Enter your details to register with Brahm Shakti Hospital.
+        </p>
 
-        {/* Compact Stepper (Top Right on wide screens, centered on mobile) */}
-        <div className="flex items-center gap-3 text-xs">
-          <div className={`flex items-center gap-1.5 font-bold ${currentStep === 1 ? 'text-[#018AAE]' : 'text-slate-400'}`}>
+        {/* Centered Stepper (Personal & Address ---- Email OTP) */}
+        <div className="inline-flex items-center gap-2 sm:gap-3.5 mt-1 px-3 py-0.5 rounded-full bg-white/90 border border-slate-200/90 shadow-2xs">
+          <div className={`flex items-center gap-1.5 font-bold ${currentStep === 1 ? 'text-[#018AAE]' : 'text-slate-500'}`}>
             <span
-              className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
+              className={`w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black ${
                 currentStep > 1
                   ? 'bg-emerald-600 text-white'
                   : currentStep === 1
-                  ? 'bg-[#018AAE] text-white'
+                  ? 'bg-[#018AAE] text-white shadow-2xs'
                   : 'bg-slate-200 text-slate-600'
               }`}
             >
               {currentStep > 1 ? '✓' : '1'}
             </span>
-            <span className="text-[11px] sm:text-xs">Personal &amp; Address</span>
+            <span className="text-[10.5px] sm:text-[11px]">Personal &amp; Address</span>
           </div>
 
-          <div className="w-6 sm:w-10 h-0.5 bg-slate-300"></div>
+          <div className="w-5 sm:w-8 h-0.5 bg-slate-300"></div>
 
           <div className={`flex items-center gap-1.5 font-bold ${currentStep === 2 ? 'text-[#018AAE]' : 'text-slate-400'}`}>
             <span
-              className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
+              className={`w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black ${
                 currentStep === 2
-                  ? 'bg-[#018AAE] text-white ring-2 ring-[#018AAE]/20'
+                  ? 'bg-[#018AAE] text-white ring-2 ring-[#018AAE]/20 shadow-2xs'
                   : 'bg-slate-200 text-slate-500'
               }`}
             >
               2
             </span>
-            <span className="text-[11px] sm:text-xs">Email OTP</span>
+            <span className="text-[10.5px] sm:text-[11px]">Email OTP</span>
           </div>
         </div>
       </div>
 
-      {/* Title (Compact) */}
-      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-3">
-        <h1 className="text-xl sm:text-2xl font-black text-[#018AAE] tracking-tight leading-tight">
-          Create Your Patient Account
-        </h1>
-        <p className="text-[11px] sm:text-xs font-medium text-slate-600">
-          Enter your details to register with Brahm Shakti Hospital.
-        </p>
-      </div>
-
-      {/* ----------------- 3. COMPACT MAIN BENTO GRID (LESS SCROLL) ----------------- */}
-      <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 xl:gap-6 items-start">
-          {/* ================= LEFT COLUMN: REGISTRATION JOURNEY CARD ================= */}
-          <div className="lg:col-span-4 xl:col-span-4 bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-5 space-y-4">
-            {/* Top Compact Illustration */}
-            <div className="w-full flex items-center justify-center py-0.5">
-              <MedicalJourneyIllustration className="w-auto h-24 select-none drop-shadow-xs" />
-            </div>
-
-            <div>
-              <h2 className="text-sm font-black text-slate-900">
-                Your registration journey
-              </h2>
-            </div>
-
-            {/* Vertical Timeline Stepper (Tightened spacing) */}
-            <div className="relative pl-1 space-y-3.5">
-              <div className="absolute left-[19px] top-4 bottom-4 w-0.5 bg-slate-200"></div>
-
-              {/* Journey Step 1 */}
-              <div className="relative flex items-start gap-3">
-                <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
-                    currentStep >= 1 ? 'bg-[#018AAE]' : 'bg-slate-300'
-                  }`}
-                >
-                  <User className="w-3.5 h-3.5" />
-                </div>
-                <div className="space-y-0.5 pt-0.5">
-                  <h3 className="text-xs font-bold text-slate-900">
-                    1. Enter your details
-                  </h3>
-                  <p className="text-[10px] text-slate-500 leading-snug">
-                    Share your personal and address information.
-                  </p>
-                </div>
+      {/* ----------------- 3. COMPACT MAIN BENTO GRID (MATCHING HEIGHTS, NO SCROLL) ----------------- */}
+      <main className="relative z-10 flex-1 max-w-[1400px] w-full mx-auto px-3 sm:px-6 lg:px-8 py-1 lg:py-1.5 flex flex-col justify-center overflow-y-auto lg:overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 xl:gap-4 items-stretch h-full">
+          {/* ================= LEFT COLUMN: REGISTRATION JOURNEY CARD (HEIGHT MATCHES FORM) ================= */}
+          <div className="lg:col-span-4 xl:col-span-4 bg-white/95 backdrop-blur-xs rounded-2xl border border-slate-200/90 shadow-xs p-3.5 sm:p-4 flex flex-col justify-between h-full">
+            {/* Top section: Illustration & Timeline */}
+            <div className="space-y-3">
+              <div className="w-full flex items-center justify-center py-0">
+                <MedicalJourneyIllustration className="w-auto h-20 sm:h-22 select-none drop-shadow-xs" />
               </div>
 
-              {/* Journey Step 2 */}
-              <div className="relative flex items-start gap-3">
-                <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
-                    currentStep === 2 ? 'bg-[#018AAE]' : 'bg-slate-300'
-                  }`}
-                >
-                  <Mail className="w-3.5 h-3.5" />
+              <div>
+                <h2 className="text-xs sm:text-sm font-black text-slate-900">
+                  Your registration journey
+                </h2>
+              </div>
+
+              {/* Vertical Timeline Stepper */}
+              <div className="relative pl-1 space-y-2.5">
+                <div className="absolute left-[17px] top-3 bottom-3 w-0.5 bg-slate-200"></div>
+
+                {/* Journey Step 1 */}
+                <div className="relative flex items-start gap-2.5">
+                  <div
+                    className={`w-6 h-6 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
+                      currentStep >= 1 ? 'bg-[#018AAE]' : 'bg-slate-300'
+                    }`}
+                  >
+                    <User className="w-3 h-3" />
+                  </div>
+                  <div className="space-y-0.5 pt-0.5">
+                    <h3 className="text-[11px] font-bold text-slate-900">
+                      1. Enter your details
+                    </h3>
+                    <p className="text-[9.5px] text-slate-500 leading-snug">
+                      Share your personal and address information.
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-0.5 pt-0.5">
-                  <h3 className="text-xs font-bold text-slate-900">
-                    2. Verify your email
-                  </h3>
-                  <p className="text-[10px] text-slate-500 leading-snug">
-                    Use the OTP sent to your email to complete registration.
-                  </p>
+
+                {/* Journey Step 2 */}
+                <div className="relative flex items-start gap-2.5">
+                  <div
+                    className={`w-6 h-6 rounded-full flex items-center justify-center text-white shrink-0 z-10 shadow-2xs transition-colors ${
+                      currentStep === 2 ? 'bg-[#018AAE]' : 'bg-slate-300'
+                    }`}
+                  >
+                    <Mail className="w-3 h-3" />
+                  </div>
+                  <div className="space-y-0.5 pt-0.5">
+                    <h3 className="text-[11px] font-bold text-slate-900">
+                      2. Verify your email
+                    </h3>
+                    <p className="text-[9.5px] text-slate-500 leading-snug">
+                      Use the OTP sent to your email to complete registration.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Highlight Privacy Card (Compact) */}
-            <div className="p-3 rounded-xl bg-[#F0FBFC]/70 border border-[#B6EEF6]/80 space-y-0.5 text-slate-800">
-              <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#018AAE]">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
-                <span>Your privacy is our priority</span>
+            {/* Bottom section: Privacy card & time estimate */}
+            <div className="space-y-2 pt-2 border-t border-slate-100">
+              <div className="p-2.5 rounded-xl bg-[#F0FBFC]/90 border border-[#B6EEF6]/80 space-y-0.5 text-slate-800">
+                <div className="flex items-center gap-1.5 text-[10.5px] font-extrabold text-[#018AAE]">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
+                  <span>Your privacy is our priority</span>
+                </div>
+                <p className="text-[9.5px] text-slate-600 pl-5 leading-snug">
+                  Your health &amp; personal information is strictly encrypted.
+                </p>
               </div>
-              <p className="text-[10px] text-slate-600 pl-5 leading-snug">
-                Your information is secure and protected with us.
-              </p>
-            </div>
 
-            {/* Time Estimate */}
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500">
-              <Clock className="w-3.5 h-3.5 text-slate-400" />
-              <span>Usually takes a few minutes</span>
+              <div className="flex items-center gap-1.5 text-[10.5px] font-semibold text-slate-500 px-1">
+                <Clock className="w-3 h-3 text-slate-400" />
+                <span>Usually takes less than 2 minutes</span>
+              </div>
             </div>
           </div>
 
           {/* ================= RIGHT COLUMN: STEP 1 FORM OR STEP 2 OTP ================= */}
-          <div className="lg:col-span-8 xl:col-span-8">
+          <div className="lg:col-span-8 xl:col-span-8 flex flex-col h-full">
             {currentStep === 1 ? (
-              /* ---------------- STEP 1: FORM (COMPACT, LESS SCROLL) ---------------- */
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-5 lg:p-6 space-y-4">
+              /* ---------------- STEP 1: FORM (COMPACT, HEIGHT MATCHES LEFT CARD) ---------------- */
+              <div className="bg-white/95 backdrop-blur-xs rounded-2xl border border-slate-200/90 shadow-xs p-3.5 sm:p-4 flex flex-col justify-between h-full">
                 {/* Header Notice */}
                 <div className="flex items-center justify-between pb-1 border-b border-slate-100">
-                  <span className="text-[11px] font-bold text-slate-500">Step 1 of 2</span>
-                  <span className="text-[11px] font-bold text-rose-500">* Fields are mandatory.</span>
+                  <span className="text-[10.5px] font-bold text-slate-500">Step 1 of 2</span>
+                  <span className="text-[10.5px] font-bold text-rose-500">* Fields are mandatory.</span>
                 </div>
 
-                <form onSubmit={handleStep1Submit} className="space-y-3.5">
+                <form onSubmit={handleStep1Submit} className="flex-1 flex flex-col justify-between space-y-2 py-1">
                   {/* ================= SECTION 1: PERSONAL DETAILS ================= */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
-                      <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
-                        <User className="w-3 h-3" />
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1.5 pb-0.5 border-b border-slate-100">
+                      <div className="w-4 h-4 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
+                        <User className="w-2.5 h-2.5" />
                       </div>
-                      <h3 className="text-[11px] font-black tracking-wider text-[#018AAE] uppercase">
+                      <h3 className="text-[10px] font-black tracking-wider text-[#018AAE] uppercase">
                         PERSONAL DETAILS
                       </h3>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-2.5">
                       {/* Title */}
-                      <div className="sm:col-span-2 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">Title *</label>
+                      <div className="sm:col-span-2 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">Title *</label>
                         <select
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2 py-1 rounded-md border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         >
                           <option value="Mr.">Mr.</option>
                           <option value="Mrs.">Mrs.</option>
@@ -667,39 +666,39 @@ export const NewPatientRegisterPage = () => {
                       </div>
 
                       {/* First name */}
-                      <div className="sm:col-span-4 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">First name *</label>
+                      <div className="sm:col-span-4 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">First name *</label>
                         <input
                           type="text"
                           required
                           value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
                           placeholder="First name"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-2.5 py-1 rounded-md border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
                       {/* Last name */}
-                      <div className="sm:col-span-3 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">Last name *</label>
+                      <div className="sm:col-span-3 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">Last name *</label>
                         <input
                           type="text"
                           required
                           value={lastName}
                           onChange={(e) => setLastName(e.target.value)}
                           placeholder="Last name"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-2.5 py-1 rounded-md border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
                       {/* Gender */}
-                      <div className="sm:col-span-3 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">Gender *</label>
+                      <div className="sm:col-span-3 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">Gender *</label>
                         <select
                           required
                           value={gender}
                           onChange={(e) => setGender(e.target.value)}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2 py-1 rounded-md border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         >
                           <option value="">Select gender</option>
                           <option value="Male">Male</option>
@@ -711,46 +710,46 @@ export const NewPatientRegisterPage = () => {
                   </div>
 
                   {/* ================= SECTION 2: CONTACT DETAILS ================= */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
-                      <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
-                        <Phone className="w-3 h-3" />
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1.5 pb-0.5 border-b border-slate-100">
+                      <div className="w-4 h-4 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
+                        <Phone className="w-2.5 h-2.5" />
                       </div>
-                      <h3 className="text-[11px] font-black tracking-wider text-[#018AAE] uppercase">
+                      <h3 className="text-[10px] font-black tracking-wider text-[#018AAE] uppercase">
                         CONTACT DETAILS
                       </h3>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-2.5">
                       {/* Date of birth */}
-                      <div className="sm:col-span-4 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">Date of birth *</label>
+                      <div className="sm:col-span-4 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">Date of birth *</label>
                         <input
                           type="date"
                           required
                           value={dob}
                           onChange={(e) => setDob(e.target.value)}
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2.5 py-1 rounded-md border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         />
                       </div>
 
                       {/* Mobile number */}
-                      <div className="sm:col-span-4 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">Mobile number *</label>
+                      <div className="sm:col-span-4 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">Mobile number *</label>
                         <input
                           type="tel"
                           required
                           value={mobile}
                           onChange={(e) => setMobile(e.target.value)}
                           placeholder="10-digit mobile number"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-2.5 py-1 rounded-md border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
                       {/* Email address */}
-                      <div className="sm:col-span-4 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">
-                          Email address (required for OTP) *
+                      <div className="sm:col-span-4 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">
+                          Email (for OTP) *
                         </label>
                         <input
                           type="email"
@@ -758,42 +757,42 @@ export const NewPatientRegisterPage = () => {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="patient@example.com"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-2.5 py-1 rounded-md border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
                     </div>
                   </div>
 
                   {/* ================= SECTION 3: ADDRESS DETAILS ================= */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-1.5 pb-1 border-b border-slate-100">
-                      <div className="w-5 h-5 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
-                        <MapPin className="w-3 h-3" />
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1.5 pb-0.5 border-b border-slate-100">
+                      <div className="w-4 h-4 rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6] shrink-0">
+                        <MapPin className="w-2.5 h-2.5" />
                       </div>
-                      <h3 className="text-[11px] font-black tracking-wider text-[#018AAE] uppercase">
+                      <h3 className="text-[10px] font-black tracking-wider text-[#018AAE] uppercase">
                         ADDRESS DETAILS
                       </h3>
                     </div>
 
                     {/* Row 1: Country, State, Pincode, District */}
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
-                      <div className="sm:col-span-3 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">Country *</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-2.5">
+                      <div className="sm:col-span-3 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">Country *</label>
                         <select
                           value={country}
                           onChange={(e) => setCountry(e.target.value)}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2 py-1 rounded-md border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         >
                           <option value="India">India</option>
                         </select>
                       </div>
 
-                      <div className="sm:col-span-3 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">State / UT *</label>
+                      <div className="sm:col-span-3 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">State / UT *</label>
                         <select
                           value={stateUt}
                           onChange={(e) => setStateUt(e.target.value)}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
+                          className="w-full px-2 py-1 rounded-md border border-slate-200 text-xs font-semibold bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs"
                         >
                           {INDIAN_STATES.map((s) => (
                             <option key={s} value={s}>
@@ -803,8 +802,8 @@ export const NewPatientRegisterPage = () => {
                         </select>
                       </div>
 
-                      <div className="sm:col-span-3 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">Pincode (6 digits) *</label>
+                      <div className="sm:col-span-3 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">Pincode *</label>
                         <input
                           type="text"
                           required
@@ -812,40 +811,40 @@ export const NewPatientRegisterPage = () => {
                           value={pincode}
                           onChange={(e) => setPincode(e.target.value.replace(/\D/g, ''))}
                           placeholder="110085"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-2.5 py-1 rounded-md border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
-                      <div className="sm:col-span-3 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">District *</label>
+                      <div className="sm:col-span-3 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">District *</label>
                         <input
                           type="text"
                           required
                           value={district}
                           onChange={(e) => setDistrict(e.target.value)}
                           placeholder="North West Delhi"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-2.5 py-1 rounded-md border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
                     </div>
 
-                    {/* Row 2: Address line 1 (8 cols) + Aadhaar (4 cols) on same line to eliminate scrolling */}
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
-                      <div className="sm:col-span-8 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">Address line 1 *</label>
+                    {/* Row 2: Address line 1 (8 cols) + Aadhaar (4 cols) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-2.5 pt-0.5">
+                      <div className="sm:col-span-8 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">Address line 1 *</label>
                         <input
                           type="text"
                           required
                           value={addressLine1}
                           onChange={(e) => setAddressLine1(e.target.value)}
                           placeholder="House / Flat No., Street, Area"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-2.5 py-1 rounded-md border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
 
-                      <div className="sm:col-span-4 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-700">
-                          Aadhaar (12 digits) <span className="text-slate-400 font-normal">(Optional)</span>
+                      <div className="sm:col-span-4 space-y-0.5">
+                        <label className="text-[10px] font-bold text-slate-700">
+                          Aadhaar <span className="text-slate-400 font-normal">(Optional)</span>
                         </label>
                         <input
                           type="text"
@@ -853,15 +852,15 @@ export const NewPatientRegisterPage = () => {
                           value={aadhaar}
                           onChange={(e) => setAadhaar(e.target.value)}
                           placeholder="1234-5678-9012"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
+                          className="w-full px-2.5 py-1 rounded-md border border-slate-200 text-xs font-medium bg-white text-slate-800 focus:border-[#018AAE] focus:outline-hidden transition-all shadow-2xs placeholder:text-slate-400"
                         />
                       </div>
                     </div>
                   </div>
 
-                  {/* Consent Checkbox (Compact 1-liner) */}
+                  {/* Consent Checkbox */}
                   <div>
-                    <label className="flex items-center gap-2 text-xs font-bold text-slate-800 cursor-pointer select-none">
+                    <label className="flex items-center gap-2 text-[11px] font-bold text-slate-800 cursor-pointer select-none">
                       <input
                         type="checkbox"
                         checked={consentChecked}
@@ -881,27 +880,27 @@ export const NewPatientRegisterPage = () => {
                     </label>
                   </div>
 
-                  {/* 100% Free Registration Banner (Condensed) */}
-                  <div className="bg-emerald-50/90 border border-emerald-200/90 rounded-xl p-2.5 text-xs text-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+                  {/* 100% Free Registration Banner (Single Line Compact) */}
+                  <div className="bg-emerald-50/90 border border-emerald-200/90 rounded-lg px-2.5 py-1.5 text-[10.5px] text-slate-800 flex items-center justify-between gap-2">
                     <div className="flex items-center gap-1.5">
-                      <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
-                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+                      <div className="w-3.5 h-3.5 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
+                        <Check className="w-2 h-2 stroke-[3]" />
                       </div>
                       <span className="font-bold">
                         Patient Registration is <strong className="text-emerald-700 font-black">100% FREE</strong> (Zero Fee).
                       </span>
                     </div>
-                    <span className="text-[11px] text-slate-600">
+                    <span className="text-[10px] text-slate-500 hidden sm:inline">
                       Doctor consultation fee is payable only at hospital OPD counter.
                     </span>
                   </div>
 
-                  {/* Bottom Action Row (Save & continue later / Verify email & continue) */}
-                  <div className="pt-1 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  {/* Bottom Action Row */}
+                  <div className="pt-0.5 flex flex-col sm:flex-row items-center justify-between gap-2">
                     <button
                       type="button"
                       onClick={() => navigate('/bookappointment/patient-type')}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#018AAE] transition-colors order-2 sm:order-1"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-500 hover:text-[#018AAE] transition-colors order-2 sm:order-1"
                     >
                       <Clock className="w-3.5 h-3.5" />
                       <span>Save and continue later</span>
@@ -909,120 +908,120 @@ export const NewPatientRegisterPage = () => {
 
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs sm:text-sm font-black transition-all shadow-sm hover:shadow flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] order-1 sm:order-2"
+                      className="w-full sm:w-auto px-5 py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-black transition-all shadow-sm hover:shadow flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] order-1 sm:order-2"
                     >
                       <span>Verify email &amp; continue</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </form>
               </div>
             ) : (
               /* ---------------- STEP 2: EMAIL OTP VERIFICATION ---------------- */
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 sm:p-8 space-y-5 animate-in fade-in duration-200">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+              <div className="bg-white/95 backdrop-blur-xs rounded-2xl border border-slate-200/90 shadow-xs p-5 sm:p-6 flex flex-col justify-between h-full animate-in fade-in duration-200">
+                <div className="flex items-center justify-between pb-1.5 border-b border-slate-100">
                   <button
                     type="button"
                     onClick={() => setCurrentStep(1)}
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#018AAE] transition-colors"
                   >
-                    <ArrowLeft className="w-4 h-4" />
+                    <ArrowLeft className="w-3.5 h-3.5" />
                     <span>Back to Personal &amp; Address Details</span>
                   </button>
                   <span className="text-xs font-bold text-[#018AAE]">Step 2 of 2</span>
                 </div>
 
-                <div className="text-center space-y-1.5">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6]">
-                    <Mail className="w-6 h-6" />
+                <div className="text-center space-y-1 my-auto py-2">
+                  <div className="w-10 h-10 mx-auto rounded-full bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center border border-[#B6EEF6]">
+                    <Mail className="w-5 h-5" />
                   </div>
-                  <h2 className="text-lg sm:text-xl font-black text-slate-900">
+                  <h2 className="text-base sm:text-lg font-black text-slate-900">
                     Verify Your Email Address
                   </h2>
-                  <p className="text-xs text-slate-600 max-w-md mx-auto">
+                  <p className="text-[11px] text-slate-600 max-w-md mx-auto">
                     We have dispatched a 6-digit OTP code to:{' '}
                     <strong className="text-[#018AAE] font-bold">{email}</strong>
                   </p>
+
+                  {/* Demonstration OTP Helper */}
+                  <div className="p-2 bg-[#F0FBFC] border border-[#B6EEF6] rounded-xl text-xs text-[#013B4A] flex items-center justify-between max-w-sm mx-auto my-2">
+                    <div className="flex items-center gap-1.5">
+                      <KeyRound className="w-3.5 h-3.5 text-[#018AAE]" />
+                      <span className="text-[11px]">Demo Verification Code:</span>
+                    </div>
+                    <span className="font-mono font-black text-xs text-[#018AAE] bg-white px-2 py-0.5 rounded border border-[#73E0EF]">
+                      {generatedOtp}
+                    </span>
+                  </div>
+
+                  <form onSubmit={handleVerifyOtp} className="space-y-3.5 max-w-sm mx-auto pt-1">
+                    <div className="space-y-1 text-center">
+                      <label className="text-[11px] font-bold text-slate-700 block">
+                        Enter 6-Digit Email OTP *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        maxLength={6}
+                        value={otpInput}
+                        onChange={(e) => setOtpInput(e.target.value.replace(/\D/g, ''))}
+                        placeholder="• • • • • •"
+                        className="w-44 mx-auto text-center font-mono text-xl tracking-[0.3em] px-2.5 py-1.5 rounded-lg border-2 border-slate-300 focus:border-[#018AAE] focus:outline-hidden shadow-2xs"
+                      />
+                    </div>
+
+                    <div className="text-center text-[11px] text-slate-500">
+                      {otpTimer > 0 ? (
+                        <span>Resend OTP in <strong>{otpTimer}s</strong></span>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={handleResendOtp}
+                          className="text-[#018AAE] font-bold hover:underline cursor-pointer"
+                        >
+                          Resend Email OTP
+                        </button>
+                      )}
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={verifyingOtp || otpInput.length < 6}
+                      className="w-full py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs font-black transition-all shadow flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      {verifyingOtp ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          <span>Verifying &amp; Generating UHID...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Complete Registration &amp; Proceed</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </>
+                      )}
+                    </button>
+                  </form>
                 </div>
-
-                {/* Demonstration OTP Helper */}
-                <div className="p-2.5 bg-[#F0FBFC] border border-[#B6EEF6] rounded-xl text-xs text-[#013B4A] flex items-center justify-between max-w-md mx-auto">
-                  <div className="flex items-center gap-1.5">
-                    <KeyRound className="w-4 h-4 text-[#018AAE]" />
-                    <span>Demo Verification Code:</span>
-                  </div>
-                  <span className="font-mono font-black text-sm text-[#018AAE] bg-white px-2 py-0.5 rounded border border-[#73E0EF]">
-                    {generatedOtp}
-                  </span>
-                </div>
-
-                <form onSubmit={handleVerifyOtp} className="space-y-5 max-w-md mx-auto">
-                  <div className="space-y-1.5 text-center">
-                    <label className="text-xs font-bold text-slate-700 block">
-                      Enter 6-Digit Email OTP *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      maxLength={6}
-                      value={otpInput}
-                      onChange={(e) => setOtpInput(e.target.value.replace(/\D/g, ''))}
-                      placeholder="• • • • • •"
-                      className="w-48 mx-auto text-center font-mono text-2xl tracking-[0.35em] px-3 py-2 rounded-xl border-2 border-slate-300 focus:border-[#018AAE] focus:outline-hidden shadow-2xs"
-                    />
-                  </div>
-
-                  <div className="text-center text-xs text-slate-500">
-                    {otpTimer > 0 ? (
-                      <span>Resend OTP in <strong>{otpTimer}s</strong></span>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={handleResendOtp}
-                        className="text-[#018AAE] font-bold hover:underline cursor-pointer"
-                      >
-                        Resend Email OTP
-                      </button>
-                    )}
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={verifyingOtp || otpInput.length < 6}
-                    className="w-full py-2.5 rounded-xl bg-[#018AAE] hover:bg-[#007595] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black transition-all shadow flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    {verifyingOtp ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Verifying &amp; Generating UHID...</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>Complete Registration &amp; Proceed</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-                </form>
               </div>
             )}
           </div>
         </div>
       </main>
 
-      {/* ----------------- 4. COMPACT FOOTER ----------------- */}
-      <footer className="bg-white border-t border-slate-200 mt-auto py-3">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-2.5 text-xs text-slate-600">
-          <div className="font-semibold text-slate-800">
+      {/* ----------------- 4. COMPACT FOOTER (VISIBLE WITHOUT SCROLLING) ----------------- */}
+      <footer className="relative z-10 bg-white/95 backdrop-blur-xs border-t border-slate-200/90 py-1.5 sm:py-2 shrink-0">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-600">
+          <div className="font-semibold text-slate-800 text-[11px] sm:text-xs">
             &copy; 2026 Brahm Shakti Hospital.
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-[#B6EEF6] bg-[#F0FBFC] text-[#018AAE] font-bold text-[11px]">
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-[#B6EEF6] bg-[#F0FBFC] text-[#018AAE] font-bold text-[10.5px]">
             <ShieldCheck className="w-3.5 h-3.5 text-[#018AAE]" />
             <span>NABH &amp; NABL Accredited</span>
           </div>
 
-          <div className="flex items-center gap-4 text-xs font-medium">
+          <div className="flex items-center gap-4 text-[11px] sm:text-xs font-medium">
             <a
               href="mailto:helpdesk@brahmshaktihospital.com"
               className="inline-flex items-center gap-1 hover:text-[#018AAE] transition-colors"
@@ -1035,7 +1034,7 @@ export const NewPatientRegisterPage = () => {
               className="inline-flex items-center gap-1 text-rose-600 font-bold hover:underline"
             >
               <Phone className="w-3.5 h-3.5 text-rose-500" />
-              <span>011-27531683</span>
+              <span>011-27531683 / 7840089703</span>
             </a>
           </div>
         </div>
