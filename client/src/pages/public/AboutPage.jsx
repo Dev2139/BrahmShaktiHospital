@@ -50,7 +50,7 @@ export const AboutPage = ({ section }) => {
   const currentTopic = ABOUT_TOPICS.find((t) => t.id === activeSectionId) || ABOUT_TOPICS[0];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-[#F0FBFC] text-slate-800">
       {/* Hero Header with Medical Waves & Hospital Campus Visual */}
       <section className="relative bg-gradient-to-r from-[#E0F8FC] via-[#F0FBFC] to-[#E9F9FC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
         {/* Thematic Medical Background Graphic (Matching User Upload) */}

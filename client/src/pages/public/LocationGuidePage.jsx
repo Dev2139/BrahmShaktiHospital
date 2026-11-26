@@ -97,9 +97,9 @@ export default function LocationGuidePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F8FA] pb-16">
+    <div className="min-h-screen bg-[#F0FBFC] pb-16">
       {/* Top Banner with Medical Palette */}
-      <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
+      <section className="relative bg-gradient-to-r from-[#E0F8FC] via-[#F0FBFC] to-[#E9F9FC] border-b border-slate-200/60 py-10 sm:py-14 px-4 overflow-hidden">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#018AAE]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto space-y-3 relative z-10">
           <div className="flex items-center gap-2 text-xs font-bold text-slate-500 mb-1">

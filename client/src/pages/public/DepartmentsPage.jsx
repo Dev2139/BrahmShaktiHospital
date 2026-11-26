@@ -48,7 +48,7 @@ export const DepartmentsPage = () => {
   };
 
   return (
-    <div className="space-y-8 sm:space-y-12 pb-20">
+    <div className="min-h-screen bg-[#F0FBFC] space-y-8 sm:space-y-12 pb-20">
       {/* 1. Hero Banner with Medical Wave & Stethoscope Visual (Matches Image 2 & 3) */}
       <section className="relative bg-gradient-to-r from-teal-50/80 via-emerald-50/40 to-cyan-50/60 border-b border-slate-200/80 pt-8 pb-10 sm:py-12 md:py-14 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Soft Ambient Glows & Medical Plus Accents */}

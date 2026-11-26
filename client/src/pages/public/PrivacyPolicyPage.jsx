@@ -4,22 +4,36 @@ import { ShieldCheck, Lock, FileText, CheckCircle2, Phone, Mail, ArrowLeft } fro
 
 export const PrivacyPolicyPage = () => {
   return (
-    <div className="space-y-12 sm:space-y-16 pb-20">
-      {/* Header Banner - Matches Original Medical Palette */}
-      <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#018AAE]/5 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen bg-[#F0FBFC] space-y-10 sm:space-y-12 pb-20">
+      {/* Header Banner - Seamless with Medical Theme & Common Background */}
+      <section className="relative bg-gradient-to-r from-[#E0F8FC] via-[#F0FBFC] to-[#E9F9FC] border-b border-slate-200/60 py-10 sm:py-14 px-4 overflow-hidden">
+        {/* Thematic Hospital / Medical Background Graphic */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <img
+            src="/images/banners/medical-bg-hospital.jpg"
+            alt=""
+            className="w-full h-full object-cover object-right sm:object-center opacity-25 mix-blend-multiply"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent" />
+        </div>
+
         <div className="max-w-5xl mx-auto space-y-3 relative z-10">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary-hover font-bold uppercase tracking-wider mb-2 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home</span>
-          </Link>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#018AAE]/10 border border-[#018AAE]/20 text-[#018AAE] text-xs font-bold uppercase tracking-wider">
-            <Lock className="w-3.5 h-3.5" />
-            <span>Legal & Data Protection</span>
+          {/* Breadcrumb & Pill - Clean, Centered, Fixed Alignment */}
+          <div className="flex flex-wrap items-center gap-3 text-xs font-bold">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 text-[#018AAE] hover:text-[#007595] uppercase tracking-wider transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Home</span>
+            </Link>
+            <span className="text-slate-300">/</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#018AAE]/10 border border-[#018AAE]/25 text-[#018AAE] text-xs font-bold uppercase tracking-wider">
+              <Lock className="w-3.5 h-3.5 text-[#018AAE]" />
+              <span>Legal &amp; Data Protection</span>
+            </div>
           </div>
+
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
             Privacy Policy
           </h1>

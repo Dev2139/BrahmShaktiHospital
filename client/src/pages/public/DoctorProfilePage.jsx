@@ -151,7 +151,7 @@ export const DoctorProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-[#018AAE] selection:text-white pb-16">
+    <div className="min-h-screen bg-[#F0FBFC] text-slate-800 font-sans selection:bg-[#018AAE] selection:text-white pb-16">
       {/* -------------------- 1. BREADCRUMB & UTILITY HEADER -------------------- */}
       <section className="bg-white border-b border-slate-200 py-2.5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">

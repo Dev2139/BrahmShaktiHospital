@@ -50,7 +50,7 @@ export const BloodRequestPage = () => {
 
   if (result) {
     return (
-      <div className="space-y-10 pb-20">
+      <div className="min-h-screen bg-[#F0FBFC] space-y-10 pb-20">
         <section className="max-w-3xl mx-auto px-4 pt-16">
           <div className="bg-white rounded-3xl border border-medical-border shadow-soft p-8 sm:p-12 space-y-5 text-center">
             <div className="w-16 h-16 rounded-full bg-green-100 text-status-success flex items-center justify-center mx-auto"><CheckCircle2 className="w-9 h-9" /></div>
@@ -76,8 +76,8 @@ export const BloodRequestPage = () => {
   }
 
   return (
-    <div className="space-y-10 pb-20">
-      <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-12 px-4 overflow-hidden">
+    <div className="min-h-screen bg-[#F0FBFC] space-y-10 pb-20">
+      <section className="relative bg-gradient-to-r from-[#E0F8FC] via-[#F0FBFC] to-[#E9F9FC] border-b border-slate-200/60 py-10 sm:py-12 px-4 overflow-hidden">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#018AAE]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-3xl mx-auto space-y-2 relative z-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-700 text-xs font-bold uppercase tracking-wider"><Droplets className="w-3.5 h-3.5" /> Request Blood</div>

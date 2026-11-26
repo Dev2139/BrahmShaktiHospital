@@ -183,7 +183,7 @@ export const DoctorsPage = () => {
   }, [doctors, searchQuery, selectedSpecialties, selectedGenders, selectedCategories, sortBy]);
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen pb-20">
+    <div className="bg-[#F0FBFC] min-h-screen pb-20">
       {/* Top Breadcrumb & Search Bar Strip (Matching Max Healthcare) */}
       <div className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 py-3.5 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6">
