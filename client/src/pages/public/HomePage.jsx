@@ -2153,69 +2153,42 @@ export const HomePage = () => {
                   </div>
                 </div>
 
-                {/* 5. Creative Addition: Instant OPD Consultation & Clinical Helpline Banner (Fills empty area & balances column height) */}
-                <div className="rounded-2xl bg-gradient-to-br from-white via-[#F0FBFC] to-[#E2F7F9] border border-[#B6EEF6] p-4 sm:p-4.5 shadow-2xs relative overflow-hidden group">
-                  {/* Ambient background watermark icon */}
-                  <div className="absolute -right-3 -bottom-3 w-28 h-28 text-[#018AAE]/5 pointer-events-none select-none">
+                {/* 5. Clinical Helpline & Patient Support Card (Matches Left Card Height & Size perfectly, No Book Appointment button) */}
+                <div className="rounded-2xl bg-gradient-to-br from-white via-[#F0FBFC] to-[#E8F8FA] border border-[#B6EEF6] p-3 sm:p-3.5 shadow-2xs relative overflow-hidden group">
+                  {/* Subtle background watermark */}
+                  <div className="absolute -right-2 -bottom-2 w-20 h-20 text-[#018AAE]/5 pointer-events-none select-none">
                     <Calendar className="w-full h-full" />
                   </div>
 
-                  <div className="relative z-10 space-y-2.5">
-                    {/* Top Header Row */}
+                  <div className="relative z-10 space-y-1.5">
+                    {/* Header Row */}
                     <div className="flex items-center justify-between">
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#018AAE]/10 text-[#018AAE] text-[10px] font-black uppercase tracking-wider">
+                      <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#018AAE]/10 text-[#018AAE] text-[10px] font-black uppercase tracking-wider">
                         <Sparkles className="w-3 h-3 text-[#018AAE]" />
-                        <span>INSTANT OPD CONSULTATION</span>
+                        <span>OPD &amp; EMERGENCY HELPDESK</span>
                       </div>
-                      <span className="text-[10px] sm:text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full flex items-center gap-1.5">
+                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full flex items-center gap-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        Live OPD Slots
+                        24/7 Desk
                       </span>
                     </div>
 
-                    {/* Title & Context */}
-                    <div>
-                      <h4 className="text-sm sm:text-base font-serif font-black text-[#0B2545] leading-snug">
-                        Need Specialist Care in {activeDept.name}?
-                      </h4>
-                      <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                        Consult senior faculty specialists with minimal wait times, comprehensive diagnostic support &amp; charitable trust subsidies.
-                      </p>
-                    </div>
+                    {/* Context & Phone Row */}
+                    <div className="flex items-center justify-between gap-2 pt-0.5">
+                      <div className="min-w-0">
+                        <h4 className="text-xs sm:text-sm font-serif font-black text-[#0B2545] truncate">
+                          Assistance for {activeDept.name}
+                        </h4>
+                        <p className="text-[11px] text-slate-500 truncate mt-0.5">
+                          Free UHID · Cashless TPA / CGHS · Senior Faculty
+                        </p>
+                      </div>
 
-                    {/* 4 Clinical Trust Highlights */}
-                    <div className="grid grid-cols-2 gap-1.5 py-1.5 border-y border-teal-100/80 text-[11px] text-slate-700 font-semibold">
-                      <div className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="truncate">Free Online UHID</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="truncate">Cashless TPA / CGHS</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="truncate">Same-Day Priority Slot</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="truncate">Free Follow-Up Review</span>
-                      </div>
-                    </div>
-
-                    {/* Action Row: Book Appointment + Central Helpline */}
-                    <div className="flex flex-col sm:flex-row items-center gap-2 pt-0.5">
-                      <Link
-                        to={`/bookappointment?department=${encodeURIComponent(activeDept.id)}`}
-                        className="w-full sm:flex-1 py-2 sm:py-2.5 px-4 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold text-center transition-all shadow-2xs hover:shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
-                      >
-                        <span>Book Appointment Now</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
+                      {/* Direct Phone Dialers */}
                       <a
                         href="tel:01127531683"
-                        className="w-full sm:w-auto py-2 sm:py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#018AAE] text-xs font-bold text-center transition-all shadow-2xs flex items-center justify-center gap-1.5 shrink-0"
-                        title="Call 24/7 Hospital Central Helpline"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#EBF8FA] border border-[#018AAE]/40 text-[#018AAE] hover:border-[#018AAE] text-xs font-bold transition-all shadow-2xs shrink-0"
+                        title="Call Hospital Helpline"
                       >
                         <PhoneCall className="w-3.5 h-3.5 text-[#018AAE]" />
                         <span>011-27531683</span>
