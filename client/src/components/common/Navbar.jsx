@@ -32,9 +32,24 @@ export const Navbar = () => {
   const [searchDoctor, setSearchDoctor] = useState('');
 
   const navRef = useRef(null);
+  const menuTimeoutRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated, isStaff, dashboardPath } = useAuth();
+
+  const handleMouseEnterMenu = (menuName) => {
+    if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
+    setOpenMenu(menuName);
+    setQuickSearchModalOpen(false);
+    setEmergencyModalOpen(false);
+  };
+
+  const handleMouseLeaveMenu = () => {
+    if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
+    menuTimeoutRef.current = setTimeout(() => {
+      setOpenMenu(null);
+    }, 150);
+  };
 
   const toggleMobileDropdown = (name) => {
     setMobileOpenDropdown((prev) => (prev === name ? null : name));
@@ -50,7 +65,10 @@ export const Navbar = () => {
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
+    };
   }, []);
 
   // Automatically close any open dropdown menu and mobile drawer whenever the route changes
@@ -112,13 +130,16 @@ export const Navbar = () => {
     { label: 'Contact Us', path: '/contact' }
   ];
 
-  const isActive = (path) => {
-    if (path === '/' && location.pathname === '/') return true;
-    if (path !== '/' && (location.pathname === path || (path !== '/' && location.pathname.startsWith(path + '/')))) return true;
-    return false;
+  const getActiveNavKey = () => {
+    const p = location.pathname;
+    if (p.startsWith('/about')) return 'about';
+    if (p.startsWith('/doctors')) return 'doctors';
+    if (p.startsWith('/departments')) return 'departments';
+    if (p.startsWith('/contact')) return 'contact';
+    return null;
   };
 
-  const isMenuActive = (menu) => menu.match.some((m) => location.pathname === m || location.pathname.startsWith(m + '/'));
+  const activeNavKey = getActiveNavKey();
 
   const navLinkClass = (active) =>
     `flex items-center gap-1.5 px-4 py-2 rounded-xl text-[15px] font-bold transition-all select-none ${
@@ -152,10 +173,15 @@ export const Navbar = () => {
             {(() => {
               const label = 'Speciality';
               const menu = menus[label];
-              const active = isMenuActive(menu);
               const isOpen = openMenu === label;
+              const active = isOpen; // Only highlighted when opened/active
               return (
-                <div key={label} className="relative">
+                <div
+                  key={label}
+                  className="relative"
+                  onMouseEnter={() => handleMouseEnterMenu(label)}
+                  onMouseLeave={handleMouseLeaveMenu}
+                >
                   <button
                     type="button"
                     onClick={(e) => {
@@ -164,7 +190,7 @@ export const Navbar = () => {
                       setEmergencyModalOpen(false);
                       setQuickSearchModalOpen(false);
                     }}
-                    className={`${navLinkClass(active || isOpen)} whitespace-nowrap cursor-pointer select-none`}
+                    className={`${navLinkClass(active)} whitespace-nowrap cursor-pointer select-none`}
                   >
                     <span>{label}</span>
                     <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
@@ -224,10 +250,15 @@ export const Navbar = () => {
             {(() => {
               const label = 'About Us';
               const menu = menus[label];
-              const active = isMenuActive(menu);
               const isOpen = openMenu === label;
+              const active = isOpen || activeNavKey === 'about';
               return (
-                <div key={label} className="relative">
+                <div
+                  key={label}
+                  className="relative"
+                  onMouseEnter={() => handleMouseEnterMenu(label)}
+                  onMouseLeave={handleMouseLeaveMenu}
+                >
                   <button
                     type="button"
                     onClick={(e) => {
@@ -236,7 +267,7 @@ export const Navbar = () => {
                       setEmergencyModalOpen(false);
                       setQuickSearchModalOpen(false);
                     }}
-                    className={`${navLinkClass(active || isOpen)} whitespace-nowrap cursor-pointer select-none`}
+                    className={`${navLinkClass(active)} whitespace-nowrap cursor-pointer select-none`}
                   >
                     <span>{label}</span>
                     <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
@@ -278,7 +309,7 @@ export const Navbar = () => {
             {/* 3. Find a Doctor */}
             <Link
               to="/doctors"
-              className={`${navLinkClass(isActive('/doctors'))} whitespace-nowrap`}
+              className={`${navLinkClass(activeNavKey === 'doctors')} whitespace-nowrap`}
             >
               <span>Find a Doctor</span>
             </Link>
@@ -286,7 +317,7 @@ export const Navbar = () => {
             {/* 4. Search by Department */}
             <Link
               to="/departments"
-              className={`${navLinkClass(isActive('/departments'))} whitespace-nowrap`}
+              className={`${navLinkClass(activeNavKey === 'departments')} whitespace-nowrap`}
             >
               <span>Search by Department</span>
             </Link>
@@ -390,7 +421,7 @@ export const Navbar = () => {
             {/* 6. Contact Us */}
             <Link
               to="/contact"
-              className={`${navLinkClass(isActive('/contact'))} whitespace-nowrap`}
+              className={`${navLinkClass(activeNavKey === 'contact')} whitespace-nowrap`}
             >
               <span>Contact Us</span>
             </Link>
