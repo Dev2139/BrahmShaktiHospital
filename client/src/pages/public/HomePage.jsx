@@ -883,6 +883,7 @@ export const HomePage = () => {
   const [internationalModalOpen, setInternationalModalOpen] = useState(false);
   const [selectedDisciplineTab, setSelectedDisciplineTab] = useState('all');
   const [activeDeptId, setActiveDeptId] = useState('medicine');
+  const homeDeptScrollRef = React.useRef(null);
 
   // Hero banner slider state & auto-play
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
@@ -1823,10 +1824,15 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 3. Our Departments Section (Redesigned per Reference) */}
-      <section className="relative max-w-7xl mx-auto px-4 py-6 sm:py-10 overflow-hidden">
+      {/* 3. Our Departments Section (with Provided Medical Texture & Image 2 Horizontal Selector) */}
+      <section
+        className="relative max-w-7xl mx-auto px-4 py-6 sm:py-10 overflow-hidden rounded-3xl border border-teal-100/80 shadow-xs my-4 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `linear-gradient(135deg, rgba(240, 251, 252, 0.94) 0%, rgba(235, 248, 250, 0.88) 50%, rgba(240, 251, 252, 0.94) 100%), url('/assets/images/medical_bg_2.jpg')`
+        }}
+      >
         
-        {/* Ambient Medical Cyan Waves in Background (No hospital building image as requested) */}
+        {/* Ambient Medical Cyan Waves in Background */}
         <div className="absolute top-0 right-0 w-[550px] h-[350px] pointer-events-none select-none opacity-25 z-0">
           <svg viewBox="0 0 550 350" className="w-full h-full" preserveAspectRatio="none">
             <path
@@ -1862,6 +1868,75 @@ export const HomePage = () => {
             <span>Explore all {departments.length || 9}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
+        </div>
+
+        {/* Horizontal Department Selector Strip (Matches Image 2) */}
+        <div className="relative z-10 bg-white/90 backdrop-blur-xs rounded-2xl border border-slate-200/90 shadow-2xs p-2 sm:p-2.5 mb-6">
+          <div className="flex items-center gap-2">
+            {/* Scroll Left Button (<) */}
+            <button
+              type="button"
+              onClick={() => {
+                if (homeDeptScrollRef.current) homeDeptScrollRef.current.scrollBy({ left: -260, behavior: 'smooth' });
+              }}
+              aria-label="Scroll departments left"
+              className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-slate-50 hover:bg-[#EBF8FA] border border-slate-200/90 text-slate-600 hover:text-[#018AAE] flex items-center justify-center shrink-0 shadow-2xs transition-all cursor-pointer active:scale-95"
+            >
+              <ChevronLeft className="w-4 h-4 text-slate-700" />
+            </button>
+
+            {/* Horizontally Scrollable Department Cards */}
+            <div
+              ref={homeDeptScrollRef}
+              className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar scroll-smooth py-1 flex-1"
+            >
+              {departments.slice(0, 9).map((dept) => {
+                const isSelected = dept.id === activeDeptId;
+                const IconComp = DEPT_ICON_MAP[dept.id] || Stethoscope;
+                const shortName = DEPT_SHORT_NAME_MAP[dept.id] || dept.name;
+
+                return (
+                  <button
+                    key={dept.id}
+                    type="button"
+                    onClick={() => setActiveDeptId(dept.id)}
+                    className={`flex flex-col items-center justify-center px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-2xl transition-all text-center min-w-[115px] sm:min-w-[130px] max-w-[145px] shrink-0 cursor-pointer group ${
+                      isSelected
+                        ? 'bg-[#018AAE] text-white shadow-md shadow-[#018AAE]/25 scale-[1.02]'
+                        : 'bg-white hover:bg-[#F0FBFC] border border-slate-200/90 text-slate-700 hover:text-[#018AAE] hover:border-[#0DAFD5]'
+                    }`}
+                  >
+                    <div
+                      className={`w-7 sm:w-8 h-7 sm:h-8 rounded-xl flex items-center justify-center mb-1 transition-colors ${
+                        isSelected ? 'text-white' : 'text-[#018AAE] group-hover:text-[#0DAFD5]'
+                      }`}
+                    >
+                      <IconComp className="w-4 sm:w-5 h-4 sm:h-5" />
+                    </div>
+                    <span
+                      className={`text-[11px] sm:text-xs font-black leading-tight line-clamp-2 ${
+                        isSelected ? 'text-white' : 'text-slate-800 group-hover:text-[#018AAE]'
+                      }`}
+                    >
+                      {shortName}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Scroll Right Button (>) */}
+            <button
+              type="button"
+              onClick={() => {
+                if (homeDeptScrollRef.current) homeDeptScrollRef.current.scrollBy({ left: 260, behavior: 'smooth' });
+              }}
+              aria-label="Scroll departments right"
+              className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-slate-50 hover:bg-[#EBF8FA] border border-slate-200/90 text-slate-600 hover:text-[#018AAE] flex items-center justify-center shrink-0 shadow-2xs transition-all cursor-pointer active:scale-95"
+            >
+              <ChevronRight className="w-4 h-4 text-slate-700" />
+            </button>
+          </div>
         </div>
 
         {/* Main Content: Responsive layout */}
