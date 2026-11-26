@@ -77,9 +77,18 @@ export const FacilitiesPage = () => {
 
   return (
     <div className="space-y-16 pb-20">
-      {/* Header Banner - Matches Original Medical Palette */}
-      <section className="relative bg-gradient-to-b from-teal-50/70 via-emerald-50/30 to-[#F8FAFC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#018AAE]/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Header Banner with Medical Stethoscope & Shield Background */}
+      <section className="relative bg-gradient-to-r from-[#E0F8FC] via-[#F0FBFC] to-[#E9F9FC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
+        {/* Background Visual Banner */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <img
+            src="/images/banners/medical-bg-doctor-shield.jpg"
+            alt=""
+            className="w-full h-full object-cover object-right sm:object-center opacity-35 mix-blend-multiply"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
+        </div>
+
         <div className="max-w-7xl mx-auto space-y-3 relative z-10">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#018AAE]/10 border border-[#018AAE]/20 text-[#018AAE] text-xs font-bold uppercase tracking-wider">
             <Building2 className="w-3.5 h-3.5" />

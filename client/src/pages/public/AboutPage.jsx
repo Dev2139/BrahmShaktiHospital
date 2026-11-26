@@ -51,10 +51,17 @@ export const AboutPage = ({ section }) => {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      {/* Hero Header with Brand Cyan & Teal Accents */}
-      <section className="relative bg-gradient-to-br from-[#E0F8FC] via-[#F0FBFC] to-white border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#0DAFD5]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#018AAE]/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Hero Header with Medical Waves & Hospital Campus Visual */}
+      <section className="relative bg-gradient-to-r from-[#E0F8FC] via-[#F0FBFC] to-[#E9F9FC] border-b border-slate-200/80 py-10 sm:py-14 px-4 overflow-hidden">
+        {/* Thematic Medical Background Graphic (Matching User Upload) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <img
+            src="/images/banners/medical-bg-hospital.jpg"
+            alt=""
+            className="w-full h-full object-cover object-right sm:object-center opacity-40 mix-blend-multiply"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
+        </div>
 
         <div className="max-w-7xl mx-auto space-y-4 relative z-10">
           {/* Breadcrumbs */}
