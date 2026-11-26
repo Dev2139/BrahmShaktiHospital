@@ -18,7 +18,9 @@ import {
   MapPin,
   Menu,
   X,
-  AlertCircle
+  AlertCircle,
+  FlaskConical,
+  AlertTriangle
 } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
@@ -262,30 +264,55 @@ export const ConsultationPage = () => {
             </Link>
           </div>
 
-          {/* Right: Portal Links */}
-          <nav className="hidden md:flex items-center gap-5 lg:gap-6 text-xs font-bold text-slate-800">
-            <Link to="/" className="hover:text-[#018AAE] transition-colors">
+          {/* Right: Portal Links + Lab Result & Emergency Badges */}
+          <nav className="hidden md:flex items-center gap-4 lg:gap-5 text-[15px] font-bold text-secondary">
+            <Link to="/" className="hover:text-primary transition-colors">
               Back Home
             </Link>
             <button
               type="button"
               onClick={() => setRefundModalOpen(true)}
-              className="hover:text-[#018AAE] transition-colors cursor-pointer font-bold"
+              className="hover:text-primary transition-colors cursor-pointer font-bold"
             >
               Refund Policy
             </button>
-            <Link to="/privacy-policy" className="hover:text-[#018AAE] transition-colors">
+            <Link to="/privacy-policy" className="hover:text-primary transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms-of-use" className="hover:text-[#018AAE] transition-colors">
+            <Link to="/terms-of-use" className="hover:text-primary transition-colors">
               Terms &amp; Conditions
             </Link>
-            <Link to="/contact" className="hover:text-[#018AAE] transition-colors">
+            <Link to="/contact" className="hover:text-primary transition-colors">
               Contact Us
             </Link>
+
+            {/* Quick Access Badges: Lab Result & 24x7 Emergency */}
+            <div className="flex items-center gap-2 pl-1 border-l border-slate-200">
+              <a
+                href="https://itd.oncquest.net/oncquest/design/onlinelab"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#018AAE]/30 text-[#018AAE] text-xs font-bold shadow-2xs hover:bg-[#F0FBFC] transition-all"
+                title="Online Oncquest Lab Portal"
+              >
+                <FlaskConical className="w-3.5 h-3.5 text-[#018AAE]" />
+                <span>Lab Result</span>
+              </a>
+
+              <a
+                href="tel:7840089703"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-rose-300 text-rose-600 text-xs font-bold shadow-2xs hover:bg-rose-50 transition-all"
+                title="24x7 Emergency Casualty"
+              >
+                <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
+                <span>Emergency</span>
+              </a>
+            </div>
+
             <Link
               to={isAuthenticated ? '/patient/dashboard' : '/bookappointment/patient-type'}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl border border-[#73E0EF] bg-[#F0FBFC] text-[#018AAE] font-extrabold hover:bg-[#CEF5FA] transition-all"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-[#73E0EF] bg-[#F0FBFC] text-primary text-xs font-extrabold hover:bg-[#CEF5FA] transition-all"
             >
               <User className="w-3.5 h-3.5" />
               <span>Patient Portal</span>

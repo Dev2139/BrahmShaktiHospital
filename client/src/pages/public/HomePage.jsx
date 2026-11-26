@@ -1166,30 +1166,15 @@ export const HomePage = () => {
         onTouchEnd={handleHeroTouchEnd}
       >
         <div className="relative w-full overflow-hidden p-0 m-0 leading-none">
-          {/* Spacer image establishes the exact responsive aspect ratio and height with 0px gap */}
-          <img
-            src={HERO_BANNER_IMAGES[0].url}
-            alt=""
-            aria-hidden="true"
-            className="w-full h-auto block opacity-0 pointer-events-none select-none m-0 p-0"
-          />
-
-          {/* Carousel slides layered directly on top with object-contain to never clip any text */}
-          {HERO_BANNER_IMAGES.map((banner, idx) => (
-            <div
-              key={idx}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                idx === heroSlideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-              }`}
-            >
-              <img
-                src={banner.url}
-                alt={banner.alt}
-                className="w-full h-full object-contain sm:object-cover object-top sm:object-center select-none m-0 p-0"
-                loading={idx === 0 ? 'eager' : 'lazy'}
-              />
-            </div>
-          ))}
+          {/* Active slide rendered directly as responsive image so top is never cut or clipped */}
+          <div className="relative w-full overflow-hidden">
+            <img
+              src={HERO_BANNER_IMAGES[heroSlideIndex]?.url || HERO_BANNER_IMAGES[0].url}
+              alt={HERO_BANNER_IMAGES[heroSlideIndex]?.alt || 'Brahm Shakti Hospital'}
+              className="w-full h-auto block object-contain object-top select-none m-0 p-0 transition-opacity duration-500"
+              loading="eager"
+            />
+          </div>
 
           {/* Navigation Arrows */}
           <button
