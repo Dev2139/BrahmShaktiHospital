@@ -536,12 +536,12 @@ export const DoctorProfilePage = () => {
 
                     {/* Official DMC Record */}
                     <div className="p-4 rounded-xl bg-[#F0FBFC]/60 border border-[#B6EEF6]/80 space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-black text-[#018AAE] uppercase tracking-wider flex items-center gap-1.5">
-                          <ShieldCheck className="w-4 h-4 text-[#018AAE]" />
-                          <span>Delhi Medical Council (DMC) Record</span>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[11px] sm:text-xs font-black text-[#018AAE] uppercase tracking-wider flex items-center gap-1.5 min-w-0">
+                          <ShieldCheck className="w-4 h-4 text-[#018AAE] shrink-0" />
+                          <span className="truncate">Delhi Medical Council (DMC) Record</span>
                         </span>
-                        <span className="px-2.5 py-0.5 rounded-full bg-[#018AAE] text-white text-[10px] font-bold">
+                        <span className="px-2.5 py-0.5 rounded-full bg-[#018AAE] text-white text-[10px] font-bold whitespace-nowrap shrink-0 shadow-2xs">
                           Official Record
                         </span>
                       </div>
@@ -549,7 +549,7 @@ export const DoctorProfilePage = () => {
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
                         <div className="bg-white p-3 rounded-xl border border-[#B6EEF6]">
                           <span className="text-slate-400 block text-[10px] uppercase font-bold">DMC Number</span>
-                          <strong className="text-slate-900 font-mono text-sm">{doctor.dmcNo || '11843'}</strong>
+                          <strong className="text-slate-900 font-bold text-sm">{doctor.dmcNo || '11843'}</strong>
                         </div>
                         <div className="bg-white p-3 rounded-xl border border-[#B6EEF6]">
                           <span className="text-slate-400 block text-[10px] uppercase font-bold">Validity Period</span>
