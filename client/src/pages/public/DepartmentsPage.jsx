@@ -181,9 +181,9 @@ export const DepartmentsPage = () => {
       </section>
 
       {/* 2. Horizontal Department Icon Cards Filter Strip (Exact match to Image 2 pattern) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white/90 backdrop-blur-xs rounded-2xl border border-slate-200/90 shadow-2xs p-2 sm:p-2.5 mb-6">
-          <div className="flex items-center gap-2">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0 overflow-hidden">
+        <div className="bg-white/90 backdrop-blur-xs rounded-2xl border border-slate-200/90 shadow-2xs p-2 sm:p-2.5 mb-6 w-full max-w-full min-w-0 overflow-hidden">
+          <div className="flex items-center gap-2 w-full max-w-full min-w-0">
             {/* Scroll Left Button (<) */}
             <button
               type="button"
@@ -197,7 +197,7 @@ export const DepartmentsPage = () => {
             {/* Horizontally Scrollable Department Cards */}
             <div
               ref={iconStripRef}
-              className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar scroll-smooth py-1 flex-1"
+              className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar scroll-smooth py-1 flex-1 min-w-0"
             >
               {/* "All Departments" Card */}
               <button

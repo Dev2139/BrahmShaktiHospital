@@ -6,9 +6,9 @@ import ChatbotFloatingWidget from '../components/common/ChatbotFloatingWidget';
 
 export const PublicLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-medical-coolgray text-medical-slate font-sans antialiased relative">
+    <div className="min-h-screen flex flex-col bg-medical-coolgray text-medical-slate font-sans antialiased relative w-full max-w-full overflow-x-hidden">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow w-full max-w-full min-w-0 overflow-x-hidden">
         <Outlet />
       </main>
       <Footer />

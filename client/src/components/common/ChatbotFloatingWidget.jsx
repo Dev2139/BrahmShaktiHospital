@@ -120,13 +120,30 @@ export const ChatbotFloatingWidget = () => {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Auto-hide the expanded buttons back to the small edge arrow after 8 seconds of inactivity
+  // Auto-hide the expanded buttons back to the small edge arrow after 5 seconds of inactivity
   useEffect(() => {
     if (!isDocked && !isOpen) {
-      const timer = setTimeout(() => {
+      let timer = setTimeout(() => {
         setIsDocked(true);
-      }, 8000);
-      return () => clearTimeout(timer);
+      }, 5000);
+
+      const resetTimer = () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          setIsDocked(true);
+        }, 5000);
+      };
+
+      window.addEventListener('scroll', resetTimer, { passive: true });
+      window.addEventListener('touchstart', resetTimer, { passive: true });
+      window.addEventListener('mousemove', resetTimer, { passive: true });
+
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('scroll', resetTimer);
+        window.removeEventListener('touchstart', resetTimer);
+        window.removeEventListener('mousemove', resetTimer);
+      };
     }
   }, [isDocked, isOpen]);
 
@@ -221,15 +238,15 @@ export const ChatbotFloatingWidget = () => {
 
   return (
     <>
-      {/* 0. DOCKED / AUTO-HIDDEN TO SIDE - Little Arrow-Only Edge Tab (Small & Unobtrusive) */}
+      {/* 0. DOCKED / AUTO-HIDDEN TO SIDE - Little Arrow-Only Edge Tab (Contained & Zero Overflow) */}
       {isDocked && !isOpen && (
-        <div className="fixed bottom-24 right-0 z-50 pointer-events-auto animate-in fade-in slide-in-from-right-2 duration-200">
+        <div className="fixed bottom-24 right-0 z-50 pointer-events-auto animate-in fade-in duration-200 overflow-hidden">
           <button
             onClick={() => setIsDocked(false)}
             type="button"
             aria-label="Show quick actions"
             title="Show quick actions"
-            className="w-5.5 sm:w-6 h-10 sm:h-11 rounded-l-xl bg-[#018AAE]/90 hover:bg-[#018AAE] text-white flex items-center justify-center shadow-md border-t border-b border-l border-white/30 hover:w-7 transition-all cursor-pointer active:scale-95 group"
+            className="w-5 sm:w-6 h-10 sm:h-11 rounded-l-xl bg-[#018AAE] hover:bg-[#007595] text-white flex items-center justify-center shadow-md border-t border-b border-l border-white/30 transition-colors cursor-pointer active:scale-95 group"
           >
             <ChevronLeft className="w-3.5 h-3.5 text-white group-hover:-translate-x-0.5 transition-transform" />
           </button>
@@ -238,7 +255,7 @@ export const ChatbotFloatingWidget = () => {
 
       {/* EXPANDED FLOATING ACTION STACK */}
       {!isDocked && (
-        <div className="fixed bottom-4 right-3 sm:bottom-5 sm:right-6 z-50 flex flex-col items-center gap-2 sm:gap-2.5 pointer-events-none animate-in fade-in slide-in-from-right-3 duration-200">
+        <div className="fixed bottom-4 right-3 sm:bottom-5 sm:right-6 z-50 flex flex-col items-center gap-2 sm:gap-2.5 pointer-events-none animate-in fade-in duration-200">
           {/* Arrow-Only Collapse Button (NO "Hide" text) */}
           <button
             onClick={() => setIsDocked(true)}
@@ -268,10 +285,10 @@ export const ChatbotFloatingWidget = () => {
             href="tel:7840089703"
             aria-label="Call 24x7 Helpline"
             title="Call 24x7 Helpline: 7840089703"
-            className="pointer-events-auto relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
+            className="pointer-events-auto relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
           >
-            {/* Pulsing ring animation */}
-            <span className="absolute -inset-1 rounded-full bg-rose-500 opacity-40 animate-ping pointer-events-none" />
+            {/* Contained pulsing effect */}
+            <span className="absolute inset-0 rounded-full bg-rose-400 opacity-30 animate-pulse pointer-events-none" />
             <Phone className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
           </a>
 

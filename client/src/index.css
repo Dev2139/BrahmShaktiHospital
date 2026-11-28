@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-  html {
+  html,
+  body,
+  #root {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    overflow-x: clip;
+    overflow-x: hidden;
     max-width: 100%;
+    width: 100%;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -17,9 +20,6 @@
     background-color: #F4FBFD;
     color: #1E293B;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    overflow-x: clip;
-    max-width: 100%;
-    -webkit-tap-highlight-color: transparent;
   }
 
   :focus-visible {

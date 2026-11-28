@@ -1549,7 +1549,7 @@ export const HomePage = () => {
   }, [departments, activeTabObj]);
 
   return (
-    <div className="min-h-screen bg-[#F0FBFC] pb-8 sm:pb-12">
+    <div className="min-h-screen bg-[#F0FBFC] pb-8 sm:pb-12 overflow-x-hidden w-full max-w-full min-w-0">
       {/* 1. Hero Section - Seamless Full Hospital Banner Carousel */}
       <section
         className="relative w-full overflow-hidden p-0 m-0 select-none touch-pan-y bg-[#F0FBFC]"
@@ -1605,10 +1605,10 @@ export const HomePage = () => {
         </div>
       </section>
 
-      <div className="space-y-6 sm:space-y-8 lg:space-y-10">
+      <div className="space-y-6 sm:space-y-8 lg:space-y-10 overflow-x-hidden w-full max-w-full min-w-0">
 
       {/* 2. Our Doctor Team - Seamlessly Blended with #F0FBFC Background */}
-      <section className="bg-[#F0FBFC] pt-2 pb-10 sm:pb-14 border-b-0">
+      <section className="bg-[#F0FBFC] pt-2 pb-10 sm:pb-14 border-b-0 overflow-hidden w-full max-w-full">
         <div className="max-w-7xl mx-auto px-4">
           
           {/* Section Header: Centered on Mobile, Row on Desktop */}
@@ -1653,7 +1653,7 @@ export const HomePage = () => {
           </div>
 
           {/* ================= MOBILE VIEW: SINGLE-CARD CAROUSEL (AS SHOWN IN IMAGE) ================= */}
-          <div className="sm:hidden mt-5">
+          <div className="sm:hidden mt-5 w-full max-w-full overflow-hidden">
             {doctors.length > 0 && (() => {
               const activeDoc = doctors[mobileDoctorIndex] || doctors[0];
               return (
@@ -1826,27 +1826,29 @@ export const HomePage = () => {
 
       {/* 3. Our Departments Section (with Provided Medical Texture & Image 2 Horizontal Selector) */}
       <section
-        className="relative max-w-7xl mx-auto px-4 py-6 sm:py-10 overflow-hidden rounded-3xl border border-teal-100/80 shadow-xs my-4 bg-cover bg-center bg-no-repeat"
+        className="relative max-w-7xl mx-auto px-4 py-6 sm:py-10 overflow-hidden rounded-3xl border border-teal-100/80 shadow-xs my-4 bg-cover bg-center bg-no-repeat w-full max-w-full min-w-0"
         style={{
           backgroundImage: `linear-gradient(135deg, rgba(240, 251, 252, 0.94) 0%, rgba(235, 248, 250, 0.88) 50%, rgba(240, 251, 252, 0.94) 100%), url('/assets/images/medical_bg_2.jpg')`
         }}
       >
         
-        {/* Ambient Medical Cyan Waves in Background */}
-        <div className="absolute top-0 right-0 w-[550px] h-[350px] pointer-events-none select-none opacity-25 z-0">
-          <svg viewBox="0 0 550 350" className="w-full h-full" preserveAspectRatio="none">
-            <path
-              d="M0,0 C180,110 340,60 550,200 L550,0 Z"
-              fill="url(#dept-wave-cyan)"
-            />
-            <defs>
-              <linearGradient id="dept-wave-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0.9" />
-                <stop offset="50%" stopColor="#0DAFD5" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#018AAE" stopOpacity="0.2" />
-              </linearGradient>
-            </defs>
-          </svg>
+        {/* Ambient Medical Cyan Waves in Background (Strictly clipped) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+          <div className="absolute top-0 right-0 w-[550px] h-[350px] pointer-events-none select-none opacity-25 z-0">
+            <svg viewBox="0 0 550 350" className="w-full h-full" preserveAspectRatio="none">
+              <path
+                d="M0,0 C180,110 340,60 550,200 L550,0 Z"
+                fill="url(#dept-wave-cyan)"
+              />
+              <defs>
+                <linearGradient id="dept-wave-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#CEF5FA" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#0DAFD5" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#018AAE" stopOpacity="0.2" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
         </div>
 
         {/* Section Header */}
@@ -1871,8 +1873,8 @@ export const HomePage = () => {
         </div>
 
         {/* Horizontal Department Selector Strip (Matches Image 2) */}
-        <div className="relative z-10 bg-white/90 backdrop-blur-xs rounded-2xl border border-slate-200/90 shadow-2xs p-2 sm:p-2.5 mb-6">
-          <div className="flex items-center gap-2">
+        <div className="relative z-10 bg-white/90 backdrop-blur-xs rounded-2xl border border-slate-200/90 shadow-2xs p-2 sm:p-2.5 mb-6 w-full max-w-full min-w-0 overflow-hidden">
+          <div className="flex items-center gap-2 w-full max-w-full min-w-0">
             {/* Scroll Left Button (<) */}
             <button
               type="button"
@@ -1888,7 +1890,7 @@ export const HomePage = () => {
             {/* Horizontally Scrollable Department Cards */}
             <div
               ref={homeDeptScrollRef}
-              className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar scroll-smooth py-1 flex-1"
+              className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar scroll-smooth py-1 flex-1 min-w-0"
             >
               {departments.slice(0, 9).map((dept) => {
                 const isSelected = dept.id === activeDeptId;
@@ -2285,20 +2287,20 @@ export const HomePage = () => {
               </p>
             </div>
 
-            {/* Unified Segmented Switcher Buttons */}
-            <div className="inline-flex items-center p-1.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs self-start md:self-auto">
+            {/* Unified Segmented Switcher Buttons (Full-width 3-col grid on mobile, row on desktop, no multi-line, no overflow) */}
+            <div className="grid grid-cols-3 p-1 sm:p-1.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs w-full md:w-auto md:flex md:items-center gap-1 sm:gap-1.5">
               <button
                 type="button"
                 onClick={() => setActiveShowcaseTab('events')}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                className={`flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
                   activeShowcaseTab === 'events'
                     ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
-                <Calendar className="w-4 h-4" />
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                 <span>Events</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold shrink-0 ${
                   activeShowcaseTab === 'events' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
                 }`}>
                   {eventsList.length}
@@ -2308,28 +2310,28 @@ export const HomePage = () => {
               <button
                 type="button"
                 onClick={() => setActiveShowcaseTab('location')}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                className={`flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
                   activeShowcaseTab === 'location'
                     ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
-                <MapPin className="w-4 h-4" />
-                <span>Location &amp; Directions</span>
+                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span>Location<span className="hidden sm:inline"> &amp; Directions</span></span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setActiveShowcaseTab('facilities')}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                className={`flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
                   activeShowcaseTab === 'facilities'
                     ? 'bg-[#018AAE] text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
-                <Building2 className="w-4 h-4" />
+                <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                 <span>Facilities</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold shrink-0 ${
                   activeShowcaseTab === 'facilities' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
                 }`}>
                   {HOSPITAL_FACILITIES.length}
@@ -2640,7 +2642,7 @@ export const HomePage = () => {
         </div>
 
         {/* Dual-Row Infinite Auto-Scrolling Marquee with Edge Fade Masks */}
-        <div className="relative w-full space-y-4 sm:space-y-6">
+        <div className="relative w-full space-y-4 sm:space-y-6 overflow-hidden max-w-full">
           {/* Subtle Left & Right Edge Fade Gradient Masks */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-[#F4F8FA] to-transparent z-10" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-[#F4F8FA] to-transparent z-10" />
@@ -2985,27 +2987,27 @@ export const HomePage = () => {
               </div>
 
               {/* ================= RIGHT PANEL: ALL ANNOUNCEMENTS LIST ================= */}
-              <div className="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 shadow-xs p-5 sm:p-6 flex flex-col justify-between space-y-3.5">
-                {/* Header Row */}
-                <div className="flex items-center justify-between pb-1 border-b border-slate-100">
-                  <div className="flex items-center gap-2">
-                    <ListFilter className="w-4 h-4 text-[#018AAE]" />
-                    <h3 className="text-sm sm:text-base font-black text-slate-900">
+              <div className="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 shadow-xs p-3.5 sm:p-6 flex flex-col justify-between space-y-3.5">
+                {/* Header Row (Single-line on mobile, no multi-line wrapping) */}
+                <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-slate-100">
+                  <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                    <ListFilter className="w-4 h-4 text-[#018AAE] shrink-0" />
+                    <h3 className="text-xs sm:text-base font-black text-slate-900 whitespace-nowrap truncate">
                       All Announcements
                     </h3>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-bold text-slate-500">
-                      Showing {currentSlice.length} of {totalItems}
+                  <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                    <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 whitespace-nowrap bg-slate-100 px-2 py-0.5 rounded-full">
+                      <span className="hidden sm:inline">Showing </span>{currentSlice.length} of {totalItems}
                     </span>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 shrink-0">
                       <button
                         type="button"
                         aria-label="Previous circulars"
                         disabled={announcementPageIndex === 0}
                         onClick={() => setAnnouncementPageIndex((prev) => Math.max(0, prev - 1))}
-                        className="w-7 h-7 rounded-full border border-slate-200 hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center text-slate-600 transition-colors"
+                        className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-slate-200 hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center text-slate-600 transition-colors cursor-pointer"
                       >
                         <ChevronLeft className="w-3.5 h-3.5" />
                       </button>
@@ -3014,7 +3016,7 @@ export const HomePage = () => {
                         aria-label="Next circulars"
                         disabled={announcementPageIndex >= totalPages - 1}
                         onClick={() => setAnnouncementPageIndex((prev) => Math.min(totalPages - 1, prev + 1))}
-                        className="w-7 h-7 rounded-full border border-slate-200 hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center text-slate-600 transition-colors"
+                        className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-slate-200 hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center text-slate-600 transition-colors cursor-pointer"
                       >
                         <ChevronRight className="w-3.5 h-3.5" />
                       </button>
@@ -3141,7 +3143,7 @@ export const HomePage = () => {
           </button>
 
           {/* Cards 3D Stage */}
-          <div className="relative w-full h-full flex items-center justify-center [perspective:1200px]">
+          <div className="relative w-full h-full flex items-center justify-center [perspective:1200px] overflow-hidden max-w-full">
             {displayedGallery.map((item, idx) => {
               const n = displayedGallery.length;
               let offset = idx - galleryActiveIndex;
