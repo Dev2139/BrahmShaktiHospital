@@ -227,22 +227,23 @@ export const DepartmentDetailPage = () => {
     `Brahm Shakti Hospital's Department of ${department.name} is the clinical backbone of outpatient and inpatient diagnostics. Led by senior physician specialists, the department specializes in adult general health, metabolic syndrome, diabetic foot clinics, and fever triage. Our team adheres to stringent statutory medical standards to ensure precision and rapid recovery.`;
 
   return (
-    <div className="min-h-screen bg-[#F4FBFD] text-slate-800 flex flex-col font-sans selection:bg-[#018AAE] selection:text-white">
+    <div className="min-h-screen bg-[#F4FBFD] text-slate-800 flex flex-col font-sans selection:bg-[#018AAE] selection:text-white overflow-x-hidden w-full max-w-full min-w-0">
       {/* ----------------- 1. SUB-HEADER / BREADCRUMB STRIP ----------------- */}
-      <div className="bg-white border-b border-slate-100 py-2.5 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-3 text-xs">
+      <div className="bg-white border-b border-slate-100 py-2 sm:py-2.5 px-3 sm:px-6 lg:px-8 w-full max-w-full overflow-hidden">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-2 text-xs w-full min-w-0">
           {/* Breadcrumb Left */}
-          <div className="flex items-center gap-1.5 text-slate-500 font-medium">
-            <Link to="/" className="hover:text-[#018AAE] flex items-center gap-1">
+          <div className="flex items-center gap-1 sm:gap-1.5 text-slate-500 font-medium min-w-0 flex-1 overflow-hidden">
+            <Link to="/" className="hover:text-[#018AAE] flex items-center gap-1 shrink-0">
               <Home className="w-3.5 h-3.5 text-[#018AAE]" />
               <span className="hidden sm:inline">Home</span>
             </Link>
-            <ChevronRight className="w-3 h-3 text-slate-300" />
-            <Link to="/departments" className="hover:text-[#018AAE]">
-              Departments
+            <ChevronRight className="w-3 h-3 text-slate-300 shrink-0" />
+            <Link to="/departments" className="hover:text-[#018AAE] shrink-0">
+              <span className="hidden xs:inline">Departments</span>
+              <span className="xs:hidden">Depts</span>
             </Link>
-            <ChevronRight className="w-3 h-3 text-slate-300" />
-            <span className="text-slate-800 font-bold truncate max-w-[200px] sm:max-w-none">
+            <ChevronRight className="w-3 h-3 text-slate-300 shrink-0" />
+            <span className="text-slate-800 font-bold truncate min-w-0 flex-1">
               {department.name}
             </span>
           </div>
@@ -254,22 +255,22 @@ export const DepartmentDetailPage = () => {
               href="https://itd.oncquest.net/oncquest/design/onlinelab"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#018AAE] hover:bg-slate-50 transition-colors cursor-pointer"
+              className="group flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold text-slate-700 hover:text-[#018AAE] hover:bg-slate-50 transition-colors cursor-pointer shrink-0"
             >
-              <FlaskConical className="w-3.5 h-3.5 text-[#018AAE] transition-transform group-hover:scale-110" />
+              <FlaskConical className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#018AAE] transition-transform group-hover:scale-110 shrink-0" />
               <span>Lab Result</span>
             </a>
 
             {/* 2. Emergency Trigger */}
             <a
               href="tel:7840089703"
-              className="group flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-rose-600 hover:text-rose-700 hover:bg-rose-50/60 transition-colors cursor-pointer"
+              className="group flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold text-rose-600 hover:text-rose-700 hover:bg-rose-50/60 transition-colors cursor-pointer shrink-0"
             >
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600"></span>
               </span>
-              <AlertCircle className="w-3.5 h-3.5 text-rose-600 transition-transform group-hover:scale-110" />
+              <AlertCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-rose-600 transition-transform group-hover:scale-110 shrink-0" />
               <span>Emergency</span>
             </a>
           </div>
@@ -278,7 +279,7 @@ export const DepartmentDetailPage = () => {
 
       {/* ----------------- 2. TOP HORIZONTAL DEPARTMENTS STRIP (WITH ICONS) ----------------- */}
       {/* Desktop & Tablet: Horizontal Grid/Scroll Bar */}
-      <div className="hidden md:block bg-white border-b border-slate-200 shadow-2xs py-3 px-4 sm:px-6 lg:px-8 overflow-x-auto no-scrollbar">
+      <div className="hidden md:block bg-white border-b border-slate-200 shadow-2xs py-3 px-4 sm:px-6 lg:px-8 overflow-x-auto no-scrollbar w-full max-w-full">
         <div className="max-w-[1440px] mx-auto flex items-center gap-2.5 min-w-max">
           {allDepartments.map((dept) => {
             const isSelected = dept.id === department.id;
@@ -313,16 +314,16 @@ export const DepartmentDetailPage = () => {
       </div>
 
       {/* Mobile: Specialty Selector Dropdown (Exact match to Mobile View in uploaded image) */}
-      <div className="md:hidden bg-white px-4 py-2.5 border-b border-slate-200">
-        <div className="relative">
-          <div className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-800 shadow-2xs">
-            <div className="flex items-center gap-2">
-              <div className="text-[#018AAE]">
+      <div className="md:hidden bg-white px-4 py-2.5 border-b border-slate-200 w-full max-w-full min-w-0">
+        <div className="relative w-full min-w-0">
+          <div className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-800 shadow-2xs min-w-0">
+            <div className="flex items-center gap-2 min-w-0 flex-1">
+              <div className="text-[#018AAE] shrink-0">
                 {getDepartmentIcon(department.id, 'w-4 h-4')}
               </div>
               <span className="truncate">{department.name}</span>
             </div>
-            <ChevronDown className="w-4 h-4 text-slate-400" />
+            <ChevronDown className="w-4 h-4 text-slate-400 shrink-0 ml-2" />
           </div>
           <select
             value={department.id}
@@ -340,13 +341,13 @@ export const DepartmentDetailPage = () => {
       </div>
 
       {/* ----------------- 3. MAIN CONTENT SECTION (MATCHING REFERENCE IMAGE) ----------------- */}
-      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 min-w-0">
         {/* Main 2-Column Responsive Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full min-w-0">
           
           {/* ================= LEFT COLUMN: "OUR SPECIALISTS" CARD ================= */}
-          <div className="lg:col-span-4 xl:col-span-4 w-full">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+          <div className="lg:col-span-4 xl:col-span-4 w-full min-w-0">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden w-full min-w-0">
               {/* Card Header (Matches teal/ocean header in image) */}
               <div className="bg-[#018AAE] px-4 sm:px-5 py-3 text-white flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -426,12 +427,12 @@ export const DepartmentDetailPage = () => {
                 </div>
 
                 {/* Mobile View: 3 items flex row / slider (Matching mobile image) */}
-                <div className="sm:hidden flex items-center justify-around gap-2">
+                <div className="sm:hidden flex items-center justify-around gap-2 w-full min-w-0">
                   {departmentDoctors.slice(0, 3).map((doc, idx) => (
                     <Link
                       key={doc.id || idx}
                       to={`/doctors/${doc.id}`}
-                      className="group flex flex-col items-center text-center w-1/3"
+                      className="group flex flex-col items-center text-center w-1/3 min-w-0"
                     >
                       <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
                         <img
@@ -458,10 +459,10 @@ export const DepartmentDetailPage = () => {
                   </div>
                   <div>
                     <a
-                      href="tel:01127531683"
+                      href="tel:7982897603"
                       className="text-xs sm:text-sm font-black text-slate-800 hover:text-[#018AAE] transition-colors"
                     >
-                      011-27531683 / 7840089703
+                      7982897603 / 8423934205 / 6388554517
                     </a>
                   </div>
                 </div>
@@ -470,7 +471,7 @@ export const DepartmentDetailPage = () => {
           </div>
 
           {/* ================= RIGHT COLUMN: DEPARTMENT READING CONTENT ================= */}
-          <div className="lg:col-span-8 xl:col-span-8 w-full space-y-6">
+          <div className="lg:col-span-8 xl:col-span-8 w-full min-w-0 space-y-6">
             
             {/* Top Heading Section (Matches exact typography and teal bar in image) */}
             <div className="relative bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm overflow-hidden">

@@ -176,10 +176,10 @@ export const IpdServicesPage = () => {
             </p>
           </div>
           <a
-            href="tel:01127531683"
+            href="tel:8423934205"
             className="px-8 py-3.5 rounded-xl bg-white text-secondary font-bold text-sm hover:bg-accent whitespace-nowrap shadow-md"
           >
-            TPA Desk: 011-27531683
+            TPA Desk: 8423934205 / 6388554517
           </a>
         </div>
       </section>

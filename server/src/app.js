@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get(['/', '/api'], (req, res) => {
   res.status(200).json({
     success: true,
-    institution: 'Brahm Shakti Hospital, Pocket C, Budh Vihar Phase I, New Delhi',
+    institution: 'Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086',
     service: 'Brahm Shakti Hospital MERN Digital Healthcare Architecture',
     status: 'healthy',
     database: isMongoConnected ? 'MongoDB Atlas Connected' : 'In-Memory High-Speed Store',
@@ -66,7 +66,7 @@ app.get(['/', '/api'], (req, res) => {
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'healthy',
-    institution: 'Brahm Shakti Hospital, Pocket C, Budh Vihar Phase I, New Delhi',
+    institution: 'Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086',
     service: 'Brahm Shakti Hospital MERN Digital Healthcare Architecture',
     database: isMongoConnected ? 'MongoDB Atlas Connected' : 'In-Memory High-Speed Store',
     timestamp: new Date().toISOString()

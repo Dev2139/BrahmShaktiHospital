@@ -249,7 +249,7 @@ export const ConsultationPage = () => {
           <div className="flex items-center gap-2.5">
             <Link to="/" className="flex items-center gap-2.5 group" title="Brahm Shakti Hospital Home">
               <img
-                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
                 className="h-8 sm:h-9 w-auto object-contain"
               />
@@ -815,7 +815,7 @@ export const ConsultationPage = () => {
             <div className="flex items-center gap-2">
               <Headphones className="w-4 h-4 text-[#018AAE] shrink-0" />
               <div>
-                <span className="font-bold text-slate-800">Need Help? 011-27531683</span> &bull;{' '}
+                <span className="font-bold text-slate-800">Need Help? 7982897603 / 8423934205</span> &bull;{' '}
                 <span className="text-slate-400">Mon - Sat, 9 AM - 6 PM</span>
               </div>
             </div>
@@ -823,7 +823,7 @@ export const ConsultationPage = () => {
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-[#018AAE] shrink-0" />
               <div>
-                <span className="font-bold text-slate-800">support@brahmshakti.com</span> &bull;{' '}
+                <span className="font-bold text-slate-800">brahmshaktihospital@gmail.com</span> &bull;{' '}
                 <span className="text-slate-400">24x7 Digital Helpdesk</span>
               </div>
             </div>

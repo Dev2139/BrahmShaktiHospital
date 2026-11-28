@@ -184,7 +184,7 @@ export const PatientDashboardPage = () => {
           <div className="flex items-center gap-3">
             <Link to="/" className="flex items-center gap-3 group" title="Brahm Shakti Hospital Home">
               <img
-                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
                 className="h-10 sm:h-12 w-auto object-contain"
               />
@@ -317,10 +317,10 @@ export const PatientDashboardPage = () => {
                 </div>
               </div>
               <a
-                href="tel:01127531683"
+                href="tel:7982897603"
                 className="block text-sm font-black hover:underline tracking-tight pt-1"
               >
-                011-27531683 / 7840089703
+                7982897603 / 8423934205
               </a>
             </div>
 
@@ -739,8 +739,8 @@ export const PatientDashboardPage = () => {
                       <PhoneCall className="w-5 h-5" />
                     </div>
                     <div className="font-bold text-xs text-slate-800">24x7 Casualty &amp; Emergency</div>
-                    <a href="tel:01127531683" className="block font-black text-sm text-rose-600 hover:underline">
-                      011-27531683
+                    <a href="tel:7982897603" className="block font-black text-sm text-rose-600 hover:underline">
+                      7982897603
                     </a>
                   </div>
 
@@ -749,8 +749,8 @@ export const PatientDashboardPage = () => {
                       <Calendar className="w-5 h-5" />
                     </div>
                     <div className="font-bold text-xs text-slate-800">OPD Appointments Desk</div>
-                    <a href="tel:7840089703" className="block font-black text-sm text-[#018AAE] hover:underline">
-                      +91-7840089703
+                    <a href="tel:8423934205" className="block font-black text-sm text-[#018AAE] hover:underline">
+                      8423934205 / 6388554517
                     </a>
                   </div>
 
@@ -804,13 +804,13 @@ export const PatientDashboardPage = () => {
             <span>NABH &amp; NABL Accredited</span>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-center md:justify-end gap-2 md:gap-4 text-xs font-medium w-full md:w-auto text-center">
-            <a href="mailto:helpdesk@brahmshaktihospital.com" className="inline-flex items-center justify-center gap-1.5 hover:text-[#018AAE] transition-colors whitespace-nowrap text-center">
+            <a href="mailto:brahmshaktihospital@gmail.com" className="inline-flex items-center justify-center gap-1.5 hover:text-[#018AAE] transition-colors whitespace-nowrap text-center">
               <Mail className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
-              <span>helpdesk@brahmshaktihospital.com</span>
+              <span>brahmshaktihospital@gmail.com</span>
             </a>
-            <a href="tel:01127531683" className="inline-flex items-center justify-center gap-1.5 text-rose-600 font-bold hover:underline whitespace-nowrap text-center">
+            <a href="tel:7982897603" className="inline-flex items-center justify-center gap-1.5 text-rose-600 font-bold hover:underline whitespace-nowrap text-center">
               <Phone className="w-3.5 h-3.5 shrink-0" />
-              <span>011-27531683 / 7840089703</span>
+              <span>7982897603 / 8423934205</span>
             </a>
           </div>
         </div>

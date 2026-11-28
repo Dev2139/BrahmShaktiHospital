@@ -52,7 +52,7 @@ const BOT_KNOWLEDGE = [
     reply: 'Our charitable Hemodialysis Center operates 24x7 at subsidized trust rates with ultra-pure RO water systems and dedicated hepatitis-negative/positive isolated stations.',
     actions: [
       { label: 'Dialysis Wing Details', link: '/departments/nephrology', primary: true },
-      { label: 'Call Helpline: 7840089703', href: 'tel:7840089703', isCall: true }
+      { label: 'Call Helpline: 7982897603', href: 'tel:7982897603', isCall: true }
     ]
   },
   {
@@ -63,8 +63,8 @@ const BOT_KNOWLEDGE = [
     ]
   },
   {
-    keywords: ['location', 'address', 'where', 'metro', 'reach', 'direction', 'budh vihar'],
-    reply: 'Brahm Shakti Hospital is located at Pocket C, Budh Vihar Phase I, Pooth Khurd, New Delhi – 110086 (conveniently accessible from Udyog Nagar Metro Station).',
+    keywords: ['location', 'address', 'where', 'metro', 'reach', 'direction', 'budh vihar', 'kanjhawala'],
+    reply: 'Brahm Shakti Hospital is located at U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086 (conveniently accessible from Rithala and Udyog Nagar Metro Stations). Institution Run By Brahm Shakti Trust · "WE TREAT HE CURES".',
     actions: [
       { label: 'Get Directions & Contact', link: '/contact', primary: true }
     ]
@@ -104,7 +104,7 @@ const QUICK_PROMPTS = [
 export const ChatbotFloatingWidget = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isDocked, setIsDocked] = useState(true);
+  const [isDocked, setIsDocked] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -282,9 +282,9 @@ export const ChatbotFloatingWidget = () => {
 
           {/* 2. DIRECT CALL HELPLINE BUTTON - Round Circular Button */}
           <a
-            href="tel:7840089703"
+            href="tel:7982897603"
             aria-label="Call 24x7 Helpline"
-            title="Call 24x7 Helpline: 7840089703"
+            title="Call 24x7 Helpline: 7982897603"
             className="pointer-events-auto relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
           >
             {/* Contained pulsing effect */}

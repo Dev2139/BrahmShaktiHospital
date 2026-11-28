@@ -155,10 +155,10 @@ export const AboutPage = ({ section }) => {
               </p>
               <div className="space-y-1.5 pt-1">
                 <a
-                  href="tel:01127531683"
+                  href="tel:7982897603"
                   className="block text-center py-2 px-3 rounded-xl bg-white text-[#018AAE] font-black text-xs hover:bg-slate-100 transition-colors shadow-2xs"
                 >
-                  Call: 011-27531683
+                  Call: 7982897603 / 8423934205
                 </a>
                 <Link
                   to="/bookappointment"
@@ -199,7 +199,7 @@ const OverviewSection = () => (
         Excellence in Healthcare, Compassion in Service
       </h2>
       <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        Brahm Shakti Hospital is a premier 250-bedded super-specialty hospital situated at Pocket C, Budh Vihar, North-West Delhi. The hospital provides state-of-the-art diagnostic, surgical, and therapeutic medical interventions across all major clinical disciplines.
+        Brahm Shakti Hospital is a premier 250-bedded super-specialty hospital situated at U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086. The hospital provides state-of-the-art diagnostic, surgical, and therapeutic medical interventions across all major clinical disciplines.
       </p>
     </div>
 
@@ -263,7 +263,7 @@ const HospitalSection = () => (
         About Brahm Shakti Hospital &amp; Research Centre
       </h2>
       <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-        Brahm Shakti Hospital &amp; Research Centre is a multi-specialty tertiary care hospital situated at Pocket C, Budh Vihar Phase I, Rohini, New Delhi. Established to bring accessible, affordable, and high-tech tertiary healthcare to North-West Delhi, the hospital serves as an integrated medical hub offering preventive, curative, and emergency medical services under one roof.
+        Brahm Shakti Hospital &amp; Research Centre is a multi-specialty tertiary care hospital situated at U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086. Established to bring accessible, affordable, and high-tech tertiary healthcare to North-West Delhi, the hospital serves as an integrated medical hub offering preventive, curative, and emergency medical services under one roof.
       </p>
     </div>
 
@@ -302,10 +302,10 @@ const HospitalSection = () => (
       </p>
       <div className="flex flex-wrap items-center gap-2 pt-2">
         <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700">
-          📍 Address: Pocket C, B-Block, NIT-3 Phase-1, Rohini, New Delhi - 110085
+          📍 Address: U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086
         </span>
         <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700">
-          📞 24x7 Emergency: +91-7840089703
+          📞 Helplines: 7982897603 / 8423934205 / 6388554517
         </span>
       </div>
     </div>

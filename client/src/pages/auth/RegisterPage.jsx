@@ -127,7 +127,7 @@ export const RegisterPage = () => {
           <Link to="/" className="inline-flex items-center group" aria-label="Brahm Shakti Hospital Home">
             <div className="bg-white rounded-2xl p-2 sm:p-2.5 shadow-lg group-hover:scale-105 transition-transform">
               <img
-                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
                 className="h-9 sm:h-11 w-auto object-contain"
               />

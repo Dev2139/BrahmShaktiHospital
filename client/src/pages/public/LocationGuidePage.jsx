@@ -62,12 +62,12 @@ export default function LocationGuidePage() {
     date: '16 Jan 2026',
     author: 'BSH',
     overview:
-      'Brahm Shakti Hospital is situated in the Budh Vihar, Rohini area of North-West Delhi, providing easy access to nearby localities and institutions through various transportation modes.',
-    address: 'Brahm Shakti Hospital\nPocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi 110085',
+      'Brahm Shakti Hospital is situated on Main Kanjhawala Road, Budh Vihar, North-West Delhi (opposite Pooth Kalan Village), providing easy access to nearby localities and institutions through various transportation modes.',
+    address: 'Brahm Shakti Hospital\nU-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086\n(Institution Run By Brahm Shakti Trust · "WE TREAT HE CURES")',
     coordinates: '28.7199° North --- 77.0675° East',
     mapEmbedUrl:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.9754714488344!2d77.06745197631726!3d28.719894475619106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d06f6bf53bc47%3A0xe53be0c8fc0283f3!2sBrahm%20Shakti%20Hospital!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin',
-    googleMapsUrl: 'https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi',
+    googleMapsUrl: 'https://maps.google.com/?q=Brahm+Shakti+Hospital+U-1/78+Budh+Vihar+Main+Kanjhawala+Road+Delhi+110086',
     prominentLocalities: [
       'Budh Vihar Phase I & II',
       'Rohini (Sectors 20, 21, 22, 23, 24, 25)',
@@ -172,7 +172,7 @@ export default function LocationGuidePage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 text-sm">Brahm Shakti Hospital</h3>
-                    <p className="text-[11px] text-slate-500">Pocket C, Budh Vihar Phase I, New Delhi</p>
+                    <p className="text-[11px] text-slate-500">U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086</p>
                   </div>
                 </div>
 
@@ -360,8 +360,8 @@ export default function LocationGuidePage() {
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-800 block">Pocket C, Budh Vihar Phase I</strong>
-                    <span>North-West Delhi - 110085</span>
+                    <strong className="text-slate-800 block">U-1/78, Budh Vihar, Main Kanjhawala Road</strong>
+                    <span>Delhi - 110086</span>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">

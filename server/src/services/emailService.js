@@ -172,8 +172,8 @@ export const sendOtpEmail = async ({ to, otp, patientName = 'Valued Patient', ty
 
               <!-- Hospital Credentials & Contacts -->
               <div style="border-top: 1px solid #e2e8f0; margin-top: 24px; padding-top: 16px; font-size: 12px; color: #64748b; line-height: 1.5;">
-                <strong>Hospital Location:</strong> Pocket C, Budh Vihar Phase I, New Delhi - 110085<br/>
-                <strong>24x7 Emergency Helpline:</strong> 7840089703 &bull; <strong>Reception:</strong> 011-27531683<br/>
+                <strong>Hospital Location:</strong> U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086<br/>
+                <strong>24x7 Helpline:</strong> 7982897603 &bull; <strong>Reception:</strong> 8423934205 / 6388554517<br/>
                 <strong>NABH &amp; NABL Accredited Healthcare Facility</strong>
               </div>
             </td>

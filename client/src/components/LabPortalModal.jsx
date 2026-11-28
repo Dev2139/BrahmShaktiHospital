@@ -157,7 +157,7 @@ export const LabPortalModal = ({ isOpen, onClose }) => {
                 <Phone className="w-3.5 h-3.5 text-[#006699]" />
                 <span>Lab Helpdesk Telephone:</span>
               </div>
-              <div>011-27531683 &middot; 24 Hours Operational</div>
+              <div>7982897603 / 8423934205 &middot; 24 Hours Operational</div>
             </div>
           </form>
         )}

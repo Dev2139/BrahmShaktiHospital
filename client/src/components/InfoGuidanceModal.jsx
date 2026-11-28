@@ -66,7 +66,7 @@ export const InfoGuidanceModal = ({ type, isOpen, onClose, onBookAppointment }) 
         {
           title: "Direct TPA Helpdesk Contact",
           items: [
-            "TPA Cashless Desk Phone: 011-27531683",
+            "TPA Cashless Desk Phone: 8423934205 / 6388554517",
             "Operating Hours: 8:00 AM – 9:00 PM (Monday to Saturday)"
           ]
         }
@@ -157,7 +157,7 @@ export const InfoGuidanceModal = ({ type, isOpen, onClose, onBookAppointment }) 
         {/* Action Buttons */}
         <div className="pt-4 sm:pt-5 mt-3 sm:mt-4 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-[11px] text-gray-500 w-full sm:w-auto text-center sm:text-left">
-            Helpline: <strong>011-27531683</strong>
+            Helpline: <strong>7982897603 / 8423934205</strong>
           </div>
           <button
             onClick={onClose}

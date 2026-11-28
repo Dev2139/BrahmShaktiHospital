@@ -1,25 +1,28 @@
 export const hospitalInfo = {
   name: "Brahm Shakti Hospital",
-  location: "Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085",
-  address: "Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085",
-  established: "Managed by Brahm Shakti Trust (Regd.)",
+  logo: "https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png",
+  location: "U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086",
+  address: "U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086",
+  established: "Institution Run By Brahm Shakti Trust",
   founder: "Brahm Shakti Trust (Regd.)",
   charitableStatus: "250-Bedded Tertiary Healthcare Project by Brahm Shakti Trust (Regd.)",
-  tagline: "Caring for you for Life",
-  ethos: "A total healthcare ethos run through the corridors of Brahm Shakti",
+  tagline: "WE TREAT HE CURES",
+  ethos: "Institution Run By Brahm Shakti Trust · WE TREAT HE CURES",
   accreditations: [
     "NABH Accredited Hospital (National Accreditation Board for Hospitals & Healthcare Providers)",
     "NABL Accredited Diagnostic Laboratories (National Accreditation Board for Testing and Calibration Laboratories)",
     "Empaneled with Leading TPAs, Cashless Insurance & Government Panels (ECHS, CGHS, DGEHS)"
   ],
   contacts: {
-    emergency: "7840089703",
-    casualtyAlternate: "011-27531683",
-    ambulance: "7840089703",
-    opdAppointment: "011-27531683",
-    internationalDesk: "+91-7840089703",
-    email: "enquiry@brahmshaktihospital.com",
-    feedback: "feedback@brahmshaktihospital.com"
+    emergency: "7982897603",
+    casualtyAlternate: "8423934205",
+    ambulance: "7982897603",
+    opdAppointment: "6388554517",
+    internationalDesk: "+91-7982897603",
+    phones: ["7982897603", "8423934205", "6388554517"],
+    email: "brahmshaktihospital@gmail.com",
+    feedback: "brahmshaktihospital@gmail.com",
+    website: "www.brahmshaktihospital.com"
   }
 };
 

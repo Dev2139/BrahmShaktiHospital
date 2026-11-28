@@ -71,7 +71,7 @@ export const TermsOfUsePage = () => {
               Information published on this website regarding specialties, surgical treatments, disease symptoms, and health guides is provided for educational and hospital transparency purposes only. <strong>It does not constitute formal medical diagnosis, clinical advice, or a physician-patient relationship.</strong>
             </p>
             <p className="text-xs sm:text-sm text-amber-900/90 font-medium">
-              If you or someone in your care is experiencing an acute medical emergency, chest pain, difficulty breathing, or severe trauma, immediately contact our 24x7 Emergency Casualty Line at <strong>+91 7840089703</strong> or visit our 24-hour Casualty Desk at Pocket C, Budh Vihar Phase I directly.
+              If you or someone in your care is experiencing an acute medical emergency, chest pain, difficulty breathing, or severe trauma, immediately contact our 24x7 Emergency Casualty Line at <strong>+91 7982897603</strong> or visit our 24-hour Casualty Desk at U-1/78, Budh Vihar, Main Kanjhawala Road directly.
             </p>
           </div>
 
@@ -138,11 +138,11 @@ export const TermsOfUsePage = () => {
           {/* Contact Box */}
           <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs sm:text-sm text-slate-800">
             <div className="font-bold text-slate-900">Hospital Administration &amp; Grievance Redressal</div>
-            <div>Brahm Shakti Hospital, Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085</div>
+            <div>Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086</div>
             <div className="flex flex-wrap items-center gap-4 pt-1">
-              <a href="tel:01127531683" className="flex items-center gap-1.5 text-primary hover:underline font-semibold">
+              <a href="tel:7982897603" className="flex items-center gap-1.5 text-primary hover:underline font-semibold">
                 <Phone className="w-4 h-4" />
-                <span>011-27531683 (Admin Office)</span>
+                <span>7982897603 / 8423934205 (Admin Office)</span>
               </a>
               <Link to="/contact" className="text-primary hover:underline font-semibold">
                 Contact Hospital Help Desk →

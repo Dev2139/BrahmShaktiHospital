@@ -72,10 +72,10 @@ export const CommunityWelfare = ({ onVolunteerOrInquire }) => {
             </p>
           </div>
           <a
-            href="tel:01127531683"
+            href="tel:7982897603"
             className="px-4 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold shrink-0 transition-colors border border-white/20"
           >
-            Hospital Desk: 011-27531683
+            Hospital Desk: 7982897603 / 8423934205
           </a>
         </div>
 

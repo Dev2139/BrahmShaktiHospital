@@ -144,15 +144,15 @@ export const PrivacyPolicyPage = () => {
             </p>
             <div className="p-5 rounded-2xl bg-[#F0FBFC]/70 border border-[#B6EEF6]/80 space-y-2 text-xs sm:text-sm text-slate-800">
               <div className="font-bold text-slate-900">Brahm Shakti Hospital Grievance &amp; Privacy Officer</div>
-              <div>Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi - 110085</div>
+              <div>U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086</div>
               <div className="flex flex-wrap items-center gap-4 pt-1">
-                <a href="mailto:privacy@brahmshaktihospital.com" className="flex items-center gap-1.5 text-primary hover:underline font-semibold">
+                <a href="mailto:brahmshaktihospital@gmail.com" className="flex items-center gap-1.5 text-primary hover:underline font-semibold">
                   <Mail className="w-4 h-4" />
-                  <span>privacy@brahmshaktihospital.com</span>
+                  <span>brahmshaktihospital@gmail.com</span>
                 </a>
-                <a href="tel:01127531683" className="flex items-center gap-1.5 text-primary hover:underline font-semibold">
+                <a href="tel:7982897603" className="flex items-center gap-1.5 text-primary hover:underline font-semibold">
                   <Phone className="w-4 h-4" />
-                  <span>011-27531683 (MRD Desk)</span>
+                  <span>7982897603 / 8423934205</span>
                 </a>
               </div>
             </div>

@@ -8,12 +8,12 @@ export const DEFAULT_LOCATION_GUIDE = {
   author: 'Brahm Shakti Hospital Administration',
   date: '2026-01-16',
   overview:
-    'Brahm Shakti Hospital is situated in the Budh Vihar, Rohini zone of North-West Delhi, providing easy access to nearby localities and institutions through various multi-modal transportation systems.',
-  address: 'Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085',
+    'Brahm Shakti Hospital is situated on Main Kanjhawala Road, Budh Vihar, North-West Delhi (opposite Pooth Kalan Village), providing easy access to nearby localities and institutions through various multi-modal transportation systems.',
+  address: 'U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086',
   coordinates: '28.7199° North --- 77.0675° East',
   mapEmbedUrl:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.9754714488344!2d77.06745197631726!3d28.719894475619106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d06f6bf53bc47%3A0xe53be0c8fc0283f3!2sBrahm%20Shakti%20Hospital!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin',
-  googleMapsUrl: 'https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi',
+  googleMapsUrl: 'https://maps.google.com/?q=Brahm+Shakti+Hospital+U-1/78+Budh+Vihar+Main+Kanjhawala+Road+Delhi+110086',
   prominentLocalities: [
     'Budh Vihar Phase I & II',
     'Rohini (Sectors 20, 21, 22, 23, 24, 25)',

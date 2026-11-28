@@ -150,15 +150,15 @@ export const Navbar = () => {
   return (
     <header ref={navRef} className="sticky top-0 z-50 w-full bg-white shadow-md transition-shadow">
       {/* Main White Navbar */}
-      <nav className="bg-medical-white px-3 sm:px-6 py-2.5 sm:py-3 border-b border-medical-border/60">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+      <nav className="bg-medical-white px-3 sm:px-6 py-2.5 sm:py-3 border-b border-medical-border/60 w-full max-w-full overflow-hidden">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-2 sm:gap-4 w-full">
           {/* Left: Hospital Logo (Wider and prominent) */}
-          <div className="flex-1 flex items-center justify-start min-w-0">
+          <div className="flex items-center justify-start min-w-0">
             <Link to="/" className="flex items-center group shrink-0" aria-label="Brahm Shakti Hospital Home">
               <img
-                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
-                className="h-11 sm:h-13 md:h-15 lg:h-16 w-auto max-w-[240px] sm:max-w-[300px] md:max-w-[360px] object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                className="h-9 sm:h-13 md:h-15 lg:h-16 w-auto max-w-[200px] xs:max-w-[240px] sm:max-w-[300px] md:max-w-[360px] object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 loading="eager"
               />
             </Link>
@@ -425,7 +425,7 @@ export const Navbar = () => {
           </div>
 
           {/* Right: Book Appointment Pill + Mobile Toggle */}
-          <div className="flex-1 flex items-center justify-end gap-2 shrink-0">
+          <div className="flex items-center justify-end gap-2 shrink-0">
             <Link
               to={appointmentTarget}
               className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-md shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
@@ -546,18 +546,18 @@ export const Navbar = () => {
                   </div>
                   <div className="grid grid-cols-1 gap-2 pt-1">
                     <a
-                      href="tel:7840089703"
+                      href="tel:7982897603"
                       className="p-2.5 rounded-xl bg-white border border-rose-200 text-rose-700 font-bold flex items-center justify-between shadow-2xs hover:bg-rose-100/50"
                     >
-                      <span>🚑 Mobile ICU Ambulance:</span>
-                      <span className="text-slate-900 font-black">+91 7840089703</span>
+                      <span>🚑 Helpline &amp; Emergency:</span>
+                      <span className="text-slate-900 font-black">+91 7982897603</span>
                     </a>
                     <a
-                      href="tel:01127531683"
+                      href="tel:8423934205"
                       className="p-2.5 rounded-xl bg-white border border-rose-200 text-rose-700 font-bold flex items-center justify-between shadow-2xs hover:bg-rose-100/50"
                     >
-                      <span>🏥 Casualty &amp; Reception Desk:</span>
-                      <span className="text-slate-900 font-black">011-27531683</span>
+                      <span>🏥 Casualty &amp; Reception:</span>
+                      <span className="text-slate-900 font-black">8423934205 / 6388554517</span>
                     </a>
                   </div>
                 </div>
@@ -839,10 +839,10 @@ export const Navbar = () => {
                         24/7 Helpline
                       </h4>
                       <a
-                        href="tel:7840089703"
+                        href="tel:7982897603"
                         className="text-base font-bold text-slate-900 hover:text-[#018AAE] transition-colors block"
                       >
-                        +91 7840089703
+                        +91 7982897603
                       </a>
                     </div>
 
@@ -852,8 +852,8 @@ export const Navbar = () => {
                         Casualty &amp; Reception
                       </h4>
                       <div className="space-y-1 text-sm font-semibold text-slate-800">
-                        <a href="tel:7840089703" className="block hover:text-[#018AAE] transition-colors">+91 7840089703 (24x7)</a>
-                        <a href="tel:01127531683" className="block hover:text-[#018AAE] transition-colors">011-27531683 (Desk)</a>
+                        <a href="tel:7982897603" className="block hover:text-[#018AAE] transition-colors">+91 7982897603 (24x7)</a>
+                        <a href="tel:8423934205" className="block hover:text-[#018AAE] transition-colors">8423934205 / 6388554517 (Desk)</a>
                       </div>
                     </div>
 
@@ -863,10 +863,10 @@ export const Navbar = () => {
                         Emergency Ambulance
                       </h4>
                       <a
-                        href="tel:7840089703"
+                        href="tel:7982897603"
                         className="text-base font-bold text-rose-600 hover:text-rose-700 transition-colors block"
                       >
-                        +91 7840089703
+                        +91 7982897603
                       </a>
                     </div>
                   </div>
@@ -897,18 +897,18 @@ export const Navbar = () => {
               <div className="space-y-6 pt-1">
                 <div>
                   <h4 className="text-lg font-bold text-[#018AAE] mb-2">24/7 Helpline</h4>
-                  <a href="tel:7840089703" className="text-sm font-semibold text-slate-800 block hover:text-[#018AAE] transition-colors">+91 7840089703</a>
+                  <a href="tel:7982897603" className="text-sm font-semibold text-slate-800 block hover:text-[#018AAE] transition-colors">+91 7982897603</a>
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-[#018AAE] mb-2">Casualty &amp; Reception</h4>
                   <div className="space-y-1 text-sm font-semibold text-slate-800">
-                    <a href="tel:7840089703" className="block hover:text-[#018AAE] transition-colors">+91 7840089703 (24x7)</a>
-                    <a href="tel:01127531683" className="block hover:text-[#018AAE] transition-colors">011-27531683 (Desk)</a>
+                    <a href="tel:7982897603" className="block hover:text-[#018AAE] transition-colors">+91 7982897603 (24x7)</a>
+                    <a href="tel:8423934205" className="block hover:text-[#018AAE] transition-colors">8423934205 / 6388554517 (Desk)</a>
                   </div>
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-[#018AAE] mb-2">Emergency Ambulance</h4>
-                  <a href="tel:7840089703" className="text-sm font-semibold text-rose-600 block hover:text-rose-700 transition-colors">+91 7840089703</a>
+                  <a href="tel:7982897603" className="text-sm font-semibold text-rose-600 block hover:text-rose-700 transition-colors">+91 7982897603</a>
                 </div>
               </div>
             </div>

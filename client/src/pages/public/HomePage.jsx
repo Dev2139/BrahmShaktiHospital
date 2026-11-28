@@ -404,7 +404,7 @@ const INITIAL_GALLERY_PHOTOS = [
 const FAQ_ITEMS = [
   {
     question: 'How do I book an appointment at Brahm Shakti Hospital?',
-    answer: 'Appointments can be booked directly online on our website by choosing your specialist doctor or clinical department, via our 24/7 central hospital helpline at +91-11-4700 5555 / 7840089703, or in-person at the central hospital registration desk in Budh Vihar, Delhi.'
+    answer: 'Appointments can be booked directly online on our website by choosing your specialist doctor or clinical department, via our hospital helplines at +91 7982897603 / 8423934205 / 6388554517, or in-person at the central hospital registration desk at U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086.'
   },
   {
     question: 'What are the OPD consultation timings and registration hours?',
@@ -424,7 +424,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Where is Brahm Shakti Hospital located and how do I reach it?',
-    answer: 'The hospital is situated at Udyog Nagar Metro Station Road, Budh Vihar Phase-1, North-West Delhi - 110086. It is conveniently accessible by Delhi Metro (Green Line - Udyog Nagar Station) and central public bus routes.'
+    answer: 'The hospital is situated at U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086. It is conveniently accessible by Delhi Metro (Rithala Station on Red Line and Udyog Nagar Station on Green Line) and central public bus routes along Main Kanjhawala Road.'
   }
 ];
 
@@ -434,7 +434,7 @@ const INITIAL_HOME_EVENTS = [
     title: 'World Hospice and Palliative Care Day 2026',
     slug: 'world-hospice-and-palliative-care-day-2026',
     coverImage: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795183378/brahmshakti_event_hero_resized.jpg',
-    location: 'Main Auditorium, Brahm Shakti Hospital, Pocket C, Budh Vihar, New Delhi',
+    location: 'Main Auditorium, Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086',
     date: '2026-10-09',
     summary: 'A day of learning, clinical reflection, and compassionate healthcare at Brahm Shakti Hospital.'
   },
@@ -533,7 +533,7 @@ Key Patient Facilities:
 1. Subsidized Consultation: Daily OPD assessment by consultant chest physicians and pediatricians between 09:00 AM and 04:00 PM.
 2. Rapid Nebulization Suite: Equipped with hospital-grade ultrasonic nebulizers and oxygen concentrators.
 3. Priority Senior Citizen Desk: Wheelchair access and zero-wait triage for patients aged 60 and above experiencing acute shortness of breath.
-4. 24x7 Emergency Casualty: Round-the-clock emergency admission and nebulization available via Emergency Desk (Tel: 011-27531683 / 7840089703).
+4. 24x7 Emergency Casualty: Round-the-clock emergency admission and nebulization available via Emergency Desk (Tel: 7982897603 / 8423934205 / 6388554517).
 
 For further assistance, please contact the Main Hospital Reception or consult the Desk Officer at Counter 4.`,
     category: 'Patient Advisory',
@@ -597,7 +597,7 @@ To optimize patient comfort and minimize early-morning chill exposure for infant
 - Sunday Specialty Clinics: 10:00 AM to 01:00 PM (Cardiology, Diabetology & Pediatrics)
 - Emergency Casualty & Trauma Ward: Functioning 24 Hours / 7 Days continuously.
 
-Digital appointment tokens can be scheduled via our official online booking portal or by calling our desk at 011-27531683.`,
+Digital appointment tokens can be scheduled via our official online booking portal or by calling our desk at 7982897603 / 8423934205 / 6388554517.`,
     category: 'OPD Schedule',
     refNumber: 'BSH/OPD/2026/091',
     audience: 'patients',
@@ -623,7 +623,7 @@ ISSUED BY: Community Health Outreach Division, Brahm Shakti Trust
 
 Under the philanthropic banner of Brahm Shakti Trust, the hospital will conduct a Free Preventive Diabetes & Hypertension Camp on every Sunday throughout November and December 2026.
 
-Camp Venue: Main OPD Foyer, Brahm Shakti Hospital, Pocket C, Budh Vihar Phase I, Delhi 110085.
+Camp Venue: Main OPD Foyer, Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086.
 Timings: 09:00 AM to 01:00 PM.
 Free Deliverables: Random Blood Sugar Test, BP checkup, BMI calculation, and diet counseling by certified nutritionists. No registration fee required.`,
     category: 'Health Campaign',
@@ -1336,11 +1336,11 @@ export const HomePage = () => {
       <body>
         <div class="letterhead-container">
           <div class="hosp-logo-wrap">
-            <img src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png" class="hosp-logo" alt="Brahm Shakti Hospital" />
+            <img src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png" class="hosp-logo" alt="Brahm Shakti Hospital" />
             <div>
               <div class="hosp-name">Brahm Shakti Hospital &amp; Research Centre</div>
               <div class="hosp-tag">NABH &amp; NABL ACCREDITED TERTIARY HEALTHCARE INSTITUTION</div>
-              <div class="hosp-campus">Pocket C, B-Block, NIT-3 Phase-1, Budh Vihar, Rohini, New Delhi - 110085 · Tel: 011-27531683, 7840089703</div>
+              <div class="hosp-campus">U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086 · Tel: 7982897603, 8423934205, 6388554517 · Email: brahmshaktihospital@gmail.com</div>
             </div>
           </div>
           <div class="accred-box">
@@ -1409,7 +1409,7 @@ export const HomePage = () => {
         <div class="auth-box">
           <div class="helpline-info">
             <div>Patient Assistance &amp; 24x7 Emergency Casualty:</div>
-            <strong>011-27531683 · 7840089703</strong>
+            <strong>7982897603 · 8423934205 · 6388554517</strong>
             <div>Budh Vihar Main Campus, Delhi</div>
           </div>
           <div class="signoff-seal-wrap">
@@ -2188,12 +2188,12 @@ export const HomePage = () => {
 
                       {/* Direct Phone Dialers */}
                       <a
-                        href="tel:01127531683"
+                        href="tel:7982897603"
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#EBF8FA] border border-[#018AAE]/40 text-[#018AAE] hover:border-[#018AAE] text-xs font-bold transition-all shadow-2xs shrink-0"
                         title="Call Hospital Helpline"
                       >
                         <PhoneCall className="w-3.5 h-3.5 text-[#018AAE]" />
-                        <span>011-27531683</span>
+                        <span>7982897603</span>
                       </a>
                     </div>
                   </div>
@@ -2463,7 +2463,7 @@ export const HomePage = () => {
                   <div className="absolute top-3 right-3 z-10">
                     <span className="px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-bold flex items-center gap-1.5 shadow-md">
                       <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Budh Vihar Main Campus</span>
+                      <span>U-1/78 Main Kanjhawala Road</span>
                     </span>
                   </div>
                 </div>
@@ -2477,14 +2477,31 @@ export const HomePage = () => {
                     </div>
 
                     <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug">
-                      Brahm Shakti Hospital is located in Budh Vihar, Rohini Zone
+                      Brahm Shakti Hospital is located on Main Kanjhawala Road, Budh Vihar
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085. Managed by Brahm Shakti Trust (Regd.).
-                    </p>
+                    <div className="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-1">
+                      <p className="font-bold text-slate-900">
+                        U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086
+                      </p>
+                      <p className="text-[12px] text-[#018AAE] font-semibold">
+                        Institution Run By Brahm Shakti Trust · "WE TREAT HE CURES"
+                      </p>
+                    </div>
 
                     <div className="space-y-2 pt-2 border-t border-slate-100 text-xs text-slate-700">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-md bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold text-[11px] shrink-0">
+                          📞
+                        </span>
+                        <span><strong>Phone:</strong> 7982897603, 8423934205, 6388554517</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-md bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold text-[11px] shrink-0">
+                          ✉️
+                        </span>
+                        <span><strong>Email:</strong> brahmshaktihospital@gmail.com</span>
+                      </div>
                       <div className="flex items-center gap-2">
                         <span className="w-6 h-6 rounded-md bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold text-[11px] shrink-0">
                           🚇
@@ -2495,7 +2512,7 @@ export const HomePage = () => {
                         <span className="w-6 h-6 rounded-md bg-[#F0FBFC] text-[#018AAE] flex items-center justify-center font-bold text-[11px] shrink-0">
                           🚌
                         </span>
-                        <span><strong>Road Access:</strong> Outer Ring Road &amp; Mangolpuri Flyover Corridor</span>
+                        <span><strong>Road Access:</strong> Main Kanjhawala Road corridor (Opp. Pooth Kalan)</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="w-6 h-6 rounded-md bg-rose-50 text-rose-600 flex items-center justify-center font-bold text-[11px] shrink-0">
@@ -2516,7 +2533,7 @@ export const HomePage = () => {
                     </Link>
 
                     <a
-                      href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
+                      href="https://maps.google.com/?q=Brahm+Shakti+Hospital+U-1/78+Budh+Vihar+Main+Kanjhawala+Road+Delhi+110086"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#018AAE] hover:underline"
@@ -3462,9 +3479,11 @@ export const HomePage = () => {
                       <span>Patient Assistance &amp; 24x7 Emergency Casualty:</span>
                     </div>
                     <div className="font-bold text-[#0B2545] flex items-center gap-2 text-xs">
-                      <span>011-27531683</span>
+                      <span>7982897603</span>
                       <span>·</span>
-                      <span>7840089703</span>
+                      <span>8423934205</span>
+                      <span>·</span>
+                      <span>6388554517</span>
                     </div>
                   </div>
                 </div>
@@ -3481,7 +3500,7 @@ export const HomePage = () => {
                       <span>Print Circular</span>
                     </button>
                     <span className="text-[11px] text-slate-400 hidden sm:inline">
-                      Brahm Shakti Hospital · Budh Vihar, Delhi 110085
+                      Brahm Shakti Hospital · U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086
                     </span>
                   </div>
 

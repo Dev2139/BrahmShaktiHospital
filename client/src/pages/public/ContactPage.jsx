@@ -102,10 +102,10 @@ export const ContactPage = () => {
                   <div>
                     <strong className="block text-sm font-bold text-secondary mb-0.5">Physical Campus</strong>
                     <p className="text-medical-muted leading-relaxed">
-                      Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085
+                      U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086
                     </p>
                     <span className="text-[11px] text-primary font-semibold block mt-1">
-                      Managed by Brahm Shakti Trust (Regd.)
+                      Institution Run By Brahm Shakti Trust · "WE TREAT HE CURES"
                     </span>
                   </div>
                 </div>
@@ -115,11 +115,11 @@ export const ContactPage = () => {
                     <PhoneCall className="w-5 h-5" />
                   </div>
                   <div>
-                    <strong className="block text-sm font-bold text-secondary mb-0.5">24x7 Emergency Casualty</strong>
-                    <a href="tel:7840089703" className="text-status-error font-black text-base hover:underline block">
-                      7840089703
+                    <strong className="block text-sm font-bold text-secondary mb-0.5">Emergency Casualty &amp; Helpline</strong>
+                    <a href="tel:7982897603" className="text-status-error font-black text-base hover:underline block">
+                      7982897603
                     </a>
-                    <span className="text-[11px] text-medical-muted">Mobile ICU Ambulance & Trauma Desk</span>
+                    <span className="text-[11px] text-medical-muted">24x7 Ambulance &amp; Trauma Resuscitation Desk</span>
                   </div>
                 </div>
 
@@ -128,10 +128,15 @@ export const ContactPage = () => {
                     <PhoneCall className="w-5 h-5" />
                   </div>
                   <div>
-                    <strong className="block text-sm font-bold text-secondary mb-0.5">General Reception & OPD</strong>
-                    <a href="tel:01127531683" className="text-secondary font-bold text-sm hover:underline block">
-                      011-27531683
-                    </a>
+                    <strong className="block text-sm font-bold text-secondary mb-0.5">Hospital Desk &amp; OPD Appointments</strong>
+                    <div className="space-y-0.5">
+                      <a href="tel:8423934205" className="text-secondary font-bold text-sm hover:underline block">
+                        8423934205
+                      </a>
+                      <a href="tel:6388554517" className="text-secondary font-bold text-sm hover:underline block">
+                        6388554517
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -141,8 +146,8 @@ export const ContactPage = () => {
                   </div>
                   <div>
                     <strong className="block text-sm font-bold text-secondary mb-0.5">Email Communications</strong>
-                    <a href="mailto:enquiry@brahmshaktihospital.com" className="text-primary font-bold hover:underline block">
-                      enquiry@brahmshaktihospital.com
+                    <a href="mailto:brahmshaktihospital@gmail.com" className="text-primary font-bold hover:underline block">
+                      brahmshaktihospital@gmail.com
                     </a>
                   </div>
                 </div>
@@ -279,10 +284,10 @@ export const ContactPage = () => {
           <div className="p-6 border-b border-medical-border flex items-center justify-between">
             <div>
               <h3 className="font-bold text-secondary text-base">Hospital Location Map</h3>
-              <p className="text-xs text-medical-muted">Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi - 110085</p>
+              <p className="text-xs text-medical-muted">U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086</p>
             </div>
             <a
-              href="https://maps.google.com/?q=Brahm+Shakti+Hospital+Budh+Vihar+New+Delhi"
+              href="https://maps.google.com/?q=Brahm+Shakti+Hospital+U-1/78+Budh+Vihar+Main+Kanjhawala+Road+Delhi+110086"
               target="_blank"
               rel="noreferrer"
               className="text-xs font-bold text-primary hover:underline"
@@ -292,7 +297,7 @@ export const ContactPage = () => {
           </div>
           <iframe
             title="Brahm Shakti Hospital Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.878563381648!2d77.0673!3d28.7188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d06f698308cf5%3A0xb3fc6440ca4b4cb7!2sBrahm%20Shakti%20Hospital!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.9754714488344!2d77.06745197631726!3d28.719894475619106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d06f6bf53bc47%3A0xe53be0c8fc0283f3!2sBrahm%20Shakti%20Hospital!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
             width="100%"
             height="380"
             style={{ border: 0 }}

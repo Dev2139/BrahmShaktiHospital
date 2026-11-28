@@ -92,7 +92,7 @@ export const AdminEventsPage = () => {
     setEditingEventId(null);
     setTitle('');
     setCoverImage('');
-    setLocation('Main Auditorium, Brahm Shakti Hospital, Pocket C, Budh Vihar, New Delhi');
+    setLocation('Main Auditorium, Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086');
     setDate(new Date().toISOString().split('T')[0]);
     setSummary('');
     setDescription('');
@@ -528,7 +528,7 @@ export const AdminEventsPage = () => {
                     type="text"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    placeholder="e.g. Main Auditorium, Brahm Shakti Hospital, Pocket C, Budh Vihar"
+                    placeholder="e.g. Main Auditorium, Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road"
                     required
                     className="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 font-medium focus:outline-hidden focus:border-[#018AAE]"
                   />

@@ -31,7 +31,7 @@ export const Footer = ({
           <div className="lg:col-span-4 space-y-4">
             <div className="inline-block p-1.5 sm:p-2 bg-white rounded-xl shadow-xs border border-white/20">
               <img
-                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
                 className="h-10 sm:h-12 w-auto object-contain"
               />
@@ -45,18 +45,18 @@ export const Footer = ({
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-sky-400 mt-0.5 shrink-0" />
                 <span className="text-xs leading-relaxed">
-                  Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085
+                  U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-rose-400 shrink-0" />
                 <span className="text-xs">
-                  Emergency: <strong>+91-7840089703</strong> &middot; Board: <strong>011-27531683</strong>
+                  Helplines: <strong>+91-7982897603</strong> &middot; <strong>8423934205</strong> &middot; <strong>6388554517</strong>
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-sky-400 shrink-0" />
-                <span className="text-xs">enquiry@brahmshaktihospital.com</span>
+                <span className="text-xs">brahmshaktihospital@gmail.com</span>
               </div>
             </div>
           </div>
@@ -256,7 +256,7 @@ export const Footer = ({
           <div className="text-[11px] sm:text-xs">
             &copy; {new Date().getFullYear()} Brahm Shakti Hospital Trust (Regd.), New Delhi. All rights reserved.
             <span className="block sm:inline sm:ml-2 text-white/40">
-              Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085 &middot; Caring for you for Life.
+              U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086 &middot; Institution Run By Brahm Shakti Trust &middot; WE TREAT HE CURES.
             </span>
           </div>
 

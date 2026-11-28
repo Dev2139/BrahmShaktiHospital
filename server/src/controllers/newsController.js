@@ -17,7 +17,7 @@ Key Patient Facilities:
 1. Subsidized Consultation: Daily OPD assessment by consultant chest physicians and pediatricians between 09:00 AM and 04:00 PM.
 2. Rapid Nebulization Suite: Equipped with hospital-grade ultrasonic nebulizers and oxygen concentrators.
 3. Priority Senior Citizen Desk: Wheelchair access and zero-wait triage for patients aged 60 and above experiencing acute shortness of breath.
-4. 24x7 Emergency Casualty: Round-the-clock emergency admission and nebulization available via Emergency Desk (Tel: 011-27531683 / 7840089703).
+4. 24x7 Emergency Casualty: Round-the-clock emergency admission and nebulization available via Emergency Desk (Tel: 7982897603 / 8423934205 / 6388554517).
 
 For further assistance, please contact the Main Hospital Reception or consult the Desk Officer at Counter 4.`,
     category: 'Patient Advisory',
@@ -75,7 +75,7 @@ To optimize patient comfort and minimize early-morning chill exposure for infant
 - Sunday Specialty Clinics: 10:00 AM to 01:00 PM (Cardiology, Diabetology & Pediatrics)
 - Emergency Casualty & Trauma Ward: Functioning 24 Hours / 7 Days continuously.
 
-Digital appointment tokens can be scheduled via our official online booking portal or by calling our desk at 011-27531683.`,
+Digital appointment tokens can be scheduled via our official online booking portal or by calling our desk at 7982897603 / 8423934205 / 6388554517.`,
     category: 'OPD Schedule',
     refNumber: 'BSH/OPD/2026/091',
     audience: 'patients',
@@ -98,7 +98,7 @@ ISSUED BY: Community Health Outreach Division, Brahm Shakti Trust
 
 Under the philanthropic banner of Brahm Shakti Trust, the hospital will conduct a Free Preventive Diabetes & Hypertension Camp on every Sunday throughout November and December 2026.
 
-Camp Venue: Main OPD Foyer, Brahm Shakti Hospital, Pocket C, Budh Vihar Phase I, Delhi 110085.
+Camp Venue: Main OPD Foyer, Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086.
 Timings: 09:00 AM to 01:00 PM.
 Free Deliverables: Random Blood Sugar Test, BP checkup, BMI calculation, and diet counseling by certified nutritionists. No registration fee required.`,
     category: 'Health Campaign',

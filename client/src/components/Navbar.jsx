@@ -114,7 +114,7 @@ export const Navbar = ({
           {/* Right: Minimal Essentials (Location, Lab Reports, Language) */}
           <div className="flex items-center gap-3 sm:gap-5 text-[11px] sm:text-xs">
             <span className="hidden md:inline text-slate-300 font-normal">
-              Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi – 110085
+              U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086
             </span>
 
             <span className="hidden md:inline text-white/20">&middot;</span>
@@ -156,7 +156,7 @@ export const Navbar = ({
             aria-label="Brahm Shakti Hospital Home"
           >
             <img
-              src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+              src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
               alt="Brahm Shakti Hospital"
               className="h-9 xs:h-11 sm:h-13 md:h-15 w-auto max-w-[200px] xs:max-w-[240px] sm:max-w-[320px] md:max-w-[360px] object-contain transition-transform duration-200 group-hover:scale-[1.01]"
               loading="eager"

@@ -56,8 +56,8 @@ export const Footer = () => {
     { label: 'Privacy Policy', path: '/privacy-policy' },
     { label: 'Terms of Use', path: '/terms-of-use' },
     { label: 'Patient Feedback', path: '/contact' },
-    { label: 'Emergency 24/7: 7840089703', path: 'tel:7840089703', isExternal: true },
-    { label: 'Helpline: 011-27531683', path: 'tel:01127531683', isExternal: true }
+    { label: 'Emergency: 7982897603', path: 'tel:7982897603', isExternal: true },
+    { label: 'Helpline: 8423934205', path: 'tel:8423934205', isExternal: true }
   ];
 
   return (
@@ -115,7 +115,7 @@ export const Footer = () => {
           <div className="col-span-3 pr-6 xl:pr-8 space-y-4">
             <Link to="/" className="inline-block" aria-label="Brahm Shakti Hospital Home">
               <img
-                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital & Research Centre"
                 className="h-12 xl:h-14 w-auto object-contain"
                 loading="lazy"
@@ -127,24 +127,25 @@ export const Footer = () => {
               <MapPin className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold text-slate-900">Brahm Shakti Hospital</p>
-                <p>Pocket C, B-Block, NIT-3 Phase-1,</p>
-                <p>Rohini, New Delhi – 110085</p>
+                <p className="text-[11px] text-[#018AAE] font-semibold">Institution Run By Brahm Shakti Trust · "WE TREAT HE CURES"</p>
+                <p>U-1/78, Budh Vihar, Main Kanjhawala Road,</p>
+                <p>Delhi-110086</p>
               </div>
             </div>
 
             {/* Phone & Email */}
             <div className="space-y-1.5 text-[12.5px] text-slate-600 leading-snug">
-              <a href="tel:7840089703" className="flex items-center gap-2 hover:text-[#018AAE] transition-colors">
+              <a href="tel:7982897603" className="flex items-center gap-2 hover:text-[#018AAE] transition-colors">
                 <Phone className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
-                <span>+91-7840089703 (Reception)</span>
+                <span>+91-7982897603 / 8423934205</span>
               </a>
-              <a href="tel:01127531683" className="flex items-center gap-2 hover:text-[#018AAE] transition-colors">
+              <a href="tel:6388554517" className="flex items-center gap-2 hover:text-[#018AAE] transition-colors">
                 <Phone className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
-                <span>+91-27531683 / 7840089703</span>
+                <span>+91-6388554517 (Desk)</span>
               </a>
-              <a href="mailto:info@brahmshaktihospital.com" className="flex items-center gap-2 hover:text-[#018AAE] transition-colors">
+              <a href="mailto:brahmshaktihospital@gmail.com" className="flex items-center gap-2 hover:text-[#018AAE] transition-colors">
                 <Mail className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
-                <span>info@brahmshaktihospital.com</span>
+                <span>brahmshaktihospital@gmail.com</span>
               </a>
             </div>
 
@@ -324,7 +325,7 @@ export const Footer = () => {
           <div className="space-y-3 pb-3 border-b border-slate-200">
             <Link to="/" className="inline-block" aria-label="Brahm Shakti Hospital Home">
               <img
-                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
                 className="h-10 w-auto object-contain"
               />
@@ -334,14 +335,15 @@ export const Footer = () => {
               <MapPin className="w-4 h-4 text-[#018AAE] shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold text-slate-900">Brahm Shakti Hospital</p>
-                <p>Pocket C, B-Block, NIT-3 Phase-1, Rohini, New Delhi – 110085</p>
+                <p className="text-[11px] text-[#018AAE] font-semibold">Institution Run By Brahm Shakti Trust · "WE TREAT HE CURES"</p>
+                <p>U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086</p>
               </div>
             </div>
 
             <div className="space-y-1 text-xs text-slate-600">
-              <p>+91-7840089703 (Reception)</p>
-              <p>+91-27531683 / 7840089703</p>
-              <p>info@brahmshaktihospital.com</p>
+              <p>+91-7982897603 / 8423934205</p>
+              <p>+91-6388554517 (Desk)</p>
+              <p>brahmshaktihospital@gmail.com</p>
             </div>
           </div>
 

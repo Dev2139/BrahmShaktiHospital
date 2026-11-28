@@ -185,7 +185,7 @@ export const DashboardLayout = () => {
         <div className="p-4 border-b border-white/10 flex items-center justify-center">
           <Link to="/" className="inline-block bg-white rounded-xl p-2 shadow-sm group hover:scale-105 transition-transform" aria-label="Brahm Shakti Hospital Home">
             <img
-              src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+              src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
               alt="Brahm Shakti Hospital"
               className="h-10 w-auto object-contain"
             />
@@ -360,7 +360,7 @@ export const DashboardLayout = () => {
               <div className="p-4 border-b border-white/10 flex items-center justify-between">
                 <Link to="/" onClick={() => setSidebarOpen(false)} className="inline-block bg-white rounded-xl p-1.5 shadow-sm" aria-label="Brahm Shakti Hospital Home">
                   <img
-                    src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                    src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                     alt="Brahm Shakti Hospital"
                     className="h-8 w-auto object-contain"
                   />

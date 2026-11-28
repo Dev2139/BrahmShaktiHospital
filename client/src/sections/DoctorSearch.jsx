@@ -270,7 +270,7 @@ export const DoctorSearch = forwardRef(({
               </div>
               <div className="text-xs">
                 <span className="text-slate-500 block text-[11px]">Central OPD Desk:</span>
-                <a href="tel:01127531683" className="font-bold text-[#0C2340] hover:text-[#006699] text-xs sm:text-sm">011-27531683</a>
+                <a href="tel:7982897603" className="font-bold text-[#0C2340] hover:text-[#006699] text-xs sm:text-sm">7982897603 / 8423934205</a>
               </div>
             </div>
             <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 sm:hidden">
@@ -374,7 +374,7 @@ export const DoctorSearch = forwardRef(({
             <User className="w-10 h-10 text-slate-300 mx-auto" />
             <h3 className="font-display font-bold text-slate-800 text-lg">No consultants found</h3>
             <p className="text-xs text-slate-500 max-w-sm mx-auto">
-              Please try clearing your search keyword or call our hospital desk at <strong>011-27531683</strong>.
+              Please try clearing your search keyword or call our hospital desk at <strong>7982897603 / 8423934205</strong>.
             </p>
             <button
               onClick={handleReset}

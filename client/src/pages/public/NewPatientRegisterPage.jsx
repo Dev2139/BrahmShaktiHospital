@@ -165,7 +165,7 @@ export const NewPatientRegisterPage = () => {
   const [email, setEmail] = useState('');
   const [country, setCountry] = useState('India');
   const [stateUt, setStateUt] = useState('Delhi');
-  const [pincode, setPincode] = useState('110085');
+  const [pincode, setPincode] = useState('110086');
   const [district, setDistrict] = useState('North West Delhi');
   const [addressLine1, setAddressLine1] = useState('');
   const [aadhaar, setAadhaar] = useState('');
@@ -428,7 +428,7 @@ export const NewPatientRegisterPage = () => {
           <div className="flex items-center gap-2.5">
             <Link to="/" className="flex items-center gap-2.5 group" title="Brahm Shakti Hospital Home">
               <img
-                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                 alt="Brahm Shakti Hospital"
                 className="h-8 sm:h-9 w-auto object-contain"
               />
@@ -1117,18 +1117,18 @@ export const NewPatientRegisterPage = () => {
 
           <div className="flex flex-col md:flex-row items-center justify-center md:justify-end gap-2 md:gap-5 text-xs font-medium w-full md:w-auto text-center">
             <a
-              href="mailto:helpdesk@brahmshaktihospital.com"
+              href="mailto:brahmshaktihospital@gmail.com"
               className="inline-flex items-center justify-center gap-1.5 hover:text-[#006680] transition-colors whitespace-nowrap text-center"
             >
               <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-              <span>helpdesk@brahmshaktihospital.com</span>
+              <span>brahmshaktihospital@gmail.com</span>
             </a>
             <a
-              href="tel:01127531683"
+              href="tel:7982897603"
               className="inline-flex items-center justify-center gap-1.5 text-rose-600 font-semibold hover:underline whitespace-nowrap text-center"
             >
               <Phone className="w-3.5 h-3.5 text-rose-500 shrink-0" />
-              <span>011-27531683 / 7840089703</span>
+              <span>7982897603 / 8423934205</span>
             </a>
           </div>
         </div>

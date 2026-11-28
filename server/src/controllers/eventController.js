@@ -8,7 +8,7 @@ export const INITIAL_EVENTS = [
     title: 'World Hospice and Palliative Care Day 2026',
     slug: 'world-hospice-and-palliative-care-day-2026',
     coverImage: 'https://res.cloudinary.com/urzka7oz/image/upload/v1795183378/brahmshakti_event_hero_resized.jpg',
-    location: 'Main Auditorium, Brahm Shakti Hospital, Pocket C, Budh Vihar, New Delhi',
+    location: 'Main Auditorium, Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086',
     date: '2026-10-09',
     summary: 'A day of learning, clinical reflection, and compassionate healthcare at Brahm Shakti Hospital.',
     description: `On 5th October, the Department of Palliative Medicine and Critical Care at Brahm Shakti Hospital marked World Hospice and Palliative Care Day with over 125 medical delegates, senior clinicians, and community healthcare leaders coming together to reflect on what compassionate, patient-first medicine truly means.

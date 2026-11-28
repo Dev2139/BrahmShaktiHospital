@@ -25,7 +25,7 @@ const locationGuideSchema = new mongoose.Schema(
     },
     address: {
       type: String,
-      default: 'Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi, Delhi, 110085'
+      default: 'U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086'
     },
     coordinates: {
       type: String,

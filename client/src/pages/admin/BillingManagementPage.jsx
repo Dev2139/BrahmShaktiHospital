@@ -248,12 +248,12 @@ export const BillingManagementPage = () => {
             <div className="flex items-start justify-between border-b-2 border-secondary pb-4">
               <div>
                 <img
-                  src="https://res.cloudinary.com/urzka7oz/image/upload/v1795244093/WhatsApp_Image_2026-11-20_at_10.36.32_PM-removebg-preview.png"
+                  src="https://res.cloudinary.com/urzka7oz/image/upload/v1795869190/WhatsApp_Image_2026-11-28_at_12.03.33_PM-removebg-preview.png"
                   alt="Brahm Shakti Hospital"
                   className="h-10 sm:h-12 w-auto object-contain mb-1"
                 />
                 <p className="text-[11px] text-medical-muted mt-0.5">
-                  Pocket C, Budh Vihar Phase I, Pooth Kurd, New Delhi - 110085
+                  U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086
                 </p>
                 <p className="text-[10px] text-primary font-bold">
                   Managed by Brahm Shakti Trust (Regd.) · NABH & NABL Accredited

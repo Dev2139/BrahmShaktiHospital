@@ -263,7 +263,7 @@ export const DoctorProfilePage = () => {
                 {/* Hospital Address */}
                 <div className="flex items-center justify-center sm:justify-start gap-1.5 text-xs text-slate-500 pt-0.5">
                   <Building2 className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
-                  <span>Brahm Shakti Hospital, Pocket C, Budh Vihar Phase I, New Delhi</span>
+                  <span>Brahm Shakti Hospital, U-1/78, Budh Vihar, Main Kanjhawala Road, Delhi-110086</span>
                 </div>
               </div>
             </div>
