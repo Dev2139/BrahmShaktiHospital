@@ -450,13 +450,6 @@ export const Navbar = () => {
             
             {/* THE 4 PRIMARY NAVBARS (Essential Healthcare Access - 2x2 Grid) */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between px-1">
-                <span className="text-[10px] font-black uppercase tracking-wider text-[#015B73] bg-[#F0FBFC] px-2 py-0.5 rounded-md border border-[#B6EEF6]/60">
-                  Primary Healthcare Navbars
-                </span>
-                <span className="text-[10px] text-slate-400 font-bold">4 Key Portals</span>
-              </div>
-
               {/* 2x2 Grid of the 4 Essential Navbars */}
               <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
                 {/* 1. Find a Doctor */}
