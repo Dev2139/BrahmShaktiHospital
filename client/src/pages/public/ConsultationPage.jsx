@@ -472,18 +472,18 @@ export const ConsultationPage = () => {
               </p>
             </div>
 
-            {/* Quick Dropdown Selectors: Select Specialty & Select Doctor (No typing needed) */}
-            <div className="flex items-center gap-2">
+            {/* Quick Dropdown Selectors: Select Specialty & Select Doctor (Responsive, no overflow) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:flex md:items-center gap-2 w-full md:w-auto">
               {/* Select Speciality */}
-              <div className="relative min-w-[150px] sm:min-w-[180px]">
+              <div className="relative w-full md:w-44 lg:w-52 min-w-0">
                 <label className="text-[9px] font-black uppercase tracking-wider text-slate-400 block mb-0.5">
                   Speciality
                 </label>
-                <div className="relative">
+                <div className="relative min-w-0">
                   <select
                     value={selectedSpeciality}
                     onChange={(e) => handleSpecialtyChange(e.target.value)}
-                    className="w-full px-2.5 py-1.5 sm:py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 appearance-none pr-7 cursor-pointer focus:outline-hidden focus:border-[#018AAE]"
+                    className="w-full px-2.5 py-1.5 sm:py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 appearance-none pr-7 cursor-pointer focus:outline-hidden focus:border-[#018AAE] truncate shadow-2xs"
                   >
                     <option value="all">All Specialities</option>
                     {departments.map((dept) => (
@@ -497,15 +497,15 @@ export const ConsultationPage = () => {
               </div>
 
               {/* Select Doctor */}
-              <div className="relative min-w-[170px] sm:min-w-[210px]">
+              <div className="relative w-full md:w-48 lg:w-56 min-w-0">
                 <label className="text-[9px] font-black uppercase tracking-wider text-slate-400 block mb-0.5">
                   Doctor
                 </label>
-                <div className="relative">
+                <div className="relative min-w-0">
                   <select
                     value={activeDoctor?.id || ''}
                     onChange={(e) => handleDoctorChange(e.target.value)}
-                    className="w-full px-2.5 py-1.5 sm:py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 appearance-none pr-7 cursor-pointer focus:outline-hidden focus:border-[#018AAE]"
+                    className="w-full px-2.5 py-1.5 sm:py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 appearance-none pr-7 cursor-pointer focus:outline-hidden focus:border-[#018AAE] truncate shadow-2xs"
                   >
                     {availableDoctors.map((doc) => (
                       <option key={doc.id} value={doc.id}>

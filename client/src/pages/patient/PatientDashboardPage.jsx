@@ -797,18 +797,20 @@ export const PatientDashboardPage = () => {
 
       {/* ================= DEDICATED PORTAL FOOTER ================= */}
       <footer className="bg-white border-t border-slate-200 mt-auto py-4">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
-          <div className="font-semibold">&copy; 2026 Brahm Shakti Hospital.</div>
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+          <div className="font-semibold text-center md:text-left">&copy; 2026 Brahm Shakti Hospital.</div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#73E0EF] bg-[#F0FBFC] text-[#018AAE] font-bold text-xs">
             <ShieldCheck className="w-4 h-4 text-[#018AAE]" />
             <span>NABH &amp; NABL Accredited</span>
           </div>
-          <div className="flex items-center gap-4 text-xs font-medium">
-            <a href="mailto:helpdesk@brahmshaktihospital.com" className="hover:text-[#018AAE] transition-colors">
-              helpdesk@brahmshaktihospital.com
+          <div className="flex flex-col md:flex-row items-center justify-center md:justify-end gap-2 md:gap-4 text-xs font-medium w-full md:w-auto text-center">
+            <a href="mailto:helpdesk@brahmshaktihospital.com" className="inline-flex items-center justify-center gap-1.5 hover:text-[#018AAE] transition-colors whitespace-nowrap text-center">
+              <Mail className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
+              <span>helpdesk@brahmshaktihospital.com</span>
             </a>
-            <a href="tel:01127531683" className="text-rose-600 font-bold hover:underline">
-              011-27531683
+            <a href="tel:01127531683" className="inline-flex items-center justify-center gap-1.5 text-rose-600 font-bold hover:underline whitespace-nowrap text-center">
+              <Phone className="w-3.5 h-3.5 shrink-0" />
+              <span>011-27531683 / 7840089703</span>
             </a>
           </div>
         </div>

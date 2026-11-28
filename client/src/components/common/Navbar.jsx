@@ -446,10 +446,10 @@ export const Navbar = () => {
 
         {/* Mobile Navigation Drawer with Accordion Dropdowns & The 4 Primary Navbars */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-slate-200 mt-2 pt-3 pb-8 space-y-4 max-h-[calc(100vh-80px)] overflow-y-auto animate-in fade-in duration-200 bg-white px-3 sm:px-4">
+          <div className="lg:hidden border-t border-slate-200 mt-0 pt-1 pb-6 space-y-2.5 max-h-[calc(100vh-65px)] overflow-y-auto animate-in fade-in duration-200 bg-white px-3 sm:px-4">
             
             {/* THE 4 PRIMARY NAVBARS (Essential Healthcare Access - 2x2 Grid) */}
-            <div className="space-y-2">
+            <div>
               {/* 2x2 Grid of the 4 Essential Navbars */}
               <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
                 {/* 1. Find a Doctor */}

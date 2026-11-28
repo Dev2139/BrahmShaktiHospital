@@ -613,7 +613,7 @@ export const PatientTypePage = () => {
       {/* -------------------- 3. EXACT FOOTER (MATCHING REFERENCE IMAGE) -------------------- */}
       <footer className="bg-white border-t border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-600">
-          <div className="font-semibold text-slate-700">
+          <div className="font-semibold text-slate-700 text-center md:text-left">
             &copy; 2026 Brahm Shakti Hospital.
           </div>
 
@@ -622,19 +622,19 @@ export const PatientTypePage = () => {
             <span>NABH &amp; NABL Accredited</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs font-medium">
+          <div className="flex flex-col md:flex-row items-center justify-center md:justify-end gap-2 md:gap-4 text-xs font-medium w-full md:w-auto text-center">
             <a
               href="mailto:helpdesk@brahmshaktihospital.com"
-              className="flex items-center gap-1.5 hover:text-[#018AAE] transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 hover:text-[#018AAE] transition-colors whitespace-nowrap text-center"
             >
-              <Mail className="w-3.5 h-3.5 text-[#018AAE]" />
+              <Mail className="w-3.5 h-3.5 text-[#018AAE] shrink-0" />
               <span>helpdesk@brahmshaktihospital.com</span>
             </a>
             <a
               href="tel:01127531683"
-              className="flex items-center gap-1.5 text-rose-600 font-bold hover:underline"
+              className="inline-flex items-center justify-center gap-1.5 text-rose-600 font-bold hover:underline whitespace-nowrap text-center"
             >
-              <Phone className="w-3.5 h-3.5" />
+              <Phone className="w-3.5 h-3.5 shrink-0" />
               <span>011-27531683 / 7840089703</span>
             </a>
           </div>

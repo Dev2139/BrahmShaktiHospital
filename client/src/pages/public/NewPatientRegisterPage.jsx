@@ -1103,32 +1103,32 @@ export const NewPatientRegisterPage = () => {
 
       {/* ----------------- 4. COMPACT FOOTER (IMAGE REPLICA) ----------------- */}
       <footer className="relative z-10 bg-white border-t border-slate-200/90 py-2 shrink-0">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-600">
-          <div className="flex items-center gap-3">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-2.5 text-xs text-slate-600">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 text-center">
             <span className="font-medium text-slate-800 text-xs">
               &copy; 2026 Brahm Shakti Hospital.
             </span>
-            <span className="text-slate-300">|</span>
+            <span className="text-slate-300 hidden sm:inline">|</span>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-[#BCEEF5] bg-[#E8F8FA] text-[#006680] font-semibold text-[11px]">
               <ShieldCheck className="w-3.5 h-3.5 text-[#006680]" />
               <span>NABH &amp; NABL Accredited</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-5 text-xs font-medium">
+          <div className="flex flex-col md:flex-row items-center justify-center md:justify-end gap-2 md:gap-5 text-xs font-medium w-full md:w-auto text-center">
             <a
               href="mailto:helpdesk@brahmshaktihospital.com"
-              className="inline-flex items-center gap-1.5 hover:text-[#006680] transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 hover:text-[#006680] transition-colors whitespace-nowrap text-center"
             >
-              <Mail className="w-3.5 h-3.5 text-slate-500" />
+              <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
               <span>helpdesk@brahmshaktihospital.com</span>
             </a>
             <a
               href="tel:01127531683"
-              className="inline-flex items-center gap-1.5 text-rose-600 font-semibold hover:underline"
+              className="inline-flex items-center justify-center gap-1.5 text-rose-600 font-semibold hover:underline whitespace-nowrap text-center"
             >
-              <Phone className="w-3.5 h-3.5 text-rose-500" />
-              <span>011-27531683</span>
+              <Phone className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+              <span>011-27531683 / 7840089703</span>
             </a>
           </div>
         </div>

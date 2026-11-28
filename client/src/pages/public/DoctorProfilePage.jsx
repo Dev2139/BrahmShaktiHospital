@@ -535,15 +535,20 @@ export const DoctorProfilePage = () => {
                     </div>
 
                     {/* Official DMC Record */}
-                    <div className="p-4 rounded-xl bg-[#F0FBFC]/60 border border-[#B6EEF6]/80 space-y-3">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-[11px] sm:text-xs font-black text-[#018AAE] uppercase tracking-wider flex items-center gap-1.5 min-w-0">
+                    <div className="p-4 rounded-2xl bg-[#F0FBFC]/70 border border-[#B6EEF6] space-y-3.5">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 border-b border-[#B6EEF6]/60">
+                        <div className="flex items-center gap-2">
                           <ShieldCheck className="w-4 h-4 text-[#018AAE] shrink-0" />
-                          <span className="truncate">Delhi Medical Council (DMC) Record</span>
-                        </span>
-                        <span className="px-2.5 py-0.5 rounded-full bg-[#018AAE] text-white text-[10px] font-bold whitespace-nowrap shrink-0 shadow-2xs">
-                          Official Record
-                        </span>
+                          <span className="text-xs font-black text-[#018AAE] uppercase tracking-wider">
+                            Delhi Medical Council (DMC) Record
+                          </span>
+                        </div>
+                        <div className="self-start sm:self-auto">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#018AAE] text-white text-xs font-bold shadow-2xs whitespace-nowrap">
+                            <Check className="w-3.5 h-3.5 stroke-[3]" />
+                            <span>Official Verified Record</span>
+                          </span>
+                        </div>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
@@ -573,7 +578,7 @@ export const DoctorProfilePage = () => {
             {/* TAB CONTENT 4: OPD SCHEDULE */}
             {activeTab === 'opd' && (
               <div className="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200 shadow-2xs space-y-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 border-b border-slate-100">
                   <div>
                     <h3 className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
                       Outpatient (OPD) Consultation Timetable
@@ -582,18 +587,21 @@ export const DoctorProfilePage = () => {
                       Regular OPD chamber slots at Brahm Shakti Hospital.
                     </p>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6] text-xs font-bold">
-                    Active Timetable
-                  </span>
+                  <div className="self-start sm:self-auto shrink-0">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FBFC] text-[#018AAE] border border-[#B6EEF6] text-xs font-bold whitespace-nowrap shadow-2xs">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span>Active Timetable</span>
+                    </span>
+                  </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-[#F0FBFC]/70 border border-[#B6EEF6] flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-[#018AAE] text-white flex items-center justify-center shrink-0">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-[#F0FBFC]/70 border border-[#B6EEF6] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-start sm:items-center gap-3 min-w-0">
+                    <div className="w-9 h-9 rounded-lg bg-[#018AAE] text-white flex items-center justify-center shrink-0 mt-0.5 sm:mt-0 shadow-2xs">
                       <Clock className="w-4 h-4" />
                     </div>
-                    <div>
-                      <div className="text-xs font-bold text-slate-900">
+                    <div className="min-w-0 space-y-0.5">
+                      <div className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
                         {doctor.opdSchedule || 'Mon - Sat: 09:30 AM - 02:30 PM (Room 105)'}
                       </div>
                       <div className="text-[11px] text-slate-600">
@@ -601,12 +609,15 @@ export const DoctorProfilePage = () => {
                       </div>
                     </div>
                   </div>
-                  <Link
-                    to={`/bookappointment?doctor=${doctor.id}&department=${doctor.departmentId}`}
-                    className="px-3.5 py-1.5 rounded-lg bg-[#018AAE] text-white text-xs font-bold hover:bg-[#007595] transition-colors cursor-pointer"
-                  >
-                    Select Slot
-                  </Link>
+                  <div className="self-start sm:self-center shrink-0">
+                    <Link
+                      to={`/bookappointment?doctor=${doctor.id}&department=${doctor.departmentId}`}
+                      className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#018AAE] hover:bg-[#007595] text-white text-xs font-bold transition-all shadow-2xs whitespace-nowrap cursor-pointer active:scale-95"
+                    >
+                      <span>Select Slot</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             )}
